@@ -56,8 +56,8 @@ stages:
         Tw6APXtEnjfD2H8HOpOX/7ef4gWK0O1Q7A==
         -----END CERTIFICATE-----" >> /kaniko/ssl/certs/ca-certificates.crt
     - |
-        /kaniko/executor ${KANIKO_ARGS} --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/${DOCKERFILE_PATH} \
-        --destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:${CI_COMMIT_REF_SLUG}
+      /kaniko/executor ${KANIKO_ARGS} --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/${DOCKERFILE_PATH} \
+      --destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:${CI_COMMIT_REF_SLUG}
 
 # Jobs
 
@@ -158,14 +158,33 @@ build-ios-master:
     FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - master@dev/connectme/ConnectMe
+
+build-ios-stage:
+  extends: .build-ios
+  variables:
+    BUILD_TYPE: 'ConnectMe Stage Build'
+    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+    FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
+  only:
+    refs:
+      - stage@dev/connectme/ConnectMe
+
+build-ios-stable:
+  extends: .build-ios
+  variables:
+    BUILD_TYPE: 'ConnectMe Stage Build'
+    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+    FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
+  only:
+    refs:
+      - stable@dev/connectme/ConnectMe
 
 ### - Android - ###
 .build-android:
   stage: build
   tags:
-    - docker-machine
-    - large
+    - docker
   image: bitriseio/android-ndk-lts
   artifacts:
     paths:
@@ -189,23 +208,31 @@ build-ios-master:
     - gem install fastlane
     - cd android
     - bundle install
-    - ${FASTLANE_COMMAND}
+    - bundle exec fastlane alpha
 
 build-android-merge-request:
   extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
   only:
     refs:
       - merge_requests
 
 build-android-master:
   extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane cd'
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - master@dev/connectme/ConnectMe
+
+build-android-stage:
+  extends: .build-android
+  only:
+    refs:
+      - stage@dev/connectme/ConnectMe
+
+build-android-stable:
+  extends: .build-android
+  only:
+    refs:
+      - stable@dev/connectme/ConnectMe
 
 ### - Devicefarm-test - ###
 include:
