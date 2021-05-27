@@ -1,0 +1,219 @@
+# ENV['DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS'] = '-t DAV'
+ENV['SPACESHIP_SKIP_2FA_UPGRADE'] = '1'
+
+fastlane_version "2.73.0"
+
+default_platform :ios
+
+platform :ios do
+  build_type = "QAConnectMe Build"
+
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_CREDENTIAL"]}"
+  end
+
+  after_all do |lane|
+    commit_message = ENV["currentBuild.changeSets"]
+    build_number = get_build_number(xcodeproj: "ConnectMe.xcodeproj")
+    slack(channel: "connectme_build", message: "#{build_type} ##{build_number} #{commit_message}")
+  end
+
+  error do |lane, exception|
+    msg = exception.to_s
+    msg = msg.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
+    payloadMsg = exception.error_info.to_s
+    payloadMsg = payloadMsg.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
+    slack(
+      channel: "connectme_build",
+      message: msg,
+      success: false,
+      payload: { "Output" => payloadMsg }
+    )
+  end
+
+  lane :ci do
+
+    UI.user_error!("You can run this lane only on CI!") unless Helper.is_ci?
+
+    reset_git_repo(force: true)
+
+    remote_branch = git_branch
+
+    cocoapods(
+      try_repo_update_on_error: true,
+    )
+    version_number = project_version_bump
+
+    app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+
+    build(
+        match_type: "adhoc",
+        compile_type: "adhoc",
+        app_identifier: "#{app_identifier}",
+    )
+
+    commit_and_push(
+        commit_message: "[ci skip] Build Version bump by Fastlane on GitLab. Build: #{version_number}",
+        remote_branch: "#{remote_branch}"
+    )
+
+    UI.user_error!("You didn't set token for AppCenter") if ENV["APPCENTER_API_TOKEN"].empty?
+    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "user", app_name: "ConnectMe")
+
+  end
+
+  lane :cd do
+
+    UI.user_error!("You can run this lane only on CI!") unless Helper.is_ci?
+
+    remote_branch = git_branch
+
+    reset_git_repo(force: true)
+    cocoapods(
+      try_repo_update_on_error: true,
+    )
+
+    version_number = project_version_bump
+
+    app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+
+    build(
+        match_type: "adhoc",
+        compile_type: "adhoc",
+        app_identifier: "#{app_identifier}",
+    )
+
+    commit_and_push(
+        commit_message: "[ci skip] Build Version bump by Fastlane on GitLab. Build: #{version_number}",
+        remote_branch: "#{remote_branch}"
+    )
+
+    appcenter_token = ENV["APPCENTER_API_TOKEN"]
+    UI.user_error!("You didn't set token for AppCenter") if appcenter_token.empty?
+    build_type = ENV["BUILD_TYPE"] || "#{build_type}"
+    if remote_branch == "master"
+      appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "user", app_name: "QA-ConnectMe")
+    elsif remote_branch == "stable" || remote_branch == "stage"
+      appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "user", app_name: "Stage-ConnectMe")
+    end
+
+    build(
+        match_type: "appstore",
+        compile_type: "appstore",
+        app_identifier: "#{app_identifier}",
+    )
+
+    api_key = app_store_connect_api_key()
+
+    deliver(
+      api_key: api_key,
+      force: true,
+      skip_metadata: true,
+      skip_screenshots: true,
+      skip_app_version_update: true,
+      run_precheck_before_submit: false
+    )
+  end
+
+  #==============================================#
+  #              PRIVATE LANES                   #
+  #==============================================#
+
+  ##### ----- PROJECT_VERSION_BUMP ----- #####
+  private_lane :project_version_bump do
+    ci_job_id = ENV["CI_JOB_ID"]
+    puts 'gitlab CI build ID: ' + ci_job_id
+
+    buildNumber = increment_build_number(xcodeproj: "ConnectMe.xcodeproj")
+    if ENV["CI_PIPELINE_SOURCE"] == "merge_request" || ENV["CI_BUILD_REF_SLUG"] != "master"
+      buildNumber = increment_build_number(build_number: ci_job_id, xcodeproj: "ConnectMe.xcodeproj")
+    end
+    # we are fixing the version number as of now
+    # any version number change has to be manual
+    version_number = "1.5.6"
+    versionNumber = increment_version_number(version_number: version_number, xcodeproj: "ConnectMe.xcodeproj")
+    path = '../../android/app/build.gradle'
+    reVersionCode = /versionCode\s+(\d+)/
+    reVersionName = /versionName\s+(\S+)/
+    puts 'new version number: ' + versionNumber
+    androidBuildGradleFileContent = File.read(path)
+    androidBuildGradleFileContent[reVersionCode, 1] = buildNumber.to_s
+    androidBuildGradleFileContent[reVersionName, 1] = '"' + versionNumber.to_s + '"'
+    androidBuildGradleFile = File.new(path, 'w')
+    androidBuildGradleFile.write(androidBuildGradleFileContent)
+    androidBuildGradleFile.close
+    versionNumber.to_s + "-" + buildNumber.to_s
+  end
+
+  ##### ----- BUILD ----- #####
+  private_lane :build do |options|
+    match_certificates(
+      type: options[:match_type],
+      app_identifier: options[:app_identifier]
+    )
+
+    compile(
+      type: options[:compile_type],
+      app_identifier: options[:app_identifier]
+    )
+  end
+
+  ##### ----- COMPILE ----- #####
+  private_lane :compile do |options|
+    types = [ "adhoc", "appstore" ]
+    type = options[:type]
+    unless types.include? type
+        UI.user_error!("Please specify a valid type! " + types.inspect)
+    end
+
+    profile = ENV["sigh_#{options[:app_identifier]}_#{type}"]
+    disable_automatic_code_signing(path: "ConnectMe.xcodeproj")
+
+    gym(
+      scheme: "ConnectMe",
+      clean: true
+    )
+  end
+
+  ##### ----- MATCH_CERTIFICATES ----- #####
+  private_lane :match_certificates do |options|
+
+    types = [ "development", "adhoc", "appstore" ]
+    type = options[:type]
+
+    unless types.include? type
+        UI.user_error!("Please specify a valid type! " + types.inspect)
+    end
+
+    match(
+      type: "#{type}",
+      app_identifier: "#{options[:app_identifier]}",
+      force_for_new_devices: true
+    )
+  end
+
+  ##### ----- COMMIT AND PUSH ----- #####
+  private_lane :commit_and_push do |options|
+
+    commit_version_bump(
+      message: "#{options[:commit_message]}",
+      xcodeproj: "ConnectMe.xcodeproj",
+      force: true,
+      include: %w[ android/app/build.gradle ]
+    )
+
+    if ENV["CI_PIPELINE_SOURCE"] == "merge_request"
+      UI.important("Build is from Merge Request. Skipping push to origin")
+    elsif ENV["CI_BUILD_REF_SLUG"] != "master"
+      UI.important("Build is not on master branch. Skipping push to origin")
+    else
+      push_to_git_remote(
+        remote: "origin",
+        local_branch: "HEAD",
+        remote_branch: "#{options[:remote_branch]}",
+        force: false,
+        tags: false
+      )
+    end
+  end
+end

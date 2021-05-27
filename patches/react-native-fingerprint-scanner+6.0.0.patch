@@ -1,0 +1,11 @@
+diff --git a/node_modules/react-native-fingerprint-scanner/react-native-fingerprint-scanner.podspec b/node_modules/react-native-fingerprint-scanner/react-native-fingerprint-scanner.podspec
+index e9fbd07..731116e 100644
+--- a/node_modules/react-native-fingerprint-scanner/react-native-fingerprint-scanner.podspec
++++ b/node_modules/react-native-fingerprint-scanner/react-native-fingerprint-scanner.podspec
+@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
+   s.preserve_paths  = '**/*.js'
+   s.framework       = 'LocalAuthentication'
+ 
+-  s.dependency 'React'
++  s.dependency 'React-Core'
+ end

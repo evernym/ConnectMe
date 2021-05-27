@@ -1,0 +1,11 @@
+diff --git a/node_modules/@react-native-community/blur/react-native-blur.podspec b/node_modules/@react-native-community/blur/react-native-blur.podspec
+index 837cf0c..2e28950 100644
+--- a/node_modules/@react-native-community/blur/react-native-blur.podspec
++++ b/node_modules/@react-native-community/blur/react-native-blur.podspec
+@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
+   s.homepage      = "https://github.com/react-native-community/react-native-blur"
+   s.source        = { :git => "https://github.com/react-native-community/react-native-blur.git" }
+ 
+-  s.dependency 'React'
++  s.dependency 'React-Core'
+ end
