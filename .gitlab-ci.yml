@@ -158,7 +158,7 @@ build-ios-master:
     FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
   only:
     refs:
-      - main@dev/connectme/ConnectMe
+      - main@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -200,7 +200,7 @@ build-android-master:
   extends: .build-android
   only:
     refs:
-      - main@dev/connectme/ConnectMe
+      - main@evernym/mobile/connectme
 
 ### - Devicefarm-test - ###
 include:

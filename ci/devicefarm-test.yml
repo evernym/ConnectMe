@@ -29,7 +29,7 @@ devicefarm-test-launch-android-weekly-top:
   dependencies:
     - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "master"'
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - sleep 300 # android shift
@@ -41,7 +41,7 @@ devicefarm-test-launch-ios-weekly-top:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "master"'
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXS false
@@ -52,7 +52,7 @@ devicefarm-test-launch-android-weekly-next:
   dependencies:
     - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "master"'
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - sleep 300 # android shift
@@ -64,7 +64,7 @@ devicefarm-test-launch-ios-weekly-next:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "master"'
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus false
@@ -75,7 +75,7 @@ devicefarm-test-launch-android-weekly-final:
   dependencies:
     - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "master"'
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - sleep 300 # android shift
@@ -87,7 +87,7 @@ devicefarm-test-launch-ios-weekly-final:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "master"'
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR false
@@ -98,7 +98,7 @@ devicefarm-test-launch-android-master:
     - build-android-master
   rules:
     # - if: '$SCHEDULED_RUN == "false" && $CI_COMMIT_REF_SLUG == "master"'
-    - if: '$CI_COMMIT_REF_SLUG == "master"'
+    - if: '$CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - sleep 300 # android shift
@@ -109,8 +109,7 @@ devicefarm-test-launch-ios-master:
   dependencies:
     - build-ios-master
   rules:
-    # - if: '$SCHEDULED_RUN == "false" && $CI_COMMIT_REF_SLUG == "master"'
-    - if: '$CI_COMMIT_REF_SLUG == "master"'
+    - if: '$CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 false
