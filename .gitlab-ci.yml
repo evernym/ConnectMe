@@ -164,7 +164,8 @@ build-ios-master:
 .build-android:
   stage: build
   tags:
-    - docker
+    - docker-machine
+    - large
   image: bitriseio/android-ndk-lts
   artifacts:
     paths:
@@ -188,16 +189,20 @@ build-ios-master:
     - gem install fastlane
     - cd android
     - bundle install
-    - bundle exec fastlane alpha
+    - ${FASTLANE_COMMAND}
 
 build-android-merge-request:
   extends: .build-android
+  variables:
+    FASTLANE_COMMAND: 'bundle exec fastlane ci'
   only:
     refs:
       - merge_requests
 
 build-android-master:
   extends: .build-android
+  variables:
+    FASTLANE_COMMAND: 'bundle exec fastlane cd'
   only:
     refs:
       - main@evernym/mobile/connectme
