@@ -6,7 +6,7 @@
  */
 const path = require('path')
 const pathToRNEvernymSdk = require('./package.json').dependencies[
-  '@dev/react-native-evernym-sdk'
+  'react-native-evernym-sdk'
 ]
 
 module.exports = {

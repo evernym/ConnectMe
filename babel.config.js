@@ -7,7 +7,7 @@ module.exports = {
 
 /*
 const pathToRNEvernymSdk = require('./package.json').dependencies[
-  '@dev/react-native-evernym-sdk'
+  'react-native-evernym-sdk'
   ]
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          '@dev/react-native-evernym-sdk': pathToRNEvernymSdk,
+          'react-native-evernym-sdk': pathToRNEvernymSdk,
         },
       },
     ],
