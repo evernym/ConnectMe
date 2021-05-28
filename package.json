@@ -18,7 +18,7 @@
     "e2e": "e2e/e2e-cli.js",
     "circular": "madge --circular --extensions js app/",
     "postinstall": "jetify && patch-package",
-    "evernym-sdk:configure": "yarn --cwd node_modules/@dev/react-native-evernym-sdk run configure"
+    "evernym-sdk:configure": "yarn --cwd node_modules/react-native-evernym-sdk run configure"
   },
   "lint-staged": {
     "*.js": "prettier --single-quote --no-semi --trailing-comma es5 --write",
@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@dev/react-native-evernym-sdk": "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git",
+    "react-native-evernym-sdk": "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git",
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.10",

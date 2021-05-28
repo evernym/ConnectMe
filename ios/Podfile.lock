@@ -412,7 +412,7 @@ DEPENDENCIES:
   - react-native-branch (from `../node_modules/react-native-branch`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
-  - "react-native-evernym-sdk (from `../node_modules/@dev/react-native-evernym-sdk`)"
+  - "react-native-evernym-sdk (from `../node_modules/react-native-evernym-sdk`)"
   - react-native-fingerprint-scanner (from `../node_modules/react-native-fingerprint-scanner`)
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - react-native-mail (from `../node_modules/react-native-mail`)
@@ -523,7 +523,7 @@ EXTERNAL SOURCES:
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
   react-native-evernym-sdk:
-    :path: "../node_modules/@dev/react-native-evernym-sdk"
+    :path: "../node_modules/react-native-evernym-sdk"
   react-native-fingerprint-scanner:
     :path: "../node_modules/react-native-fingerprint-scanner"
   react-native-image-resizer:

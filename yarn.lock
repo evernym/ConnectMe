@@ -1021,10 +1021,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@dev/react-native-evernym-sdk@https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git":
-  version "0.0.1"
-  resolved "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git#4ac1c1d034f18fed0b5dac396da315964e1f38f1"
-
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"
@@ -10417,6 +10413,10 @@ react-native-eva-icons@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-eva-icons/-/react-native-eva-icons-1.3.1.tgz#1e6e019b0fd3cb1669db50bd6bbdaa6d89327593"
   integrity sha512-emd/aYXuOacuDVTx0SJoLi+xsOdCNdljQB3PTNCM9AQ3m/smG0X1TN0+ihelPO7MqoHzaH0h6lbANtwxGUy8Fw==
+
+"react-native-evernym-sdk@https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git":
+  version "0.0.1"
+  resolved "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git#0761398a68d8fecf1d5e2c905f5d2a8d2338c101"
 
 react-native-file-viewer@^2.1.1:
   version "2.1.4"
