@@ -29,7 +29,7 @@ platform :android do
 
     gradle(
       task: "assemble",
-      build_type: "Release",
+      build_type: "Debug",
     )
   end
 
