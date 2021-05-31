@@ -167,10 +167,6 @@ build-ios-master:
     - docker-machine
     - large
   image: bitriseio/android-ndk-lts
-  artifacts:
-    paths:
-      - android/app/build/outputs/apk/release/*.apk
-    expire_in: 1 week
   before_script:
     - node --version
     - sudo apt-get remove -y nodejs
@@ -191,6 +187,10 @@ build-ios-master:
 
 build-android-merge-request:
   extends: .build-android
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/debug/*.apk
+    expire_in: 1 week
   script:
     - yarn start &
     - bundle exec fastlane ci
@@ -200,6 +200,10 @@ build-android-merge-request:
 
 build-android-master:
   extends: .build-android
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/release/*.apk
+    expire_in: 1 week
   script:
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane cd
