@@ -192,7 +192,7 @@ build-android-merge-request:
       - android/app/build/outputs/apk/debug/*.apk
     expire_in: 1 week
   script:
-    - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+    - yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
     - bundle exec fastlane ci
   only:
     refs:
