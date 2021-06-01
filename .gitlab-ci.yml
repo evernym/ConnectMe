@@ -110,7 +110,7 @@ license-data-check:
   artifacts:
     paths:
       - ios/ConnectMe.ipa
-  script:
+  before_script:
     - xcversion select --verbose --symlink 12.4
     - xcversion selected
     - sudo xcodebuild -license accept
@@ -119,22 +119,21 @@ license-data-check:
     - gem install bundler
     - bundler update --bundler
     - gem install cocoapods
+    - nvm use
+    - yarn install
     - cd ..
     - mkdir -p ~/.ssh/
     - ssh-keyscan -4H gitlab.corp.evernym.com > ~/.ssh/known_hosts
     - eval $(ssh-agent -s)
     - echo "$CALLCENTER_CERTS_DEPLOY_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - echo "$IOSDEV_EVERNYM_RSA_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - chmod 644 ~/.ssh/known_hosts
-    - nvm use
-    - yarn install
-    - security -v unlock-keychain -p ${VAGRANT_USER_PASS} ~/Library/Keychains/login.keychain-db
-    - git config --global user.name 'Gitlab'
-    - git config --global user.email 'it@evernym.com'
-    - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
+#    - chmod 644 ~/.ssh/known_hosts
+#    - security -v unlock-keychain -p ${VAGRANT_USER_PASS} ~/Library/Keychains/login.keychain-db
+#    - git config --global user.name 'Gitlab'
+#    - git config --global user.email 'it@evernym.com'
+#    - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
     - cd ios
     - bundle install
-    - ${FASTLANE_COMMAND}
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
@@ -143,7 +142,9 @@ build-ios-merge-request:
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
+  script:
+    - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+    - bundle exec fastlane ci --verbose
   only:
     refs:
       - merge_requests
@@ -154,8 +155,8 @@ build-ios-master:
   variables:
     BUILD_TYPE: 'QA ConnectMe Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    # this gets passed to the anchor
-    FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
+  script:
+    - bundle exec fastlane cd --disable_runner_upgrades --verbose
   only:
     refs:
       - main@evernym/mobile/connectme
@@ -192,7 +193,7 @@ build-android-merge-request:
       - android/app/build/outputs/apk/debug/*.apk
     expire_in: 1 week
   script:
-    - yarn start &
+    - react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
     - bundle exec fastlane ci
   only:
     refs:
