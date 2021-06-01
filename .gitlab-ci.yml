@@ -185,18 +185,18 @@ build-ios-master:
     - cd android
     - bundle install
 
-#build-android-merge-request:
-#  extends: .build-android
-#  artifacts:
-#    paths:
-#      - android/app/build/outputs/apk/debug/*.apk
-#    expire_in: 1 week
-#  script:
-#    - yarn start &
-#    - bundle exec fastlane ci
-#  only:
-#    refs:
-#      - merge_requests
+build-android-merge-request:
+  extends: .build-android
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/debug/*.apk
+    expire_in: 1 week
+  script:
+    - yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
+    - bundle exec fastlane ci
+  only:
+    refs:
+      - merge_requests
 
 build-android-master:
   extends: .build-android
