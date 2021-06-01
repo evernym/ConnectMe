@@ -42,13 +42,12 @@ platform :ios do
     cocoapods(
       try_repo_update_on_error: true,
     )
-    version_number = project_version_bump
 
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
 
     build(
-        match_type: "adhoc",
-        compile_type: "adhoc",
+        match_type: "development",
+        compile_type: "development",
         app_identifier: "#{app_identifier}",
     )
 
