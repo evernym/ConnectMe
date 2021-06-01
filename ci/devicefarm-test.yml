@@ -128,15 +128,15 @@ devicefarm-test-launch-android-merge_requests:
     refs:
       - merge_requests
 
-devicefarm-test-launch-ios-merge_requests:
-  extends: .devicefarm-test-launch-ios
-  dependencies:
-    - build-ios-merge-request
-  script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 true # true
-  only:
-    refs:
-      - merge_requests
+#devicefarm-test-launch-ios-merge_requests:
+#  extends: .devicefarm-test-launch-ios
+#  dependencies:
+#    - build-ios-merge-request
+#  script:
+#    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 true # true
+#  only:
+#    refs:
+#      - merge_requests
 
 # # uncomment this to run weekly in MR:
 
