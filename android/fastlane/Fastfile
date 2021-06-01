@@ -25,11 +25,9 @@ platform :android do
   end
 
   lane :ci do
-    project_version_bump
-
     gradle(
       task: "assemble",
-      build_type: "Release",
+      build_type: "Debug",
     )
   end
 
@@ -55,7 +53,7 @@ platform :android do
 
   ##### ----- PROJECT_VERSION_BUMP ----- #####
   private_lane :project_version_bump do
-    ci_pipeline_id = ENV["CI_PIPELINE_IID"]
+    ci_pipeline_id = ENV["CI_PIPELINE_ID"]
     versionCode = ci_pipeline_id
 
     path = '../app/build.gradle'

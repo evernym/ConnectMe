@@ -138,15 +138,15 @@ license-data-check:
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
-build-ios-merge-request:
-  extends: .build-ios
-  variables:
-    BUILD_TYPE: 'ConnectMe Dev Build'
-    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
-  only:
-    refs:
-      - merge_requests
+#build-ios-merge-request:
+#  extends: .build-ios
+#  variables:
+#    BUILD_TYPE: 'ConnectMe Dev Build'
+#    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+#    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
+#  only:
+#    refs:
+#      - merge_requests
 
 build-ios-master:
   extends: .build-ios
@@ -167,14 +167,7 @@ build-ios-master:
     - docker-machine
     - large
   image: bitriseio/android-ndk-lts
-  artifacts:
-    paths:
-      - android/app/build/outputs/apk/release/*.apk
-    expire_in: 1 week
-  script:
-    - mkdir -p $HOME/keystores/
-    - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
-    - yes | sdkmanager --licenses || true
+  before_script:
     - node --version
     - sudo apt-get remove -y nodejs
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -187,22 +180,33 @@ build-ios-master:
     - yarn config set ignore-platforms true
     - yarn
     - gem install fastlane
+    - mkdir -p $HOME/keystores/
+    - yes | sdkmanager --licenses || true
     - cd android
     - bundle install
-    - ${FASTLANE_COMMAND}
 
-build-android-merge-request:
-  extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
-  only:
-    refs:
-      - merge_requests
+#build-android-merge-request:
+#  extends: .build-android
+#  artifacts:
+#    paths:
+#      - android/app/build/outputs/apk/debug/*.apk
+#    expire_in: 1 week
+#  script:
+#    - yarn start &
+#    - bundle exec fastlane ci
+#  only:
+#    refs:
+#      - merge_requests
 
 build-android-master:
   extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane cd'
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/release/*.apk
+    expire_in: 1 week
+  script:
+    - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
+    - bundle exec fastlane cd
   only:
     refs:
       - main@evernym/mobile/connectme
