@@ -167,7 +167,7 @@ build-ios-master:
     - docker-machine
     - large
   image: bitriseio/android-ndk-lts
-  before_script:
+  script:
     - node --version
     - sudo apt-get remove -y nodejs
     - curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -184,32 +184,39 @@ build-ios-master:
     - yes | sdkmanager --licenses || true
     - cd android
     - bundle install
+    - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
+    - ${FASTLANE_COMMAND}
 
-build-android-merge-request:
-  extends: .build-android
-  artifacts:
-    paths:
-      - android/app/build/outputs/apk/debug/*.apk
-    expire_in: 1 week
-  script:
-    - yarn react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
-    - bundle exec fastlane ci
-  only:
-    refs:
-      - merge_requests
+#build-android-merge-request:
+#  extends: .build-android
+#  variables:
+#    FASTLANE_COMMAND: 'bundle exec fastlane ci'
+#  only:
+#    refs:
+#      - merge_requests
 
 build-android-master:
   extends: .build-android
-  artifacts:
-    paths:
-      - android/app/build/outputs/apk/release/*.apk
-    expire_in: 1 week
-  script:
-    - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
-    - bundle exec fastlane cd
+  variables:
+    FASTLANE_COMMAND: 'bundle exec fastlane cd'
   only:
     refs:
       - main@evernym/mobile/connectme
+
+# Basic lint
+yarn-test:
+  stage: test
+  image: ${CI_REGISTRY_IMAGE}/ubuntu18:${CI_COMMIT_REF_SLUG}
+  script:
+    - yarn config set ignore-engines true
+    - yarn install
+    - yarn lint
+  only:
+    refs:
+      - branches
+      - tags
+  tags:
+    - docker-machine
 
 ### - Devicefarm-test - ###
 include:

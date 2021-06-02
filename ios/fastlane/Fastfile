@@ -46,8 +46,8 @@ platform :ios do
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
 
     build(
-        match_type: "development",
-        compile_type: "development",
+        match_type: "adhoc",
+        compile_type: "adhoc",
         app_identifier: "#{app_identifier}",
     )
 
