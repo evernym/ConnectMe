@@ -1,6 +1,6 @@
 # ConnectMe
 
-An easy to use, general purpose digital wallet (completely under your control) built on top of [Evernym React-Native SDK](https://gitlab.com/evernym/mobile/react-native-evernym-sdk).
+An easy to use, general purpose digital wallet (completely under your control) built on top of [Evernym React-Native white label app](https://gitlab.com/evernym/mobile/react-native-evernym-sdk).
 
 With Connect.Me, you can:
 - Form private, secure connections with other entities in the Sovrin ecosystem
@@ -52,11 +52,11 @@ The identity wallet app enables myriad use cases, including proving you’re ove
 - Clone the [React Native Evernym SDK repository](https://gitlab.com/evernym/mobile/react-native-evernym-sdk).
 - Replace the dependency in `package.json` with path to the local repository:
     ```json
-    "react-native-evernym-sdk": "../path/to/react-native-evernym-sdk"
+    "@evernym/react-native-white-label-app": "../path/to/react-native-evernym-sdk"
     ```
 - **Note**: Make sure that `react-native-evernym-sdk` repository does not contain `node_modules` folder.
 - In the ``react-native-evernym-sdk`` change paths for external imported modules (like in the `external-imports.js`) from relative one to absolute paths of your app (like `path/to/ConnectMe/app/evernym-sdk/{old-file}`).
-- `yarn install` or if already installed `yarn upgrade react-native-evernym-sdk`
+- `yarn install` or if already installed `yarn upgrade @evernym/react-native-white-label-app`
 - `yarn start-dev` - run Metro bundler which will watch for changes in both repositories `ConnectMe` and `react-native-mobile-sdk`.
   
 
@@ -66,7 +66,7 @@ Troubleshooting:
 ## Running with specific MSDK branch
 - Replace the dependency in `package.json` with branch
   ```json
-  "react-native-evernym-sdk": "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git#branch-name"
+  "@evernym/react-native-white-label-app": "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git#branch-name"
   ```
 
 ## Run functional automated test

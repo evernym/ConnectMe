@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start --config metro.config.js",
-    "start-dev": "react-native start --config dev.metro.config.js",
+    "start-dev": "react-native start --config metro.dev.config.js",
     "lint": "eslint app",
     "ios": "react-native run-ios",
     "android": "react-native run-android",

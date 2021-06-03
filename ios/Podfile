@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 require 'fileutils'
 
@@ -18,7 +18,7 @@ post_install do |installer|
 			config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
 		end
     installer.pods_project.targets.each do |target|
-        if target.name == "react-native-evernym-sdk"
+        if target.name == "react-native-white-label-app"
             target.build_configurations.each do |config|
                 config.build_settings['ENABLE_BITCODE'] = 'NO'
             end
