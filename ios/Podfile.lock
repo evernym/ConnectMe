@@ -657,7 +657,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: fb68ccb42fac06b391d47ac254fb5dcff71eb7cf
+  react-native-white-label-app: a01da7c1bd295842aa2cf38e4774a03f7fcb15b5
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
   React-RCTBlob: 8e0b23d95c9baa98f6b0e127e07666aaafd96c34
@@ -692,6 +692,6 @@ SPEC CHECKSUMS:
   vcx: bcf80b4cd160535229e5dc185f6cb990fa924eb1
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 4586021c35d5553d80375edd3133fa712878df40
+PODFILE CHECKSUM: 0340afa6962241d1e0e1a10aadaff84c3455f875
 
 COCOAPODS: 1.10.1

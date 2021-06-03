@@ -1,6 +1,6 @@
 # ConnectMe
 
-An easy to use, general purpose digital wallet (completely under your control) built on top of [Evernym React-Native white label app](https://gitlab.com/evernym/mobile/react-native-evernym-sdk).
+An easy to use, general purpose digital wallet (completely under your control) built on top of [Evernym React-Native white label app](https://gitlab.com/evernym/mobile/react-native-white-label-app).
 
 With Connect.Me, you can:
 - Form private, secure connections with other entities in the Sovrin ecosystem
@@ -13,7 +13,7 @@ The identity wallet app enables myriad use cases, including proving you’re ove
 # Prerequisites to run
 
 - Node >12.13 . Preferred way to install node is via [nvm](https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/)
-- [React Native](http://reactnative.dev/docs/getting-started). 
+- [React Native](http://reactnative.dev/docs/getting-started).
 - iOS
   - XCode 11 +
   - Ruby
@@ -49,24 +49,24 @@ The identity wallet app enables myriad use cases, including proving you’re ove
 
 ## Running with local MSDK (MSDK development)
 
-- Clone the [React Native Evernym SDK repository](https://gitlab.com/evernym/mobile/react-native-evernym-sdk).
+- Clone the [React Native Evernym SDK repository](https://gitlab.com/evernym/mobile/react-native-white-label-app).
 - Replace the dependency in `package.json` with path to the local repository:
     ```json
-    "@evernym/react-native-white-label-app": "../path/to/react-native-evernym-sdk"
+    "@evernym/react-native-white-label-app": "../path/to/react-native-white-label-app"
     ```
-- **Note**: Make sure that `react-native-evernym-sdk` repository does not contain `node_modules` folder.
-- In the ``react-native-evernym-sdk`` change paths for external imported modules (like in the `external-imports.js`) from relative one to absolute paths of your app (like `path/to/ConnectMe/app/evernym-sdk/{old-file}`).
+- **Note**: Make sure that `react-native-white-label-app` repository does not contain `node_modules` folder.
+- In the ``react-native-white-label-app`` change paths for external imported modules (like in the `external-imports.js`) from relative one to absolute paths of your app (like `path/to/ConnectMe/app/evernym-sdk/{old-file}`).
 - `yarn install` or if already installed `yarn upgrade @evernym/react-native-white-label-app`
 - `yarn start-dev` - run Metro bundler which will watch for changes in both repositories `ConnectMe` and `react-native-mobile-sdk`.
-  
+
 
 Troubleshooting:
-  - Babel error: replace the content of `babel.config` file with commented one.
+- Babel error: replace the content of `babel.config` file with commented one.
 
 ## Running with specific MSDK branch
 - Replace the dependency in `package.json` with branch
   ```json
-  "@evernym/react-native-white-label-app": "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git#branch-name"
+  "@evernym/react-native-white-label-app": "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#branch-name"
   ```
 
 ## Run functional automated test
