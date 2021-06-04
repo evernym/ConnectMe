@@ -1,6 +1,6 @@
-# ConnectMe
+# Connect.Me
 
-An easy to use, general purpose digital wallet (completely under your control) built on top of [Evernym React-Native white label app](https://gitlab.com/evernym/mobile/react-native-white-label-app).
+Connect.Me is the world's most advanced general purpose digital wallet. Its purpose is to empower individuals to gather, hold and share digital credentials in the most secure and privacy preserving way possible. It uses [Hyperledger Indy](https://www.hyperledger.org/use/hyperledger-indy) to talk to distributed ledgers and [Hyperledger Ursa](https://www.hyperledger.org/use/ursa) for performing advanced cryptographic operations such as signing, proof generation and holder binding. This is a business-source licensed repository which will automatically convert to an Apache 2.0 license after three years, for each commit. We are pleased to make our flagship mobile app's source code publicly available. We hope it becomes a meaningful contribution to the digital credential movement and is consistent with the collaborative, share-alike nature of open source projects.
 
 With Connect.Me, you can:
 - Form private, secure connections with other entities in the Sovrin ecosystem
@@ -9,6 +9,14 @@ With Connect.Me, you can:
 - Answer secure messages from any connection you have
 
 The identity wallet app enables myriad use cases, including proving you’re over a specific legal age without revealing your exact date of birth, sharing health records privately and securely, and doing away with the username-and-password concept once and for all.
+
+# References
+- [Apple App Store](https://apps.apple.com/us/app/connect-me/id1260651672) and [Google Play Store](https://play.google.com/store/apps/details?id=me.connect) install links
+- If you want to be first to install upcoming releases while they are in beta, use the join links below.
+  - [Connect.Me iOS beta](https://testflight.apple.com/join/bmbX21Kq)
+  - [Connect.Me Android beta](https://play.google.com/store/apps/details?id=me.connect)
+- We have released a white-label-able version of Connect.Me [here](https://gitlab.com/evernym/mobile/react-native-white-label-app)
+- [Mobile SDK repository](https://gitlab.com/evernym/mobile/mobile-sdk)
 
 # Prerequisites to run
 
