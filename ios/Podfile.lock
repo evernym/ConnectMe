@@ -265,10 +265,6 @@ PODS:
     - React-Core
   - react-native-document-picker (3.5.4):
     - React-Core
-  - react-native-evernym-sdk (0.0.1-31113):
-    - Onfido (= 16.0.0)
-    - React-Core
-    - vcx
   - react-native-fingerprint-scanner (6.0.0):
     - React-Core
   - react-native-image-resizer (1.2.3):
@@ -293,6 +289,10 @@ PODS:
     - React-Core
   - react-native-webview (10.1.1):
     - React-Core
+  - react-native-white-label-app (1.0.0):
+    - Onfido (= 16.0.0)
+    - React-Core
+    - vcx
   - React-RCTActionSheet (0.61.4):
     - React-Core/RCTActionSheetHeaders (= 0.61.4)
   - React-RCTAnimation (0.61.4):
@@ -383,7 +383,7 @@ PODS:
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.204)
+  - vcx (0.0.207)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -412,7 +412,6 @@ DEPENDENCIES:
   - react-native-branch (from `../node_modules/react-native-branch`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
-  - "react-native-evernym-sdk (from `../node_modules/react-native-evernym-sdk`)"
   - react-native-fingerprint-scanner (from `../node_modules/react-native-fingerprint-scanner`)
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - react-native-mail (from `../node_modules/react-native-mail`)
@@ -425,6 +424,7 @@ DEPENDENCIES:
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-version-number (from `../node_modules/react-native-version-number`)
   - react-native-webview (from `../node_modules/react-native-webview`)
+  - "react-native-white-label-app (from `../node_modules/@evernym/react-native-white-label-app`)"
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -455,11 +455,11 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.204)
+  - vcx (= 0.0.207)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  "git@gitlab.corp.evernym.com:dev/vcx/indy-sdk.git":
+  https://gitlab.com/evernym/mobile/mobile-sdk.git:
     - vcx
   trunk:
     - apptentive-ios
@@ -522,8 +522,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-document-picker:
     :path: "../node_modules/react-native-document-picker"
-  react-native-evernym-sdk:
-    :path: "../node_modules/react-native-evernym-sdk"
   react-native-fingerprint-scanner:
     :path: "../node_modules/react-native-fingerprint-scanner"
   react-native-image-resizer:
@@ -548,6 +546,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-version-number"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
+  react-native-white-label-app:
+    :path: "../node_modules/@evernym/react-native-white-label-app"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -645,7 +645,6 @@ SPEC CHECKSUMS:
   react-native-branch: 8d541e4b80f0f9c2c9ff992523dbc80c6c75f424
   react-native-camera: 6d49177f1a9fe72e306297aa0a50ba04e19e88e9
   react-native-document-picker: a1d2dc578f106686182595f24706adcc59a6dfe2
-  react-native-evernym-sdk: 58940c911041c43361bce198560631ecc81fabc7
   react-native-fingerprint-scanner: b278a3eaf4b6b837e6cbaee374e07af6643e71e3
   react-native-image-resizer: cd7ef8c4839834b2c9e1a6303786afaa1ca3a5d2
   react-native-mail: 82d9a99b31de76084e279ed3a161dd9ed11001f0
@@ -658,6 +657,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
+  react-native-white-label-app: a01da7c1bd295842aa2cf38e4774a03f7fcb15b5
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
   React-RCTBlob: 8e0b23d95c9baa98f6b0e127e07666aaafd96c34
@@ -689,9 +689,9 @@ SPEC CHECKSUMS:
   RNZipArchive: ad14dfbae8d51dc92f94634344277425060e524b
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: 2d51098e89c71a206006fcadb67fb7ec4dbebed3
+  vcx: bcf80b4cd160535229e5dc185f6cb990fa924eb1
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 066d326a85e9571f8704e72ff229bf720068ea0a
+PODFILE CHECKSUM: 0340afa6962241d1e0e1a10aadaff84c3455f875
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

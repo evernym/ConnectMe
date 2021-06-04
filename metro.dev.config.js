@@ -6,7 +6,7 @@
  */
 const path = require('path')
 const pathToRNEvernymSdk = require('./package.json').dependencies[
-  'react-native-evernym-sdk'
+  '@evernym/react-native-white-label-app'
 ]
 
 module.exports = {

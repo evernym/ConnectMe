@@ -1,6 +1,6 @@
-# ConnectMe
+# Connect.Me
 
-An easy to use, general purpose digital wallet (completely under your control) built on top of [Evernym React-Native SDK](https://gitlab.com/evernym/mobile/react-native-evernym-sdk).
+Connect.Me is the world's most advanced general purpose digital wallet. Its purpose is to empower individuals to gather, hold and share digital credentials in the most secure and privacy preserving way possible. It uses [Hyperledger Indy](https://www.hyperledger.org/use/hyperledger-indy) to talk to distributed ledgers and [Hyperledger Ursa](https://www.hyperledger.org/use/ursa) for performing advanced cryptographic operations such as signing, proof generation and holder binding. This is a business-source licensed repository which will automatically convert to an Apache 2.0 license after three years, for each commit. We are pleased to make our flagship mobile app's source code publicly available. We hope it becomes a meaningful contribution to the digital credential movement and is consistent with the collaborative, share-alike nature of open source projects.
 
 With Connect.Me, you can:
 - Form private, secure connections with other entities in the Sovrin ecosystem
@@ -10,10 +10,18 @@ With Connect.Me, you can:
 
 The identity wallet app enables myriad use cases, including proving you’re over a specific legal age without revealing your exact date of birth, sharing health records privately and securely, and doing away with the username-and-password concept once and for all.
 
+# References
+- [Apple App Store](https://apps.apple.com/us/app/connect-me/id1260651672) and [Google Play Store](https://play.google.com/store/apps/details?id=me.connect) install links
+- If you want to be first to install upcoming releases while they are in beta, use the join links below.
+  - [Connect.Me iOS beta](https://testflight.apple.com/join/bmbX21Kq)
+  - [Connect.Me Android beta](https://play.google.com/store/apps/details?id=me.connect)
+- We have released a white-label-able version of Connect.Me [here](https://gitlab.com/evernym/mobile/react-native-white-label-app)
+- [Mobile SDK repository](https://gitlab.com/evernym/mobile/mobile-sdk)
+
 # Prerequisites to run
 
 - Node >12.13 . Preferred way to install node is via [nvm](https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/)
-- [React Native](http://reactnative.dev/docs/getting-started). 
+- [React Native](http://reactnative.dev/docs/getting-started).
 - iOS
   - XCode 11 +
   - Ruby
@@ -49,24 +57,24 @@ The identity wallet app enables myriad use cases, including proving you’re ove
 
 ## Running with local MSDK (MSDK development)
 
-- Clone the [React Native Evernym SDK repository](https://gitlab.com/evernym/mobile/react-native-evernym-sdk).
+- Clone the [React Native Evernym SDK repository](https://gitlab.com/evernym/mobile/react-native-white-label-app).
 - Replace the dependency in `package.json` with path to the local repository:
     ```json
-    "react-native-evernym-sdk": "../path/to/react-native-evernym-sdk"
+    "@evernym/react-native-white-label-app": "../path/to/react-native-white-label-app"
     ```
-- **Note**: Make sure that `react-native-evernym-sdk` repository does not contain `node_modules` folder.
-- In the ``react-native-evernym-sdk`` change paths for external imported modules (like in the `external-imports.js`) from relative one to absolute paths of your app (like `path/to/ConnectMe/app/evernym-sdk/{old-file}`).
-- `yarn install` or if already installed `yarn upgrade react-native-evernym-sdk`
+- **Note**: Make sure that `react-native-white-label-app` repository does not contain `node_modules` folder.
+- In the ``react-native-white-label-app`` change paths for external imported modules (like in the `external-imports.js`) from relative one to absolute paths of your app (like `path/to/ConnectMe/app/evernym-sdk/{old-file}`).
+- `yarn install` or if already installed `yarn upgrade @evernym/react-native-white-label-app`
 - `yarn start-dev` - run Metro bundler which will watch for changes in both repositories `ConnectMe` and `react-native-mobile-sdk`.
-  
+
 
 Troubleshooting:
-  - Babel error: replace the content of `babel.config` file with commented one.
+- Babel error: replace the content of `babel.config` file with commented one.
 
 ## Running with specific MSDK branch
 - Replace the dependency in `package.json` with branch
   ```json
-  "react-native-evernym-sdk": "https://gitlab.com/evernym/mobile/react-native-evernym-sdk.git#branch-name"
+  "@evernym/react-native-white-label-app": "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#branch-name"
   ```
 
 ## Run functional automated test

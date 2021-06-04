@@ -1,5 +1,5 @@
 // @flow
 
-import * as EvernymSdk from 'react-native-evernym-sdk'
+import * as EvernymSdk from '@evernym/react-native-white-label-app'
 
 EvernymSdk.createApp('ConnectMe')
