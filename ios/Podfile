@@ -73,7 +73,6 @@ target 'ConnectMe' do
 	# Other pods dependency
 
 	pod 'vcx', vcx_version_for_debug_or_release
-	pod 'Onfido', '16.0.0'
 	pod 'apptentive-ios', '5.2.2'
 
 	target 'ConnectMeTests' do
