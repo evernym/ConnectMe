@@ -85,7 +85,6 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - Onfido (16.0.0)
   - PromisesObjC (1.2.12)
   - RCTRequired (0.61.4)
   - RCTTypeSafety (0.61.4):
@@ -290,7 +289,6 @@ PODS:
   - react-native-webview (10.1.1):
     - React-Core
   - react-native-white-label-app (1.0.0):
-    - Onfido (= 16.0.0)
     - React-Core
     - vcx
   - React-RCTActionSheet (0.61.4):
@@ -396,7 +394,6 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
-  - Onfido (= 16.0.0)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -474,7 +471,6 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - nanopb
-    - Onfido
     - PromisesObjC
     - SSZipArchive
     - TOCropViewController
@@ -630,7 +626,6 @@ SPEC CHECKSUMS:
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 634369419ccfe6e4b891f6f74e903f1515ff6804
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  Onfido: 6d16470843f73b10eff14d9221964b16ee5d0798
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RCTRequired: f3b3fb6f4723e8e52facb229d0c75fdc76773849
   RCTTypeSafety: 2ec60de6abb1db050b56ecc4b60188026078fd10
@@ -657,7 +652,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: a01da7c1bd295842aa2cf38e4774a03f7fcb15b5
+  react-native-white-label-app: 008ca4ae20f54b9ef4ff703154ced7c54cd899b1
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
   React-RCTBlob: 8e0b23d95c9baa98f6b0e127e07666aaafd96c34
@@ -692,6 +687,6 @@ SPEC CHECKSUMS:
   vcx: bcf80b4cd160535229e5dc185f6cb990fa924eb1
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 0340afa6962241d1e0e1a10aadaff84c3455f875
+PODFILE CHECKSUM: 8f01786a3921f426c53f0f4af968ad1a64d62acc
 
 COCOAPODS: 1.10.1
