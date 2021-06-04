@@ -167,6 +167,10 @@ build-ios-master:
     - docker-machine
     - large
   image: bitriseio/android-ndk-lts
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/release/*.apk
+    expire_in: 1 week
   script:
     - node --version
     - sudo apt-get remove -y nodejs
