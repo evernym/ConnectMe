@@ -141,3 +141,6 @@ Troubleshooting:
 
 - *Problem*: `curl: (60) SSL certificate problem`. (on Catalina) SSL certificate on repository server for downloading .vcx is self-signed, which is not secure 'enough' and CURL rejects connecting. *Solution
   *: Before installing .vcx, run this command: `echo insecure >> $HOME/.curlrc`. After commit is successfully pushed and .vcx installed, go and remove `insecure` from `~/.curlrc`.
+
+## Acknowledgements
+This effort is part of a project that has received funding from the European Union’s Horizon 2020 research and innovation program under grant agreement No 871932 delivered through our participation in the eSSIF-Lab, which aims to advance the broad adoption of self-sovereign identity for the benefit of all.
