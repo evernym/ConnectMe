@@ -83,7 +83,7 @@ public class PushNotificationTest extends IntSetup {
           ((AndroidDriver) driverApp).lockDevice();
         } catch (WebDriverException e) {
           // TODO: this bug has been fixed in 6.0+ client version
-          if (!((AndroidDriver) driverApp).isLocked()) ((AndroidDriver) driverApp).lockDevice();
+          if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
         }
         break;
       case appBackground:
@@ -93,7 +93,7 @@ public class PushNotificationTest extends IntSetup {
 
     VAS.sendCredentialOffer(context.getValue("DID"), "PMzJsfuq4YYPAKHLSrdP4Q:3:CL:185320:tag", Constants.values, credentialName);
 
-    if (((AndroidDriver) driverApp).isLocked()) ((AndroidDriver) driverApp).unlockDevice();
+    if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
 
     ((AndroidDriver) driverApp).openNotifications();
 
@@ -131,7 +131,7 @@ public class PushNotificationTest extends IntSetup {
           ((AndroidDriver) driverApp).lockDevice();
         } catch (WebDriverException e) {
           // TODO: this bug has been fixed in 6.0+ client version
-          if (!((AndroidDriver) driverApp).isLocked()) ((AndroidDriver) driverApp).lockDevice();
+          if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
         }
         break;
       case appBackground:
@@ -145,7 +145,7 @@ public class PushNotificationTest extends IntSetup {
     String proofName = Helpers.randomString();
     VAS.requestProof(context.getValue("DID"), proofName, requestedAttributes, null);
 
-    if (((AndroidDriver) driverApp).isLocked()) ((AndroidDriver) driverApp).unlockDevice();
+    if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
 
     ((AndroidDriver) driverApp).openNotifications();
 
@@ -188,7 +188,7 @@ public class PushNotificationTest extends IntSetup {
           ((AndroidDriver) driverApp).lockDevice();
         } catch (WebDriverException e) {
           // TODO: this bug has been fixed in 6.0+ client version
-          if (!((AndroidDriver) driverApp).isLocked()) ((AndroidDriver) driverApp).lockDevice();
+          if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
         }
         break;
       case appBackground:
@@ -198,7 +198,7 @@ public class PushNotificationTest extends IntSetup {
 
     VAS.askQuestion(DID, text, detail, option);
 
-    if (((AndroidDriver) driverApp).isLocked()) ((AndroidDriver) driverApp).unlockDevice();
+    if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
 
     ((AndroidDriver) driverApp).openNotifications();
 

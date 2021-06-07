@@ -4,7 +4,10 @@ import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -48,7 +51,8 @@ public class AppUtils extends AppPageInjector {
     } else {
       AndroidDriver androidDriver = (AndroidDriver) driver;
       for (int i = 0; i < 6; i++) {
-        androidDriver.pressKeyCode(AndroidKeyCode.KEYCODE_0);
+//        androidDriver.pressKeyCode(AndroidKeyCode.KEYCODE_0);
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_0));
       }
     }
   }
@@ -162,9 +166,9 @@ public class AppUtils extends AppPageInjector {
     Dimension dims = driver.manage().window().getSize();
     try {
       new TouchAction(driver)
-        .press(dims.width / 2 - 50, dims.height / 2)
-        .waitAction(Duration.ofMillis(100))
-        .moveTo(dims.width / 2 - 50, dims.height - 20)
+        .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
+        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+        .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height - 20))
         .release().perform();
     } catch (Exception e) {
       System.err.println("Pull screen down to refresh FAILED with Error:\n" + e.getMessage());
@@ -176,9 +180,9 @@ public class AppUtils extends AppPageInjector {
     Dimension dims = driver.manage().window().getSize();
     try {
       new TouchAction(driver)
-              .press(dims.width / 2 - 50, dims.height / 2)
-              .waitAction(Duration.ofMillis(200))
-              .moveTo(dims.width / 3, 200)
+              .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
+              .waitAction(new WaitOptions().withDuration(Duration.ofMillis(200)))
+              .moveTo(new PointOption().withCoordinates(dims.width / 3, 200))
               .release().perform();
     } catch (Exception e) {
       System.err.println("Pull screen up FAILED with Error:\n" + e.getMessage());

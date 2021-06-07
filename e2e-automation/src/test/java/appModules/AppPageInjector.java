@@ -56,8 +56,6 @@ public class AppPageInjector {
 	@Inject
 	protected ConnectionDetailPage connectionDetailPage;
 	@Inject
-	protected BackupRestoreWalletPage backuprestoreWalletPage;
-	@Inject
 	protected StartUpPage startUpPage;
 	@Inject
 	protected MyCredentialsPage myCredentialsPage;

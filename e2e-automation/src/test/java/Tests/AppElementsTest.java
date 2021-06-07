@@ -3,7 +3,8 @@ package test.java.Tests;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -71,7 +72,7 @@ public class AppElementsTest extends IntSetup {
             Thread.sleep(1000);
             // FIXME
             if((Config.Device_Type.equals("android")||Config.Device_Type.equals("awsAndroid"))) {
-                ((AndroidDriver) driverApp).pressKeyCode(AndroidKeyCode.BACK);
+                ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
             } else {
                 AppiumUtils.findElement(
                         driverApp,
@@ -153,7 +154,7 @@ public class AppElementsTest extends IntSetup {
                 objChatPage.backArrowAlt(driverApp).click();
             }
             else {
-                ((AndroidDriver) driverApp).pressKeyCode(AndroidKeyCode.BACK);
+                ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
             }
         }
 

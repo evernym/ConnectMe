@@ -10,7 +10,8 @@ import com.google.inject.Injector;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import test.java.appModules.AppPageInjector;
 import test.java.appModules.VASApi;
 import test.java.utility.Config;
@@ -63,7 +64,8 @@ public class ConnectionModules extends AppPageInjector {
 			if (! link.equals("")) {
 				driver.get(link);
 				Thread.sleep(3000);
-				((AndroidDriver) driver).pressKeyCode(AndroidKeyCode.BACK);
+//				((AndroidDriver) driver).pressKeyCode(AndroidKeyCode.BACK);
+        ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.BACK));
 			}
 			RestAssured.baseURI = "https://api.appcenter.ms/v0.1/apps";
 			final String owner = "/build-zg6l";

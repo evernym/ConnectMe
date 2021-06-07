@@ -78,11 +78,10 @@ public class AppInjector extends AbstractModule {
 			bind(ReceiveTokenPage.class).to(ReceiveTokenPageAndroid.class);
 			bind(SendTokenPage.class).to(SendTokenPageAndroid.class);
 			bind(ConnectionDetailPage.class).to(ConnectionDetailPageAndroid.class);
-			bind(BackupRestoreWalletPage.class).to(BackupRestoreWalletPageAndroid.class);
 			bind(MyCredentialsPage.class).to(MyCredentialsPageAndroid.class);
-            bind(PushNotificationsPage.class).to(PushNotificationsPageAndroid.class);
-            bind(QuestionPage.class).to(QuestionPageAndroid.class);
-            bind(CustomValuesPage.class).to(CustomValuesPageAndroid.class);
+      bind(PushNotificationsPage.class).to(PushNotificationsPageAndroid.class);
+      bind(QuestionPage.class).to(QuestionPageAndroid.class);
+      bind(CustomValuesPage.class).to(CustomValuesPageAndroid.class);
 		}
 
 	}

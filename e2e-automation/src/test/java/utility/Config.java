@@ -37,7 +37,7 @@ public class Config {
 	/*
 	* VAS settings
 	* */
-	public static final String VAS_Server_Link = "http://66763d2685d3.ngrok.io"; // ngrok public url
+	public static final String VAS_Server_Link = "http://689a77560dac.ngrok.io"; // ngrok public url
 	/* QA VAS*/
 	public static final String QA_VERITY_URL = "https://vas.pqa.evernym.com/api/";
 	public static final String QA_VERITY_DOMAIN_DID = "PofY18gShVSS4wfN5pmYjB";

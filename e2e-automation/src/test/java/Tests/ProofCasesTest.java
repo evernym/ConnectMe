@@ -4,7 +4,8 @@ import appModules.AppInjector;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.json.JSONObject;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.AfterClass;
@@ -172,7 +173,8 @@ public class ProofCasesTest extends IntSetup {
 		}
 		else {
 			AndroidDriver androidDriver = (AndroidDriver) driverApp;
-			androidDriver.pressKeyCode(AndroidKeyCode.KEYCODE_ENTER);
+//			androidDriver.pressKeyCode(AndroidKeyCode.KEYCODE_ENTER);
+      androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
 		}
 
 		proofRequestPage.attributeValue(driverApp, value).isDisplayed();
