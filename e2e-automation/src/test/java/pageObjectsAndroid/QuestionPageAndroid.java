@@ -88,7 +88,7 @@ public class QuestionPageAndroid implements QuestionPage {
 	public WebElement submit_Button(AppiumDriver driver) throws Exception {
 		return AppiumUtils.findElement(
 				driver,
-				"//android.widget.Button[@content-desc=\"question-action-submit\"]",
+				"//android.view.ViewGroup[@content-desc=\"question-action-submit\"]",
 				"Submit Button"
 		);
 	}
