@@ -43,6 +43,8 @@
 		C9032935B9D08145B0F5DC06 /* Pods_ConnectMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE40D020E150B72A7A8B796 /* Pods_ConnectMe.framework */; };
 		CBAF34C79DA848F495B816FB /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83E7F1AAAA7843A8B868498C /* Lato-BoldItalic.ttf */; };
 		D7CF24B6CF8648649CD3E93E /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB524C73BEE14C70A0C552CB /* Lato-Bold.ttf */; };
+		DD188B31266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD188B30266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift */; };
+		DD188B32266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD188B30266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift */; };
 		DD86E6C324BCEBF50099BB78 /* libswiftAVFoundation.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DD86E6C224BCEBCF0099BB78 /* libswiftAVFoundation.tbd */; };
 		DD86E6C524BCEC130099BB78 /* libswiftUIKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DD86E6C424BCEC070099BB78 /* libswiftUIKit.tbd */; };
 		DDD64CBD216D4A1000BE706A /* css in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CB9216D4A0F00BE706A /* css */; };
@@ -262,12 +264,12 @@
 		CB524C73BEE14C70A0C552CB /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/Lato/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		D5195723B48F485BA8835F82 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		DA7BA45366374CBDAB9927BD /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		DD188B30266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "do-not-delete-file-only-for-runtime-library.swift"; sourceTree = "<group>"; };
 		DD424AE7243DDDE000FA70C4 /* libswiftAVFoundation.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftAVFoundation.tbd; path = /usr/lib/swift/libswiftAVFoundation.tbd; sourceTree = SDKROOT; };
 		DD424AE9243DDE3E00FA70C4 /* libswiftUIKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftUIKit.tbd; path = /usr/lib/swift/libswiftUIKit.tbd; sourceTree = SDKROOT; };
 		DD858D8620A99E0F004B3CB5 /* libvcx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvcx.a; path = Pods/vcx/vcx/vcx.framework/lib/libvcx.a; sourceTree = "<group>"; };
 		DD86E6C224BCEBCF0099BB78 /* libswiftAVFoundation.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftAVFoundation.tbd; path = usr/lib/swift/libswiftAVFoundation.tbd; sourceTree = SDKROOT; };
 		DD86E6C424BCEC070099BB78 /* libswiftUIKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftUIKit.tbd; path = usr/lib/swift/libswiftUIKit.tbd; sourceTree = SDKROOT; };
-		DDA052DA1E9824F9001F0857 /* ConnectMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ConnectMe.entitlements; path = ConnectMe/ConnectMe.entitlements; sourceTree = "<group>"; };
 		DDCFDEAD1F879B8900F932F8 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Black.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
 		DDCFDEAE1F879B8900F932F8 /* SF-Pro-Display-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-BlackItalic.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-BlackItalic.otf"; sourceTree = "<group>"; };
 		DDCFDEAF1F879B8900F932F8 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Bold.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -378,7 +380,6 @@
 				DDD64CA8216D460A00BE706A /* connectme-website */,
 				8EEECBD4217FCDF0004F9994 /* ConnectMe-Bridging-Header.h */,
 				2772C0BB1EF14F93009DE7B6 /* GoogleService-Info.plist */,
-				DDA052DA1E9824F9001F0857 /* ConnectMe.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -386,6 +387,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				DD188B30266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift */,
 			);
 			name = ConnectMe;
 			sourceTree = "<group>";
@@ -714,6 +716,7 @@
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ES8QU3D2A4;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Manual;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
@@ -1198,6 +1201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				DD188B31266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1207,6 +1211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
+				DD188B32266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift in Sources */,
 				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1251,6 +1256,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C01DB59451CCF8AFB3878607 /* Pods-ConnectMeTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1303,6 +1309,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 15575CC5DB7D1CB97BA2808D /* Pods-ConnectMeTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1357,7 +1364,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_ENTITLEMENTS = ConnectMe/ConnectMe.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Evernym Automation (3XVZBU8VAE)";
 				CODE_SIGN_STYLE = Manual;
@@ -1393,8 +1400,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -1425,7 +1432,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_ENTITLEMENTS = ConnectMe/ConnectMe.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: EVERNYM, INC. (ES8QU3D2A4)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 70211;
@@ -1459,8 +1466,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(SDKROOT)/usr/lib/swift",
+					"$(inherited)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1487,6 +1494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1532,6 +1540,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -1543,6 +1553,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1588,6 +1599,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -1596,6 +1608,7 @@
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1635,6 +1648,7 @@
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
