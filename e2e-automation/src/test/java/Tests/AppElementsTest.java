@@ -34,35 +34,36 @@ public class AppElementsTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
-        driverApp = AppDriver.getDriver();
-        objAppUtils.openApp(driverApp);
+//        driverApp = AppDriver.getDriver(); // old way
+//        objAppUtils.openApp(driverApp); // old way
+        passCodePageNew.openApp();
     }
 
     @Test
     public void checkHome() throws Exception {
         // Home
-        objHomePage.homeHeader(driverApp).isDisplayed();
-        objHomePage.burgerMenuButton(driverApp).isDisplayed();
-        objHomePage.scanButton(driverApp).isDisplayed();
+        homePageNew.homeHeader.isDisplayed();
+        homePageNew.burgerMenuButton.isDisplayed();
+        homePageNew.scanButton.isDisplayed();
     }
 
     @Test(dependsOnMethods = "checkHome")
     public void checkMenu() throws Exception {
-        objHomePage.burgerMenuButton(driverApp).click(); // go to Menu
-        objMenuPage.menuContainer(driverApp).isDisplayed();
-        objMenuPage.connectMeBanner(driverApp).isDisplayed();
-        objMenuPage.connectMeLogo(driverApp).isDisplayed();
-        objMenuPage.builtByFooter(driverApp).isDisplayed();
-        objMenuPage.versionFooter(driverApp).isDisplayed();
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.menuContainer.isDisplayed();
+        menuPageNew.banner.isDisplayed();
+        menuPageNew.logo.isDisplayed();
+        menuPageNew.builtByFooter.isDisplayed();
+        menuPageNew.versionFooter.isDisplayed();
 
         // Avatar
-        objMenuPage.userAvatar(driverApp).click();
+        menuPageNew.userAvatar.click();
         try {
-            objMenuPage.okButton(driverApp).click();
+            menuPageNew.okButton.click();
             try {
-                objMenuPage.menuAllowButton(driverApp).click();
+                menuPageNew.menuAllowButton.click();
             } catch (Exception ex) {
-                objMenuPage.menuAllowButtonAlt(driverApp).click();
+                menuPageNew.menuAllowButtonAlt.click();
             }
         }
         catch (NoSuchElementException e) {
@@ -70,40 +71,33 @@ public class AppElementsTest extends IntSetup {
         }
         finally {
             Thread.sleep(1000);
-            // FIXME
             if((Config.Device_Type.equals("android")||Config.Device_Type.equals("awsAndroid"))) {
                 ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
             } else {
-                AppiumUtils.findElement(
-                        driverApp,
-                        "//XCUIElementTypeButton[@name=\"Cancel\"]",
-                        "Cancel Button"
-                ).click();
+                menuPageNew.cancelButton.click();
             }
         }
-        objMenuPage.homeButton(driverApp).click();
+        menuPageNew.homeButton.click();
 
-        // My Connections
-        objHomePage.burgerMenuButton(driverApp).click();
-        objMenuPage.myConnectionsButton(driverApp).click();
-        objConnectionsPage.myConnectionsHeader(driverApp).isDisplayed();
-        objHomePage.scanButton(driverApp).isDisplayed();
-
-        // My Credentials
-        objHomePage.burgerMenuButton(driverApp).click();
-        objMenuPage.myCredentialsButton(driverApp).click();
-        objCredentialsPage.myCredentialsHeader(driverApp).isDisplayed();
-        objHomePage.scanButton(driverApp).isDisplayed();
-
-        // Settings
-        objHomePage.burgerMenuButton(driverApp).click();
-        objMenuPage.settingsButton(driverApp).click();
-
-        // Go Back Home
-        objHomePage.burgerMenuButton(driverApp).click();
-        objMenuPage.homeButton(driverApp).click();
-
-        Thread.sleep(1000);
+//        // My Connections
+//        objHomePage.burgerMenuButton(driverApp).click();
+//        objMenuPage.myConnectionsButton(driverApp).click();
+//        objConnectionsPage.myConnectionsHeader(driverApp).isDisplayed();
+//        objHomePage.scanButton(driverApp).isDisplayed();
+//
+//        // My Credentials
+//        objHomePage.burgerMenuButton(driverApp).click();
+//        objMenuPage.myCredentialsButton(driverApp).click();
+//        objCredentialsPage.myCredentialsHeader(driverApp).isDisplayed();
+//        objHomePage.scanButton(driverApp).isDisplayed();
+//
+//        // Settings
+//        objHomePage.burgerMenuButton(driverApp).click();
+//        objMenuPage.settingsButton(driverApp).click();
+//
+//        // Go Back Home
+//        objHomePage.burgerMenuButton(driverApp).click();
+//        objMenuPage.homeButton(driverApp).click();
     }
 
     @Test(dependsOnMethods = "checkMenu")

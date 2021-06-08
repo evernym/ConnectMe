@@ -12,22 +12,20 @@ import test.java.utility.AppDriver;
 import io.appium.java_client.AppiumDriver;
 
 public class StartUpTest extends IntSetup {
-    Injector injector = Guice.createInjector(new AppInjector());
-
-    private test.java.pageObjects.HomePage objHomePage = injector.getInstance(test.java.pageObjects.HomePage.class);
-    private LockModules objLockModules = injector.getInstance(LockModules.class);
-
 
     @BeforeClass
     public void BeforeClassSetup() {
-        driverApp = AppDriver.getDriver();
         driverApp.launchApp();
     }
 
     @Test
     public void setUpWizardTest() throws Exception {
         try {
-            objLockModules.passStartUpWizard(driverApp);
+            startUpPageNew.setUpButton.click();
+            for (int i = 0; i < 2; i++) {
+              passCodePageNew.enterPassCode();
+            }
+            startUpPageNew.switchEnv();
         } catch (Exception e) {
             System.exit(1); // don't run other tests if this fails
         }
@@ -35,9 +33,9 @@ public class StartUpTest extends IntSetup {
 
     @Test(dependsOnMethods = "setUpWizardTest")
     public void checkMenuElementsVisibility() throws Exception {
-        objHomePage.homeHeader(driverApp).isDisplayed();
-        objHomePage.burgerMenuButton(driverApp).isDisplayed();
-        objHomePage.scanButton(driverApp).isDisplayed();
+      homePageNew.homeHeader.isDisplayed();
+      homePageNew.burgerMenuButton.isDisplayed();
+      homePageNew.scanButton.isDisplayed();
     }
 
     @AfterClass

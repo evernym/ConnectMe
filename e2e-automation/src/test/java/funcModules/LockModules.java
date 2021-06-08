@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 
 import io.appium.java_client.AppiumDriver;
 import appModules.AppInjector;
+import pageObjects.StartUpPageNew;
 import test.java.appModules.AppPageInjector;
 import test.java.appModules.AppUtils;
 import test.java.appModules.AppiumUtils;
@@ -27,7 +28,9 @@ public class LockModules extends AppPageInjector {
    * @return void
    */
   public void passStartUpWizard(AppiumDriver driver) throws Exception {
-    startUpPage.set_up_button(driver).click();
+//    startUpPage.set_up_button(driver).click(); // old way
+    StartUpPageNew startUpPageNew = new StartUpPageNew(driver); // move this to some parent class
+    startUpPageNew.setUpButton.click(); // new way
 
     for (int i = 0; i < 2; i++) {
       Thread.sleep(1000);
