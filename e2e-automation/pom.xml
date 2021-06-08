@@ -84,7 +84,12 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<dependency>
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <version>2.26</version>
+    </dependency>
+    <dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>3.0.0</version>
@@ -92,17 +97,17 @@
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
-			<version>5.0.0-BETA9</version>
+			<version>7.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>3.4.0</version>
+			<version>3.14.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.11</version>
+			<version>7.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
