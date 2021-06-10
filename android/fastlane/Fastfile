@@ -27,7 +27,7 @@ platform :android do
   lane :ci do
     gradle(
       task: "assemble",
-      build_type: "Debug",
+      build_type: "Release",
     )
   end
 
