@@ -115,10 +115,10 @@ devicefarm-test-launch-ios-master:
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 false
 
-devicefarm-test-launch-android-merge_requests:
+devicefarm-test-launch-android-e2e-testing:
   extends: .devicefarm-test-launch-android
   dependencies:
-    - build-android-merge-request
+    - build-android-e2e-testing
   variables:
     ANDROID_APK_PATH: 'android/app/build/outputs/apk/release/app-arm64-v8a-debug.apk'
   script:
@@ -128,10 +128,10 @@ devicefarm-test-launch-android-merge_requests:
     refs:
       - e2e-testing@evernym/mobile/connectme
 
-devicefarm-test-launch-ios-merge_requests:
+devicefarm-test-launch-ios-e2e-testing:
   extends: .devicefarm-test-launch-ios
   dependencies:
-    - build-ios-merge-request
+    - build-ios-e2e-testing
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 true # true
   only:
