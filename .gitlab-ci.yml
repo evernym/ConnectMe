@@ -138,15 +138,23 @@ license-data-check:
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
-#build-ios-merge-request:
-#  extends: .build-ios
-#  variables:
-#    BUILD_TYPE: 'ConnectMe Dev Build'
-#    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-#    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
-#  only:
-#    refs:
-#      - merge_requests
+build-android-e2e-testing:
+  extends: .build-android
+  variables:
+    FASTLANE_COMMAND: 'bundle exec fastlane ci'
+  only:
+    refs:
+      - e2e-testing@evernym/mobile/connectme
+
+build-ios-e2e-testing:
+  extends: .build-ios
+  variables:
+    BUILD_TYPE: 'ConnectMe Dev Build'
+    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
+  only:
+    refs:
+      - e2e-testing@evernym/mobile/connectme
 
 build-ios-master:
   extends: .build-ios
