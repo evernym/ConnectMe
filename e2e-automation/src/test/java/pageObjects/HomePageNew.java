@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -38,4 +39,40 @@ public class HomePageNew {
   @AndroidFindBy(xpath = "//*[@text='You connected with \"out-of-band-invitation\".']")
   @iOSXCUITFindBy(accessibility = "You connected with \"out-of-band-invitation\".") // id?
   public WebElement oobConnectedEvent;
+
+  @AndroidFindBy(xpath = "//*[@text='You connected with \"push-connection-invitation\".']")
+  @iOSXCUITFindBy(accessibility = "You connected with 'push-connection-invitation'.") // id?
+  public WebElement pushConnectedEvent;
+
+  @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Credential Offer\"]")
+  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Remote connection sent you a Credential Offer\"]")
+  public WebElement credentialOfferNotification;
+
+  @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Proof Request\"]")
+  @iOSXCUITFindBy(xpath = "//*[@text=\"Remote connection sent you a Proof Request\"]")
+  public WebElement proofRequestNotification;
+
+  @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Question\"]")
+  @iOSXCUITFindBy(xpath = "//*[@text=\"Remote connection sent you a Question\"]")
+  public WebElement questionNotification;
+
+  @AndroidFindBy(xpath = "//*[@text=\"NEW MESSAGE - TAP TO OPEN\"]")
+  @iOSXCUITFindBy(accessibility = "new-message")
+  public WebElement newMessage;
+
+  public WebElement credentialIssuedEvent(String credentialName) {
+    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+      return driver.findElementByAccessibilityId("You have been issued a \"" + credentialName + "\".");
+    } else {
+      return driver.findElement(By.xpath("//*[@text='You have been issued a \"" + credentialName + "\".']"));
+    }
+  }
+
+  public WebElement proofSharedEvent(String proofName) {
+    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+      return driver.findElementByAccessibilityId("You shared \"" + proofName + "\".");
+    } else {
+      return driver.findElement(By.xpath("//*[@text='You shared \"" + proofName + "\".']"));
+    }
+  }
 }

@@ -73,7 +73,7 @@ public class ProofCasesTest extends IntSetup {
 		proofRequestPage.attributeName(driverApp, attribute2).isDisplayed();
 		proofRequestPage.selectedCredentialIcon(driverApp).isDisplayed();
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -103,7 +103,7 @@ public class ProofCasesTest extends IntSetup {
 		proofRequestPage.notFoundError(driverApp).isDisplayed();
 		proofRequestPage.notFoundIcon(driverApp).isDisplayed();
 
-		objAppUtlis.rejectProof(driverApp);
+		objAppUtlis.rejectProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -133,7 +133,7 @@ public class ProofCasesTest extends IntSetup {
 		proofRequestPage.notFoundError(driverApp).isDisplayed();
 		proofRequestPage.notFoundIcon(driverApp).isDisplayed();
 
-		objAppUtlis.rejectProof(driverApp);
+		objAppUtlis.rejectProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -179,7 +179,7 @@ public class ProofCasesTest extends IntSetup {
 
 		proofRequestPage.attributeValue(driverApp, value).isDisplayed();
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -203,7 +203,7 @@ public class ProofCasesTest extends IntSetup {
 				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
 		);
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -232,7 +232,7 @@ public class ProofCasesTest extends IntSetup {
 		proofRequestPage.attributeName(driverApp, attribute).isDisplayed();
 		proofRequestPage.selectedCredentialIcon(driverApp).isDisplayed();
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -265,7 +265,7 @@ public class ProofCasesTest extends IntSetup {
 		proofRequestPage.unresolvedPredicateError(driverApp, "Greater than or equal to 60").isDisplayed();
 		proofRequestPage.notFoundIcon(driverApp).isDisplayed();
 
-		objAppUtlis.rejectProof(driverApp);
+		objAppUtlis.rejectProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -296,7 +296,7 @@ public class ProofCasesTest extends IntSetup {
 			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
 		);
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -329,7 +329,7 @@ public class ProofCasesTest extends IntSetup {
 			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
 		);
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
 	}

@@ -13,6 +13,9 @@ import pageObjects.PushNotificationsPageNew;
 import pageObjects.InvitationPageNew;
 import pageObjects.ConnectionHistoryPageNew;
 import pageObjects.ConnectionDetailPageNew;
+import pageObjects.CredentialPageNew;
+import pageObjects.ProofRequestPageNew;
+import pageObjects.QuestionPageNew;
 import pageObjects.StartUpPageNew;
 import pageObjects.PassCodePageNew;
 import test.java.utility.AppDriver;
@@ -39,4 +42,7 @@ public class IntSetup {
   public InvitationPageNew invitationPageNew = new InvitationPageNew(driverApp);
   public ConnectionHistoryPageNew connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
   public ConnectionDetailPageNew connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
+  public CredentialPageNew credentialPageNew = new CredentialPageNew(driverApp);
+  public ProofRequestPageNew proofRequestPageNew = new ProofRequestPageNew(driverApp);
+  public QuestionPageNew questionPageNew = new QuestionPageNew(driverApp);
 }

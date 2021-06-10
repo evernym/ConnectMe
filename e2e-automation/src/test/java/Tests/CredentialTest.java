@@ -177,7 +177,7 @@ public class CredentialTest extends IntSetup {
 		);
 
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values); FIXME: android failure - swipe is needed
-		objAppUtlis.acceptCredential(driverApp);
+		objAppUtlis.acceptCredential();
 
 		homePage.recentEventsSection(driverApp).isDisplayed();
 //		homePage.issuingCredentialEvent(driverApp, credentialName).isDisplayed(); FIXME: intermittent failure
@@ -222,7 +222,7 @@ public class CredentialTest extends IntSetup {
 		);
 
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values);
-		objAppUtlis.rejectCredential(driverApp);
+		objAppUtlis.rejectCredential();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.credentialRejectedEvent(driverApp, credentialName)).isDisplayed();
 		objConnectionModules.openConnectionHistory(driverApp, connectionName);
@@ -243,7 +243,7 @@ public class CredentialTest extends IntSetup {
 				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
 		);
 
-		objAppUtlis.acceptCredential(driverApp);
+		objAppUtlis.acceptCredential();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.credentialIssuedEvent(driverApp, credentialNameMany)).isDisplayed();
 	}
@@ -279,7 +279,7 @@ public class CredentialTest extends IntSetup {
 
 		validateCredentialView("Credential Offer", "Issued by", credentialNameAll, values);
 
-		objAppUtlis.acceptCredential(driverApp);
+		objAppUtlis.acceptCredential();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.credentialIssuedEvent(driverApp, credentialNameAll)).isDisplayed();
 	}

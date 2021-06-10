@@ -133,7 +133,7 @@ public class DummyTest extends IntSetup {
         objAppUtlis.unlockApp(driverApp);
 //        homePage.newMessage(driverApp).click(); //not needed?
 
-        objAppUtlis.acceptCredential(driverApp);
+        objAppUtlis.acceptCredential();
 
         homePage.recentEventsSection(driverApp).isDisplayed();
 

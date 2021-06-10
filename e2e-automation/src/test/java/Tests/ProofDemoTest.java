@@ -109,7 +109,7 @@ public class ProofDemoTest extends IntSetup {
 		);
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
 	}
@@ -142,7 +142,7 @@ public class ProofDemoTest extends IntSetup {
 		);
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
-		objAppUtlis.rejectProof(driverApp);
+		objAppUtlis.rejectProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
 		objConnectionModules.openConnectionHistory(driverApp, connectionName);
@@ -162,7 +162,7 @@ public class ProofDemoTest extends IntSetup {
 		);
 
 		validateProofRequestView(header, "Requested by", proofNameImage, requestedAttributesImage);
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofNameImage)).isDisplayed();
 	}
@@ -178,7 +178,7 @@ public class ProofDemoTest extends IntSetup {
 				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
 		);
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofNameMany)).isDisplayed();
 	}
@@ -192,7 +192,7 @@ public class ProofDemoTest extends IntSetup {
 		);
 
 		validateProofRequestView(header, "Requested by", proofNameDiff, requestedAttributesDiff);
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofNameDiff)).isDisplayed();
 	}

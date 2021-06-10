@@ -8,28 +8,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class MyCredentialsPageNew {
+public class ProofRequestPageNew {
   AppiumDriver driver;
 
-  public MyCredentialsPageNew(AppiumDriver driver) {
+  public ProofRequestPageNew(AppiumDriver driver) {
     PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     this.driver = driver;
   }
 
-  @AndroidFindBy(xpath = "//*[@text=\"My Credentials\"]")
-  @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"My Credentials\"]")
-  public WebElement myCredentialsHeader;
+  @AndroidFindBy(xpath = "//*[@text=\"Share Attributes\"]")
+  @iOSXCUITFindBy(accessibility = "Share Attributes")
+  public WebElement shareButton;
 
-  @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"burger-menu\"]")
-  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"burger-menu\"]")
-  public WebElement burgerMenuButton;
+  @AndroidFindBy(xpath = "//*[@text=\"Reject\"]")
+  @iOSXCUITFindBy(accessibility = "Reject")
+  public WebElement rejectButton;
 
   public WebElement findParameterizedElement(String expression) {
     if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
       return driver.findElementByAccessibilityId(expression);
     } else {
-      return driver.findElement(By.xpath(expression));
+      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
-
 }

@@ -39,7 +39,8 @@ public class PushNotificationTest extends IntSetup {
   private VASApi VAS = VASApi.getInstance();
   private LocalContext context = LocalContext.getInstance();
 
-  String connectionName = Helpers.randomString();
+//  String connectionName = Helpers.randomString();
+  String connectionName = "push-connection-invitation";
   String invitationType = "connection-invitation";
   final String appBackgroundLocked = "background + locked";
   final String appBackground = "background";
@@ -55,7 +56,7 @@ public class PushNotificationTest extends IntSetup {
   @BeforeClass
   public void BeforeClassSetup() throws Exception {
     System.out.println("Push Notification Test Suite has been started!");
-    driverApp = AppDriver.getDriver();
+//    driverApp = AppDriver.getDriver();
     driverBrowser = BrowserDriver.getDriver();
 
     if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) return;
@@ -66,7 +67,8 @@ public class PushNotificationTest extends IntSetup {
     );
     context.setValue("connectionName", connectionName);
 
-    AppUtils.waitForElement(driverApp, () -> homePage.connectedEvent(driverApp, connectionName)).isDisplayed();
+//    AppUtils.waitForElement(driverApp, () -> homePage.connectedEvent(driverApp, connectionName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.pushConnectedEvent);
   }
 
 
@@ -74,7 +76,8 @@ public class PushNotificationTest extends IntSetup {
   public void checkCredOfferNotificationAppRunningInBackground(String appState) throws Exception {
     if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) return;
 
-    String credentialName = Helpers.randomString();
+//    String credentialName = Helpers.randomString();
+    String credentialName = "push-credential";
 
     switch (appState) {
       case appBackgroundLocked:
@@ -98,7 +101,7 @@ public class PushNotificationTest extends IntSetup {
     ((AndroidDriver) driverApp).openNotifications();
 
     AppUtils.DoSomethingEventually(
-      () -> homePage.credentialOfferNotification(driverApp).click()
+      () -> homePageNew.credentialOfferNotification.click()
     );
 
     driverApp.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -109,15 +112,15 @@ public class PushNotificationTest extends IntSetup {
     }
 
     try {
-      homePage.newMessage(driverApp).click();
+      homePageNew.newMessage.click();
     } catch (Exception ex) {
       System.out.println("New message tapping is not needed here!");
     }
     driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
-    objAppUtlis.acceptCredential(driverApp);
-    homePage.recentEventsSection(driverApp).isDisplayed();
-    AppUtils.waitForElement(driverApp, () -> homePage.credentialIssuedEvent(driverApp, credentialName)).isDisplayed();
+    objAppUtlis.acceptCredential();
+    homePageNew.recentEventsSection.isDisplayed();
+    AppUtils.waitForElement(driverApp, () -> homePageNew.credentialIssuedEvent(credentialName)).isDisplayed();
   }
 
   @Test(dataProvider = "appStates")
@@ -142,7 +145,10 @@ public class PushNotificationTest extends IntSetup {
     String attribute1 = "FirstName";
     String attribute2 = "LastName";
     List<JSONObject> requestedAttributes = Arrays.asList(new JSONObject().put("names", Arrays.asList(attribute1, attribute2)));
-    String proofName = Helpers.randomString();
+
+//    String proofName = Helpers.randomString();
+    String proofName = "push-proof-request";
+
     VAS.requestProof(context.getValue("DID"), proofName, requestedAttributes, null);
 
     if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
@@ -150,7 +156,7 @@ public class PushNotificationTest extends IntSetup {
     ((AndroidDriver) driverApp).openNotifications();
 
     AppUtils.DoSomethingEventually(
-      () -> homePage.proofRequestNotification(driverApp).click()
+      () -> homePageNew.proofRequestNotification.click()
     );
 
     driverApp.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -167,9 +173,9 @@ public class PushNotificationTest extends IntSetup {
     }
     driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
-    objAppUtlis.shareProof(driverApp);
-    homePage.recentEventsSection(driverApp).isDisplayed();
-    AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+    objAppUtlis.shareProof();
+    homePageNew.recentEventsSection.isDisplayed();
+    AppUtils.waitForElement(driverApp, () -> homePageNew.proofSharedEvent(proofName)).isDisplayed();
   }
 
   @Test(dataProvider = "appStates")
@@ -203,7 +209,7 @@ public class PushNotificationTest extends IntSetup {
     ((AndroidDriver) driverApp).openNotifications();
 
     AppUtils.DoSomethingEventually(
-      () -> homePage.questionNotification(driverApp).click()
+      () -> homePageNew.questionNotification.click()
     );
 
     driverApp.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -214,17 +220,17 @@ public class PushNotificationTest extends IntSetup {
     }
 
     try {
-      homePage.newMessage(driverApp).click();
+      homePageNew.newMessage.click();
     } catch (Exception ex) {
       System.out.println("New message tapping is not needed here!");
     }
     driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
-    AppUtils.waitForElement(driverApp, () -> questionPage.header(driverApp)).isDisplayed();
-    questionPage.senderLogo(driverApp).isDisplayed();
-    questionPage.senderName(driverApp, context.getValue("connectionName")).isDisplayed();
-    questionPage.title(driverApp, text).isDisplayed();
-    questionPage.description(driverApp, detail).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+    questionPageNew.senderLogo.isDisplayed();
+    questionPageNew.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
+    questionPageNew.findParameterizedElement(text).isDisplayed();
+    questionPageNew.findParameterizedElement(detail).isDisplayed();
   }
 
   @AfterClass

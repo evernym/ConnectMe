@@ -40,7 +40,6 @@ public class ConnectionTest extends IntSetup {
 	@BeforeClass
 	public void BeforeClassSetup() {
 		System.out.println("Connection Test Suite has been started!");
-//		driverApp = AppDriver.getDriver(); // old way
 		driverApp.launchApp();
 	}
 
@@ -96,7 +95,6 @@ public class ConnectionTest extends IntSetup {
 
 	@Test(dependsOnMethods = "setUpConnectionTest")
 	public void validateMyConnectionRecordAppeared() throws Exception {
-//		objAppUtils.openApp(driverApp); // old way
     passCodePageNew.openApp();
 
 		homePageNew.burgerMenuButton.click();

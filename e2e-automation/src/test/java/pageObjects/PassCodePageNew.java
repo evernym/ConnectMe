@@ -4,9 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import test.java.utility.Config;
@@ -19,8 +17,11 @@ public class PassCodePageNew {
     this.driver = driver;
   }
 
+  @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE, iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
   @AndroidFindBy(xpath = "//android.widget.TextView[@content-desc=\"Enter passcode\"]")
+  @AndroidFindBy(xpath = "//android.widget.TextView[@content-desc=\"Enter your passcode\"]")
   @iOSXCUITFindBy(accessibility = "Enter passcode") // id?
+  @iOSXCUITFindBy(accessibility = "Enter your passcode") // id?
   public WebElement passCodeTitle;
 
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"pin-code-digit-0-touchable pin-code-digit-1-touchable pin-code-digit-2-touchable pin-code-digit-3-touchable pin-code-digit-4-touchable pin-code-digit-5-touchable\"]")

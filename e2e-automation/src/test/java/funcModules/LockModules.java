@@ -59,7 +59,7 @@ public class LockModules extends AppPageInjector {
   public void invalidPinCodeSetup(AppiumDriver driver) throws Exception {
     chooseLockPage.pinCodeLock_Button(driver).click();
     objAppUtlis.enterPincode(driver);
-    objAppUtlis.enterPincodeReverse(driver);
+//    objAppUtlis.enterPincodeReverse(driver);
 
   }
 
