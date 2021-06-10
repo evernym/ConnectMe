@@ -59,7 +59,7 @@ public class MenuPageNew {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
   public WebElement okButton;
 
-  @AndroidFindBy(xpath = "//*[@text=\"ALLOW\"]") // allow | ALLOW
+  @AndroidFindBy(xpath = "//*[@text=\"ALLOW\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
   public WebElement menuAllowButton;
 

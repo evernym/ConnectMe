@@ -13,6 +13,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import test.java.appModules.AppPageInjector;
+import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
 import test.java.utility.Config;
 import test.java.utility.AppDriver;
@@ -29,13 +30,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * The ConnectionModules class is to implement method related to connection
  */
-public class ConnectionModules extends AppPageInjector {
-	Injector injector = Guice.createInjector(new AppInjector());
-
-	private InvitationPage invitationPage = injector.getInstance(InvitationPage.class);
-	private test.java.pageObjects.HomePage homePage = injector.getInstance(test.java.pageObjects.HomePage.class);
-	private PushNotificationsPage pushNotificationsPage = injector.getInstance(PushNotificationsPage.class);
-	private test.java.appModules.AppUtils objAppUtils = injector.getInstance(test.java.appModules.AppUtils.class);
+public class ConnectionModules extends IntSetup {
+//	Injector injector = Guice.createInjector(new AppInjector());
+//
+//	private InvitationPage invitationPage = injector.getInstance(InvitationPage.class);
+//	private test.java.pageObjects.HomePage homePage = injector.getInstance(test.java.pageObjects.HomePage.class);
+//	private PushNotificationsPage pushNotificationsPage = injector.getInstance(PushNotificationsPage.class);
+//	private test.java.appModules.AppUtils objAppUtils = injector.getInstance(test.java.appModules.AppUtils.class);
 
 	/**
 	 * install the app from hockeyapp by sms link
@@ -118,12 +119,12 @@ public class ConnectionModules extends AppPageInjector {
 		}
 
 		try {
-			pincodePage.pinCodeTitle(driverApp).isDisplayed();
-			objAppUtils.enterPincode(driverApp);
+			passCodePageNew.passCodeTitle.isDisplayed();
+			passCodePageNew.enterPassCode();
 		} catch (Exception e) {
 			try {
-				pincodePage.pinCodeTitle(driverApp).isDisplayed();
-				objAppUtils.enterPincode(driverApp);
+        passCodePageNew.passCodeTitle.isDisplayed();
+        passCodePageNew.enterPassCode();
 			} catch (Exception ex) {
 				System.out.println("Pincode is not needed here!");
 			}
@@ -165,8 +166,8 @@ public class ConnectionModules extends AppPageInjector {
 		if (Config.iOS_Devices.contains(Config.Device_Type)) {
 			try {
 				driverApp.manage().timeouts().implicitlyWait(AppDriver.SUPER_SMALL_TIMEOUT, TimeUnit.SECONDS);
-				pushNotificationsPage.allow_Button(driverApp).click();
-				pushNotificationsPage.ok_Button(driverApp).click();
+				pushNotificationsPageNew.allowButton.click();
+        pushNotificationsPageNew.okButton.click();
 			} catch (Exception e) {
 				System.out.println("Permissions already have been granted!");
 			} finally {
@@ -179,7 +180,7 @@ public class ConnectionModules extends AppPageInjector {
 	private void skipSimulatorPushNotificationsIssue(AppiumDriver driverApp) {
 		if (Config.Device_Type.equals("iOSSimulator")) {
 			try {
-				pushNotificationsPage.not_now_Button(driverApp).click();
+        pushNotificationsPageNew.notNowButton.click();
 			} catch (Exception ex) {
 				System.out.println("Permissions already have been granted (Not Now)!");
 			}
@@ -191,34 +192,34 @@ public class ConnectionModules extends AppPageInjector {
 
 //		skipSimulatorPushNotificationsIssue(driverApp);
 
-		invitationPage.title(driverApp).isDisplayed();
-		invitationPage.inviteeAvatar(driverApp).isDisplayed();
-		invitationPage.inviteeAvatar(driverApp).isDisplayed();
-		invitationPage.deny_Button(driverApp).isDisplayed();
-		invitationPage.connect_Button(driverApp).isDisplayed();
+		invitationPageNew.title.isDisplayed();
+    invitationPageNew.inviteeAvatar.isDisplayed();
+    invitationPageNew.inviteeAvatar.isDisplayed();
+    invitationPageNew.denyButton.isDisplayed();
+    invitationPageNew.connectButton.isDisplayed();
 
-		invitationPage.connect_Button(driverApp).click();
-		homePage.recentEventsSection(driverApp).isDisplayed();
+    invitationPageNew.connectButton.click();
+		homePageNew.recentEventsSection.isDisplayed();
 //		homePage.makingConnectionEvent(driverApp).isDisplayed(); FIXME: intermittent failure
 	}
 
 	public void rejectConnectionInvitation(AppiumDriver driverApp) throws Exception {
 //		skipSimulatorPushNotificationsIssue(driverApp);
 
-		invitationPage.title(driverApp).isDisplayed();
-		invitationPage.inviteeAvatar(driverApp).isDisplayed();
-		invitationPage.inviteeAvatar(driverApp).isDisplayed();
-		invitationPage.deny_Button(driverApp).isDisplayed();
-		invitationPage.connect_Button(driverApp).isDisplayed();
+    invitationPageNew.title.isDisplayed();
+    invitationPageNew.inviteeAvatar.isDisplayed();
+    invitationPageNew.inviteeAvatar.isDisplayed();
+    invitationPageNew.denyButton.isDisplayed();
+    invitationPageNew.connectButton.isDisplayed();
 
-		invitationPage.deny_Button(driverApp).click();
+    invitationPageNew.denyButton.click();
 	}
 
 	public void openConnectionHistory(AppiumDriver driverApp, String connectionName) throws Exception {
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.myConnectionsButton(driverApp).click();
+		homePageNew.burgerMenuButton.click();
+		menuPageNew.myConnectionsButton.click();
 		Thread.sleep(1000);
-		myConnectionsPage.testConnection(driverApp, connectionName).click();
+		myConnectionsPageNew.testConnection(driverApp, connectionName).click();
 		// FIXME - validate that we drilled down to connection properly
 		if (Config.iOS_Devices.contains(Config.Device_Type)) { // intermittent failure - it doesn't tap on some ios devices
 			try {

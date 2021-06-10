@@ -26,6 +26,10 @@ public class PassCodePageNew {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"pin-code-digit-0-touchable pin-code-digit-1-touchable pin-code-digit-2-touchable pin-code-digit-3-touchable pin-code-digit-4-touchable pin-code-digit-5-touchable\"]")
   public WebElement passCodeTextBox;
 
+  @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"left-icon\"]")
+  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"left-icon\"]")
+  public WebElement backArrow;
+
   public void enterPassCode() throws Exception {
     Thread.sleep(2000);
     if (Config.iOS_Devices.contains(Config.Device_Type)) {

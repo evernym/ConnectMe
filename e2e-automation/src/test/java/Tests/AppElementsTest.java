@@ -17,25 +17,9 @@ import test.java.appModules.AppiumUtils;
 import test.java.utility.AppDriver;
 
 public class AppElementsTest extends IntSetup {
-    Injector injector = Guice.createInjector(new AppInjector());
-
-    private AppUtils objAppUtils = injector.getInstance(AppUtils.class);
-    private test.java.pageObjects.HomePage objHomePage = injector.getInstance(test.java.pageObjects.HomePage.class);
-    private test.java.pageObjects.MenuPage objMenuPage = injector.getInstance(test.java.pageObjects.MenuPage.class);
-    private test.java.pageObjects.MyConnectionsPage objConnectionsPage = injector.getInstance(test.java.pageObjects.MyConnectionsPage.class);
-    private test.java.pageObjects.MyCredentialsPage objCredentialsPage = injector.getInstance(test.java.pageObjects.MyCredentialsPage.class);
-    private test.java.pageObjects.SettingsPage objSettingsPage = injector.getInstance(test.java.pageObjects.SettingsPage.class);
-    private test.java.pageObjects.BiometricsPage objBiometricsPage = injector.getInstance(test.java.pageObjects.BiometricsPage.class);
-    private test.java.pageObjects.PasscodePage objPasscodePage = injector.getInstance(test.java.pageObjects.PasscodePage.class);
-    private test.java.pageObjects.ChatPage objChatPage = injector.getInstance(test.java.pageObjects.ChatPage.class);
-    private test.java.pageObjects.AboutPage objAboutPage = injector.getInstance(test.java.pageObjects.AboutPage.class);
-    private test.java.pageObjects.OnfidoPage objOnfidoPage = injector.getInstance(test.java.pageObjects.OnfidoPage.class);
-    private test.java.pageObjects.QrScannerPage qrScannerPage = injector.getInstance(test.java.pageObjects.QrScannerPage.class);
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
-//        driverApp = AppDriver.getDriver(); // old way
-//        objAppUtils.openApp(driverApp); // old way
         passCodePageNew.openApp();
     }
 
@@ -79,73 +63,71 @@ public class AppElementsTest extends IntSetup {
         }
         menuPageNew.homeButton.click();
 
-//        // My Connections
-//        objHomePage.burgerMenuButton(driverApp).click();
-//        objMenuPage.myConnectionsButton(driverApp).click();
-//        objConnectionsPage.myConnectionsHeader(driverApp).isDisplayed();
-//        objHomePage.scanButton(driverApp).isDisplayed();
-//
-//        // My Credentials
-//        objHomePage.burgerMenuButton(driverApp).click();
-//        objMenuPage.myCredentialsButton(driverApp).click();
-//        objCredentialsPage.myCredentialsHeader(driverApp).isDisplayed();
-//        objHomePage.scanButton(driverApp).isDisplayed();
-//
-//        // Settings
-//        objHomePage.burgerMenuButton(driverApp).click();
-//        objMenuPage.settingsButton(driverApp).click();
-//
-//        // Go Back Home
-//        objHomePage.burgerMenuButton(driverApp).click();
-//        objMenuPage.homeButton(driverApp).click();
+        // My Connections
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.myConnectionsButton.click();
+        myConnectionsPageNew.myConnectionsHeader.isDisplayed();
+        homePageNew.scanButton.isDisplayed();
+
+        // My Credentials
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.myCredentialsButton.click();
+        myCredentialsPageNew.myCredentialsHeader.isDisplayed();
+        homePageNew.scanButton.isDisplayed();
+
+        // Settings
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.settingsButton.click();
+        // TODO check Settings header
+
+        // Go Back Home
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.homeButton.click();
+        homePageNew.homeHeader.isDisplayed();
     }
 
     @Test(dependsOnMethods = "checkMenu")
     public void checkQrScanner() throws Exception {
-        objHomePage.scanButton(driverApp).isDisplayed();
-        objHomePage.scanButton(driverApp).click();
+        homePageNew.scanButton.isDisplayed();
+        homePageNew.scanButton.click();
         try {
-            qrScannerPage.scannerAllowButton(driverApp).click();
+            qrScannerPageNew.scannerAllowButton.click();
         }
         catch (NoSuchElementException e) {
             System.out.println("Permissions already have been granted!");
         }
         finally {
             Thread.sleep(1000);
-            qrScannerPage.scannerCloseButton(driverApp).click();
+            qrScannerPageNew.scannerCloseButton.click();
             Thread.sleep(1000);
         }
     }
 
     @Test(dependsOnMethods = "checkQrScanner")
     public void checkSettings() throws Exception {
-        objHomePage.burgerMenuButton(driverApp).click(); // go to Menu
-        objMenuPage.settingsButton(driverApp).click(); // go to Settings
+        homePageNew.burgerMenuButton.click(); // go to Menu
+        menuPageNew.settingsButton.click(); // go to Settings
 
-        objSettingsPage.settingsContainer(driverApp).isDisplayed();
-        objSettingsPage.settingsHeader(driverApp).isDisplayed();
+        settingsPageNew.settingsContainer.isDisplayed();
+        settingsPageNew.settingsHeader.isDisplayed();
 
         // Biometrics
-        objSettingsPage.biometricsButton(driverApp).click();
+        settingsPageNew.biometricsButton.click();
 //        objBiometricsPage.okButton(driverApp).click(); // FIXME MSDK: now we must swipe slider but there is no slider in app hierarchy
 
         // Change Passcode
-        try {
-            objSettingsPage.passcodeButton(driverApp).click();
-        } catch (Exception e) {
-            objBiometricsPage.okButton(driverApp).click();
-            objSettingsPage.passcodeButton(driverApp).click();
-        }
-        objPasscodePage.backArrow(driverApp).click();
+
+        settingsPageNew.passCodeButton.click();
+        passCodePageNew.backArrow.click();
 
         // Chat
-        objSettingsPage.chatButton(driverApp).click();
+        settingsPageNew.chatButton.click();
         Thread.sleep(1000);
         try {
-            objChatPage.backArrow(driverApp).click();
+            chatPageNew.backArrow.click();
         } catch (Exception e) {
             if (Config.iOS_Devices.contains(Config.Device_Type)) {
-                objChatPage.backArrowAlt(driverApp).click();
+              chatPageNew.backArrowAlt.click();
             }
             else {
                 ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
@@ -153,8 +135,8 @@ public class AppElementsTest extends IntSetup {
         }
 
         // About
-        objSettingsPage.aboutButton(driverApp).click();
-        objAboutPage.backArrow(driverApp).click();
+        settingsPageNew.aboutButton.click();
+        aboutPageNew.backArrow.click();
     }
 
     @AfterClass

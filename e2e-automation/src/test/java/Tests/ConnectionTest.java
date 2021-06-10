@@ -48,7 +48,7 @@ public class ConnectionTest extends IntSetup {
 	@BeforeClass
 	public void BeforeClassSetup() {
 		System.out.println("Connection Test Suite has been started!");
-		driverApp = AppDriver.getDriver();
+//		driverApp = AppDriver.getDriver(); // old way
 		driverApp.launchApp();
 	}
 
