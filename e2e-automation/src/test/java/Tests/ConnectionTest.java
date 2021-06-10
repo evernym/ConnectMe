@@ -29,20 +29,12 @@ import java.util.concurrent.TimeUnit;
  * connection
  */
 public class ConnectionTest extends IntSetup {
-	Injector injector = Guice.createInjector(new AppInjector());
-
-	private AppUtils objAppUtils = injector.getInstance(AppUtils.class);
-	private ConnectionModules objConnectionModules = injector.getInstance(ConnectionModules.class);
-	private HomePage homePage = injector.getInstance(HomePage.class);
-	private MenuPage menuPage = injector.getInstance(MenuPage.class);
-	private MyConnectionsPage myConnectionsPage = injector.getInstance(MyConnectionsPage.class);
-	private ConnectionHistoryPage connectionHistoryPage = injector.getInstance(ConnectionHistoryPage.class);
-	private ConnectionDetailPage connectionDetailPage = injector.getInstance(ConnectionDetailPage.class);
+	private ConnectionModules objConnectionModules = new ConnectionModules();
 	private LocalContext context = LocalContext.getInstance();
 
 	private String connectionName;
-	private String connectionInvitation = "connection-invitation";
-	private String oobInvitation = "out-of-band-invitation";
+	private final String connectionInvitation = "connection-invitation";
+	private final String oobInvitation = "out-of-band-invitation";
 	private boolean isDisplayed = false;
 
 	@BeforeClass
@@ -64,7 +56,7 @@ public class ConnectionTest extends IntSetup {
 	public void rejectConnectionTest(String invitationType) throws Exception {
 		driverBrowser = BrowserDriver.getDriver();
 
-		AppUtils.DoSomethingEventuallyNew( // new eventually!
+		AppUtils.DoSomethingEventuallyNew(
 				() -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
 				() -> objConnectionModules.acceptPushNotificationRequest(driverApp),
 				() -> objConnectionModules.rejectConnectionInvitation(driverApp)
@@ -80,15 +72,20 @@ public class ConnectionTest extends IntSetup {
 
 		driverBrowser = BrowserDriver.getDriver();
 
-		AppUtils.DoSomethingEventuallyNew( // new eventually!
-				() -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType), // create new invitation to accept
-//				() -> objConnectionModules.openDeepLink(driverBrowser, driverApp, context.getValue(invitationType)), // use previously rejected invitation to accept
+		AppUtils.DoSomethingEventuallyNew(
+				() -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
 				() -> objConnectionModules.acceptConnectionInvitation(driverApp)
 		);
 
 		try {
-			// wait until connection get completed
-			AppUtils.waitForElement(driverApp, () -> homePage.connectedEvent(driverApp, connectionName)).isDisplayed();
+      switch (connectionName) {
+        case connectionInvitation:
+          AppUtils.waitForElementNew(driverApp, homePageNew.commonConnectedEvent);
+          break;
+        case oobInvitation:
+          AppUtils.waitForElementNew(driverApp, homePageNew.oobConnectedEvent);
+          break;
+      }
 		} catch (Exception e) {
 			System.exit(1); // don't run other tests if this fails
 		}
@@ -99,35 +96,33 @@ public class ConnectionTest extends IntSetup {
 
 	@Test(dependsOnMethods = "setUpConnectionTest")
 	public void validateMyConnectionRecordAppeared() throws Exception {
-		objAppUtils.openApp(driverApp);
+//		objAppUtils.openApp(driverApp); // old way
+    passCodePageNew.openApp();
 
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.myConnectionsButton(driverApp).click();
+		homePageNew.burgerMenuButton.click();
+		menuPageNew.myConnectionsButton.click();
 		Thread.sleep(500); // FIXME MSDK workaround: it goes to Settings without sleep
-		myConnectionsPage.testConnection(driverApp, connectionName).click();
+		myConnectionsPageNew.oobTestConnection.click();
 	}
 
 	@Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
 	public void validateConnectionHistory() throws Exception {
-		AppUtils.DoSomethingEventually(
-				() -> connectionHistoryPage.backButton(driverApp).isDisplayed()
-		);
-		connectionHistoryPage.connectionLogo(driverApp).isDisplayed();
-		connectionHistoryPage.connectionName(driverApp, connectionName).isDisplayed();
-		connectionHistoryPage.connectedRecord(driverApp).isDisplayed();
-		connectionHistoryPage.connectedRecordDescription(driverApp, connectionName).isDisplayed();
+		connectionHistoryPageNew.connectionLogo.isDisplayed();
+    connectionHistoryPageNew.oobConnectionName.isDisplayed();
+    connectionHistoryPageNew.connectedRecord.isDisplayed();
+    connectionHistoryPageNew.oobConnectedRecordDescription.isDisplayed();
 	}
 
 	@Test(dependsOnMethods = "validateConnectionHistory")
 	public void validateConnectionDetails() throws Exception {
-		connectionHistoryPage.threeDotsButton(driverApp).isDisplayed();
-		connectionHistoryPage.threeDotsButton(driverApp).click();
+    connectionHistoryPageNew.threeDotsButton.isDisplayed();
+    connectionHistoryPageNew.threeDotsButton.click();
 
-		connectionDetailPage.close_Button(driverApp).isDisplayed();
-		connectionDetailPage.delete_Button(driverApp).isDisplayed();
+		connectionDetailPageNew.closeButton.isDisplayed();
+    connectionDetailPageNew.deleteButton.isDisplayed();
 
-		connectionDetailPage.close_Button(driverApp).click();
-		connectionHistoryPage.backButton(driverApp).click();
+    connectionDetailPageNew.closeButton.click();
+    connectionHistoryPageNew.backButton.click();
 	}
 
 	@AfterClass

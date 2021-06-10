@@ -161,6 +161,21 @@ public class AppUtils extends AppPageInjector {
     throw new ElementNotFoundException("Expected element not found", "", "");
   }
 
+  public static void waitForElementNew (AppiumDriver driver, WebElement element) throws InterruptedException {
+    System.out.println("Wait for element to be available");
+    for (int i = 0; i < 6; i++) {
+      try {
+        element.isDisplayed();
+        return;
+      } catch (Exception e) {
+        System.out.println(e.getMessage() + " Retry...");
+        pullScreenDown(driver);
+        Thread.sleep(15000);
+      }
+    }
+    throw new RuntimeException("Expected element not found!");
+  }
+
   public static void pullScreenDown(AppiumDriver driver) {
     System.out.println("Pull screen down to refresh");
     Dimension dims = driver.manage().window().getSize();

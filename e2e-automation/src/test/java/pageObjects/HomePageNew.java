@@ -30,4 +30,12 @@ public class HomePageNew {
   @AndroidFindBy(xpath = "//*[@text=\"Recent\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Recent\"]")
   public WebElement recentEventsSection;
+
+  @AndroidFindBy(xpath = "//*[@text='You connected with \"connection-invitation\".']")
+  @iOSXCUITFindBy(accessibility = "You connected with 'connection-invitation'.") // id?
+  public WebElement commonConnectedEvent;
+
+  @AndroidFindBy(xpath = "//*[@text='You connected with \"out-of-band-invitation\".']")
+  @iOSXCUITFindBy(accessibility = "You connected with \"out-of-band-invitation\".") // id?
+  public WebElement oobConnectedEvent;
 }

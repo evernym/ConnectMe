@@ -11,6 +11,8 @@ import pageObjects.AboutPageNew;
 import pageObjects.ChatPageNew;
 import pageObjects.PushNotificationsPageNew;
 import pageObjects.InvitationPageNew;
+import pageObjects.ConnectionHistoryPageNew;
+import pageObjects.ConnectionDetailPageNew;
 import pageObjects.StartUpPageNew;
 import pageObjects.PassCodePageNew;
 import test.java.utility.AppDriver;
@@ -35,4 +37,6 @@ public class IntSetup {
   public ChatPageNew chatPageNew = new ChatPageNew(driverApp);
   public PushNotificationsPageNew pushNotificationsPageNew = new PushNotificationsPageNew(driverApp);
   public InvitationPageNew invitationPageNew = new InvitationPageNew(driverApp);
+  public ConnectionHistoryPageNew connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
+  public ConnectionDetailPageNew connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
 }

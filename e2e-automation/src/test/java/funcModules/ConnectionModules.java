@@ -219,15 +219,30 @@ public class ConnectionModules extends IntSetup {
 		homePageNew.burgerMenuButton.click();
 		menuPageNew.myConnectionsButton.click();
 		Thread.sleep(1000);
-		myConnectionsPageNew.testConnection(driverApp, connectionName).click();
-		// FIXME - validate that we drilled down to connection properly
-		if (Config.iOS_Devices.contains(Config.Device_Type)) { // intermittent failure - it doesn't tap on some ios devices
-			try {
-				myConnectionsPage.testConnection(driverApp, connectionName).click();
-			} catch (Exception e) {
+		switch (connectionName) {
+      case "connection-invitation":
+        myConnectionsPageNew.commonTestConnection.click();
+        // FIXME - validate that we drilled down to connection properly
+        if (Config.iOS_Devices.contains(Config.Device_Type)) {
+          try {
+            myConnectionsPageNew.commonTestConnection.click();
+          } catch (Exception e) {
 
-			}
-		}
+          }
+        }
+        break;
+      case "out-of-band-invitation":
+        myConnectionsPageNew.oobTestConnection.click();
+        // FIXME - validate that we drilled down to connection properly
+        if (Config.iOS_Devices.contains(Config.Device_Type)) {
+          try {
+            myConnectionsPageNew.oobTestConnection.click();
+          } catch (Exception e) {
+
+          }
+        }
+        break;
+    }
 	}
 
 }
