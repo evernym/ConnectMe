@@ -1,5 +1,6 @@
 FROM python:3.7-stretch
 
+
 RUN apt-get update && apt-get install -y \
   maven openjdk-8-jdk \
   jq
