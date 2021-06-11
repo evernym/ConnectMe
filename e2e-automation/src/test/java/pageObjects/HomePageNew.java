@@ -34,7 +34,7 @@ public class HomePageNew {
   public WebElement recentEventsSection;
 
   @AndroidFindBy(xpath = "//*[@text='You connected with \"connection-invitation\".']")
-  @iOSXCUITFindBy(accessibility = "You connected with 'connection-invitation'.") // id?
+  @iOSXCUITFindBy(accessibility = "You connected with \"connection-invitation\".") // id?
   public WebElement commonConnectedEvent;
 
   @AndroidFindBy(xpath = "//*[@text='You connected with \"out-of-band-invitation\".']")
@@ -42,7 +42,7 @@ public class HomePageNew {
   public WebElement oobConnectedEvent;
 
   @AndroidFindBy(xpath = "//*[@text='You connected with \"push-connection-invitation\".']")
-  @iOSXCUITFindBy(accessibility = "You connected with 'push-connection-invitation'.") // id?
+  @iOSXCUITFindBy(accessibility = "You connected with \"push-connection-invitation\".") // id?
   public WebElement pushConnectedEvent;
 
   @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Credential Offer\"]")
