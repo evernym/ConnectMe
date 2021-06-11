@@ -100,7 +100,7 @@ public class ConnectionTest extends IntSetup {
 		homePageNew.burgerMenuButton.click();
 		menuPageNew.myConnectionsButton.click();
 		Thread.sleep(500); // FIXME MSDK workaround: it goes to Settings without sleep
-		myConnectionsPageNew.findParameterizedElement(connectionName).click();
+		myConnectionsPageNew.findParameterizedElement(connectionName + "-title").click();
 	}
 
 	@Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
