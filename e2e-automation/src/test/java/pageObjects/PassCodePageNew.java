@@ -32,7 +32,7 @@ public class PassCodePageNew {
   public WebElement backArrow;
 
   public void enterPassCode() throws Exception {
-    Thread.sleep(2000);
+    Thread.sleep(4000);
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       passCodeTextBox.sendKeys("000000");
     } else {
