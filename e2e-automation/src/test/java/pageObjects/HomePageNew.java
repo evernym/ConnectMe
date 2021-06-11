@@ -84,4 +84,12 @@ public class HomePageNew {
       return driver.findElement(By.xpath("//*[@text='You shared \"" + proofName + "\".']"));
     }
   }
+
+  public WebElement proofRequestRejectedEvent(String proofName) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driver.findElementByAccessibilityId("//*[@text='You rejected \"" + proofName + "\".']");
+    } else {
+      return driver.findElement(By.xpath("You rejected \"" + proofName + "\"."));
+    }
+  }
 }

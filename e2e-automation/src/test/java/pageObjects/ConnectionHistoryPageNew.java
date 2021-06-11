@@ -4,8 +4,10 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import test.java.utility.Config;
 
 public class ConnectionHistoryPageNew {
   AppiumDriver driver;
@@ -63,10 +65,6 @@ public class ConnectionHistoryPageNew {
   @iOSXCUITFindBy(accessibility = "three-dots")
   public WebElement threeDotsButton;
 
-//  @AndroidFindBy(xpath = "")
-//  @iOSXCUITFindBy(xpath = "")
-//  public WebElement sharedProofRecord;
-
   @AndroidFindBy(xpath = "//*[@text=\"YOU REJECTED\"]")
   @iOSXCUITFindBy(accessibility = "YOU REJECTED")
   public WebElement rejectedProofRequestRecord;
@@ -86,4 +84,12 @@ public class ConnectionHistoryPageNew {
   @AndroidFindBy(xpath = "//*[@text=\"YOU REJECTED\"]")
   @iOSXCUITFindBy(accessibility = "YOU REJECTED")
   public WebElement rejectedCredentialRecord;
+
+  public WebElement findParameterizedElement(String expression) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driver.findElementByAccessibilityId(expression);
+    } else {
+      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
+    }
+  }
 }

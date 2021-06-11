@@ -8,6 +8,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -234,6 +235,14 @@ public class AppUtils extends IntSetup {
     }
     finally {
       driverApp.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
+    }
+  }
+
+  public WebElement findParameterizedElement(String expression) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driverApp.findElementByAccessibilityId(expression);
+    } else {
+      return driverApp.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
 }

@@ -31,16 +31,8 @@ import test.java.utility.Config;
 import java.util.List;
 
 public class CredentialTest extends IntSetup {
-	Injector injector = Guice.createInjector(new AppInjector());
-
-	private AppUtils objAppUtlis = injector.getInstance(AppUtils.class);
-	private HomePage homePage = injector.getInstance(HomePage.class);
-	private MenuPage menuPage = injector.getInstance(MenuPage.class);
-	private CredentialPage credentialPage = injector.getInstance(CredentialPage.class);
-	private MyCredentialsPage myCredentialsPage = injector.getInstance(MyCredentialsPage.class);
-	private ConnectionHistoryPage connectionHistoryPage = injector.getInstance(ConnectionHistoryPage.class);
-	private ConnectionModules objConnectionModules = injector.getInstance(ConnectionModules.class);
-
+	private AppUtils objAppUtlis = new AppUtils();
+	private ConnectionModules objConnectionModules = new ConnectionModules();
 	private LocalContext context = LocalContext.getInstance();
 
 	private String credentialName = Helpers.randomString();
