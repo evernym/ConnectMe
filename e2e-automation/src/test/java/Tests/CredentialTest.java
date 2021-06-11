@@ -67,29 +67,29 @@ public class CredentialTest extends IntSetup {
 	};
 
 	private void validateCredentialView(String header, String title, String credentialName, JSONObject values) throws Exception {
-		credentialPage.header(driverApp, header).isDisplayed();
-		credentialPage.title(driverApp, title).isDisplayed();
-		credentialPage.credentialSenderName(driverApp, connectionName).isDisplayed();
-		credentialPage.credentialSenderLogo(driverApp).isDisplayed();
-		credentialPage.credentialName(driverApp, credentialName).isDisplayed();
+		credentialPageNew.findParameterizedElement(header).isDisplayed();
+    credentialPageNew.findParameterizedElement(title).isDisplayed();
+    credentialPageNew.findParameterizedElement(connectionName).isDisplayed();
+    credentialPageNew.credentialSenderLogo.isDisplayed();
+    credentialPageNew.findParameterizedElement(credentialName).isDisplayed();
 
 		for (String attribute : values.keySet()) {
 			if (attribute.contains("_link")) { // attachment case
 				attribute = attribute.replace("_link", "");
 				try {
-					credentialPage.credentialAttributeName(driverApp, attribute).isDisplayed();
+          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
 				} catch (Exception e) {
 					AppUtils.pullScreenUp(driverApp);
-					credentialPage.credentialAttributeName(driverApp, attribute).isDisplayed();
+          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
 				}
 			} else {
 				try {
-					credentialPage.credentialAttributeName(driverApp, attribute).isDisplayed();
-					credentialPage.credentialAttributeValue(driverApp, values.getString(attribute)).isDisplayed();
+          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
+          credentialPageNew.findParameterizedElement(values.getString(attribute)).isDisplayed();
 				} catch (Exception e) {
 					AppUtils.pullScreenUp(driverApp);
-					credentialPage.credentialAttributeName(driverApp, attribute).isDisplayed();
-					credentialPage.credentialAttributeValue(driverApp, values.getString(attribute)).isDisplayed();
+          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
+          credentialPageNew.findParameterizedElement(values.getString(attribute)).isDisplayed();
 				}
 			}
 		}
@@ -129,8 +129,9 @@ public class CredentialTest extends IntSetup {
 		DID = context.getValue("DID");
 		connectionName = context.getValue("connectionName");
 
-		driverApp = AppDriver.getDriver();
-		objAppUtlis.openApp(driverApp);
+//		driverApp = AppDriver.getDriver();
+//		objAppUtlis.openApp(driverApp);
+    passCodePageNew.openApp();
 
 		VAS = VASApi.getInstance();
 
@@ -173,64 +174,66 @@ public class CredentialTest extends IntSetup {
 	public void acceptCredentialFromHome() throws Exception {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName),
-				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+//				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
 
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values); FIXME: android failure - swipe is needed
 		objAppUtlis.acceptCredential();
 
-		homePage.recentEventsSection(driverApp).isDisplayed();
+		homePageNew.recentEventsSection.isDisplayed();
 //		homePage.issuingCredentialEvent(driverApp, credentialName).isDisplayed(); FIXME: intermittent failure
 
-        AppUtils.waitForElement(driverApp, () -> homePage.credentialIssuedEvent(driverApp, credentialName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(credentialName));
 	}
 
 	@Test(dependsOnMethods = "acceptCredentialFromHome")
 	public void validateMyCredentialRecordAppeared() throws Exception {
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.myCredentialsButton(driverApp).click();
-		myCredentialsPage.testCredential(driverApp, credentialName).isDisplayed();
+    homePageNew.burgerMenuButton.click();
+		menuPageNew.myCredentialsButton.click();
+		myCredentialsPageNew.findParameterizedElement(credentialName).isDisplayed();
 	}
 
 	@Test(dependsOnMethods = "validateMyCredentialRecordAppeared")
 	public void validateCredentialDetails() throws Exception {
-		myCredentialsPage.testCredential(driverApp, credentialName).click();
+    myCredentialsPageNew.findParameterizedElement(credentialName).click();
 		validateCredentialView("Credential Details", "Issued by", credentialName, Constants.values);
-		credentialPage.backArrow(driverApp).click();
+		credentialPageNew.backArrow.click();
 	}
 
 	@Test(dependsOnMethods = "validateCredentialDetails")
 	public void validateConnectionHistory() throws Exception {
-		objConnectionModules.openConnectionHistory(driverApp, connectionName);
+		objConnectionModules.openConnectionHistory(connectionName);
 
-		connectionHistoryPage.acceptedCredentialRecord(driverApp).isDisplayed();
-		connectionHistoryPage.acceptedCredentialViewButton(driverApp).click();
+		connectionHistoryPageNew.acceptedCredentialRecord.isDisplayed();
+		connectionHistoryPageNew.acceptedCredentialViewButton.click();
 
 		validateCredentialView("My Credential", "Accepted Credential", credentialName, Constants.values);
-		credentialPage.closeButton(driverApp).click();
-		connectionHistoryPage.backButton(driverApp).click();
+		credentialPageNew.closeButton.click();
+		connectionHistoryPageNew.backButton.click();
 
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.homeButton(driverApp).click();
+		homePageNew.burgerMenuButton.click();
+		menuPageNew.homeButton.click();
 	}
 
 	@Test(dependsOnMethods = "validateConnectionHistory")
 	public void rejectCredentialOffer() throws Exception {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName),
-				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+//				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
 
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values);
 		objAppUtlis.rejectCredential();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.credentialRejectedEvent(driverApp, credentialName)).isDisplayed();
-		objConnectionModules.openConnectionHistory(driverApp, connectionName);
-		connectionHistoryPage.rejectedCredentialRecord(driverApp, credentialName).isDisplayed();
-		connectionHistoryPage.backButton(driverApp).click();
+		AppUtils.waitForElementNew(driverApp, homePageNew.credentialRejectedEvent(credentialName));
+		objConnectionModules.openConnectionHistory(connectionName);
+		connectionHistoryPageNew.rejectedCredentialRecord.isDisplayed();
+		connectionHistoryPageNew.backButton.click();
 
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.homeButton(driverApp).click();
+    homePageNew.burgerMenuButton.click();
+    menuPageNew.homeButton.click();
 	}
 
 	@Test(dependsOnMethods = "rejectCredentialOffer")
@@ -240,12 +243,13 @@ public class CredentialTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdMany"), valuesMany, credentialNameMany),
-				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+//				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
 
 		objAppUtlis.acceptCredential();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.credentialIssuedEvent(driverApp, credentialNameMany)).isDisplayed();
+		AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(credentialNameMany));
 	}
 
 //	TODO: return this test after VAS issues fixing
@@ -274,14 +278,15 @@ public class CredentialTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdAll"), values, credentialNameAll),
-				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+//				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
+        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
 
 		validateCredentialView("Credential Offer", "Issued by", credentialNameAll, values);
 
 		objAppUtlis.acceptCredential();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.credentialIssuedEvent(driverApp, credentialNameAll)).isDisplayed();
+		AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(credentialNameAll));
 	}
 
 	@AfterClass

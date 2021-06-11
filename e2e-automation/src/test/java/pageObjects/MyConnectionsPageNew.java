@@ -4,8 +4,10 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import test.java.utility.Config;
 
 public class MyConnectionsPageNew {
   AppiumDriver driver;
@@ -23,11 +25,11 @@ public class MyConnectionsPageNew {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"burger-menu\"]")
   public WebElement burgerMenuButton;
 
-  @AndroidFindBy(xpath = "//*[@text=\"connection-invitation\"]")
-  @iOSXCUITFindBy(accessibility = "connection-invitation-title") // id?
-  public WebElement commonTestConnection;
-
-  @AndroidFindBy(xpath = "//*[@text=\"out-of-band-invitation\"]")
-  @iOSXCUITFindBy(accessibility = "out-of-band-invitation-title") // id?
-  public WebElement oobTestConnection;
+  public WebElement findParameterizedElement(String expression) {
+    if (Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+      return driver.findElementByAccessibilityId(expression);
+    } else {
+      return driver.findElement(By.xpath(expression));
+    }
+  }
 }

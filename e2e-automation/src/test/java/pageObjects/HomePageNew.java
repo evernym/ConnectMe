@@ -7,6 +7,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import test.java.utility.Config;
 
 public class HomePageNew {
   AppiumDriver driver;
@@ -61,15 +62,23 @@ public class HomePageNew {
   public WebElement newMessage;
 
   public WebElement credentialIssuedEvent(String credentialName) {
-    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId("You have been issued a \"" + credentialName + "\".");
     } else {
       return driver.findElement(By.xpath("//*[@text='You have been issued a \"" + credentialName + "\".']"));
     }
   }
 
+  public WebElement credentialRejectedEvent(String credentialName) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driver.findElementByAccessibilityId("You rejected \"" + credentialName + "\".");
+    } else {
+      return driver.findElement(By.xpath("//*[@text='You rejected \"" + credentialName + "\".']"));
+    }
+  }
+
   public WebElement proofSharedEvent(String proofName) {
-    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId("You shared \"" + proofName + "\".");
     } else {
       return driver.findElement(By.xpath("//*[@text='You shared \"" + proofName + "\".']"));

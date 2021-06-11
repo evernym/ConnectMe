@@ -28,13 +28,8 @@ import java.util.concurrent.TimeUnit;
 
 
 public class PushNotificationTest extends IntSetup {
-  Injector injector = Guice.createInjector(new AppInjector());
-  private AppUtils objAppUtlis = injector.getInstance(AppUtils.class);
-  private ConnectionModules objConnectionModules = injector.getInstance(ConnectionModules.class);
-  private HomePage homePage = injector.getInstance(HomePage.class);
-  private MenuPage menuPage = injector.getInstance(MenuPage.class);
-  private CredentialPage credentialPage = injector.getInstance(CredentialPage.class);
-  private test.java.pageObjects.QuestionPage questionPage = injector.getInstance(test.java.pageObjects.QuestionPage.class);
+  private AppUtils objAppUtlis = new AppUtils();
+  private ConnectionModules objConnectionModules = new ConnectionModules();
 
   private VASApi VAS = VASApi.getInstance();
   private LocalContext context = LocalContext.getInstance();
@@ -56,7 +51,6 @@ public class PushNotificationTest extends IntSetup {
   @BeforeClass
   public void BeforeClassSetup() throws Exception {
     System.out.println("Push Notification Test Suite has been started!");
-//    driverApp = AppDriver.getDriver();
     driverBrowser = BrowserDriver.getDriver();
 
     if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) return;
@@ -67,7 +61,6 @@ public class PushNotificationTest extends IntSetup {
     );
     context.setValue("connectionName", connectionName);
 
-//    AppUtils.waitForElement(driverApp, () -> homePage.connectedEvent(driverApp, connectionName)).isDisplayed();
     AppUtils.waitForElementNew(driverApp, homePageNew.pushConnectedEvent);
   }
 
@@ -76,8 +69,7 @@ public class PushNotificationTest extends IntSetup {
   public void checkCredOfferNotificationAppRunningInBackground(String appState) throws Exception {
     if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) return;
 
-//    String credentialName = Helpers.randomString();
-    String credentialName = "push-credential";
+    String credentialName = Helpers.randomString();
 
     switch (appState) {
       case appBackgroundLocked:
@@ -146,8 +138,7 @@ public class PushNotificationTest extends IntSetup {
     String attribute2 = "LastName";
     List<JSONObject> requestedAttributes = Arrays.asList(new JSONObject().put("names", Arrays.asList(attribute1, attribute2)));
 
-//    String proofName = Helpers.randomString();
-    String proofName = "push-proof-request";
+    String proofName = Helpers.randomString();
 
     VAS.requestProof(context.getValue("DID"), proofName, requestedAttributes, null);
 
@@ -167,7 +158,7 @@ public class PushNotificationTest extends IntSetup {
     }
 
     try {
-      homePage.newMessage(driverApp).click();
+      homePageNew.newMessage.click();
     } catch (Exception ex) {
       System.out.println("New message tapping is not needed here!");
     }

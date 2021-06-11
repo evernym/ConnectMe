@@ -215,34 +215,18 @@ public class ConnectionModules extends IntSetup {
     invitationPageNew.denyButton.click();
 	}
 
-	public void openConnectionHistory(AppiumDriver driverApp, String connectionName) throws Exception {
+	public void openConnectionHistory(String connectionName) throws Exception {
 		homePageNew.burgerMenuButton.click();
 		menuPageNew.myConnectionsButton.click();
 		Thread.sleep(1000);
-		switch (connectionName) {
-      case "connection-invitation":
-        myConnectionsPageNew.commonTestConnection.click();
-        // FIXME - validate that we drilled down to connection properly
-        if (Config.iOS_Devices.contains(Config.Device_Type)) {
-          try {
-            myConnectionsPageNew.commonTestConnection.click();
-          } catch (Exception e) {
+    myConnectionsPageNew.findParameterizedElement(connectionName).click();
+    // FIXME - validate that we drilled down to connection properly
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      try {
+        myConnectionsPageNew.findParameterizedElement(connectionName).click();
+      } catch (Exception e) {
 
-          }
-        }
-        break;
-      case "out-of-band-invitation":
-        myConnectionsPageNew.oobTestConnection.click();
-        // FIXME - validate that we drilled down to connection properly
-        if (Config.iOS_Devices.contains(Config.Device_Type)) {
-          try {
-            myConnectionsPageNew.oobTestConnection.click();
-          } catch (Exception e) {
-
-          }
-        }
-        break;
+      }
     }
 	}
-
 }

@@ -7,6 +7,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import test.java.utility.Config;
 
 public class MyCredentialsPageNew {
   AppiumDriver driver;
@@ -25,11 +26,10 @@ public class MyCredentialsPageNew {
   public WebElement burgerMenuButton;
 
   public WebElement findParameterizedElement(String expression) {
-    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId(expression);
     } else {
       return driver.findElement(By.xpath(expression));
     }
   }
-
 }

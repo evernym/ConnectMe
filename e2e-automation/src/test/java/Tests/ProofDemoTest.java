@@ -116,7 +116,7 @@ public class ProofDemoTest extends IntSetup {
 
 	@Test(dependsOnMethods = "acceptProofRequestFromHome")
 	public void validateConnectionHistory() throws Exception {
-		objConnectionModules.openConnectionHistory(driverApp, connectionName);
+		objConnectionModules.openConnectionHistory(connectionName);
 //		// TODO: move this logic to helper
 //		try {
 			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();
@@ -145,7 +145,7 @@ public class ProofDemoTest extends IntSetup {
 		objAppUtlis.rejectProof();
 
 		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
-		objConnectionModules.openConnectionHistory(driverApp, connectionName);
+		objConnectionModules.openConnectionHistory(connectionName);
 		connectionHistoryPage.rejectedProofRequestRecord(driverApp, proofName).isDisplayed();
 		connectionHistoryPage.backButton(driverApp).click();
 

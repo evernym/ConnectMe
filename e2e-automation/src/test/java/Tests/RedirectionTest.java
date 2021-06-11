@@ -28,11 +28,7 @@ import java.time.Duration;
 
 
 public class RedirectionTest extends IntSetup {
-    Injector injector = Guice.createInjector(new AppInjector());
-
-    private AppUtils objAppUtils = injector.getInstance(AppUtils.class);
-    private ConnectionModules objConnectionModules = injector.getInstance(ConnectionModules.class);
-    private HomePage homePage = injector.getInstance(HomePage.class);
+    private ConnectionModules objConnectionModules = new ConnectionModules();
     private LocalContext context = LocalContext.getInstance();
 
     private String connectionInvitationLink;
@@ -43,7 +39,6 @@ public class RedirectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Redirection Test Suite has been started!");
-        driverApp = AppDriver.getDriver();
         connectionInvitationLink = context.getValue("connection-invitation");
         oobInvitationLink = context.getValue("out-of-band-invitation");
     }
@@ -86,7 +81,7 @@ public class RedirectionTest extends IntSetup {
         objConnectionModules.openDeepLink(driverBrowser, driverApp, link);
 
         // check conditions
-        homePage.homeHeader(driverApp).isDisplayed();
+        homePageNew.homeHeader.isDisplayed();
 
         BrowserDriver.closeApp();
         driverApp.closeApp();
