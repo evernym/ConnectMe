@@ -120,10 +120,10 @@ devicefarm-test-launch-android-e2e-testing:
   dependencies:
     - build-android-e2e-testing
   variables:
-    ANDROID_APK_PATH: 'android/app/build/outputs/apk/release/app-arm64-v8a-debug.apk'
+    ANDROID_APK_PATH: 'android/app/build/outputs/apk/release/app-arm64-v8a-release.apk'
   script:
     - sleep 300 # android shift
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 true # true
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 false # true
   only:
     refs:
       - e2e-testing@evernym/mobile/connectme
@@ -133,7 +133,7 @@ devicefarm-test-launch-ios-e2e-testing:
   dependencies:
     - build-ios-e2e-testing
   script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 true # true
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 false # true
   only:
     refs:
       - e2e-testing@evernym/mobile/connectme
