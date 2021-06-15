@@ -212,11 +212,11 @@ public class ConnectionModules extends IntSetup {
 		homePageNew.burgerMenuButton.click();
 		menuPageNew.myConnectionsButton.click();
 		Thread.sleep(1000);
-    myConnectionsPageNew.findParameterizedElement(connectionName).click();
+    myConnectionsPageNew.testConnection(connectionName).click();
     // FIXME - validate that we drilled down to connection properly
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       try {
-        myConnectionsPageNew.findParameterizedElement(connectionName).click();
+        myConnectionsPageNew.testConnection(connectionName).click();
       } catch (Exception e) {
 
       }
