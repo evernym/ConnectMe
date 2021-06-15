@@ -4,11 +4,11 @@
     <test name="test" preserve-order="true" parallel="false">
         <classes>
             <class name="test.java.Tests.StartUpTest"/>
-<!--            <class name="test.java.Tests.AppElementsTest"/>-->
+            <class name="test.java.Tests.AppElementsTest"/>
             <class name="test.java.Tests.ConnectionTest"/>
-<!--            <class name="test.java.Tests.PushNotificationTest"/>-->
-<!--            <class name="test.java.Tests.RedirectionTest"/>-->
-            <class name="test.java.Tests.CredentialTest"/>
+            <class name="test.java.Tests.PushNotificationTest"/>
+            <class name="test.java.Tests.RedirectionTest"/>
+            <class name="test.java.Tests.CredentialTest"/>s
 <!--            <class name="test.java.Tests.ProofDemoTest"/>-->
 <!--            <class name="test.java.Tests.ProofCasesTest"/>-->
 <!--            <class name="test.java.Tests.QuestionTest"/>-->
