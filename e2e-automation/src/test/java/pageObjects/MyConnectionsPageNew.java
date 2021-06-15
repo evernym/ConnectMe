@@ -29,7 +29,7 @@ public class MyConnectionsPageNew {
     if (Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
       return driver.findElementByAccessibilityId(expression);
     } else {
-      return driver.findElement(By.xpath(expression));
+      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
 
@@ -37,7 +37,7 @@ public class MyConnectionsPageNew {
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId(name + "-title");
     } else {
-      return driver.findElement(By.xpath(name));
+      return driver.findElement(By.xpath("//*[@text=\"" + name + "\"]"));
     }
   }
 }

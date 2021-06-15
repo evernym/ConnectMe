@@ -29,7 +29,7 @@ public class MyCredentialsPageNew {
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId(expression);
     } else {
-      return driver.findElement(By.xpath(expression));
+      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
 }
