@@ -119,10 +119,10 @@ public class CredentialTest extends IntSetup {
 	@BeforeClass
 	public void BeforeClassSetup() throws Exception {
 		DID = context.getValue("DID");
+		System.out.println(DID);
 		connectionName = context.getValue("connectionName");
+    System.out.println(connectionName);
 
-//		driverApp = AppDriver.getDriver();
-//		objAppUtlis.openApp(driverApp);
     passCodePageNew.openApp();
 
 		VAS = VASApi.getInstance();
