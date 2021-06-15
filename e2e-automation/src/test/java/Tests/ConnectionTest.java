@@ -87,7 +87,7 @@ public class ConnectionTest extends IntSetup {
 
 		homePageNew.burgerMenuButton.click();
 		menuPageNew.myConnectionsButton.click();
-		Thread.sleep(500); // FIXME MSDK workaround: it goes to Settings without sleep
+		Thread.sleep(1000); // FIXME MSDK workaround: it goes to Settings without sleep
 		myConnectionsPageNew.testConnection(connectionName).click();
 	}
 
