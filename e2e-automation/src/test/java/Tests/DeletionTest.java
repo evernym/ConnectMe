@@ -21,7 +21,7 @@ import test.java.pageObjects.ConnectionDetailPage;
 import test.java.utility.LocalContext;
 import test.java.utility.Config;
 
-s
+
 public class DeletionTest extends IntSetup {
     private AppUtils objAppUtils = new AppUtils();
     private LocalContext context = LocalContext.getInstance();
