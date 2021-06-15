@@ -60,6 +60,7 @@ public class MenuPageNew {
   @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE, iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
   @AndroidFindBy(xpath = "//*[@text=\"ALLOW\"]")
   @AndroidFindBy(xpath = "//*[@text=\"Allow\"]")
+  @AndroidFindBy(xpath = "//*[@text=\"allow\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow Access to All Photos\"]")
   public WebElement menuAllowButton;
