@@ -1,5 +1,6 @@
 ---
 stages:
+  - react-check
   - prebuild
   - check
   - test
@@ -97,6 +98,8 @@ license-data-check:
       - tags
   tags:
     - docker-machine
+  except:
+    - white-label-app-e2e-testing
 
 ### - Test - ###
 
@@ -138,15 +141,15 @@ license-data-check:
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
-#build-ios-merge-request:
-#  extends: .build-ios
-#  variables:
-#    BUILD_TYPE: 'ConnectMe Dev Build'
-#    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-#    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
-#  only:
-#    refs:
-#      - merge_requests
+build-ios-merge-request:
+  extends: .build-ios
+  variables:
+    BUILD_TYPE: 'ConnectMe Dev Build'
+    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+      when: always
 
 build-ios-master:
   extends: .build-ios
@@ -191,13 +194,17 @@ build-ios-master:
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - ${FASTLANE_COMMAND}
 
-#build-android-merge-request:
-#  extends: .build-android
-#  variables:
-#    FASTLANE_COMMAND: 'bundle exec fastlane ci'
-#  only:
-#    refs:
-#      - merge_requests
+build-android-merge-request:
+  extends: .build-android
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/release/*.apk
+    expire_in: 1 week
+  variables:
+    FASTLANE_COMMAND: 'bundle exec fastlane ci'
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+      when: always
 
 build-android-master:
   extends: .build-android
@@ -221,6 +228,18 @@ yarn-test:
       - tags
   tags:
     - docker-machine
+  except:
+    - white-label-app-e2e-testing
+
+react-native-check:
+  stage: react-check
+  script:
+    - 'sed -i "s/.*react-native-white-label-app\.git/react-native-white-label-app\.git\#$REACT_SOURCE_BRANCH/" package.json'
+    - echo "Going to run build and devicefarm jobs"
+    - echo "Source branch is $REACT_SOURCE_BRANCH"
+  only:
+    refs:
+      - white-label-app-e2e-testing
 
 ### - Devicefarm-test - ###
 include:
