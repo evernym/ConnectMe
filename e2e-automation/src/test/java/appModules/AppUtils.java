@@ -152,7 +152,7 @@ public class AppUtils extends IntSetup {
     throw new ElementNotFoundException("Expected element not found", "", "");
   }
 
-  public static void waitForElementNew (AppiumDriver driver, WebElement element) throws InterruptedException {
+  public static void waitForElementNew(AppiumDriver driver, WebElement element) throws Exception {
     System.out.println("Wait for element to be available");
     for (int i = 0; i < 6; i++) {
       try {

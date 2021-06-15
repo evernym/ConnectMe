@@ -22,16 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QuestionTest extends IntSetup {
-
-	Injector injector = Guice.createInjector(new AppInjector());
-
-	private AppUtils objAppUtlis = injector.getInstance(AppUtils.class);
-	private HomePage homePage = injector.getInstance(HomePage.class);
-	private MenuPage menuPage = injector.getInstance(MenuPage.class);
-	private QuestionPage questionPage = injector.getInstance(QuestionPage.class);
-	private MyConnectionsPage myConnectionsPage = injector.getInstance(MyConnectionsPage.class);
-	private ConnectionHistoryPage connectionHistoryPage = injector.getInstance(ConnectionHistoryPage.class);
-
+	private AppUtils objAppUtlis = new AppUtils();
 	private LocalContext context = LocalContext.getInstance();
 
 	private VASApi VAS;
@@ -47,9 +38,7 @@ public class QuestionTest extends IntSetup {
 	public void BeforeClassSetup() throws Exception {
 		DID = context.getValue("DID");
 		connectionName = context.getValue("connectionName");
-
     passCodePageNew.openApp();
-
 		VAS = VASApi.getInstance();
 	}
 
@@ -62,15 +51,15 @@ public class QuestionTest extends IntSetup {
 		validateQuestionWindow(validResponses);
 	}
 
-	private void answerQuestionFromConnectionHistory(List<String> validResponses) throws Exception {
-		VAS.askQuestion(DID, text, detail, validResponses);
-
-    connectionHistoryPage.questionReceivedRecord(driverApp, text).isDisplayed();
-		connectionHistoryPage.questionReceivedRecordDescription(driverApp, detail).isDisplayed();
-		connectionHistoryPage.viewReceivedQuestionButton(driverApp).click();
-
-		validateQuestionWindow(validResponses);
-	}
+//	private void answerQuestionFromConnectionHistory(List<String> validResponses) throws Exception {
+//		VAS.askQuestion(DID, text, detail, validResponses);
+//
+//    connectionHistoryPage.questionReceivedRecord(driverApp, text).isDisplayed();
+//		connectionHistoryPage.questionReceivedRecordDescription(driverApp, detail).isDisplayed();
+//		connectionHistoryPage.viewReceivedQuestionButton(driverApp).click();
+//
+//		validateQuestionWindow(validResponses);
+//	}
 
 
 	private void validateQuestionWindow(List<String> validResponses) throws Exception {

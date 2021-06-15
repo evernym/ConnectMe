@@ -42,7 +42,7 @@ public class CredentialPageNew {
   public WebElement deleteButton;
 
   public WebElement findParameterizedElement(String expression) {
-    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId(expression);
     } else {
       return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));

@@ -21,19 +21,10 @@ import test.java.pageObjects.ConnectionDetailPage;
 import test.java.utility.LocalContext;
 import test.java.utility.Config;
 
-
+s
 public class DeletionTest extends IntSetup {
-    Injector injector = Guice.createInjector(new AppInjector());
-
-    private AppUtils objAppUtils = injector.getInstance(AppUtils.class);
+    private AppUtils objAppUtils = new AppUtils();
     private LocalContext context = LocalContext.getInstance();
-    private HomePage homePage = injector.getInstance(HomePage.class);
-    private MenuPage menuPage = injector.getInstance(MenuPage.class);
-    private MyConnectionsPage myConnectionsPage = injector.getInstance(MyConnectionsPage.class);
-    private MyCredentialsPage myCredentialsPage = injector.getInstance(MyCredentialsPage.class);
-    private CredentialPage credentialPage = injector.getInstance(CredentialPage.class);
-    private ConnectionHistoryPage connectionHistoryPage = injector.getInstance(ConnectionHistoryPage.class);
-    private ConnectionDetailPage connectionDetailPage = injector.getInstance(ConnectionDetailPage.class);
 
     private String connectionInvitation = "connection-invitation";
     private String oobInvitation = "out-of-band-invitation";
@@ -44,7 +35,6 @@ public class DeletionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception{
         passCodePageNew.openApp();
-
         credentialName = context.getValue("credentialName");
         credentialNameMany = context.getValue("credentialNameMany");
     }

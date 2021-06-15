@@ -26,12 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ProofCasesTest extends IntSetup {
-	Injector injector = Guice.createInjector(new AppInjector());
-
-	private AppUtils objAppUtlis = injector.getInstance(AppUtils.class);
-	private HomePage homePage = injector.getInstance(HomePage.class);
-	private ProofRequestPage proofRequestPage = injector.getInstance(ProofRequestPage.class);
-	private CustomValuesPage customValuesPage = injector.getInstance(CustomValuesPage.class);
+	private AppUtils objAppUtlis = new AppUtils();
 	private LocalContext context = LocalContext.getInstance();
 
 	private VASApi VAS;

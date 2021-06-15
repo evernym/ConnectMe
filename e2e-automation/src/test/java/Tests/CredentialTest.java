@@ -167,9 +167,9 @@ public class CredentialTest extends IntSetup {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName),
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
-        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
 
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values); FIXME: android failure - swipe is needed
 		objAppUtlis.acceptCredential();
 

@@ -34,7 +34,7 @@ public class MyConnectionsPageNew {
   }
 
   public WebElement testConnection(String name) {
-    if (Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId(name + "-title");
     } else {
       return driver.findElement(By.xpath(name));
