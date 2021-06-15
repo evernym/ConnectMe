@@ -1,9 +1,7 @@
 package pageObjects;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -59,12 +57,15 @@ public class MenuPageNew {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
   public WebElement okButton;
 
+  @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE, iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
   @AndroidFindBy(xpath = "//*[@text=\"ALLOW\"]")
+  @AndroidFindBy(xpath = "//*[@text=\"Allow\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
+  @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow Access to All Photos\"]")
   public WebElement menuAllowButton;
 
-  @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow Access to All Photos\"]")
-  public WebElement menuAllowButtonAlt;
+//  @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow Access to All Photos\"]")
+//  public WebElement menuAllowButtonAlt;
 
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Cancel\"]")
   public WebElement cancelButton;
