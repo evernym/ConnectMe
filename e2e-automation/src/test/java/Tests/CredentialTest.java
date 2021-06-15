@@ -156,7 +156,9 @@ public class CredentialTest extends IntSetup {
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
 		);
-    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header)); // option 1
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
+
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values); FIXME: android failure - swipe is needed
 		objAppUtlis.acceptCredential();
 
@@ -201,7 +203,9 @@ public class CredentialTest extends IntSetup {
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
 		);
-    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
+
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values);
 		objAppUtlis.rejectCredential();
 
@@ -223,7 +227,8 @@ public class CredentialTest extends IntSetup {
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdMany"), valuesMany, credentialNameMany)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
 		);
-    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
 
 		objAppUtlis.acceptCredential();
 
@@ -258,7 +263,8 @@ public class CredentialTest extends IntSetup {
 				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdAll"), values, credentialNameAll)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
 		);
-    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
 
 		validateCredentialView("Credential Offer", "Issued by", credentialNameAll, values);
 

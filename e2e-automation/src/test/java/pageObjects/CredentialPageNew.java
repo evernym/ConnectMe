@@ -29,6 +29,10 @@ public class CredentialPageNew {
   @iOSXCUITFindBy(accessibility = "sender-avatar")
   public WebElement credentialSenderLogo;
 
+  @AndroidFindBy(xpath = "//*[@text=\"Credential Offer\"]")
+  @iOSXCUITFindBy(accessibility = "Credential Offer")
+  public WebElement credentialOfferHeader;
+
   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"back-arrow\"]")
   @iOSXCUITFindBy(accessibility = "back-arrow")
   public WebElement backArrow;
