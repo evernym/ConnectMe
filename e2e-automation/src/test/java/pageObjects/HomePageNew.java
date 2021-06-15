@@ -92,4 +92,12 @@ public class HomePageNew {
       return driver.findElement(By.xpath("You rejected \"" + proofName + "\"."));
     }
   }
+
+  public WebElement questionRespondedEvent(String answer) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driver.findElementByAccessibilityId("You responded with: " + answer + ".");
+    } else {
+      return driver.findElement(By.xpath("//*[@text='You responded with: " + answer + ".']"));
+    }
+  }
 }

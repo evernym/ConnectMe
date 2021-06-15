@@ -43,108 +43,108 @@ public class DeletionTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception{
-        driverApp = AppDriver.getDriver();
-        objAppUtils.openApp(driverApp);
+        passCodePageNew.openApp();
+
         credentialName = context.getValue("credentialName");
         credentialNameMany = context.getValue("credentialNameMany");
     }
 
     @Test
     public void deleteEmptyConnection() throws Exception {
-        homePage.burgerMenuButton(driverApp).click();
-        menuPage.myConnectionsButton(driverApp).click();
-        myConnectionsPage.testConnection(driverApp, connectionInvitation).click();
-        connectionHistoryPage.threeDotsButton(driverApp).click();
-        connectionDetailPage.delete_Button(driverApp).click();
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.myConnectionsButton.click();
+        myConnectionsPageNew.testConnection(connectionInvitation).click();
+        connectionHistoryPageNew.threeDotsButton.click();
+        connectionDetailPageNew.deleteButton.click();
 
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
            try {
-               connectionDetailPage.delete_Button(driverApp).click();
+             connectionDetailPageNew.deleteButton.click();
            } catch (Exception e) {
 
            }
         }
 
         AppUtils.isNotDisplayed(
-                () -> myConnectionsPage.testConnection(driverApp, connectionInvitation).isDisplayed()
+                () -> myConnectionsPageNew.testConnection(connectionInvitation).isDisplayed()
         );
     }
 
     @Test(dependsOnMethods = "deleteEmptyConnection")
     public void deleteCredentialFromExistingConnection() throws Exception {
-        homePage.burgerMenuButton(driverApp).click();
-        menuPage.myCredentialsButton(driverApp).click();
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
         try {
-            myCredentialsPage.testCredential(driverApp, credentialNameMany).click();
+            myCredentialsPageNew.findParameterizedElement(credentialNameMany).click();
         } catch (Exception ex) {
             AppUtils.pullScreenUp(driverApp);
-            myCredentialsPage.testCredential(driverApp, credentialNameMany).click();
+          myCredentialsPageNew.findParameterizedElement(credentialNameMany).click();
         }
-        connectionHistoryPage.threeDotsButton(driverApp).click();
+        connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
-        credentialPage.deleteButton(driverApp).click();
+        credentialPageNew.deleteButton.click();
 
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
             try {
-                credentialPage.deleteButton(driverApp).click();
+                credentialPageNew.deleteButton.click();
             } catch (Exception e) {
 
             }
         }
 
         AppUtils.isNotDisplayed(
-                () -> myCredentialsPage.testCredential(driverApp, credentialNameMany).isDisplayed()
+                () -> myCredentialsPageNew.findParameterizedElement(credentialNameMany).isDisplayed()
         );
     }
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
     public void deleteNotEmptyConnection() throws Exception {
-        homePage.burgerMenuButton(driverApp).click();
-        menuPage.myConnectionsButton(driverApp).click();
-        myConnectionsPage.testConnection(driverApp, oobInvitation).click();
-        connectionHistoryPage.threeDotsButton(driverApp).click();
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.myConnectionsButton.click();
+        myConnectionsPageNew.testConnection(oobInvitation).click();
+        connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
-        connectionDetailPage.delete_Button(driverApp).click();
+        connectionDetailPageNew.deleteButton.click();
 
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
             try {
-                connectionDetailPage.delete_Button(driverApp).click();
+              connectionDetailPageNew.deleteButton.click();
             } catch (Exception e) {
 
             }
         }
 
         AppUtils.isNotDisplayed(
-                () -> myConnectionsPage.testConnection(driverApp, oobInvitation).isDisplayed()
+                () -> myConnectionsPageNew.testConnection(oobInvitation).isDisplayed()
         );
     }
 
     @Test(dependsOnMethods = "deleteNotEmptyConnection")
     public void deleteCredentialFromDeletedConnection() throws Exception {
-        homePage.burgerMenuButton(driverApp).click();
-        menuPage.myCredentialsButton(driverApp).click();
+        homePageNew.burgerMenuButton.click();
+        menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
         try {
-            myCredentialsPage.testCredential(driverApp, credentialName).click();
+            myCredentialsPageNew.findParameterizedElement(credentialName).click();
         } catch (Exception ex) {
             AppUtils.pullScreenUp(driverApp);
-            myCredentialsPage.testCredential(driverApp, credentialName).click();
+          myCredentialsPageNew.findParameterizedElement(credentialName).click();
         }
-        connectionHistoryPage.threeDotsButton(driverApp).click();
+        connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
-        credentialPage.deleteButton(driverApp).click();
+        credentialPageNew.deleteButton.click();
 
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
             try {
-                credentialPage.deleteButton(driverApp).click();
+              credentialPageNew.deleteButton.click();
             } catch (Exception e) {
 
             }
         }
 
         AppUtils.isNotDisplayed(
-                () -> myCredentialsPage.testCredential(driverApp, credentialName).isDisplayed()
+                () -> myCredentialsPageNew.findParameterizedElement(credentialName).isDisplayed()
         );
     }
 

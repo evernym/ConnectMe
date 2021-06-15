@@ -92,4 +92,12 @@ public class ConnectionHistoryPageNew {
       return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
+
+  public WebElement questionAnswerRecordDescription(String answer) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driver.findElementByAccessibilityId("\"" + answer + "\"");
+    } else {
+      return driver.findElement(By.xpath("//*[@text='\"" + answer + "\"']"));
+    }
+  }
 }

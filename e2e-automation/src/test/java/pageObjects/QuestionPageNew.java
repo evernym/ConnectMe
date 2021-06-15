@@ -39,4 +39,12 @@ public class QuestionPageNew {
       return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
+
+  public WebElement answerOption(String option) {
+    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+      return driver.findElement(By.xpath("(//XCUIElementTypeOther[@name=\"" + option + "\"])[3]"));
+    } else {
+      return driver.findElement(By.xpath("//*[@text='" + option + "']"));
+    }
+  }
 }

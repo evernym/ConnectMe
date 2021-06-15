@@ -48,8 +48,7 @@ public class QuestionTest extends IntSetup {
 		DID = context.getValue("DID");
 		connectionName = context.getValue("connectionName");
 
-		driverApp = AppDriver.getDriver();
-		objAppUtlis.openApp(driverApp);
+    passCodePageNew.openApp();
 
 		VAS = VASApi.getInstance();
 	}
@@ -58,7 +57,7 @@ public class QuestionTest extends IntSetup {
     AppUtils.DoSomethingEventually(
         () -> VAS.askQuestion(DID, text, detail, validResponses),
 //      () -> questionPage.header(driverApp).isDisplayed()
-		() -> AppUtils.waitForElement(driverApp, () -> questionPage.header(driverApp)).isDisplayed()
+		    () -> AppUtils.waitForElementNew(driverApp, questionPageNew.header)
     );
 		validateQuestionWindow(validResponses);
 	}
@@ -66,7 +65,7 @@ public class QuestionTest extends IntSetup {
 	private void answerQuestionFromConnectionHistory(List<String> validResponses) throws Exception {
 		VAS.askQuestion(DID, text, detail, validResponses);
 
-    	connectionHistoryPage.questionReceivedRecord(driverApp, text).isDisplayed();
+    connectionHistoryPage.questionReceivedRecord(driverApp, text).isDisplayed();
 		connectionHistoryPage.questionReceivedRecordDescription(driverApp, detail).isDisplayed();
 		connectionHistoryPage.viewReceivedQuestionButton(driverApp).click();
 
@@ -75,13 +74,13 @@ public class QuestionTest extends IntSetup {
 
 
 	private void validateQuestionWindow(List<String> validResponses) throws Exception {
-		questionPage.senderLogo(driverApp).isDisplayed();
-		questionPage.senderName(driverApp, connectionName).isDisplayed();
-		questionPage.title(driverApp, text).isDisplayed();
-		questionPage.description(driverApp, detail).isDisplayed();
+    questionPageNew.senderLogo.isDisplayed();
+    questionPageNew.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
+    questionPageNew.findParameterizedElement(text).isDisplayed();
+    questionPageNew.findParameterizedElement(detail).isDisplayed();
 
 		for (String validResponse : validResponses) {
-			questionPage.answer_Button(driverApp, validResponse).isDisplayed();
+      questionPageNew.findParameterizedElement(validResponse).isDisplayed();
 		}
 	}
 
@@ -90,8 +89,8 @@ public class QuestionTest extends IntSetup {
 		answerQuestionFromHome(oneOption);
 
 		String answer = oneOption.get(0);
-		questionPage.answer_Button(driverApp, answer).click();
-		homePage.questionRespondedEvent(driverApp, answer).isDisplayed();
+    questionPageNew.findParameterizedElement(answer).click();
+		homePageNew.questionRespondedEvent(answer).isDisplayed();
 	}
 
 	@Test(dependsOnMethods = "answerQuestionWithOneOptionFromHome")
@@ -99,8 +98,8 @@ public class QuestionTest extends IntSetup {
 		answerQuestionFromHome(twoOptions);
 
 		String answer = twoOptions.get(0);
-		questionPage.answer_Button(driverApp, answer).click();
-		homePage.questionRespondedEvent(driverApp, answer).isDisplayed();
+    questionPageNew.findParameterizedElement(answer).click();
+    homePageNew.questionRespondedEvent(answer).isDisplayed();
 	}
 
 	@Test(dependsOnMethods = "answerQuestionWithTwoOptionsFromHome")
@@ -108,27 +107,27 @@ public class QuestionTest extends IntSetup {
 		answerQuestionFromHome(threeOptions);
 
 		String answer = threeOptions.get(0);
-		questionPage.answer_Option(driverApp, answer).click();
-		questionPage.submit_Button(driverApp).click();
-		homePage.questionRespondedEvent(driverApp, answer).isDisplayed();
+    questionPageNew.findParameterizedElement(answer).click();
+    questionPageNew.submitButton.click();
+    homePageNew.questionRespondedEvent(answer).isDisplayed();
 	}
 
 	@Test(dependsOnMethods = "answerQuestionWithThreeOptionsFromHome")
 	public void validateConnectionHistory() throws Exception {
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.myConnectionsButton(driverApp).click();
-		myConnectionsPage.testConnection(driverApp, connectionName).click();
+		homePageNew.burgerMenuButton.click();
+		menuPageNew.myConnectionsButton.click();
+		myConnectionsPageNew.testConnection(connectionName).click();
 //		// TODO: move this logic to helper
 //		try {
-			connectionHistoryPage.questionAnswerRecord(driverApp).isDisplayed();
+			connectionHistoryPageNew.questionAnswerRecord.isDisplayed();
 //		} catch (Exception ex) {
 //			AppUtils.pullScreenUp(driverApp);
 //			connectionHistoryPage.questionAnswerRecord(driverApp).isDisplayed();
 //		}
 
-		connectionHistoryPage.questionAnswerRecordDescription(driverApp, oneOption.get(0)).isDisplayed();
-		connectionHistoryPage.questionAnswerRecordDescription(driverApp, twoOptions.get(0)).isDisplayed();
-		connectionHistoryPage.questionAnswerRecordDescription(driverApp, threeOptions.get(0)).isDisplayed();
+		connectionHistoryPageNew.questionAnswerRecordDescription(oneOption.get(0)).isDisplayed();
+    connectionHistoryPageNew.questionAnswerRecordDescription(twoOptions.get(0)).isDisplayed();
+    connectionHistoryPageNew.questionAnswerRecordDescription(threeOptions.get(0)).isDisplayed();
 	}
 
 	/*

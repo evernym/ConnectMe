@@ -32,4 +32,12 @@ public class MyConnectionsPageNew {
       return driver.findElement(By.xpath(expression));
     }
   }
+
+  public WebElement testConnection(String name) {
+    if (Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+      return driver.findElementByAccessibilityId(name + "-title");
+    } else {
+      return driver.findElement(By.xpath(name));
+    }
+  }
 }
