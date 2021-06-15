@@ -1,9 +1,7 @@
 package pageObjects;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -15,7 +13,10 @@ public class QrScannerPageNew {
     this.driver = driver;
   }
 
+  @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
   @AndroidFindBy(xpath = "//*[@text=\"ALLOW\"]")
+  @AndroidFindBy(xpath = "//*[@text=\"Allow\"]")
+  @AndroidFindBy(xpath = "//*[@text=\"allow\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
   public WebElement scannerAllowButton;
 

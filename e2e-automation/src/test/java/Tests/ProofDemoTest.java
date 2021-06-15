@@ -96,7 +96,7 @@ public class ProofDemoTest extends IntSetup {
 	public void acceptProofRequestFromHome() throws Exception {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-        () -> AppUtils.waitForElementNew(driverApp,proofRequestPageNew.findParameterizedElement(header))
+        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);

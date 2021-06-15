@@ -44,8 +44,7 @@ public class ProofCasesTest extends IntSetup {
 	public void BeforeClassSetup() throws Exception {
 		DID = context.getValue("DID");
 
-		driverApp = AppDriver.getDriver();
-		objAppUtlis.openApp(driverApp);
+    passCodePageNew.openApp();
 
 		VAS = VASApi.getInstance();
 	}
@@ -66,16 +65,16 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+				() -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
 
-		proofRequestPage.attributeName(driverApp, attribute1).isDisplayed();
-		proofRequestPage.attributeName(driverApp, attribute2).isDisplayed();
-		proofRequestPage.selectedCredentialIcon(driverApp).isDisplayed();
+		proofRequestPageNew.findParameterizedElement(attribute1).isDisplayed();
+		proofRequestPageNew.findParameterizedElement(attribute2).isDisplayed();
+		proofRequestPageNew.selectedCredentialIcon.isDisplayed();
 
 		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "shareProofRequestContainingGroupedAttributes")
@@ -94,18 +93,18 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.missingCredentialsError(driverApp)).isDisplayed()
+			() -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError)
 		);
 
-		proofRequestPage.okButton(driverApp).click();
+		proofRequestPageNew.okButton.click();
 
-		proofRequestPage.attributeName(driverApp, attribute).isDisplayed();
-		proofRequestPage.notFoundError(driverApp).isDisplayed();
-		proofRequestPage.notFoundIcon(driverApp).isDisplayed();
+    proofRequestPageNew.findParameterizedElement(attribute).isDisplayed();
+    proofRequestPageNew.notFoundError.isDisplayed();
+    proofRequestPageNew.notFoundIcon.isDisplayed();
 
 		objAppUtlis.rejectProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "rejectProofRequestContainingMissingAttributes")
@@ -124,18 +123,18 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.missingCredentialsError(driverApp)).isDisplayed()
+      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError)
 		);
 
-		proofRequestPage.okButton(driverApp).click();
+    proofRequestPageNew.okButton.click();
 
-		proofRequestPage.attributeName(driverApp, attribute1 + "," + attribute2).isDisplayed();
-		proofRequestPage.notFoundError(driverApp).isDisplayed();
-		proofRequestPage.notFoundIcon(driverApp).isDisplayed();
+    proofRequestPageNew.findParameterizedElement(attribute1 + "," + attribute2).isDisplayed();
+    proofRequestPageNew.notFoundError.isDisplayed();
+    proofRequestPageNew.notFoundIcon.isDisplayed();
 
 		objAppUtlis.rejectProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "rejectProofRequestContainingMissingGroupedAttributes")
@@ -155,21 +154,21 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
 
-		proofRequestPage.missingAttributePlaceholder(driverApp).isDisplayed();
-		proofRequestPage.arrowForwardIcon(driverApp).isDisplayed();
-		proofRequestPage.missingAttributePlaceholder(driverApp).click();
+    proofRequestPageNew.missingAttributePlaceholder.isDisplayed();
+    proofRequestPageNew.arrowForwardIcon.isDisplayed();
+    proofRequestPageNew.missingAttributePlaceholder.click();
 
-		customValuesPage.title(driverApp).isDisplayed();
+		customValuesPageNew.title.isDisplayed();
 //		customValuesPage.description(driverApp).isDisplayed(); // FIXME MSDK
-		customValuesPage.attributeNameLabel(driverApp, attribute).click();
-		customValuesPage.customValueInput(driverApp).sendKeys(value);
+    customValuesPageNew.attributeNameLabel(attribute).click();
+    customValuesPageNew.customValueInput.sendKeys(value);
 
 		if (Config.iOS_Devices.contains(Config.Device_Type))
 		{
-			customValuesPage.customValueInput(driverApp).sendKeys(Keys.RETURN);
+      customValuesPageNew.customValueInput.sendKeys(Keys.RETURN);
 		}
 		else {
 			AndroidDriver androidDriver = (AndroidDriver) driverApp;
@@ -177,11 +176,11 @@ public class ProofCasesTest extends IntSetup {
       androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
 		}
 
-		proofRequestPage.attributeValue(driverApp, value).isDisplayed();
+    proofRequestPageNew.findParameterizedElement(value).isDisplayed();
 
 		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "shareProofRequestContainingSelfAttestedAttributes")
@@ -200,12 +199,12 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
 
 		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "shareProofRequestFromCredentialButCanBeSelfAttested")
@@ -226,15 +225,15 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofName, null, requestedPredicates),
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
 
-		proofRequestPage.attributeName(driverApp, attribute).isDisplayed();
-		proofRequestPage.selectedCredentialIcon(driverApp).isDisplayed();
+    proofRequestPageNew.findParameterizedElement(attribute).isDisplayed();
+    proofRequestPageNew.selectedCredentialIcon.isDisplayed();
 
 		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "shareProofRequestContainingPredicates")
@@ -256,18 +255,18 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 			() -> VAS.requestProof(DID, proofName, null, requestedPredicates),
-			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.missingCredentialsError(driverApp)).isDisplayed()
+      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError)
 		);
 
-		proofRequestPage.okButton(driverApp).click();
+		proofRequestPageNew.okButton.click();
 
-		proofRequestPage.attributeName(driverApp, attribute).isDisplayed();
-		proofRequestPage.unresolvedPredicateError(driverApp, "Greater than or equal to 60").isDisplayed();
-		proofRequestPage.notFoundIcon(driverApp).isDisplayed();
+    proofRequestPageNew.findParameterizedElement(attribute).isDisplayed();
+    proofRequestPageNew.unresolvedPredicateError("Greater than or equal to 60").isDisplayed();
+    proofRequestPageNew.notFoundIcon.isDisplayed();
 
 		objAppUtlis.rejectProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "rejectProofRequestContainingMissingPredicate")
@@ -293,12 +292,12 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
 
 		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "shareProofRequestContainingAttributesWithSchemaCredDefRestrictions")
@@ -326,12 +325,12 @@ public class ProofCasesTest extends IntSetup {
 
 		AppUtils.DoSomethingEventually(
 			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
 
 		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
 	}
 
 	@AfterClass

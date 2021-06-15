@@ -16,6 +16,7 @@ import pageObjects.ConnectionDetailPageNew;
 import pageObjects.CredentialPageNew;
 import pageObjects.ProofRequestPageNew;
 import pageObjects.QuestionPageNew;
+import pageObjects.CustomValuesPageNew;
 import pageObjects.StartUpPageNew;
 import pageObjects.PassCodePageNew;
 import test.java.utility.AppDriver;
@@ -45,4 +46,5 @@ public class IntSetup {
   public CredentialPageNew credentialPageNew = new CredentialPageNew(driverApp);
   public ProofRequestPageNew proofRequestPageNew = new ProofRequestPageNew(driverApp);
   public QuestionPageNew questionPageNew = new QuestionPageNew(driverApp);
+  public CustomValuesPageNew customValuesPageNew = new CustomValuesPageNew(driverApp);
 }

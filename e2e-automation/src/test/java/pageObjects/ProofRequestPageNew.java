@@ -33,11 +33,47 @@ public class ProofRequestPageNew {
   @iOSXCUITFindBy(accessibility = "Close")
   public WebElement closeButton;
 
+  @AndroidFindBy(xpath = "//*[@text='Missing - Tap to fix']")
+  @iOSXCUITFindBy(accessibility = "Missing - Tap to fix")
+  public WebElement missingAttributePlaceholder;
+
+  @AndroidFindBy(xpath = "//*[@text=\"Missing Credentials\"]")
+  @iOSXCUITFindBy(accessibility = "Missing Credentials")
+  public WebElement missingCredentialsError;
+
+  @AndroidFindBy(xpath = "//*[@content-desc=\"selected-credential-icon\"]")
+  @iOSXCUITFindBy(accessibility = "selected-credential-icon")
+  public WebElement selectedCredentialIcon;
+
+  @AndroidFindBy(xpath = "//*[@content-desc=\"arrow-forward-icon\"]")
+  @iOSXCUITFindBy(accessibility = "arrow-forward-icon")
+  public WebElement arrowForwardIcon;
+
+  @AndroidFindBy(xpath = "//*[@text=\"OK\"]")
+  @iOSXCUITFindBy(accessibility = "OK")
+  public WebElement okButton;
+
+  @AndroidFindBy(xpath = "//*[@text=\"Not found\"]")
+  @iOSXCUITFindBy(accessibility = "Not found")
+  public WebElement notFoundError;
+
+  @AndroidFindBy(xpath = "//*[@content-desc=\"alert-icon\"]")
+  @iOSXCUITFindBy(accessibility = "alert-icon")
+  public WebElement notFoundIcon;
+
   public WebElement findParameterizedElement(String expression) {
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId(expression);
     } else {
       return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
+    }
+  }
+
+  public WebElement unresolvedPredicateError(String text) {
+    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+      return driver.findElementByAccessibilityId(text);
+    } else {
+      return driver.findElement(By.xpath("//*[@text='" + text + "']"));
     }
   }
 }
