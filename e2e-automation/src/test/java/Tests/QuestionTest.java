@@ -1,22 +1,13 @@
 package test.java.Tests;
 
-import appModules.AppInjector;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
-import test.java.pageObjects.QuestionPage;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
-import test.java.pageObjects.MyConnectionsPage;
-import test.java.pageObjects.ConnectionHistoryPage;
-import test.java.pageObjects.HomePage;
-import test.java.pageObjects.MenuPage;
 import test.java.utility.Helpers;
-import test.java.utility.AppDriver;
 
 import java.util.Arrays;
 import java.util.List;

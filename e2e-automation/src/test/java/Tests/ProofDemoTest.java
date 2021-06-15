@@ -1,8 +1,5 @@
 package test.java.Tests;
 
-import appModules.AppInjector;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.json.JSONObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,16 +9,11 @@ import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
 import test.java.utility.LocalContext;
 import test.java.utility.Helpers;
-import test.java.pageObjects.ProofRequestPage;
-import test.java.pageObjects.MenuPage;
-import test.java.pageObjects.ConnectionHistoryPage;
-import test.java.pageObjects.HomePage;
 import test.java.funcModules.ConnectionModules;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import test.java.utility.AppDriver;
 
 public class ProofDemoTest extends IntSetup {
 	private AppUtils objAppUtlis = new AppUtils();
@@ -95,9 +87,9 @@ public class ProofDemoTest extends IntSetup {
 	@Test
 	public void acceptProofRequestFromHome() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
 		objAppUtlis.shareProof();
@@ -127,9 +119,9 @@ public class ProofDemoTest extends IntSetup {
 	@Test(dependsOnMethods = "validateConnectionHistory")
 	public void rejectProofRequest() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
 		objAppUtlis.rejectProof();
@@ -146,9 +138,9 @@ public class ProofDemoTest extends IntSetup {
 	@Test(dependsOnMethods = "rejectProofRequest")
 	public void acceptProofRequestWithImage() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofNameImage, requestedAttributesImage, null),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofNameImage, requestedAttributesImage, null)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
 
 		validateProofRequestView(header, "Requested by", proofNameImage, requestedAttributesImage);
 		objAppUtlis.shareProof();
@@ -162,9 +154,9 @@ public class ProofDemoTest extends IntSetup {
 			requestedAttributesMany.add(new JSONObject().put("name", item));
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofNameMany, requestedAttributesMany, null),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofNameMany, requestedAttributesMany, null)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
 
 		objAppUtlis.shareProof();
 
@@ -174,9 +166,9 @@ public class ProofDemoTest extends IntSetup {
 	@Test(dependsOnMethods = "acceptProofRequestMany")
 	public void acceptProofRequestDifferentCredentials() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofNameDiff, requestedAttributesDiff, null),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofNameDiff, requestedAttributesDiff, null)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
 
 		validateProofRequestView(header, "Requested by", proofNameDiff, requestedAttributesDiff);
 		objAppUtlis.shareProof();

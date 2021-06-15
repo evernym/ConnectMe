@@ -1,8 +1,5 @@
 package test.java.Tests;
 
-import appModules.AppInjector;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -13,10 +10,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
-import test.java.pageObjects.HomePage;
-import test.java.pageObjects.ProofRequestPage;
-import test.java.pageObjects.CustomValuesPage;
-import test.java.utility.AppDriver;
 import test.java.utility.Helpers;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;

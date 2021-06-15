@@ -1,9 +1,5 @@
 package test.java.Tests;
 
-import appModules.AppInjector;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import io.appium.java_client.TouchAction;
 import org.json.JSONObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,20 +8,12 @@ import org.testng.annotations.Test;
 import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
-import test.java.pageObjects.HomePage;
-import test.java.pageObjects.MenuPage;
-import test.java.pageObjects.CredentialPage;
-import test.java.pageObjects.MyCredentialsPage;
-import test.java.pageObjects.ConnectionHistoryPage;
-import test.java.pageObjects.ConnectionDetailPage;
 import test.java.funcModules.ConnectionModules;
 
 import test.java.utility.LocalContext;
 import test.java.utility.Helpers;
-import test.java.utility.RetryAnalyzer;
 import test.java.utility.Tuple;
 import test.java.utility.Constants;
-import test.java.utility.AppDriver;
 import test.java.utility.Config;
 
 import java.util.List;
