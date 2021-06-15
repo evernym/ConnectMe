@@ -231,7 +231,7 @@ yarn-test:
   except:
     - white-label-app-e2e-testing
 
-react-native-check:
+react-native-white-label-app-check:
   stage: react-check
   script:
     - 'sed -i "s/.*react-native-white-label-app\.git/react-native-white-label-app\.git\#$REACT_SOURCE_BRANCH/" package.json'
