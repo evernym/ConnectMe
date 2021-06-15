@@ -96,8 +96,6 @@ public class ProofCasesTest extends IntSetup {
 			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.missingCredentialsError(driverApp)).isDisplayed()
 		);
 
-		proofRequestPage.okButton(driverApp).click();
-
 		proofRequestPage.attributeName(driverApp, attribute).isDisplayed();
 		proofRequestPage.notFoundError(driverApp).isDisplayed();
 		proofRequestPage.notFoundIcon(driverApp).isDisplayed();
@@ -125,8 +123,6 @@ public class ProofCasesTest extends IntSetup {
 			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
 			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.missingCredentialsError(driverApp)).isDisplayed()
 		);
-
-		proofRequestPage.okButton(driverApp).click();
 
 		proofRequestPage.attributeName(driverApp, attribute1 + "," + attribute2).isDisplayed();
 		proofRequestPage.notFoundError(driverApp).isDisplayed();
@@ -256,8 +252,6 @@ public class ProofCasesTest extends IntSetup {
 			() -> VAS.requestProof(DID, proofName, null, requestedPredicates),
 			() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.missingCredentialsError(driverApp)).isDisplayed()
 		);
-
-		proofRequestPage.okButton(driverApp).click();
 
 		proofRequestPage.attributeName(driverApp, attribute).isDisplayed();
 		proofRequestPage.unresolvedPredicateError(driverApp, "Greater than or equal to 60").isDisplayed();
