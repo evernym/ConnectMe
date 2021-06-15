@@ -1,15 +1,10 @@
 package test.java.Tests;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import appModules.AppInjector;
-import test.java.funcModules.LockModules;
 import test.java.utility.IntSetup;
-import test.java.utility.AppDriver;
-import io.appium.java_client.AppiumDriver;
+
 
 public class StartUpTest extends IntSetup {
 

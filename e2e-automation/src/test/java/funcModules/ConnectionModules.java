@@ -1,25 +1,18 @@
 package test.java.funcModules;
 
-import appModules.AppInjector;
 import com.google.common.collect.ImmutableMap;
 import io.restassured.RestAssured;
 import org.json.JSONObject;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import test.java.appModules.AppPageInjector;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
 import test.java.utility.Config;
 import test.java.utility.AppDriver;
 import test.java.utility.LocalContext;
-import test.java.pageObjects.InvitationPage;
-import test.java.pageObjects.PushNotificationsPage;
 
 import java.util.ArrayList;
 import java.util.HashMap;

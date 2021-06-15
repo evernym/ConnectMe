@@ -1,7 +1,5 @@
 package test.java.Tests;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -9,12 +7,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import appModules.AppInjector;
-import test.java.appModules.AppUtils;
 import test.java.utility.Config;
 import test.java.utility.IntSetup;
-import test.java.appModules.AppiumUtils;
-import test.java.utility.AppDriver;
+
 
 public class AppElementsTest extends IntSetup {
 

@@ -1,27 +1,13 @@
 package test.java.Tests;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.openqa.selenium.NoSuchElementException;
-import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-import appModules.AppInjector;
-import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.funcModules.ConnectionModules;
-import test.java.pageObjects.ConnectionHistoryPage;
-import test.java.pageObjects.ConnectionDetailPage;
-import test.java.utility.Helpers;
-import test.java.utility.RetryAnalyzer;
 import test.java.utility.LocalContext;
-import test.java.utility.AppDriver;
 import test.java.utility.BrowserDriver;
-import test.java.pageObjects.HomePage;
-import test.java.pageObjects.MenuPage;
-import test.java.pageObjects.MyConnectionsPage;
 import test.java.utility.Config;
 
 import java.time.Duration;

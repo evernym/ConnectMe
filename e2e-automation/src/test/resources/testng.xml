@@ -13,8 +13,6 @@
 <!--            <class name="test.java.Tests.ProofCasesTest"/>-->
 <!--            <class name="test.java.Tests.QuestionTest"/>-->
 <!--            <class name="test.java.Tests.DeletionTest"/>-->
-
-            <!--<class name="test.java.Tests.DummyTest"/>-->
         </classes>
     </test>
 </suite>

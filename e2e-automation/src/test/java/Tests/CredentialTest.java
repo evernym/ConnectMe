@@ -165,10 +165,9 @@ public class CredentialTest extends IntSetup {
 	@Test
 	public void acceptCredentialFromHome() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName),
+				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
 		);
-
     AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values); FIXME: android failure - swipe is needed
 		objAppUtlis.acceptCredential();
@@ -211,11 +210,10 @@ public class CredentialTest extends IntSetup {
 	@Test(dependsOnMethods = "validateConnectionHistory")
 	public void rejectCredentialOffer() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName),
+				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
-        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
-
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values);
 		objAppUtlis.rejectCredential();
 
@@ -234,10 +232,10 @@ public class CredentialTest extends IntSetup {
 			valuesMany.put(item, Helpers.randomString());
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdMany"), valuesMany, credentialNameMany),
+				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdMany"), valuesMany, credentialNameMany)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
-        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
 
 		objAppUtlis.acceptCredential();
 
@@ -269,10 +267,10 @@ public class CredentialTest extends IntSetup {
 				.put("CSV_link", Constants.valuesAttachment4.getString("Attachment_link"));
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdAll"), values, credentialNameAll),
+				() -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdAll"), values, credentialNameAll)
 //				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
-        () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header))
 		);
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
 
 		validateCredentialView("Credential Offer", "Issued by", credentialNameAll, values);
 

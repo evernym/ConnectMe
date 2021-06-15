@@ -1,23 +1,16 @@
 package test.java.Tests;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.*;
-import appModules.AppInjector;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
 import test.java.utility.IntSetup;
 import test.java.funcModules.ConnectionModules;
 import test.java.utility.Helpers;
 import test.java.utility.LocalContext;
-import test.java.utility.AppDriver;
 import test.java.utility.BrowserDriver;
-import test.java.pageObjects.HomePage;
-import test.java.pageObjects.MenuPage;
-import test.java.pageObjects.CredentialPage;
 import test.java.utility.Constants;
 import test.java.utility.Config;
 
