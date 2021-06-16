@@ -35,10 +35,11 @@ public class QuestionTest extends IntSetup {
 
 	private void answerQuestionFromHome(List<String> validResponses) throws Exception {
     AppUtils.DoSomethingEventually(
-        () -> VAS.askQuestion(DID, text, detail, validResponses),
+        () -> VAS.askQuestion(DID, text, detail, validResponses)
 //      () -> questionPage.header(driverApp).isDisplayed()
-		    () -> AppUtils.waitForElementNew(driverApp, questionPageNew.header)
+//		    () -> AppUtils.waitForElementNew(driverApp, questionPageNew.header)
     );
+    AppUtils.waitForElementNew(driverApp, questionPageNew.header);
 		validateQuestionWindow(validResponses);
 	}
 
