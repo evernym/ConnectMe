@@ -52,9 +52,10 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-				() -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+//				() -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header)) // option 1
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		proofRequestPageNew.findParameterizedElement(attribute1).isDisplayed();
 		proofRequestPageNew.findParameterizedElement(attribute2).isDisplayed();
@@ -80,9 +81,9 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-			() -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError)
+			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError);
 
 		proofRequestPageNew.okButton.click();
 
@@ -110,9 +111,9 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError)
+			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError);
 
     proofRequestPageNew.okButton.click();
 
@@ -141,9 +142,10 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+//        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
     proofRequestPageNew.missingAttributePlaceholder.isDisplayed();
     proofRequestPageNew.arrowForwardIcon.isDisplayed();
@@ -186,9 +188,10 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+//        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		objAppUtlis.shareProof();
 
@@ -212,9 +215,10 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, null, requestedPredicates),
-        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+				() -> VAS.requestProof(DID, proofName, null, requestedPredicates)
+//        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
     proofRequestPageNew.findParameterizedElement(attribute).isDisplayed();
     proofRequestPageNew.selectedCredentialIcon.isDisplayed();
@@ -242,9 +246,9 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, null, requestedPredicates),
-      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError)
+			() -> VAS.requestProof(DID, proofName, null, requestedPredicates)
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError);
 
 		proofRequestPageNew.okButton.click();
 
@@ -279,9 +283,10 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+//      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		objAppUtlis.shareProof();
 
@@ -312,9 +317,10 @@ public class ProofCasesTest extends IntSetup {
 		String proofName = Helpers.randomString();
 
 		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
+			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+//      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
 		);
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		objAppUtlis.shareProof();
 
