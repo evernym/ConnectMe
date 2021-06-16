@@ -11,8 +11,8 @@
             <class name="test.java.Tests.CredentialTest"/>
             <class name="test.java.Tests.ProofDemoTest"/>
             <class name="test.java.Tests.ProofCasesTest"/>
-<!--            <class name="test.java.Tests.QuestionTest"/>-->
-<!--            <class name="test.java.Tests.DeletionTest"/>-->
+            <class name="test.java.Tests.QuestionTest"/>
+            <class name="test.java.Tests.DeletionTest"/>
         </classes>
     </test>
 </suite>
