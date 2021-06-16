@@ -29,6 +29,10 @@ public class ProofRequestPageNew {
   @iOSXCUITFindBy(accessibility = "sender-avatar")
   public WebElement proofRequestSenderLogo;
 
+  @AndroidFindBy(xpath = "//*[@text=\"Proof Request\"]")
+  @iOSXCUITFindBy(accessibility = "Proof Request")
+  public WebElement proofRequestHeader;
+
   @AndroidFindBy(xpath = "//*[@text=\"Close\"]")
   @iOSXCUITFindBy(accessibility = "Close")
   public WebElement closeButton;

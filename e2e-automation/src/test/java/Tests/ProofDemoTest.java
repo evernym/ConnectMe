@@ -89,7 +89,8 @@ public class ProofDemoTest extends IntSetup {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header)); // option 1
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
 		objAppUtlis.shareProof();
@@ -121,7 +122,8 @@ public class ProofDemoTest extends IntSetup {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
 		objAppUtlis.rejectProof();
@@ -140,7 +142,8 @@ public class ProofDemoTest extends IntSetup {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofNameImage, requestedAttributesImage, null)
 		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofNameImage, requestedAttributesImage);
 		objAppUtlis.shareProof();
@@ -156,7 +159,8 @@ public class ProofDemoTest extends IntSetup {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofNameMany, requestedAttributesMany, null)
 		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		objAppUtlis.shareProof();
 
@@ -168,7 +172,8 @@ public class ProofDemoTest extends IntSetup {
 		AppUtils.DoSomethingEventually(
 				() -> VAS.requestProof(DID, proofNameDiff, requestedAttributesDiff, null)
 		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofNameDiff, requestedAttributesDiff);
 		objAppUtlis.shareProof();

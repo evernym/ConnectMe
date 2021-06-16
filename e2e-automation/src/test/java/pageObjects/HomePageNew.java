@@ -87,9 +87,9 @@ public class HomePageNew {
 
   public WebElement proofRequestRejectedEvent(String proofName) {
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
-      return driver.findElementByAccessibilityId("//*[@text='You rejected \"" + proofName + "\".']");
+      return driver.findElementByAccessibilityId("You rejected \"" + proofName + "\".");
     } else {
-      return driver.findElement(By.xpath("You rejected \"" + proofName + "\"."));
+      return driver.findElement(By.xpath("//*[@text='You rejected \"" + proofName + "\".']"));
     }
   }
 

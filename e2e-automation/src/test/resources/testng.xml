@@ -6,7 +6,7 @@
             <class name="test.java.Tests.StartUpTest"/>
             <class name="test.java.Tests.AppElementsTest"/>
             <class name="test.java.Tests.ConnectionTest"/>
-            <class name="test.java.Tests.PushNotificationTest"/>
+<!--            <class name="test.java.Tests.PushNotificationTest"/>-->
             <class name="test.java.Tests.RedirectionTest"/>
             <class name="test.java.Tests.CredentialTest"/>
             <class name="test.java.Tests.ProofDemoTest"/>
