@@ -89,7 +89,7 @@ public class QuestionTest extends IntSetup {
 		answerQuestionFromHome(threeOptions);
 
 		String answer = threeOptions.get(0);
-    questionPageNew.findParameterizedElement(answer).click();
+    questionPageNew.answerOption(answer).click();
     questionPageNew.submitButton.click();
     homePageNew.questionRespondedEvent(answer).isDisplayed();
 	}
