@@ -32,6 +32,10 @@ public class QuestionPageNew {
   @iOSXCUITFindBy(accessibility = "question-action-submit")
   public WebElement submitButton;
 
+  @AndroidFindBy(xpath = "//*[@text=\"How much?\"]")
+  @iOSXCUITFindBy(accessibility = "How much?")
+  public WebElement questionText;
+
   public WebElement findParameterizedElement(String expression) {
     if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
       return driver.findElementByAccessibilityId(expression);
