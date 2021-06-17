@@ -39,11 +39,7 @@ public class AppElementsTest extends IntSetup {
         menuPageNew.userAvatar.click();
         try {
             menuPageNew.okButton.click();
-//            try {
-                menuPageNew.menuAllowButton.click();
-//            } catch (Exception ex) {
-//                menuPageNew.menuAllowButtonAlt.click();
-//            }
+            menuPageNew.menuAllowButton.click();
         }
         catch (NoSuchElementException e) {
             System.out.println("Permissions already have been granted!");
