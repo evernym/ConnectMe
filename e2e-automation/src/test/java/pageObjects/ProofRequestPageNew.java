@@ -65,14 +65,6 @@ public class ProofRequestPageNew {
   @iOSXCUITFindBy(accessibility = "alert-icon")
   public WebElement notFoundIcon;
 
-//  public WebElement findParameterizedElement(String expression) {
-//    if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//      return driver.findElementByAccessibilityId(expression);
-//    } else {
-//      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
-//    }
-//  }
-
   public WebElement unresolvedPredicateError(String text) {
     if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
       return driver.findElementByAccessibilityId(text);

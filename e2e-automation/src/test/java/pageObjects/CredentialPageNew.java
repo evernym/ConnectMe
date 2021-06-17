@@ -44,13 +44,4 @@ public class CredentialPageNew {
   @AndroidFindBy(xpath = "//*[@text=\"Delete Credential\"]")
   @iOSXCUITFindBy(accessibility = "Delete Credential")
   public WebElement deleteButton;
-
-//  // MOVED TO APP UTILS
-//  public WebElement findParameterizedElement(String expression) {
-//    if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//      return driver.findElementByAccessibilityId(expression);
-//    } else {
-//      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
-//    }
-//  }
 }

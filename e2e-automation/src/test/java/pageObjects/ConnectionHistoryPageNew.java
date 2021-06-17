@@ -85,14 +85,6 @@ public class ConnectionHistoryPageNew {
   @iOSXCUITFindBy(accessibility = "YOU REJECTED")
   public WebElement rejectedCredentialRecord;
 
-//  public WebElement findParameterizedElement(String expression) {
-//    if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//      return driver.findElementByAccessibilityId(expression);
-//    } else {
-//      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
-//    }
-//  }
-
   public WebElement questionAnswerRecordDescription(String answer) {
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId("\"" + answer + "\"");

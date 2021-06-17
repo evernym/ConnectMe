@@ -24,12 +24,4 @@ public class MyCredentialsPageNew {
   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"burger-menu\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"burger-menu\"]")
   public WebElement burgerMenuButton;
-
-//  public WebElement findParameterizedElement(String expression) {
-//    if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//      return driver.findElementByAccessibilityId(expression);
-//    } else {
-//      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
-//    }
-//  }
 }

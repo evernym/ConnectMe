@@ -25,14 +25,6 @@ public class MyConnectionsPageNew {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"burger-menu\"]")
   public WebElement burgerMenuButton;
 
-//  public WebElement findParameterizedElement(String expression) {
-//    if (Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
-//      return driver.findElementByAccessibilityId(expression);
-//    } else {
-//      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
-//    }
-//  }
-
   public WebElement testConnection(String name) {
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return driver.findElementByAccessibilityId(name + "-title");
