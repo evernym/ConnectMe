@@ -24,13 +24,6 @@ import java.util.concurrent.TimeUnit;
  * The ConnectionModules class is to implement method related to connection
  */
 public class ConnectionModules extends IntSetup {
-//	Injector injector = Guice.createInjector(new AppInjector());
-//
-//	private InvitationPage invitationPage = injector.getInstance(InvitationPage.class);
-//	private test.java.pageObjects.HomePage homePage = injector.getInstance(test.java.pageObjects.HomePage.class);
-//	private PushNotificationsPage pushNotificationsPage = injector.getInstance(PushNotificationsPage.class);
-//	private test.java.appModules.AppUtils objAppUtils = injector.getInstance(test.java.appModules.AppUtils.class);
-
 	/**
 	 * install the app from hockeyapp by sms link
 	 *
