@@ -1,10 +1,14 @@
 package test.java.appModules;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -23,7 +27,7 @@ import static java.time.Duration.ofSeconds;
 /**
  * The AppiumUtils class is to implement appium utility methods
  * All Appium action overrides are defined here
- * 
+ *
  */
 
 public class AppiumUtils {
@@ -167,10 +171,17 @@ public class AppiumUtils {
 	 */
 
 	public static void longPress(AppiumDriver driver, WebElement element) {
-		TouchAction action = new TouchAction(driver);
-		action.longPress(element);
-		action.perform();
+//		TouchAction action = new TouchAction(driver);
+//		action.longPress(element);
+//		action.perform();
 
+    new TouchAction(driver)
+      .longPress(new LongPressOptions()
+        .withElement(ElementOption.element(element))
+        .withDuration(Duration.ofMillis(500))
+      )
+      .release()
+      .perform();
 	}
 
 	/**
@@ -223,38 +234,10 @@ public class AppiumUtils {
 
 	}
 
-	public static void scroll(AppiumDriver driver, int startx, int starty, int endx, int endy) {
-
-		TouchAction touchAction = new TouchAction(driver);
-
-		touchAction.longPress(startx, starty)
-				.waitAction(1000)
-				.moveTo(endx, endy)
-				.release()
-				.perform();
-
-	}
-
-	public static void swipeRight(AppiumDriver driver) {
-
-		//The viewing size of the device
-		Dimension size = driver.manage().window().getSize();
-
-		//Starting x location set to 5% of the width (near left)
-		int startx = (int) (size.width * 0.05);
-		//Ending x location set to 95% of the width (near right)
-		int endx = (int) (size.width * 0.95);
-		//y position set to mid-screen vertically
-		int starty = size.height / 2;
-
-		scroll(driver, startx, starty, endx, starty);
-
-	}
-
 	public static void tapBack(AppiumDriver driver, int n) {
 		AndroidDriver androidDriver = (AndroidDriver) driver;
 		for (int i = 0; i < n; i++) {
-			androidDriver.pressKeyCode(AndroidKeyCode.BACK);
+      androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 	}
 

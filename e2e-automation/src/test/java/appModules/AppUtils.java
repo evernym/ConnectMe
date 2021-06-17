@@ -4,12 +4,17 @@ import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import test.java.utility.Config;
 import test.java.utility.AppDriver;
+import test.java.utility.IntSetup;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -19,19 +24,19 @@ import org.testng.SkipException;
 /**
  * The AppUtlis class is to implement ConnectMe app utility methods
  */
-public class AppUtils extends AppPageInjector {
+public class AppUtils extends IntSetup {
 
   public static boolean Success = false;
 
   public void openApp(AppiumDriver driver) throws Exception {
       driver.launchApp();
       driver.context("NATIVE_APP"); // DEBUG
-      pincodePage.pinCodeTitle(driver).isDisplayed();
+      passCodePageNew.passCodeTitle.isDisplayed();
       enterPincode(driver);
   }
 
   public void unlockApp(AppiumDriver driver) throws Exception {
-    pincodePage.pinCodeTitle(driver).isDisplayed();
+    passCodePageNew.passCodeTitle.isDisplayed();
     enterPincode(driver);
   }
 
@@ -44,23 +49,13 @@ public class AppUtils extends AppPageInjector {
   public void enterPincode(AppiumDriver driver) throws Exception {
     Thread.sleep(3000);  //  sync issue
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
-      pincodePage.pinCodeSe_TextBox(driver).sendKeys("000000");
+      passCodePageNew.passCodeTextBox.sendKeys("000000");
     } else {
       AndroidDriver androidDriver = (AndroidDriver) driver;
       for (int i = 0; i < 6; i++) {
-        androidDriver.pressKeyCode(AndroidKeyCode.KEYCODE_0);
+        androidDriver.pressKey(new KeyEvent(AndroidKey.DIGIT_0));
       }
     }
-  }
-
-  /**
-   * enters the reverse pincode  on pincode page
-   *
-   * @param driver - appium driver available for session
-   * @return void
-   */
-  public void enterPincodeReverse(AppiumDriver driver) throws Exception {
-    pincodePage.pinCode_TextBox(driver).sendKeys("654321");
   }
 
   /**
@@ -157,14 +152,29 @@ public class AppUtils extends AppPageInjector {
     throw new ElementNotFoundException("Expected element not found", "", "");
   }
 
+  public static void waitForElementNew(AppiumDriver driver, WebElement element) throws Exception {
+    System.out.println("Wait for element to be available");
+    for (int i = 0; i < 6; i++) {
+      try {
+        element.isDisplayed();
+        return;
+      } catch (Exception e) {
+        System.out.println(e.getMessage() + " Retry...");
+        pullScreenDown(driver);
+        Thread.sleep(15000);
+      }
+    }
+    throw new RuntimeException("Expected element not found!");
+  }
+
   public static void pullScreenDown(AppiumDriver driver) {
     System.out.println("Pull screen down to refresh");
     Dimension dims = driver.manage().window().getSize();
     try {
       new TouchAction(driver)
-        .press(dims.width / 2 - 50, dims.height / 2)
-        .waitAction(Duration.ofMillis(100))
-        .moveTo(dims.width / 2 - 50, dims.height - 20)
+        .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
+        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
+        .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height - 20))
         .release().perform();
     } catch (Exception e) {
       System.err.println("Pull screen down to refresh FAILED with Error:\n" + e.getMessage());
@@ -176,9 +186,9 @@ public class AppUtils extends AppPageInjector {
     Dimension dims = driver.manage().window().getSize();
     try {
       new TouchAction(driver)
-              .press(dims.width / 2 - 50, dims.height / 2)
-              .waitAction(Duration.ofMillis(200))
-              .moveTo(dims.width / 3, 200)
+              .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
+              .waitAction(new WaitOptions().withDuration(Duration.ofMillis(200)))
+              .moveTo(new PointOption().withCoordinates(dims.width / 3, 200))
               .release().perform();
     } catch (Exception e) {
       System.err.println("Pull screen up FAILED with Error:\n" + e.getMessage());
@@ -194,37 +204,45 @@ public class AppUtils extends AppPageInjector {
 //    int[] leftPoint = {dims.width / 10, dims.height / 2};
 //  }
 
-  public void acceptCredential(AppiumDriver driver) throws Exception {
-    credentialPage.accept_Button(driver).click();
-    authForAction(driver);
+  public void acceptCredential() throws Exception {
+    credentialPageNew.acceptButton.click();
+    authForAction();
   }
 
-  public void rejectCredential(AppiumDriver driver) throws Exception {
-    credentialPage.reject_Button(driver).click();
-    authForAction(driver);
+  public void rejectCredential() throws Exception {
+    credentialPageNew.rejectButton.click();
+    authForAction();
   }
 
-  public void shareProof(AppiumDriver driver) throws Exception {
-    proofRequestPage.shareButton(driver).click();
-    authForAction(driver);
+  public void shareProof() throws Exception {
+    proofRequestPageNew.shareButton.click();
+    authForAction();
   }
 
-  public void rejectProof(AppiumDriver driver) throws Exception {
-    proofRequestPage.rejectButton(driver).click();
-    authForAction(driver);
+  public void rejectProof() throws Exception {
+    proofRequestPageNew.rejectButton.click();
+    authForAction();
   }
 
-  public void authForAction(AppiumDriver driver) throws Exception {
+  public void authForAction() throws Exception {
     try {
-      driver.manage().timeouts().implicitlyWait(AppDriver.SUPER_SMALL_TIMEOUT, TimeUnit.SECONDS);
-      passcodePage.passcodeTitle(driver).isDisplayed();
-      enterPincode(driver);
+      driverApp.manage().timeouts().implicitlyWait(AppDriver.SUPER_SMALL_TIMEOUT, TimeUnit.SECONDS);
+      passCodePageNew.passCodeTitle.isDisplayed();
+      passCodePageNew.enterPassCode();
     }
     catch (NoSuchElementException e) {
       System.out.println("No authentication is required");
     }
     finally {
-      driver.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
+      driverApp.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
+    }
+  }
+
+  public WebElement findParameterizedElement(String expression) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driverApp.findElementByAccessibilityId(expression);
+    } else {
+      return driverApp.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
 }

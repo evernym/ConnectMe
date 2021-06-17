@@ -1,8 +1,5 @@
 package test.java.Tests;
 
-import appModules.AppInjector;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import org.json.JSONObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,26 +9,15 @@ import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
 import test.java.utility.LocalContext;
 import test.java.utility.Helpers;
-import test.java.pageObjects.ProofRequestPage;
-import test.java.pageObjects.MenuPage;
-import test.java.pageObjects.ConnectionHistoryPage;
-import test.java.pageObjects.HomePage;
 import test.java.funcModules.ConnectionModules;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import test.java.utility.AppDriver;
 
 public class ProofDemoTest extends IntSetup {
-	Injector injector = Guice.createInjector(new AppInjector());
-
-	private AppUtils objAppUtlis = injector.getInstance(AppUtils.class);
-	private HomePage homePage = injector.getInstance(HomePage.class);
-	private ProofRequestPage proofRequestPage = injector.getInstance(ProofRequestPage.class);
-	private MenuPage menuPage = injector.getInstance(MenuPage.class);
-	private ConnectionHistoryPage connectionHistoryPage = injector.getInstance(ConnectionHistoryPage.class);
-	private ConnectionModules objConnectionModules = injector.getInstance(ConnectionModules.class);
+	private AppUtils objAppUtlis = new AppUtils();
+	private ConnectionModules objConnectionModules = new ConnectionModules();
 	private LocalContext context = LocalContext.getInstance();
 
 	private String header = "Proof Request";
@@ -63,12 +49,11 @@ public class ProofDemoTest extends IntSetup {
 	private List<JSONObject> requestedAttributesMany = new ArrayList<>();
 
 	private void validateProofRequestView(String header, String title, String proofName, List<JSONObject> values) throws Exception {
-		proofRequestPage.header(driverApp, header).isDisplayed();
-		proofRequestPage.title(driverApp, title).isDisplayed();
-		System.out.println(connectionName);
-		proofRequestPage.proofRequestSenderName(driverApp, connectionName).isDisplayed();
-		proofRequestPage.proofRequestSenderLogo(driverApp).isDisplayed();
-		proofRequestPage.proofRequestName(driverApp, proofName).isDisplayed();
+    objAppUtlis.findParameterizedElement(header).isDisplayed();
+    objAppUtlis.findParameterizedElement(title).isDisplayed();
+    objAppUtlis.findParameterizedElement(connectionName).isDisplayed();
+//    proofRequestPageNew.proofRequestSenderLogo.isDisplayed(); // FIXME this doesn't work
+    objAppUtlis.findParameterizedElement(proofName).isDisplayed();
 
 		for (JSONObject attribute : values) {
 			String value = attribute.getString("name");
@@ -79,10 +64,10 @@ public class ProofDemoTest extends IntSetup {
 			}
 
 			try {
-				proofRequestPage.attributeName(driverApp, value).isDisplayed();
+        objAppUtlis.findParameterizedElement(value).isDisplayed();
 			} catch (Exception e) {
 				AppUtils.pullScreenUp(driverApp);
-				proofRequestPage.attributeName(driverApp, value).isDisplayed();
+        objAppUtlis.findParameterizedElement(value).isDisplayed();
 			}
 		}
 	}
@@ -94,8 +79,7 @@ public class ProofDemoTest extends IntSetup {
 		context.setValue("proofName", proofName);
 		attrsMany = context.getValueList("attrsMany");
 
-		driverApp = AppDriver.getDriver();
-		objAppUtlis.openApp(driverApp);
+    passCodePageNew.openApp();
 
 		VAS = VASApi.getInstance();
 	}
@@ -103,68 +87,68 @@ public class ProofDemoTest extends IntSetup {
 	@Test
 	public void acceptProofRequestFromHome() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-//				() -> proofRequestPage.header(driverApp, "Proof Request").isDisplayed()
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header)); // option 1
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofName)).isDisplayed();
+		AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
 	}
 
 	@Test(dependsOnMethods = "acceptProofRequestFromHome")
 	public void validateConnectionHistory() throws Exception {
-		objConnectionModules.openConnectionHistory(driverApp, connectionName);
+		objConnectionModules.openConnectionHistory(connectionName);
 //		// TODO: move this logic to helper
 //		try {
-			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();
+    objAppUtlis.findParameterizedElement(proofName).isDisplayed(); // TODO keep this method in single helper, not in each page object
 //		} catch (Exception ex) {
 //			AppUtils.pullScreenUp(driverApp);
 //			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();
 //		}
-		connectionHistoryPage.viewProofRequestDetailsButton(driverApp).click();
+		connectionHistoryPageNew.viewProofRequestDetailsButton.click();
 
 		validateProofRequestView(headerShared, "You shared this information", proofName, requestedAttributes);
-		proofRequestPage.closeButton(driverApp).click();
-		connectionHistoryPage.backButton(driverApp).click();
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.homeButton(driverApp).click();
+		proofRequestPageNew.closeButton.click();
+		connectionHistoryPageNew.backButton.click();
+		homePageNew.burgerMenuButton.click();
+		menuPageNew.homeButton.click();
 	}
 
 	@Test(dependsOnMethods = "validateConnectionHistory")
 	public void rejectProofRequest() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null),
-//				() -> proofRequestPage.header(driverApp, "Proof Request").isDisplayed()
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
 		);
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
-		objAppUtlis.rejectProof(driverApp);
+		objAppUtlis.rejectProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofRequestRejectedEvent(driverApp, proofName)).isDisplayed();
-		objConnectionModules.openConnectionHistory(driverApp, connectionName);
-		connectionHistoryPage.rejectedProofRequestRecord(driverApp, proofName).isDisplayed();
-		connectionHistoryPage.backButton(driverApp).click();
+		AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
+		objConnectionModules.openConnectionHistory(connectionName);
+		connectionHistoryPageNew.rejectedProofRequestRecord.isDisplayed();
+		connectionHistoryPageNew.backButton.click();
 
-		homePage.burgerMenuButton(driverApp).click();
-		menuPage.homeButton(driverApp).click();
+		homePageNew.burgerMenuButton.click();
+		menuPageNew.homeButton.click();
 	}
 
 	@Test(dependsOnMethods = "rejectProofRequest")
 	public void acceptProofRequestWithImage() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofNameImage, requestedAttributesImage, null),
-//				() -> proofRequestPage.header(driverApp, "Proof Request").isDisplayed()
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+				() -> VAS.requestProof(DID, proofNameImage, requestedAttributesImage, null)
 		);
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofNameImage, requestedAttributesImage);
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofNameImage)).isDisplayed();
+		AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofNameImage));
 	}
 
 	@Test(dependsOnMethods = "acceptProofRequestWithImage")
@@ -173,28 +157,28 @@ public class ProofDemoTest extends IntSetup {
 			requestedAttributesMany.add(new JSONObject().put("name", item));
 
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofNameMany, requestedAttributesMany, null),
-//				() -> proofRequestPage.header(driverApp, "Proof Request").isDisplayed()
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+				() -> VAS.requestProof(DID, proofNameMany, requestedAttributesMany, null)
 		);
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofNameMany)).isDisplayed();
+		AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofNameMany));
 	}
 
 	@Test(dependsOnMethods = "acceptProofRequestMany")
 	public void acceptProofRequestDifferentCredentials() throws Exception {
 		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofNameDiff, requestedAttributesDiff, null),
-//				() -> proofRequestPage.header(driverApp, "Proof Request").isDisplayed()
-				() -> AppUtils.waitForElement(driverApp, () -> proofRequestPage.header(driverApp, header)).isDisplayed()
+				() -> VAS.requestProof(DID, proofNameDiff, requestedAttributesDiff, null)
 		);
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header));
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
 		validateProofRequestView(header, "Requested by", proofNameDiff, requestedAttributesDiff);
-		objAppUtlis.shareProof(driverApp);
+		objAppUtlis.shareProof();
 
-		AppUtils.waitForElement(driverApp, () -> homePage.proofSharedEvent(driverApp, proofNameDiff)).isDisplayed();
+		AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofNameDiff));
 	}
 
 	@AfterClass

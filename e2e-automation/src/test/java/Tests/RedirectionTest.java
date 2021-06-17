@@ -1,38 +1,20 @@
 package test.java.Tests;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.openqa.selenium.NoSuchElementException;
-import org.testng.SkipException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-import appModules.AppInjector;
-import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.funcModules.ConnectionModules;
-import test.java.pageObjects.ConnectionHistoryPage;
-import test.java.pageObjects.ConnectionDetailPage;
-import test.java.utility.Helpers;
-import test.java.utility.RetryAnalyzer;
 import test.java.utility.LocalContext;
-import test.java.utility.AppDriver;
 import test.java.utility.BrowserDriver;
-import test.java.pageObjects.HomePage;
-import test.java.pageObjects.MenuPage;
-import test.java.pageObjects.MyConnectionsPage;
 import test.java.utility.Config;
 
 import java.time.Duration;
 
 
 public class RedirectionTest extends IntSetup {
-    Injector injector = Guice.createInjector(new AppInjector());
-
-    private AppUtils objAppUtils = injector.getInstance(AppUtils.class);
-    private ConnectionModules objConnectionModules = injector.getInstance(ConnectionModules.class);
-    private HomePage homePage = injector.getInstance(HomePage.class);
+    private ConnectionModules objConnectionModules = new ConnectionModules();
     private LocalContext context = LocalContext.getInstance();
 
     private String connectionInvitationLink;
@@ -43,7 +25,6 @@ public class RedirectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Redirection Test Suite has been started!");
-        driverApp = AppDriver.getDriver();
         connectionInvitationLink = context.getValue("connection-invitation");
         oobInvitationLink = context.getValue("out-of-band-invitation");
     }
@@ -86,7 +67,7 @@ public class RedirectionTest extends IntSetup {
         objConnectionModules.openDeepLink(driverBrowser, driverApp, link);
 
         // check conditions
-        homePage.homeHeader(driverApp).isDisplayed();
+        homePageNew.homeHeader.isDisplayed();
 
         BrowserDriver.closeApp();
         driverApp.closeApp();
