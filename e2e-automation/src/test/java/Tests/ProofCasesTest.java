@@ -31,9 +31,7 @@ public class ProofCasesTest extends IntSetup {
 	@BeforeClass
 	public void BeforeClassSetup() throws Exception {
 		DID = context.getValue("DID");
-
     passCodePageNew.openApp();
-
 		VAS = VASApi.getInstance();
 	}
 
@@ -57,8 +55,8 @@ public class ProofCasesTest extends IntSetup {
 		);
     AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
-		proofRequestPageNew.findParameterizedElement(attribute1).isDisplayed();
-		proofRequestPageNew.findParameterizedElement(attribute2).isDisplayed();
+    objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
+    objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
 //		proofRequestPageNew.selectedCredentialIcon.isDisplayed(); // FIXME this doesn't work for ios
 
 		objAppUtlis.shareProof();
@@ -88,7 +86,7 @@ public class ProofCasesTest extends IntSetup {
 //
 //		proofRequestPageNew.okButton.click();
 
-    proofRequestPageNew.findParameterizedElement(attribute).isDisplayed();
+    objAppUtlis.findParameterizedElement(attribute).isDisplayed();
     proofRequestPageNew.notFoundError.isDisplayed();
     proofRequestPageNew.notFoundIcon.isDisplayed();
 
@@ -119,7 +117,7 @@ public class ProofCasesTest extends IntSetup {
 //
 //    proofRequestPageNew.okButton.click();
 
-    proofRequestPageNew.findParameterizedElement(attribute1 + "," + attribute2).isDisplayed();
+    objAppUtlis.findParameterizedElement(attribute1 + "," + attribute2).isDisplayed();
     proofRequestPageNew.notFoundError.isDisplayed();
     proofRequestPageNew.notFoundIcon.isDisplayed();
 
@@ -168,7 +166,7 @@ public class ProofCasesTest extends IntSetup {
       androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
 		}
 
-    proofRequestPageNew.findParameterizedElement(value).isDisplayed();
+    objAppUtlis.findParameterizedElement(value).isDisplayed();
 
 		objAppUtlis.shareProof();
 
@@ -222,7 +220,7 @@ public class ProofCasesTest extends IntSetup {
 		);
     AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
-    proofRequestPageNew.findParameterizedElement(attribute).isDisplayed();
+    objAppUtlis.findParameterizedElement(attribute).isDisplayed();
 //    proofRequestPageNew.selectedCredentialIcon.isDisplayed(); // FIXME this doesn't work for ios
 
 		objAppUtlis.shareProof();
@@ -255,7 +253,7 @@ public class ProofCasesTest extends IntSetup {
 //
 //		proofRequestPageNew.okButton.click();
 
-    proofRequestPageNew.findParameterizedElement(attribute).isDisplayed();
+    objAppUtlis.findParameterizedElement(attribute).isDisplayed();
     proofRequestPageNew.unresolvedPredicateError("Greater than or equal to 60").isDisplayed();
     proofRequestPageNew.notFoundIcon.isDisplayed();
 

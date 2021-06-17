@@ -36,13 +36,14 @@ public class QuestionPageNew {
   @iOSXCUITFindBy(accessibility = "How much?")
   public WebElement questionText;
 
-  public WebElement findParameterizedElement(String expression) {
-    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
-      return driver.findElementByAccessibilityId(expression);
-    } else {
-      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
-    }
-  }
+//  // MOVED TO APP UTILS
+//  public WebElement findParameterizedElement(String expression) {
+//    if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
+//      return driver.findElementByAccessibilityId(expression);
+//    } else {
+//      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
+//    }
+//  }
 
   public WebElement answerOption(String option) {
     if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {

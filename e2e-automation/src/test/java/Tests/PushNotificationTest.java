@@ -212,9 +212,9 @@ public class PushNotificationTest extends IntSetup {
 
     AppUtils.waitForElementNew(driverApp, questionPageNew.header);
     questionPageNew.senderLogo.isDisplayed();
-    questionPageNew.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
-    questionPageNew.findParameterizedElement(text).isDisplayed();
-    questionPageNew.findParameterizedElement(detail).isDisplayed();
+    objAppUtlis.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
+    objAppUtlis.findParameterizedElement(text).isDisplayed();
+    objAppUtlis.findParameterizedElement(detail).isDisplayed();
   }
 
   @AfterClass

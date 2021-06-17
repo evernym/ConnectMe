@@ -47,29 +47,29 @@ public class CredentialTest extends IntSetup {
 	};
 
 	private void validateCredentialView(String header, String title, String credentialName, JSONObject values) throws Exception {
-		credentialPageNew.findParameterizedElement(header).isDisplayed();
-    credentialPageNew.findParameterizedElement(title).isDisplayed();
-    credentialPageNew.findParameterizedElement(connectionName).isDisplayed();
+    objAppUtlis.findParameterizedElement(header).isDisplayed();
+    objAppUtlis.findParameterizedElement(title).isDisplayed();
+    objAppUtlis.findParameterizedElement(connectionName).isDisplayed();
 //    credentialPageNew.credentialSenderLogo.isDisplayed(); // FIXME this doesn't work
-    credentialPageNew.findParameterizedElement(credentialName).isDisplayed();
+    objAppUtlis.findParameterizedElement(credentialName).isDisplayed();
 
 		for (String attribute : values.keySet()) {
 			if (attribute.contains("_link")) { // attachment case
 				attribute = attribute.replace("_link", "");
 				try {
-          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
+          objAppUtlis.findParameterizedElement(attribute).isDisplayed();
 				} catch (Exception e) {
 					AppUtils.pullScreenUp(driverApp);
-          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
+          objAppUtlis.findParameterizedElement(attribute).isDisplayed();
 				}
 			} else {
 				try {
-          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
-          credentialPageNew.findParameterizedElement(values.getString(attribute)).isDisplayed();
+          objAppUtlis.findParameterizedElement(attribute).isDisplayed();
+          objAppUtlis.findParameterizedElement(values.getString(attribute)).isDisplayed();
 				} catch (Exception e) {
 					AppUtils.pullScreenUp(driverApp);
-          credentialPageNew.findParameterizedElement(attribute).isDisplayed();
-          credentialPageNew.findParameterizedElement(values.getString(attribute)).isDisplayed();
+          objAppUtlis.findParameterizedElement(attribute).isDisplayed();
+          objAppUtlis.findParameterizedElement(values.getString(attribute)).isDisplayed();
 				}
 			}
 		}
@@ -172,12 +172,12 @@ public class CredentialTest extends IntSetup {
 	public void validateMyCredentialRecordAppeared() throws Exception {
     homePageNew.burgerMenuButton.click();
 		menuPageNew.myCredentialsButton.click();
-		myCredentialsPageNew.findParameterizedElement(credentialName).isDisplayed();
+    objAppUtlis.findParameterizedElement(credentialName).isDisplayed();
 	}
 
 	@Test(dependsOnMethods = "validateMyCredentialRecordAppeared")
 	public void validateCredentialDetails() throws Exception {
-    myCredentialsPageNew.findParameterizedElement(credentialName).click();
+    objAppUtlis.findParameterizedElement(credentialName).click();
 		validateCredentialView("Credential Details", "Issued by", credentialName, Constants.values);
 		credentialPageNew.backArrow.click();
 	}

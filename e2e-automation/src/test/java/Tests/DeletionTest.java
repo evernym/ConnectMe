@@ -53,10 +53,10 @@ public class DeletionTest extends IntSetup {
         menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
         try {
-            myCredentialsPageNew.findParameterizedElement(credentialNameMany).click();
+          objAppUtils.findParameterizedElement(credentialNameMany).click();
         } catch (Exception ex) {
             AppUtils.pullScreenUp(driverApp);
-          myCredentialsPageNew.findParameterizedElement(credentialNameMany).click();
+          objAppUtils.findParameterizedElement(credentialNameMany).click();
         }
         connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
@@ -71,7 +71,7 @@ public class DeletionTest extends IntSetup {
         }
 
         AppUtils.isNotDisplayed(
-                () -> myCredentialsPageNew.findParameterizedElement(credentialNameMany).isDisplayed()
+                () -> objAppUtils.findParameterizedElement(credentialNameMany).isDisplayed()
         );
     }
 
@@ -103,10 +103,10 @@ public class DeletionTest extends IntSetup {
         menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
         try {
-            myCredentialsPageNew.findParameterizedElement(credentialName).click();
+          objAppUtils.findParameterizedElement(credentialName).click();
         } catch (Exception ex) {
             AppUtils.pullScreenUp(driverApp);
-          myCredentialsPageNew.findParameterizedElement(credentialName).click();
+          objAppUtils.findParameterizedElement(credentialName).click();
         }
         connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
@@ -121,7 +121,7 @@ public class DeletionTest extends IntSetup {
         }
 
         AppUtils.isNotDisplayed(
-                () -> myCredentialsPageNew.findParameterizedElement(credentialName).isDisplayed()
+                () -> objAppUtils.findParameterizedElement(credentialName).isDisplayed()
         );
     }
 

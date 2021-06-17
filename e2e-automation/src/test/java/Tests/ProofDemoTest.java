@@ -49,11 +49,11 @@ public class ProofDemoTest extends IntSetup {
 	private List<JSONObject> requestedAttributesMany = new ArrayList<>();
 
 	private void validateProofRequestView(String header, String title, String proofName, List<JSONObject> values) throws Exception {
-		proofRequestPageNew.findParameterizedElement(header).isDisplayed();
-    proofRequestPageNew.findParameterizedElement(title).isDisplayed();
-    proofRequestPageNew.findParameterizedElement(connectionName).isDisplayed();
+    objAppUtlis.findParameterizedElement(header).isDisplayed();
+    objAppUtlis.findParameterizedElement(title).isDisplayed();
+    objAppUtlis.findParameterizedElement(connectionName).isDisplayed();
 //    proofRequestPageNew.proofRequestSenderLogo.isDisplayed(); // FIXME this doesn't work
-    proofRequestPageNew.findParameterizedElement(proofName).isDisplayed();
+    objAppUtlis.findParameterizedElement(proofName).isDisplayed();
 
 		for (JSONObject attribute : values) {
 			String value = attribute.getString("name");
@@ -64,10 +64,10 @@ public class ProofDemoTest extends IntSetup {
 			}
 
 			try {
-				proofRequestPageNew.findParameterizedElement(value).isDisplayed();
+        objAppUtlis.findParameterizedElement(value).isDisplayed();
 			} catch (Exception e) {
 				AppUtils.pullScreenUp(driverApp);
-				proofRequestPageNew.findParameterizedElement(value).isDisplayed();
+        objAppUtlis.findParameterizedElement(value).isDisplayed();
 			}
 		}
 	}
@@ -103,7 +103,7 @@ public class ProofDemoTest extends IntSetup {
 		objConnectionModules.openConnectionHistory(connectionName);
 //		// TODO: move this logic to helper
 //		try {
-			connectionHistoryPageNew.findParameterizedElement(proofName).isDisplayed(); // TODO keep this method in single helper, not in each page object
+    objAppUtlis.findParameterizedElement(proofName).isDisplayed(); // TODO keep this method in single helper, not in each page object
 //		} catch (Exception ex) {
 //			AppUtils.pullScreenUp(driverApp);
 //			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();

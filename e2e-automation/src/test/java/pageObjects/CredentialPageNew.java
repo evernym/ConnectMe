@@ -45,11 +45,12 @@ public class CredentialPageNew {
   @iOSXCUITFindBy(accessibility = "Delete Credential")
   public WebElement deleteButton;
 
-  public WebElement findParameterizedElement(String expression) {
-    if (Config.iOS_Devices.contains(Config.Device_Type)) {
-      return driver.findElementByAccessibilityId(expression);
-    } else {
-      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
-    }
-  }
+//  // MOVED TO APP UTILS
+//  public WebElement findParameterizedElement(String expression) {
+//    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+//      return driver.findElementByAccessibilityId(expression);
+//    } else {
+//      return driver.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
+//    }
+//  }
 }

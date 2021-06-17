@@ -56,13 +56,13 @@ public class QuestionTest extends IntSetup {
 
 	private void validateQuestionWindow(List<String> validResponses) throws Exception {
 //    questionPageNew.senderLogo.isDisplayed(); // FIXME this doesn't work
-    questionPageNew.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
+    objAppUtlis.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
 //    questionPageNew.findParameterizedElement(text).isDisplayed(); // FIXME this doesn't work for ios
 //    questionPageNew.questionText.isDisplayed(); FIXME this doesn't work too
-    questionPageNew.findParameterizedElement(detail).isDisplayed();
+    objAppUtlis.findParameterizedElement(detail).isDisplayed();
 
 		for (String validResponse : validResponses) {
-      questionPageNew.findParameterizedElement(validResponse).isDisplayed();
+      objAppUtlis.findParameterizedElement(validResponse).isDisplayed();
 		}
 	}
 
@@ -71,7 +71,7 @@ public class QuestionTest extends IntSetup {
 		answerQuestionFromHome(oneOption);
 
 		String answer = oneOption.get(0);
-    questionPageNew.findParameterizedElement(answer).click();
+    objAppUtlis.findParameterizedElement(answer).click();
 		homePageNew.questionRespondedEvent(answer).isDisplayed();
 	}
 
@@ -80,7 +80,7 @@ public class QuestionTest extends IntSetup {
 		answerQuestionFromHome(twoOptions);
 
 		String answer = twoOptions.get(0);
-    questionPageNew.findParameterizedElement(answer).click();
+    objAppUtlis.findParameterizedElement(answer).click();
     homePageNew.questionRespondedEvent(answer).isDisplayed();
 	}
 

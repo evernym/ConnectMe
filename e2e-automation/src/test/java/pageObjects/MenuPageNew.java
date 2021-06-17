@@ -65,9 +65,6 @@ public class MenuPageNew {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow Access to All Photos\"]")
   public WebElement menuAllowButton;
 
-//  @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow Access to All Photos\"]")
-//  public WebElement menuAllowButtonAlt;
-
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Cancel\"]")
   public WebElement cancelButton;
 }
