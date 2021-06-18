@@ -4,7 +4,8 @@ package test.java.utility;
 public enum EnvType {
 	QA("qa"),
 	Demo("demo"),
-	DevTeam1("devteam1");
+	DevTeam1("devteam1"),
+  DevRC("devrc");
 
 	private String value;
 

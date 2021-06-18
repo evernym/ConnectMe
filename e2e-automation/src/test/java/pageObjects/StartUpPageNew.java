@@ -76,7 +76,17 @@ public class StartUpPageNew {
       }
 
       okButton.click();
-      demoEnvButton.click();
+      switch (Config.VERITY_ENV) {
+        case "demo":
+          demoEnvButton.click();
+          break;
+        case "dev-rc":
+          devrcEnvButton.click();
+          break;
+        case "team1":
+          devteam1EnvButton.click();
+          break;
+      }
       Thread.sleep(2000);
       saveButton.click();
     }
