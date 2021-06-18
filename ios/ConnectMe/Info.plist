@@ -23,14 +23,48 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.evernym.connectme.callcenter</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>connectme</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>didcomm</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>didcomm</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>streetcred</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>id.streetcred</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array/>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>70211</string>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<true/>
 	<key>ITSEncryptionExportComplianceCode</key>
@@ -148,10 +182,6 @@
 	<array>
 		<dict/>
 	</array>
-	<key>FirebaseScreenReportingEnabled</key>
-	<false/>
-	<key>firebase_crashlytics_collection_enabled</key>
-	<false/>
 	<key>branch_key</key>
 	<dict>
 		<key>live</key>
@@ -159,5 +189,7 @@
 		<key>test</key>
 		<string>key_test_fnzEMTMuTnr6HZWEBbJVOmfhsymtrs8S</string>
 	</dict>
+	<key>firebase_crashlytics_collection_enabled</key>
+	<false/>
 </dict>
 </plist>

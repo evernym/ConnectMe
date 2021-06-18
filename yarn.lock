@@ -1028,10 +1028,10 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@evernym/react-native-white-label-app@^1.0.0-321072793":
-  version "1.0.0-321072793"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-321072793.tgz#a59d93df39a969d20004aaae2c9b7a379c14eef5"
-  integrity sha512-3qDpg9xbAFPZnEgUl65GDapfRF6rlZ4Yg31EyzK1LVPzBMlgvidL1g1DoLeTqnoQwVXga48Yltn9NleGk+HfEA==
+"@evernym/react-native-white-label-app@^1.0.0-323464435":
+  version "1.0.0-323464435"
+  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-323464435.tgz#214b78def683549446696992e1b229910187bc0d"
+  integrity sha512-yYDvQ+ImQHtpU0IFiLx1HTsLlkci7KYnRrO0LebpdD8VbDHiKKpwo0xwH28EThLdS+28JMXj4dDIwATolufKVQ==
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
