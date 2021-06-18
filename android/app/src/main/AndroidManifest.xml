@@ -79,6 +79,21 @@
             <!-- <data android:scheme="https" android:host="bnc.lt" /> -->
             <data android:scheme="connectme" android:host="app.link" />
         </intent-filter>
+
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="id.streetcred" />
+        </intent-filter>
+
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="didcomm" />
+        </intent-filter>
+
       </activity>
 
       <!-- Branch init -->
