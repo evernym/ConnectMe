@@ -2,6 +2,10 @@ package test.java.funcModules;
 
 import com.google.common.collect.ImmutableMap;
 import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import io.appium.java_client.AppiumDriver;
@@ -147,6 +151,28 @@ public class ConnectionModules extends IntSetup {
 
 		openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
 	}
+
+  public static String getInvitationLink() {
+    RestAssured.baseURI = Config.VAS_Server_Link;
+
+    Response response = RestAssured
+      .given()
+      .relaxedHTTPSValidation()
+      .request(Method.GET);
+
+    String responseBody = response.getBody().asString();
+    System.out.println("GET Response Body is =>  " + responseBody);
+
+    JSONArray result = new JSONArray();
+    try {
+      result = new JSONArray(responseBody);
+    } catch (JSONException ex) {
+      // ignore
+    }
+    System.out.println("String is =>  " + result.getString(0));
+
+    return result.getString(0);
+  }
 
 	public void acceptPushNotificationRequest(AppiumDriver driverApp) {
 		if (Config.iOS_Devices.contains(Config.Device_Type)) {
