@@ -60,7 +60,7 @@ platform :android do
     reVersionCode = /versionCode\s+(\d+)/
     reVersionName = /versionName\s+(\S+)/
 
-    newVersionName = "\"1.6.1\""
+    newVersionName = "\"1.6.2\""
 
     puts 'new version number: ' + newVersionName.to_s
     puts 'new version code: ' + versionCode.to_s
