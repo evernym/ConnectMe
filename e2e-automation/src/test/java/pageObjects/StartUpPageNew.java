@@ -42,6 +42,9 @@ public class StartUpPageNew {
   @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"switch-environment-devteam1\"]/android.widget.TextView")
   public WebElement devteam1EnvButton;
 
+  @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"switch-environment-staging\"]/android.widget.TextView")
+  public WebElement stagingEnvButton;
+
   @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"switch-environment-demo\"]/android.widget.TextView")
   public WebElement demoEnvButton;
 
@@ -85,6 +88,9 @@ public class StartUpPageNew {
           break;
         case "team1":
           devteam1EnvButton.click();
+          break;
+        case "staging":
+          stagingEnvButton.click();
           break;
       }
       Thread.sleep(2000);
