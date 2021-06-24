@@ -159,6 +159,7 @@ build-ios-master:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - 1.6.1@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -206,6 +207,7 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - 1.6.1@evernym/mobile/connectme
 
 # Basic lint
 yarn-test:

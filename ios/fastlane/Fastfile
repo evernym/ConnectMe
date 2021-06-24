@@ -101,7 +101,7 @@ platform :ios do
 
   ##### ----- PROJECT_VERSION_BUMP ----- #####
   private_lane :project_version_bump do
-    ci_pipeline_id = ENV["CI_PIPELINE_IID"]
+    ci_pipeline_id = ENV["CI_PIPELINE_ID"]
     buildNumber = increment_build_number(build_number: ci_pipeline_id, xcodeproj: "ConnectMe.xcodeproj")
     puts 'new build number: ' + buildNumber
     # we are fixing the version number as of now
