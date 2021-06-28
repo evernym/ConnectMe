@@ -53,7 +53,9 @@ platform :android do
 
   ##### ----- PROJECT_VERSION_BUMP ----- #####
   private_lane :project_version_bump do
-    ci_pipeline_id = ENV["CI_PIPELINE_IID"]
+    prefix = "80"
+    ci_pipeline_id = prefix + ENV["CI_PIPELINE_IID"]
+
     versionCode = ci_pipeline_id
 
     path = '../app/build.gradle'
