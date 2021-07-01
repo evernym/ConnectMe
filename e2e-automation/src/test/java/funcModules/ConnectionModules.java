@@ -152,7 +152,7 @@ public class ConnectionModules extends IntSetup {
 		openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
 	}
 
-  public static String getInvitationLink() {
+  public static String getInvitationLink(int index) {
     RestAssured.baseURI = Config.VAS_Server_Link;
 
     Response response = RestAssured
@@ -171,7 +171,7 @@ public class ConnectionModules extends IntSetup {
     }
     System.out.println("String is =>  " + result.getString(0));
 
-    return result.getString(0);
+    return result.getString(index);
   }
 
 	public void acceptPushNotificationRequest(AppiumDriver driverApp) {
