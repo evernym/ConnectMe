@@ -37,8 +37,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
     passCodePageNew.enterPassCode();
     invitationPageNew.title.isDisplayed();
     invitationPageNew.connectButton.click();
-    String answer = "Great!";
 
+    String answer = "Great!";
     if (Config.VERITY_TEST.equals("verity")) {
       // answer question - for verity but not for vcx
       AppUtils.waitForElementNew(driverApp, questionPageNew.header);
