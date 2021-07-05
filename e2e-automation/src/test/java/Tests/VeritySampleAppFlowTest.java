@@ -29,7 +29,6 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
   @Test
   public void verityFlowTest() throws Exception {
-//    int index = (Config.VERITY_TEST.equals("verity")) ? 0 : 1;
     // establish connection
     driverBrowser = BrowserDriver.getDriver();
     driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink());
