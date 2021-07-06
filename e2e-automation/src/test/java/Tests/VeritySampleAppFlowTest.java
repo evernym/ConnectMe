@@ -37,27 +37,23 @@ public class VeritySampleAppFlowTest extends IntSetup {
     invitationPageNew.title.isDisplayed();
     invitationPageNew.connectButton.click();
 
+    // answer question
+    AppUtils.waitForElementNew(driverApp, questionPageNew.header);
     String answer = "Great!";
-    if (Config.VERITY_TEST.equals("verity")) {
-      // answer question - for verity but not for vcx
-      AppUtils.waitForElementNew(driverApp, questionPageNew.header);
-      AppUtilsInstance.findParameterizedElement(answer).click();
-    }
+    AppUtilsInstance.findParameterizedElement(answer).click();
 
     // accept credential
     AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
-    String credentialName = (Config.VERITY_TEST.equals("verity")) ? "Degree" : "Demo Credential"; // "Demo Credential" for vcx test
+    String credentialName = "Degree";
     AppUtilsInstance.acceptCredential();
 
     // share proof
     AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
-    String proofName = (Config.VERITY_TEST.equals("verity")) ? "Proof of Degree": "proof_from_alice"; // "proof_from_alice" for vcx test
+    String proofName = "Proof of Degree";
     AppUtilsInstance.shareProof();
 
     // check all events
-    if (Config.VERITY_TEST.equals("verity")) {
-      homePageNew.questionRespondedEvent(answer).isDisplayed();
-    }
+    homePageNew.questionRespondedEvent(answer).isDisplayed();
     AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(credentialName));
     AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
   }

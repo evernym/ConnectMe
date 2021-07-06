@@ -29,7 +29,6 @@ public class Config {
 //	public static final String Device_Name = "iPhone 11"; // iphone 11 simulator name
 	public static final String Device_UDID = "A047C7C5-4CF7-4B6A-9E15-46E03C4F63A9"; // iphone 11 simulator UDID
   public static final String VERITY_ENV = "demo"; // dev-rc | team1 // for verity-release acceptance test
-  public static final String VERITY_TEST = "verity"; // verity | vcx // for verity-release acceptance test
 	public static final EnvType Env_Type = EnvType.Demo;
 	public static String BuildNo = "Latest";
 	public static final String EmailList = "vladimir.shishkin@evernym.com";
