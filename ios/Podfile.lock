@@ -288,7 +288,7 @@ PODS:
     - React-Core
   - react-native-webview (10.1.1):
     - React-Core
-  - react-native-white-label-app (1.0.0-333185862):
+  - react-native-white-label-app (1.0.0-316048444):
     - React-Core
     - vcx
   - React-RCTActionSheet (0.61.4):
@@ -381,7 +381,7 @@ PODS:
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.216)
+  - vcx (0.0.209)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -452,7 +452,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.216)
+  - vcx (= 0.0.209)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -652,7 +652,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: 6b64e0a3d076594f220353e60c555c1829572b08
+  react-native-white-label-app: 411e6dfeb2e55106d6ad87d0fe1b2830d0db2f3a
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
   React-RCTBlob: 8e0b23d95c9baa98f6b0e127e07666aaafd96c34
@@ -684,9 +684,9 @@ SPEC CHECKSUMS:
   RNZipArchive: ad14dfbae8d51dc92f94634344277425060e524b
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: 654c48f38dd904c2f7c8f68b914a5fc314d18cf8
+  vcx: 485c4be268df8dd671a6fbb89bc667e34f54a042
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 340c446a6b0ea66bb014f42a09750408f612ae46
+PODFILE CHECKSUM: d9df2b2c9f6438c9fc0fb3b92eeb73f6bdb9e215
 
 COCOAPODS: 1.10.0
