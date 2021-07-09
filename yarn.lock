@@ -1028,10 +1028,10 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@evernym/react-native-white-label-app@^1.0.0-333185862":
-  version "1.0.0-333185862"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-333185862.tgz#876b4b613555a99cadb2529799a04f4c54ecd548"
-  integrity sha512-YuKNOVcT49Oa00vEkQq4wIXaY06hDlkIhfkr4Dd1rEMqvRcOUsNGjoqrY3Yl7ogLu6a1btqOGcprhGmeTxsskg==
+"@evernym/react-native-white-label-app@^1.0.0-334436581":
+  version "1.0.0-334436581"
+  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-334436581.tgz#7b95f59f7e491e924ed24670c5c63b2bf8b3e6a1"
+  integrity sha512-LWn+Wc1esR4v8iQhClqVQcyUoT6yzgijec62ARQo4HgeqnQhyCNnM1qmZBnkXX2xmqYFI5N6Ij8kAzgFrLrpjw==
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
@@ -10380,10 +10380,10 @@ react-native-bundle-visualizer@^2.1.1:
     rimraf "^3.0.2"
     source-map-explorer "^2.4.2"
 
-react-native-camera@3.33.0:
-  version "3.33.0"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.33.0.tgz#7c098051533cf2401e2511bfc42a949d23aa2356"
-  integrity sha512-fl2mTSLcpqHcI3ydXYpvxdZUCJDmf4pRCDySISrUKCV40VCv2QEriyxekjA1GMWXgVUu3Kb45LJZ0ZxhJ86/SA==
+react-native-camera@3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.8.0.tgz#c2e6aaa62dc84e07180c3ea29a5bfc4d24b188a7"
+  integrity sha512-8haG+GONkMaZPtGZcVy2gALn87vOZiPaWZ7I7V6H81WnVBy00Hcd9w1T8T1gdmxuVSFgV5gFKNjnYRc+xMe5pg==
   dependencies:
     prop-types "^15.6.2"
 
