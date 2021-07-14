@@ -34,6 +34,7 @@ public class Config {
 	public static final String EmailList = "vladimir.shishkin@evernym.com";
 	public static final String ConnectMe_App_Link = "https://connectme.app.link/?t=";
 
+	public static final ACtoken = "4aed9c4d879bdf3859097e9fe8d9ef234c7ea6a1";
 
 	/*
 	* VAS settings

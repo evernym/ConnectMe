@@ -22,6 +22,11 @@ if [ "$isMR" = true ] ; then
     sed -i -e '10,15d' src/test/resources/testng.xml
 fi
 
+if [ "$isMR" = upgradePath ]; then
+    # upgrade path logic
+    cp -R "src/test/resources/testng-upgrade-path.xml" "src/test/resources/testng.xml"
+fi
+
 # setup VAS server
 if [[ -v $ngrokToken ]] ; then
     ngrok authtoken $ngrokToken

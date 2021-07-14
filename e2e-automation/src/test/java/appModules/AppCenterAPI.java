@@ -12,9 +12,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.*;
+import test.java.utility.Config;
 
 public class AppCenterAPI {
-  private static String AppCenterAPIKey = "";
+  private static String AppCenterAPIKey = Config.ACtoken;
   private static String appDownloadFullName = "";
   public static String rcVersion = "1.6.2";
   private static PlatformName normalizedPlatformName;

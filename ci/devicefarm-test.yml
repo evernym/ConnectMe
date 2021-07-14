@@ -120,11 +120,11 @@ devicefarm-test-launch-android-weekly-upgrade-path:
   dependencies:
     - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #- if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
     - sleep 300 # android shift
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl false
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
 
 devicefarm-test-launch-android-merge_requests:
   extends: .devicefarm-test-launch-android
