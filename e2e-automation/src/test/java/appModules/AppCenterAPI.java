@@ -11,26 +11,27 @@ import org.json.JSONObject;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AppCenterAPI {
   private static String AppCenterAPIKey = "";
   private static String appDownloadFullName = "";
   public static String rcVersion = "1.6.2";
+  private static PlatformName normalizedPlatformName;
 
-  public static List<String> getReleaseIds(String rcVersion, String platformName) {
-    switch (platformName) {
-      case "Android":
+  private enum PlatformName {
+    Android,
+    iOS
+  }
+
+  public static List<String> getReleaseIds(String rcVersion, PlatformName normalizedPlatformName) {
+    switch (normalizedPlatformName) {
+      case Android:
         RestAssured.baseURI = "https://api.appcenter.ms/v0.1/apps/Evernym-Inc/QA-MeConnect-Android/releases/filter_by_tester?published_only=true";
         break;
-      case "Ios":
+      case iOS:
         RestAssured.baseURI = "https://api.appcenter.ms/v0.1/apps/build-zg6l/QA-ConnectMe/releases/releases/filter_by_tester?published_only=true";
         break;
-      default:
-        throw new NotImplementedException(platformName + "is not supported");
     }
 
     Response response = RestAssured
@@ -77,6 +78,11 @@ public class AppCenterAPI {
     throw new IOException("Failed to download new binary. Refer to the log statements above");
   }
 
+  public static String getAppDownloadUrlIos() throws IOException, NotImplementedException
+  {
+    throw new NotImplementedException("Method is not available");
+  }
+
   public static String downloadApp(String downloadUrl) throws IOException {
     Map<String, String> headersMap = new HashMap<>();
     headersMap.put("User-Agent", "PostmanRuntime/7.28.0");
@@ -104,17 +110,20 @@ public class AppCenterAPI {
     return appDownloadFullName;
   }
 
-  public static String downloadRelevantApp() throws IOException {
-    List<String> releases = getReleaseIds(rcVersion, "Android");
-    String appDownloadUrl = getAppDownloadUrlAndroid(releases);
+  public static String downloadRelevantApp(String device_Type) throws IOException {
+    if(device_Type.toLowerCase(Locale.ROOT).contains("ios")) normalizedPlatformName = PlatformName.iOS;
+    else if (device_Type.toLowerCase(Locale.ROOT).contains("android")) normalizedPlatformName = PlatformName.Android;
+    List<String> releases = getReleaseIds(rcVersion, normalizedPlatformName);
+    String appDownloadUrl = "";
+    switch (normalizedPlatformName){
+      case iOS:
+        appDownloadUrl = getAppDownloadUrlIos();
+        break;
+      case Android:
+        appDownloadUrl = getAppDownloadUrlAndroid(releases);
+        break;
+    }
     return downloadApp(appDownloadUrl);
-  }
-
-  public static void main(String[] args) throws IOException
-  {
-    List<String> releases = getReleaseIds(rcVersion, "Android");
-    String appDownloadUrl = getAppDownloadUrlAndroid(releases);
-    downloadApp(appDownloadUrl);
   }
 }
 
