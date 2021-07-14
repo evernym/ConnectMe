@@ -25,7 +25,7 @@ export const CustomCredentialDetailsScreen = null
  * */
 
 // whether you want to use the feature of presenting a credential
-export const SHOW_CREDENTIAL = null
+export const SHOW_CREDENTIAL = false
 
 // whether you want to accept received proof request for the proposed credential automatically or show it to user
 export const AUTO_ACCEPT_CREDENTIAL_PRESENTATION_REQUEST = null
