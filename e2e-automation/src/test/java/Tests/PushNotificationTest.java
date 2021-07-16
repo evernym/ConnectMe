@@ -27,8 +27,7 @@ public class PushNotificationTest extends IntSetup {
   private VASApi VAS = VASApi.getInstance();
   private LocalContext context = LocalContext.getInstance();
 
-//  String connectionName = Helpers.randomString();
-  String connectionName = "push-connection-invitation";
+  String connectionName = "push-connection-invitation-" + Helpers.randomString();
   String invitationType = "connection-invitation";
   final String appBackgroundLocked = "background + locked";
   final String appBackground = "background";
@@ -54,7 +53,7 @@ public class PushNotificationTest extends IntSetup {
     );
     context.setValue("connectionName", connectionName);
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.pushConnectedEvent);
+    AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(connectionName));
   }
 
 
@@ -103,9 +102,11 @@ public class PushNotificationTest extends IntSetup {
     }
     driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialSenderLogo);
+    String schemaName = credentialPageNew.credentialSchemaName.getText();
     objAppUtlis.acceptCredential();
     homePageNew.recentEventsSection.isDisplayed();
-    AppUtils.waitForElement(driverApp, () -> homePageNew.credentialIssuedEvent(credentialName)).isDisplayed();
+    AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemaName));
   }
 
   @Test(dataProvider = "appStates")

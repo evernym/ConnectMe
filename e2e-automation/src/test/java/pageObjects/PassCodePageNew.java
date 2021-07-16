@@ -20,8 +20,8 @@ public class PassCodePageNew {
   @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE, iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
   @AndroidFindBy(xpath = "//android.widget.TextView[@content-desc=\"Enter passcode\"]")
   @AndroidFindBy(xpath = "//android.widget.TextView[@content-desc=\"Enter your passcode\"]")
-  @iOSXCUITFindBy(accessibility = "Enter passcode") // id?
-  @iOSXCUITFindBy(accessibility = "Enter your passcode") // id?
+  @iOSXCUITFindBy(accessibility = "pass-code-input-text") // id?
+  //@iOSXCUITFindBy(accessibility = "Enter your passcode") // id?
   public WebElement passCodeTitle;
 
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"pin-code-digit-0-touchable pin-code-digit-1-touchable pin-code-digit-2-touchable pin-code-digit-3-touchable pin-code-digit-4-touchable pin-code-digit-5-touchable\"]")

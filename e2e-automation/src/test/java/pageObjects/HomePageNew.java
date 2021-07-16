@@ -100,4 +100,12 @@ public class HomePageNew {
       return driver.findElement(By.xpath("//*[@text='You responded with: " + answer + ".']"));
     }
   }
+
+  public WebElement namedConnectionEvent(String connectionName){
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return driver.findElementByAccessibilityId("You connected with \"" + connectionName + "\".");
+    } else {
+      return driver.findElement(By.xpath("//*[@text='You connected with \"" + connectionName + "\".']"));
+    }
+  }
 }

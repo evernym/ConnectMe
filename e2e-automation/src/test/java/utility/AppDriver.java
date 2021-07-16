@@ -6,6 +6,7 @@ import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.Reporter;
+import test.java.utility.Config;
 
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
