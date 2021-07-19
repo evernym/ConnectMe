@@ -114,6 +114,9 @@ public class ConnectionTest extends IntSetup {
 	@AfterClass
 	public void AfterClass() {
 		context.setValue("connectionName", connectionName);
+		System.out.println("Connection name in context: " + connectionName);
+		System.out.println("Device ID in context: " + context.getValue("DID"));
+
 		driverApp.closeApp();
 		System.out.println("Connection Test Suite has been finished!");
 	}
