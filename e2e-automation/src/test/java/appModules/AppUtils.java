@@ -246,7 +246,7 @@ public class AppUtils extends IntSetup {
     }
   }
 
-  // Additional method to handle some iOS updates - it's not safe to update everywhere
+  // Additional method to handle some iOS updates - it's not safe to update everywhere 
   public WebElement findParameterizedElementAlt(String expression) {
     if (Config.iOS_Devices.contains(Config.Device_Type)) {
       return 	driverApp.findElementByXPath("//*[@label='" + expression + "']");
