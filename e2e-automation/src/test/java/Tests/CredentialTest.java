@@ -182,12 +182,12 @@ public class CredentialTest extends IntSetup {
 	public void validateMyCredentialRecordAppeared() throws Exception {
     homePageNew.burgerMenuButton.click();
 		menuPageNew.myCredentialsButton.click();
-    objAppUtlis.findParameterizedElement(schemaName).isDisplayed();
+    objAppUtlis.findParameterizedElementAlt(schemaName).isDisplayed();
 	}
 
 	@Test(dependsOnMethods = "validateMyCredentialRecordAppeared")
 	public void validateCredentialDetails() throws Exception {
-    objAppUtlis.findParameterizedElement(schemaName).click();
+    objAppUtlis.findParameterizedElementAlt(schemaName).click();
 		validateCredentialView("Credential Details", "Issued by", schemaName, Constants.values);
 		credentialPageNew.backArrow.click();
 	}

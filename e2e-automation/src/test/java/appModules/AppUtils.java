@@ -245,4 +245,13 @@ public class AppUtils extends IntSetup {
       return driverApp.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
     }
   }
+
+  // Additional method to handle some iOS updates - it's not safe to update everywhere 
+  public WebElement findParameterizedElementAlt(String expression) {
+    if (Config.iOS_Devices.contains(Config.Device_Type)) {
+      return 	driverApp.findElementByXPath("//*[@label='" + expression + "']");
+    } else {
+      return driverApp.findElement(By.xpath("//*[@text=\"" + expression + "\"]"));
+    }
+  }
 }
