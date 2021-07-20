@@ -64,11 +64,8 @@ platform :android do
           "app/build/outputs/apk/release/app-x86_64-release.apk"
         ],
         json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
-        force: true,
         skip_metadata: true,
-        skip_screenshots: true,
-        skip_app_version_update: true,
-        run_precheck_before_submit: false
+        skip_screenshots: true
       )
 
     end
