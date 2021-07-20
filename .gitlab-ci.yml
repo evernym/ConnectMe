@@ -232,6 +232,14 @@ build-android-master:
     refs:
       - main@evernym/mobile/connectme
 
+build-android-test-mp:
+  extends: .build-android
+  variables:
+    FASTLANE_COMMAND: 'bundle exec fastlane cd'
+  only:
+    refs:
+      - MP-94@evernym/mobile/connectme
+
 # Basic lint
 yarn-test:
   stage: test

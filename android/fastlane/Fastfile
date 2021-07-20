@@ -9,34 +9,6 @@ platform :android do
      end
   end
 
-  ###ONLY FOR TESTING###
-  desc "Test deploy a new version to the Google play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-
-    gradle(
-      task: "assemble",
-      build_type: "Release",
-    )
-
-    supply(
-      track: "beta", 
-      apk_paths: [
-        "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
-        "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
-        "app/build/outputs/apk/release/app-x86-release.apk",
-        "app/build/outputs/apk/release/app-x86_64-release.apk"
-      ]
-      json_key_data: "",
-      force: true,
-      skip_metadata: true,
-      skip_screenshots: true,
-      skip_app_version_update: true,
-      run_precheck_before_submit: false
-    )
-  end
-  #######
-
   after_all do |lane|
      unless ENV["SLACK_CREDENTIAL"].nil?
         slack(channel: "connectme_build", message: "#{ENV["BUILD_NAME"]} Android build #{ENV["BUILD_VERSION_CODE"]}")
@@ -73,24 +45,33 @@ platform :android do
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86-release.apk")
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
 
-    supply(
-      track: "beta", 
-      apk_paths: [
-        "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
-        "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
-        "app/build/outputs/apk/release/app-x86-release.apk",
-        "app/build/outputs/apk/release/app-x86_64-release.apk"
-      ]
-      mapping: "app/build/outputs/mapping/release/mapping.txt",
-      json_key_data: "",
-      force: true,
-      skip_metadata: true,
-      skip_screenshots: true,
-      skip_app_version_update: true,
-      run_precheck_before_submit: false
-    )
-
   end
+
+  lane :cd_test do
+      project_version_bump
+
+      gradle(
+        task: "assemble",
+        build_type: "Release",
+      )
+
+      supply(
+        track: "beta",
+        apk_paths: [
+          "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
+          "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
+          "app/build/outputs/apk/release/app-x86-release.apk",
+          "app/build/outputs/apk/release/app-x86_64-release.apk"
+        ],
+        json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
+        force: true,
+        skip_metadata: true,
+        skip_screenshots: true,
+        skip_app_version_update: true,
+        run_precheck_before_submit: false
+      )
+
+    end
 
   #==============================================#
   #              PRIVATE LANES                   #
