@@ -1,5 +1,6 @@
 package test.java.Tests;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -7,6 +8,8 @@ import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.utility.Config;
+
+import java.util.NoSuchElementException;
 
 
 public class DeletionTest extends IntSetup {
@@ -16,35 +19,33 @@ public class DeletionTest extends IntSetup {
     private String connectionInvitation = "connection-invitation";
     private String oobInvitation = "out-of-band-invitation";
     private boolean isDisplayed = false;
-    private String credentialName;
-    private String credentialNameMany;
+    private String credentialNameScheme;
+    private String credentialNameManyScheme;
 
     @BeforeClass
-    public void BeforeClassSetup() throws Exception{
+    public void BeforeClassSetup() throws Exception {
         passCodePageNew.openApp();
-        credentialName = context.getValue("credentialName");
-        credentialNameMany = context.getValue("credentialNameMany");
-    }
+        credentialNameScheme = context.getValue("credentialNameScheme");
+        credentialNameManyScheme = context.getValue("credentialNameManyScheme");
+
+        System.out.println("Starting deletion tests"); }
 
     @Test
     public void deleteEmptyConnection() throws Exception {
         homePageNew.burgerMenuButton.click();
         menuPageNew.myConnectionsButton.click();
-        myConnectionsPageNew.testConnection(connectionInvitation).click();
+        myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
         connectionHistoryPageNew.threeDotsButton.click();
         connectionDetailPageNew.deleteButton.click();
-
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
-           try {
-             connectionDetailPageNew.deleteButton.click();
-           } catch (Exception e) {
+            try {
+                connectionDetailPageNew.deleteButton.click();
+            } catch (Exception e) {
 
-           }
+            }
         }
 
-        AppUtils.isNotDisplayed(
-                () -> myConnectionsPageNew.testConnection(connectionInvitation).isDisplayed()
-        );
+        Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
     }
 
     @Test(dependsOnMethods = "deleteEmptyConnection")
@@ -52,11 +53,15 @@ public class DeletionTest extends IntSetup {
         homePageNew.burgerMenuButton.click();
         menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
+        int credsCountBefore = 0;
         try {
-          objAppUtils.findParameterizedElement(credentialNameMany).click();
+            objAppUtils.findParameterizedElementAlt(credentialNameManyScheme).click();
+            credsCountBefore = 1;
+            if(AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton)) throw new NoSuchElementException();
         } catch (Exception ex) {
             AppUtils.pullScreenUp(driverApp);
-          objAppUtils.findParameterizedElement(credentialNameMany).click();
+            credsCountBefore = myCredentialsPageNew.getConnectionsBySchemeName(credentialNameManyScheme).size();
+            objAppUtils.findParameterizedElementAlt(credentialNameManyScheme).click();
         }
         connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
@@ -70,31 +75,26 @@ public class DeletionTest extends IntSetup {
             }
         }
 
-        AppUtils.isNotDisplayed(
-                () -> objAppUtils.findParameterizedElement(credentialNameMany).isDisplayed()
-        );
+        Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameManyScheme).size(), credsCountBefore - 1);
     }
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
     public void deleteNotEmptyConnection() throws Exception {
         homePageNew.burgerMenuButton.click();
         menuPageNew.myConnectionsButton.click();
-        myConnectionsPageNew.testConnection(oobInvitation).click();
+        myConnectionsPageNew.getConnectionByName(oobInvitation).click();
         connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
         connectionDetailPageNew.deleteButton.click();
 
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
             try {
-              connectionDetailPageNew.deleteButton.click();
+                connectionDetailPageNew.deleteButton.click();
             } catch (Exception e) {
 
             }
         }
-
-        AppUtils.isNotDisplayed(
-                () -> myConnectionsPageNew.testConnection(oobInvitation).isDisplayed()
-        );
+        Assert.assertNull(myConnectionsPageNew.getConnectionByName(oobInvitation));
     }
 
     @Test(dependsOnMethods = "deleteNotEmptyConnection")
@@ -102,11 +102,15 @@ public class DeletionTest extends IntSetup {
         homePageNew.burgerMenuButton.click();
         menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
+        int credsCountBefore = 0;
         try {
-          objAppUtils.findParameterizedElement(credentialName).click();
+            objAppUtils.findParameterizedElementAlt(credentialNameScheme).click();
+            credsCountBefore = 1;
+            if(AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton)) throw new NoSuchElementException();
         } catch (Exception ex) {
             AppUtils.pullScreenUp(driverApp);
-          objAppUtils.findParameterizedElement(credentialName).click();
+            credsCountBefore = myCredentialsPageNew.getConnectionsBySchemeName(credentialNameManyScheme).size();
+            objAppUtils.findParameterizedElementAlt(credentialNameScheme).click();
         }
         connectionHistoryPageNew.threeDotsButton.click();
         Thread.sleep(1000);
@@ -114,15 +118,13 @@ public class DeletionTest extends IntSetup {
 
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
             try {
-              credentialPageNew.deleteButton.click();
+                credentialPageNew.deleteButton.click();
             } catch (Exception e) {
 
             }
         }
 
-        AppUtils.isNotDisplayed(
-                () -> objAppUtils.findParameterizedElement(credentialName).isDisplayed()
-        );
+        Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameScheme).size(), credsCountBefore - 1);
     }
 
     @AfterClass
