@@ -103,10 +103,10 @@ public class PushNotificationTest extends IntSetup {
     driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 
     AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialSenderLogo);
-    String schemaName = credentialPageNew.credentialSchemaName.getText();
+    String schemeName = credentialPageNew.credentialSchemeName.getText();
     objAppUtlis.acceptCredential();
     homePageNew.recentEventsSection.isDisplayed();
-    AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemaName));
+    AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
   }
 
   @Test(dataProvider = "appStates")

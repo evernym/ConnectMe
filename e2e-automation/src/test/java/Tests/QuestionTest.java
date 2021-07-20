@@ -98,7 +98,7 @@ public class QuestionTest extends IntSetup {
 	public void validateConnectionHistory() throws Exception {
 		homePageNew.burgerMenuButton.click();
 		menuPageNew.myConnectionsButton.click();
-		myConnectionsPageNew.testConnection(connectionName).click();
+		myConnectionsPageNew.getConnectionByName(connectionName).click();
 //		// TODO: move this logic to helper
 //		try {
 			connectionHistoryPageNew.questionAnswerRecord.isDisplayed();
