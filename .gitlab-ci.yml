@@ -9,6 +9,7 @@ stages:
   - devicefarm-test-top
   - devicefarm-test-next
   - devicefarm-test-final
+  - upload
 
 ### - Pre-build - ###
 # Helpers / Anchors
@@ -137,24 +138,15 @@ license-data-check:
     - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
     - cd ios
     - bundle install
-    - ${FASTLANE_COMMAND}
+    - bundle exec fastlane ci_build
   after_script:
     - cat ./ios/react-native-xcode.sh.log
-
-build-android-e2e-testing:
-  extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
-  only:
-    refs:
-      - e2e-testing@evernym/mobile/connectme
 
 build-ios-e2e-testing:
   extends: .build-ios
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
   only:
     refs:
       - e2e-testing@evernym/mobile/connectme
@@ -164,7 +156,6 @@ build-ios-merge-request:
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
@@ -176,7 +167,8 @@ build-ios-master:
     BUILD_TYPE: 'QA ConnectMe Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
     # this gets passed to the anchor
-    FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
+  script:
+    - bundle exec fastlane upload
   only:
     refs:
       - main@evernym/mobile/connectme
@@ -210,7 +202,13 @@ build-ios-master:
     - cd android
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
-    - ${FASTLANE_COMMAND}
+    - bundle exec fastlane ci_build
+
+build-android-e2e-testing:
+  extends: .build-android
+  only:
+    refs:
+      - e2e-testing@evernym/mobile/connectme
 
 build-android-merge-request:
   extends: .build-android
@@ -218,27 +216,34 @@ build-android-merge-request:
     paths:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
 
 build-android-master:
   extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane cd'
+  script:
+    - bundle exec fastlane upload
   only:
     refs:
       - main@evernym/mobile/connectme
 
 build-android-test-mp:
   extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane cd_test'
+  script:
+    - bundle exec fastlane cd_test
   only:
     refs:
       - MP-94@evernym/mobile/connectme
+
+# Upload jobs
+upload:
+  stage: upload
+  script:
+    - bundle exec fastlane upload
+  only:
+    refs:
+      - main@evernym/mobile/connectme
 
 # Basic lint
 yarn-test:
