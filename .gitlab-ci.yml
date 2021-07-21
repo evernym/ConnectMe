@@ -140,7 +140,6 @@ license-data-check:
     - cd ios
     - bundle install
     - bundle exec fastlane build
-    - ls
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
@@ -233,6 +232,7 @@ upload-ios:
   stage: upload
   script:
     - cd ios
+    - bundle install
     - bundle exec fastlane upload
   only:
     refs:
@@ -243,6 +243,7 @@ upload-android:
   stage: upload
   script:
     - cd android
+    - bundle install
     - bundle exec fastlane upload
   only:
     refs:
