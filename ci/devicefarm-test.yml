@@ -99,8 +99,6 @@ devicefarm-test-launch-android-master:
     - build-android-master
   rules:
     # - if: '$SCHEDULED_RUN == "false" && $CI_COMMIT_REF_SLUG == "master"'
-    - if: '$CI_COMMIT_REF_SLUG == "main"'
-      when: always
     - if: '$CI_COMMIT_REF_SLUG == "MP-94"'
       when: always
   script:
@@ -111,8 +109,6 @@ devicefarm-test-launch-ios-master:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$CI_COMMIT_REF_SLUG == "main"'
-      when: always
     - if: '$CI_COMMIT_REF_SLUG == "MP-94"'
       when: always
   script:
