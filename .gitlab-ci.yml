@@ -232,6 +232,7 @@ upload-ios:
   stage: upload
   script:
     - cd ios
+    - gem install fastlane
     - bundle install
     - bundle exec fastlane upload
   only:
@@ -243,6 +244,7 @@ upload-android:
   stage: upload
   script:
     - cd android
+    - gem install fastlane
     - bundle install
     - bundle exec fastlane upload
   only:

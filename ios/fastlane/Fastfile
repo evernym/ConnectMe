@@ -45,6 +45,9 @@ platform :ios do
       app_identifier: "#{app_identifier}",
     )
 
+    UI.user_error!("You didn't set token for AppCenter") if ENV["APPCENTER_API_TOKEN"].empty?
+    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "user", app_name: "Dev-ConnectMe")
+
     appstore_build(
       app_identifier: "#{app_identifier}",
     )
