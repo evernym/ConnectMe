@@ -91,24 +91,24 @@ platform :ios do
   ##### ----- BUILD ----- #####
   private_lane :adhoc_build do |options|
     match_certificates(
-      type: options["adhoc"],
+      type: "adhoc",
       app_identifier: options[:app_identifier]
     )
 
     compile(
-      type: options["adhoc"],
+      type: "adhoc",
       app_identifier: options[:app_identifier]
     )
   end
 
   private_lane :appstore_build do |options|
     match_certificates(
-      type: options["appstore"],
+      type: "appstore",
       app_identifier: options[:app_identifier]
     )
 
     compile(
-      type: options["appstore"],
+      type: "appstore",
       app_identifier: options[:app_identifier]
     )
   end
