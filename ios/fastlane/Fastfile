@@ -41,15 +41,11 @@ platform :ios do
 
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
 
-    build(
-      match_type: "appstore",
-      compile_type: "appstore",
+    adhoc_build(
       app_identifier: "#{app_identifier}",
     )
 
-    build(
-      match_type: "adhoc",
-      compile_type: "adhoc",
+    appstore_build(
       app_identifier: "#{app_identifier}",
     )
   end
@@ -93,14 +89,26 @@ platform :ios do
   end
 
   ##### ----- BUILD ----- #####
-  private_lane :build do |options|
+  private_lane :adhoc_build do |options|
     match_certificates(
-      type: options[:match_type],
+      type: options["adhoc"],
       app_identifier: options[:app_identifier]
     )
 
     compile(
-      type: options[:compile_type],
+      type: options["adhoc"],
+      app_identifier: options[:app_identifier]
+    )
+  end
+
+  private_lane :appstore_build do |options|
+    match_certificates(
+      type: options["appstore"],
+      app_identifier: options[:app_identifier]
+    )
+
+    compile(
+      type: options["appstore"],
       app_identifier: options[:app_identifier]
     )
   end
