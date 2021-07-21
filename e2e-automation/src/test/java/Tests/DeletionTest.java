@@ -32,17 +32,19 @@ public class DeletionTest extends IntSetup {
 
     @Test
     public void deleteEmptyConnection() throws Exception {
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
+
+        AppUtils.waitForElementNew(driverApp, myConnectionsPageNew.getConnectionByName(connectionInvitation));
         myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
+
+        AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
         connectionHistoryPageNew.threeDotsButton.click();
         connectionDetailPageNew.deleteButton.click();
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
             try {
                 connectionDetailPageNew.deleteButton.click();
-            } catch (Exception e) {
-
-            }
+            } catch (Exception e) { }
         }
 
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
@@ -50,7 +52,7 @@ public class DeletionTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteEmptyConnection")
     public void deleteCredentialFromExistingConnection() throws Exception {
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
         int credsCountBefore = 0;
@@ -80,7 +82,7 @@ public class DeletionTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
     public void deleteNotEmptyConnection() throws Exception {
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
         myConnectionsPageNew.getConnectionByName(oobInvitation).click();
         connectionHistoryPageNew.threeDotsButton.click();
@@ -99,7 +101,7 @@ public class DeletionTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteNotEmptyConnection")
     public void deleteCredentialFromDeletedConnection() throws Exception {
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
         // TODO: move this logic to helper
         int credsCountBefore = 0;
