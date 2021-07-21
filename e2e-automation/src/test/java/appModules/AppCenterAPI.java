@@ -17,7 +17,7 @@ import test.java.utility.Config;
 public class AppCenterAPI {
   private static String AppCenterAPIKey = Config.ACtoken;
   private static String appDownloadFullName = "";
-  public static String rcVersion = "1.6.2";
+  public static String rcVersion = Config.RCVersion;
   private static PlatformName normalizedPlatformName;
 
   private enum PlatformName {
