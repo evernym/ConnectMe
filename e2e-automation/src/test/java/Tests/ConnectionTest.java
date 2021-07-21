@@ -88,7 +88,7 @@ public class ConnectionTest extends IntSetup {
 		homePageNew.burgerMenuButton.click();
 		menuPageNew.myConnectionsButton.click();
 		Thread.sleep(1000); // FIXME MSDK workaround: it goes to Settings without sleep
-		myConnectionsPageNew.testConnection(connectionName).click();
+		myConnectionsPageNew.getConnectionByName(connectionName).click();
 	}
 
 	@Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
@@ -114,6 +114,9 @@ public class ConnectionTest extends IntSetup {
 	@AfterClass
 	public void AfterClass() {
 		context.setValue("connectionName", connectionName);
+		System.out.println("Connection name in context: " + connectionName);
+		System.out.println("Device ID in context: " + context.getValue("DID"));
+
 		driverApp.closeApp();
 		System.out.println("Connection Test Suite has been finished!");
 	}

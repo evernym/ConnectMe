@@ -44,4 +44,9 @@ public class CredentialPageNew {
   @AndroidFindBy(xpath = "//*[@text=\"Delete Credential\"]")
   @iOSXCUITFindBy(accessibility = "Delete Credential")
   public WebElement deleteButton;
+
+  @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/" +
+    "android.view.ViewGroup[2]/android.widget.TextView")
+  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeStaticText")
+  public WebElement credentialSchemeName;
 }
