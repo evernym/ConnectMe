@@ -114,6 +114,7 @@ license-data-check:
   artifacts:
     paths:
       - ios/ConnectMe.ipa
+      - ios/ConnectMe-appstore.ipa
   script:
     - xcversion select --verbose --symlink 12.4
     - xcversion selected
@@ -138,7 +139,8 @@ license-data-check:
     - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
     - cd ios
     - bundle install
-    - bundle exec fastlane ci_build
+    - bundle exec fastlane build
+    - ls
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
@@ -167,11 +169,10 @@ build-ios-master:
     BUILD_TYPE: 'QA ConnectMe Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
     # this gets passed to the anchor
-  script:
-    - bundle exec fastlane upload
   only:
     refs:
       - main@evernym/mobile/connectme
+      - MP-94@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -202,7 +203,7 @@ build-ios-master:
     - cd android
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
-    - bundle exec fastlane ci_build
+    - bundle exec fastlane build
 
 build-android-e2e-testing:
   extends: .build-android
@@ -222,28 +223,32 @@ build-android-merge-request:
 
 build-android-master:
   extends: .build-android
-  script:
-    - bundle exec fastlane upload
   only:
     refs:
       - main@evernym/mobile/connectme
-
-build-android-test-mp:
-  extends: .build-android
-  script:
-    - bundle exec fastlane cd_test
-  only:
-    refs:
       - MP-94@evernym/mobile/connectme
 
 # Upload jobs
-upload:
+upload-ios:
   stage: upload
   script:
+    - cd ios
     - bundle exec fastlane upload
   only:
     refs:
       - main@evernym/mobile/connectme
+      - MP-94@evernym/mobile/connectme
+
+upload-android:
+  stage: upload
+  script:
+    - cd android
+    - bundle exec fastlane upload
+  only:
+    refs:
+      - main@evernym/mobile/connectme
+      - MP-94@evernym/mobile/connectme
+
 
 # Basic lint
 yarn-test:

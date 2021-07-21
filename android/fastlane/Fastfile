@@ -24,14 +24,7 @@ platform :android do
 #     end
 #   end
 
-#   lane :ci do
-#     gradle(
-#       task: "assemble",
-#       build_type: "Release",
-#     )
-#   end
-
-  lane :ci_build do
+  lane :build do
     project_version_bump
 
     gradle(
@@ -40,66 +33,27 @@ platform :android do
     )
   end
 
-  lane :cd_upload do
-    ENV["BUILD_NAME"] = "QA ConnectMe"
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-armeabi-v7a-release.apk")
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-arm64-v8a-release.apk")
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86-release.apk")
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
-
-    supply(
-      track: "beta",
-      apk_paths: [
-        "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
-        "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
-        "app/build/outputs/apk/release/app-x86-release.apk",
-        "app/build/outputs/apk/release/app-x86_64-release.apk"
-      ],
-      json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
-      skip_upload_metadata: true,
-      skip_upload_screenshots: true,
-      skip_upload_images: true
-    )
-  end
-
-  lane :cd_test do
-    project_version_bump
-
-    gradle(
-      task: "assemble",
-      build_type: "Release",
-    )
-
-    supply(
-      track: "beta",
-      apk_paths: [
-        "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
-        "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
-        "app/build/outputs/apk/release/app-x86-release.apk",
-        "app/build/outputs/apk/release/app-x86_64-release.apk"
-      ],
-      json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
-      skip_upload_metadata: true,
-      skip_upload_screenshots: true,
-      skip_upload_images: true
-    )
-  end
-
-#   lane :cd do
-#     project_version_bump
-#
-#     gradle(
-#       task: "assemble",
-#       build_type: "Release",
-#     )
-#
+  lane :upload do
 #     ENV["BUILD_NAME"] = "QA ConnectMe"
 #     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-armeabi-v7a-release.apk")
 #     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-arm64-v8a-release.apk")
 #     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86-release.apk")
 #     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
-#
-#   end
+
+    supply(
+      track: "beta",
+      apk_paths: [
+        "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
+        "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
+        "app/build/outputs/apk/release/app-x86-release.apk",
+        "app/build/outputs/apk/release/app-x86_64-release.apk"
+      ],
+      json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
+      skip_upload_metadata: true,
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+  end
 
   #==============================================#
   #              PRIVATE LANES                   #
