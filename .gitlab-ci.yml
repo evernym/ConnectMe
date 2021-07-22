@@ -171,7 +171,6 @@ build-ios-master:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - MP-94@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -225,7 +224,6 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - MP-94@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
@@ -245,7 +243,6 @@ upload-ios:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - MP-94@evernym/mobile/connectme
 
 upload-android:
   stage: upload
@@ -257,7 +254,6 @@ upload-android:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - MP-94@evernym/mobile/connectme
 
 
 # Basic lint
