@@ -3,34 +3,34 @@ default_platform :ios
 platform :ios do
   build_type = "QAConnectMe Build"
 
-#   before_all do
-#     unless ENV["SLACK_CREDENTIAL"].nil?
-#       ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_CREDENTIAL"]}"
-#     end
-#   end
-#
-#   after_all do |lane|
-#     unless ENV["SLACK_CREDENTIAL"].nil?
-#       commit_message = ENV["currentBuild.changeSets"]
-#       build_number = get_build_number(xcodeproj: "ConnectMe.xcodeproj")
-#       slack(channel: "connectme_build", message: "#{build_type} ##{build_number} #{commit_message}")
-#     end
-#   end
-#
-#   error do |lane, exception|
-#     unless ENV["SLACK_CREDENTIAL"].nil?
-#       msg = exception.to_s
-#       msg = msg.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
-#       payloadMsg = exception.error_info.to_s
-#       payloadMsg = payloadMsg.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
-#       slack(
-#         channel: "connectme_build",
-#         message: msg,
-#         success: false,
-#         payload: { "Output" => payloadMsg }
-#       )
-#     end
-#   end
+  before_all do
+    unless ENV["SLACK_CREDENTIAL"].nil?
+      ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_CREDENTIAL"]}"
+    end
+  end
+
+  after_all do |lane|
+    unless ENV["SLACK_CREDENTIAL"].nil?
+      commit_message = ENV["currentBuild.changeSets"]
+      build_number = get_build_number(xcodeproj: "ConnectMe.xcodeproj")
+      slack(channel: "connectme_build", message: "#{build_type} ##{build_number} #{commit_message}")
+    end
+  end
+
+  error do |lane, exception|
+    unless ENV["SLACK_CREDENTIAL"].nil?
+      msg = exception.to_s
+      msg = msg.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
+      payloadMsg = exception.error_info.to_s
+      payloadMsg = payloadMsg.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
+      slack(
+        channel: "connectme_build",
+        message: msg,
+        success: false,
+        payload: { "Output" => payloadMsg }
+      )
+    end
+  end
 
   lane :build do
     cocoapods(
