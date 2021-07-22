@@ -222,7 +222,7 @@ build-android-merge-request:
   variables:
     FASTLANE_COMMAND: 'bundle exec fastlane ci'
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+    - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
       when: always
 
 build-android-master:

@@ -118,7 +118,7 @@ devicefarm-test-launch-android-weekly-upgrade-path:
   stage: devicefarm-test-next-upgrade-path
   extends: .devicefarm-test-launch-android
   dependencies:
-    - build-android-master
+    - build-android-merge-request
   rules:
     - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
       when: always
