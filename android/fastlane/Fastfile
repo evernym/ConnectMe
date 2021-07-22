@@ -40,19 +40,19 @@ platform :android do
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86-release.apk")
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
 
-    supply(
-      track: "beta",
-      apk_paths: [
-        "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
-        "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
-        "app/build/outputs/apk/release/app-x86-release.apk",
-        "app/build/outputs/apk/release/app-x86_64-release.apk"
-      ],
-      json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
-      skip_upload_metadata: true,
-      skip_upload_screenshots: true,
-      skip_upload_images: true
-    )
+#     supply(
+#       track: "beta",
+#       apk_paths: [
+#         "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
+#         "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
+#         "app/build/outputs/apk/release/app-x86-release.apk",
+#         "app/build/outputs/apk/release/app-x86_64-release.apk"
+#       ],
+#       json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
+#       skip_upload_metadata: true,
+#       skip_upload_screenshots: true,
+#       skip_upload_images: true
+#     )
   end
 
   #==============================================#
