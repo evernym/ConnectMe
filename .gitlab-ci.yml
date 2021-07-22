@@ -230,7 +230,14 @@ build-android-master:
 # Upload jobs
 upload-ios:
   stage: upload
+  tags:
+    - macos
+    - bigsur
+    - xcode-12-4
   script:
+    - xcversion select --verbose --symlink 12.4
+    - xcversion selected
+    - sudo xcodebuild -license accept
     - cd ios
     - gem install fastlane
     - bundle install
