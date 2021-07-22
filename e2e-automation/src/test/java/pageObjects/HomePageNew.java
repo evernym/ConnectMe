@@ -19,8 +19,6 @@ public class HomePageNew {
         this.driver = driver;
     }
 
-    private MenuPageNew menuPageNew = new MenuPageNew(driver);
-
     @AndroidFindBy(xpath = "//*[@text=\"Home\"]")
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Home\"]")
     public WebElement homeHeader;
@@ -117,12 +115,11 @@ public class HomePageNew {
         burgerMenuButton.click();
         try { Thread.sleep(1000); }
         catch (InterruptedException e) {}
-        if (AppUtils.isElementAbsent(driver, menuPageNew.banner)) {
+        if (!AppUtils.isElementAbsent(driver, burgerMenuButton)) {
             System.out.println("Failed to open side menu, retrying");
             try { Thread.sleep(1000); }
             catch (InterruptedException e) {}
             burgerMenuButton.click();
-            AppUtils.isElementAbsent(driver, menuPageNew.banner);
         }
     }
 
