@@ -59,6 +59,7 @@ public class DeletionTest extends IntSetup {
         try {
             objAppUtils.findParameterizedElementAlt(credentialNameManyScheme).click();
             credsCountBefore = 1;
+            Thread.sleep(1000);
             if(AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton)) throw new NoSuchElementException();
         } catch (Exception ex) {
             AppUtils.pullScreenUp(driverApp);
@@ -107,6 +108,7 @@ public class DeletionTest extends IntSetup {
         int credsCountBefore = 0;
         try {
             objAppUtils.findParameterizedElementAlt(credentialNameScheme).click();
+            Thread.sleep(1000);
             credsCountBefore = 1;
             if(AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton)) throw new NoSuchElementException();
         } catch (Exception ex) {
