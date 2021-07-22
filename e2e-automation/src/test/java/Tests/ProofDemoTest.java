@@ -113,7 +113,7 @@ public class ProofDemoTest extends IntSetup {
 		validateProofRequestView(headerShared, "You shared this information", proofName, requestedAttributes);
 		proofRequestPageNew.closeButton.click();
 		connectionHistoryPageNew.backButton.click();
-		homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
 		menuPageNew.homeButton.click();
 	}
 
@@ -133,7 +133,7 @@ public class ProofDemoTest extends IntSetup {
 		connectionHistoryPageNew.rejectedProofRequestRecord.isDisplayed();
 		connectionHistoryPageNew.backButton.click();
 
-		homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
 		menuPageNew.homeButton.click();
 	}
 

@@ -169,14 +169,13 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            try {
-                driverApp.manage().timeouts().implicitlyWait(AppDriver.SUPER_SMALL_TIMEOUT, TimeUnit.SECONDS);
+            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
+            {
                 pushNotificationsPageNew.allowButton.click();
                 pushNotificationsPageNew.okButton.click();
-            } catch (Exception e) {
+            }
+            else {
                 System.out.println("Permissions already have been granted!");
-            } finally {
-                driverApp.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
             }
         }
     }
@@ -221,7 +220,7 @@ public class ConnectionModules extends IntSetup {
     }
 
     public void openConnectionHistory(String connectionName) throws Exception {
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
         Thread.sleep(1000);
         myConnectionsPageNew.getConnectionByName(connectionName).click();

@@ -187,7 +187,7 @@ public class CredentialTest extends IntSetup {
 
 	@Test(dependsOnMethods = "acceptCredentialFromHome")
 	public void validateMyCredentialRecordAppeared() throws Exception {
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
 		menuPageNew.myCredentialsButton.click();
         objAppUtlis.findParameterizedElementAlt(schemeName).isDisplayed();
 	}
@@ -210,7 +210,7 @@ public class CredentialTest extends IntSetup {
 		credentialPageNew.closeButton.click();
 		connectionHistoryPageNew.backButton.click();
 
-		homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
 		menuPageNew.homeButton.click();
 	}
 
@@ -231,8 +231,8 @@ public class CredentialTest extends IntSetup {
 		connectionHistoryPageNew.rejectedCredentialRecord.isDisplayed();
 		connectionHistoryPageNew.backButton.click();
 
-    homePageNew.burgerMenuButton.click();
-    menuPageNew.homeButton.click();
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.homeButton.click();
 	}
 
 	@Test(dependsOnMethods = "rejectCredentialOffer")
