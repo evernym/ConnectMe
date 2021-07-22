@@ -99,7 +99,7 @@ devicefarm-test-launch-android-master:
     - build-android-master
   rules:
     # - if: '$SCHEDULED_RUN == "false" && $CI_COMMIT_REF_SLUG == "master"'
-    - if: '$CI_COMMIT_REF_SLUG == "MP-94"'
+    - if: '$CI_COMMIT_REF_SLUG == "mp-94"'
       when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 false
@@ -109,7 +109,7 @@ devicefarm-test-launch-ios-master:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$CI_COMMIT_REF_SLUG == "MP-94"'
+    - if: '$CI_COMMIT_REF_SLUG == "mp-94"'
       when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 false

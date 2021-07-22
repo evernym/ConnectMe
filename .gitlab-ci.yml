@@ -140,7 +140,6 @@ license-data-check:
     - cd ios
     - bundle install
     - bundle exec fastlane build
-    - echo $CI_COMMIT_REF_SLUG
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
@@ -204,7 +203,6 @@ build-ios-master:
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane build
-    - echo $CI_COMMIT_REF_SLUG
 
 build-android-e2e-testing:
   extends: .build-android
