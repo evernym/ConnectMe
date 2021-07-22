@@ -1,4 +1,4 @@
-package Tests;
+package Tests.UtilityTests;
 
 import appModules.AppCenterAPI;
 import org.testng.annotations.AfterClass;
@@ -15,5 +15,4 @@ public class InstallAppFromAppCenter extends IntSetup {
         String appPath = AppCenterAPI.downloadRelevantApp(Config.Device_Type);
         driverApp.installApp(appPath);
     }
-
 }
