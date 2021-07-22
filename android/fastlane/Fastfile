@@ -31,12 +31,6 @@ platform :android do
       task: "assemble",
       build_type: "Release",
     )
-
-    ENV["BUILD_NAME"] = "Dev ConnectMe"
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-armeabi-v7a-release.apk")
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-arm64-v8a-release.apk")
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86-release.apk")
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
   end
 
   lane :upload do

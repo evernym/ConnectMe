@@ -46,11 +46,6 @@ platform :ios do
     appstore_build(
       app_identifier: "#{app_identifier}",
     )
-
-    appcenter_token = ENV["APPCENTER_API_TOKEN"]
-    UI.user_error!("You didn't set token for AppCenter") if appcenter_token.empty?
-    ENV["BUILD_NAME"] = "DevConnectMe Build"
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "user", app_name: "Dev-ConnectMe", ipa: "ConnectMe.ipa",)
   end
 
   lane :upload do
@@ -91,7 +86,7 @@ platform :ios do
     versionNumber.to_s + "-" + buildNumber.to_s
   end
 
-  ##### ----- BUILD ----- #####
+  ##### ----- AD HOC MODE BUILD ----- #####
   private_lane :adhoc_build do |options|
     match_certificates(
       type: "adhoc",
@@ -104,6 +99,7 @@ platform :ios do
     )
   end
 
+  ##### ----- AD HOC MODE BUILD ----- #####
   private_lane :appstore_build do |options|
     match_certificates(
       type: "appstore",
