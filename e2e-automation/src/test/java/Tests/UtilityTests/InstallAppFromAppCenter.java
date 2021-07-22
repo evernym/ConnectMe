@@ -1,11 +1,9 @@
-package Tests.UtilityTests;
+package Tests;
 
 import appModules.AppCenterAPI;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import test.java.utility.IntSetup;
 import test.java.utility.Config;
+import test.java.utility.IntSetup;
 
 
 public class InstallAppFromAppCenter extends IntSetup {
