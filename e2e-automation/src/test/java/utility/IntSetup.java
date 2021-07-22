@@ -54,9 +54,9 @@ public class IntSetup {
 
             // Take a screenshot if test failed
             File srcFile = driverApp.getScreenshotAs(OutputType.FILE);
-            String filename = testName + " " + new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+            String filename = testName + " " + new SimpleDateFormat("MM|dd|yyyy HH:mm:ss")
                 .format(new Date(result.getEndMillis()));
-            File targetFile = new File(System.getProperty("user.dir") + "/target/surefire-reports/" + filename + ".jpg");
+            File targetFile = new File(System.getProperty("user.dir") + "/target/surefire-reports/app-screenshots/" + filename + ".jpg");
             FileUtils.copyFile(srcFile, targetFile);
         } else {
             System.out.println(">> Test " + testName + " successfully finished.");
