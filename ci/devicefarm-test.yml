@@ -120,7 +120,7 @@ devicefarm-test-launch-android-weekly-upgrade-path:
   dependencies:
     - build-android-master
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+    - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
       when: always
   script:
     - sleep 300 # android shift
