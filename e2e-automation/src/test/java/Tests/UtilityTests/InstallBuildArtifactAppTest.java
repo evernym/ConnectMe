@@ -1,4 +1,4 @@
-package Tests;
+package test.java.Tests.UtilityTests;
 
 import org.testng.annotations.Test;
 import test.java.utility.Config;

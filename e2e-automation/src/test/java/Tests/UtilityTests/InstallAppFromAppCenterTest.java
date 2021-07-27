@@ -1,4 +1,4 @@
-package Tests;
+package test.java.Tests.UtilityTests;
 
 import appModules.AppCenterAPI;
 import org.testng.annotations.Test;
