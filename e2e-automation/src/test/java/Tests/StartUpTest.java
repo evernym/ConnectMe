@@ -26,13 +26,6 @@ public class StartUpTest extends IntSetup {
         }
     }
 
-    @Test(dependsOnMethods = "setUpWizardTest")
-    public void checkMenuElementsVisibility() throws Exception {
-      homePageNew.homeHeader.isDisplayed();
-      homePageNew.burgerMenuButton.isDisplayed();
-      homePageNew.scanButton.isDisplayed();
-    }
-
     @AfterClass
     public void AfterClass() {
         driverApp.closeApp();

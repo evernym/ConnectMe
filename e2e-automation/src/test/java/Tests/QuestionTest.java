@@ -96,7 +96,7 @@ public class QuestionTest extends IntSetup {
 
 	@Test(dependsOnMethods = "answerQuestionWithThreeOptionsFromHome")
 	public void validateConnectionHistory() throws Exception {
-		homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
 		menuPageNew.myConnectionsButton.click();
 		myConnectionsPageNew.getConnectionByName(connectionName).click();
 //		// TODO: move this logic to helper

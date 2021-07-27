@@ -10,6 +10,7 @@ stages:
   - devicefarm-test-next
   - devicefarm-test-final
   - devicefarm-test-next-upgrade-path
+  - upload
 
 ### - Pre-build - ###
 # Helpers / Anchors
@@ -114,6 +115,7 @@ license-data-check:
   artifacts:
     paths:
       - ios/ConnectMe.ipa
+      - ios/ConnectMe-appstore.ipa
   script:
     - xcversion select --verbose --symlink 12.4
     - xcversion selected
@@ -138,24 +140,15 @@ license-data-check:
     - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
     - cd ios
     - bundle install
-    - ${FASTLANE_COMMAND}
+    - bundle exec fastlane build
   after_script:
     - cat ./ios/react-native-xcode.sh.log
-
-build-android-e2e-testing:
-  extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
-  only:
-    refs:
-      - e2e-testing@evernym/mobile/connectme
 
 build-ios-e2e-testing:
   extends: .build-ios
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
   only:
     refs:
       - e2e-testing@evernym/mobile/connectme
@@ -165,7 +158,6 @@ build-ios-merge-request:
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
@@ -177,7 +169,6 @@ build-ios-master:
     BUILD_TYPE: 'QA ConnectMe Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
     # this gets passed to the anchor
-    FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
   only:
     refs:
       - main@evernym/mobile/connectme
@@ -211,7 +202,13 @@ build-ios-master:
     - cd android
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
-    - ${FASTLANE_COMMAND}
+    - bundle exec fastlane build
+
+build-android-e2e-testing:
+  extends: .build-android
+  only:
+    refs:
+      - e2e-testing@evernym/mobile/connectme
 
 build-android-merge-request:
   extends: .build-android
@@ -219,19 +216,46 @@ build-android-merge-request:
     paths:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
   rules:
     - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
       when: always
 
 build-android-master:
   extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane cd'
   only:
     refs:
       - main@evernym/mobile/connectme
+
+# Upload jobs
+upload-ios:
+  stage: upload
+  tags:
+    - macos
+    - bigsur
+    - xcode-12-4
+  script:
+    - xcversion select --verbose --symlink 12.4
+    - xcversion selected
+    - sudo xcodebuild -license accept
+    - cd ios
+    - gem install fastlane
+    - bundle install
+    - bundle exec fastlane upload
+  only:
+    refs:
+      - main@evernym/mobile/connectme
+
+upload-android:
+  stage: upload
+  script:
+    - cd android
+    - gem install fastlane
+    - bundle install
+    - bundle exec fastlane upload
+  only:
+    refs:
+      - main@evernym/mobile/connectme
+
 
 # Basic lint
 yarn-test:
