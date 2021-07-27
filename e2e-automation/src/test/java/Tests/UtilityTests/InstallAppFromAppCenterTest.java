@@ -10,7 +10,14 @@ public class InstallAppFromAppCenterTest extends IntSetup {
 
     @Test
     public void installRcFromAppCenter() throws Exception {
-        String appPath = AppCenterAPI.getAppDownloadUrl(Config.Device_Type);
-        driverApp.installApp(appPath);
+        try {
+            String appPath = AppCenterAPI.getAppDownloadUrl(Config.Device_Type);
+            driverApp.installApp(appPath);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.exit(1); // don't run other tests if this fails
+        }
     }
 }
