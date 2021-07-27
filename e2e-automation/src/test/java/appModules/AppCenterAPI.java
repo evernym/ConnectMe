@@ -111,7 +111,7 @@ public class AppCenterAPI {
     return appDownloadFullName;
   }
 
-  public static String downloadRelevantApp(String device_Type) throws IOException {
+  public static String getAppDownloadUrl(String device_Type) throws IOException {
     if(device_Type.toLowerCase(Locale.ROOT).contains("ios")) normalizedPlatformName = PlatformName.iOS;
     else if (device_Type.toLowerCase(Locale.ROOT).contains("android")) normalizedPlatformName = PlatformName.Android;
     List<String> releases = getReleaseIds(rcVersion, normalizedPlatformName);
@@ -124,7 +124,8 @@ public class AppCenterAPI {
         appDownloadUrl = getAppDownloadUrlAndroid(releases);
         break;
     }
-    return downloadApp(appDownloadUrl);
+    // return downloadApp(appDownloadUrl);
+      return appDownloadUrl;
   }
 }
 
