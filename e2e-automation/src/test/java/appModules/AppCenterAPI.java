@@ -70,8 +70,8 @@ public class AppCenterAPI {
             JSONObject bodyJson = new JSONObject(response.getBody().asString());
             String downloadUrl = bodyJson.getString("download_url");
             System.out.println("Download link: " + downloadUrl);
-            // if(downloadUrl.contains("app-arm64-v8a-release.apk")) {
-            if (downloadUrl.contains("app-armeabi-v7a-release")) {
+            if(downloadUrl.contains("app-arm64-v8a-release.apk")) {
+            // if (downloadUrl.contains("app-armeabi-v7a-release")) {
                 System.out.println("Download link is valid");
                 appDownloadFullName = System.getProperty("user.home") + "/Downloads/app.apk";
                 return downloadUrl;
