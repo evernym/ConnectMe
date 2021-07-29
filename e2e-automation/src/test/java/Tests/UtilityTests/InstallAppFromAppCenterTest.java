@@ -4,9 +4,6 @@ import appModules.AppCenterAPI;
 import org.testng.annotations.Test;
 import test.java.utility.Config;
 import test.java.utility.IntSetup;
-import io.appium.java_client.AppiumDriver;
-
-import static test.java.utility.IntSetup.driverApp;
 
 
 public class InstallAppFromAppCenterTest extends IntSetup {
