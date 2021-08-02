@@ -25,8 +25,8 @@ public class ProofRequestPageNew {
   @iOSXCUITFindBy(accessibility = "Reject")
   public WebElement rejectButton;
 
-  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"sender-avatar-image\"]")
-  @iOSXCUITFindBy(accessibility = "sender-avatar")
+  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='sender-avatar-image']")
+  @iOSXCUITFindBy(accessibility = "sender-avatar-image")
   public WebElement proofRequestSenderLogo;
 
   @AndroidFindBy(xpath = "//*[@text=\"Proof Request\"]")
