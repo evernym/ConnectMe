@@ -56,7 +56,6 @@ public class ProofCasesTest extends IntSetup {
 
         objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
         objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
-        proofRequestPageNew.selectedCredentialIcon.isDisplayed();
 
         objAppUtlis.shareProof();
 

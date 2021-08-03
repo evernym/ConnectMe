@@ -26,7 +26,8 @@ public class ProofRequestPageNew {
   public WebElement rejectButton;
 
   @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='sender-avatar-image']")
-  @iOSXCUITFindBy(accessibility = "sender-avatar-image")
+  @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='default-logo'])[2]")
+  //@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='sender-avatar-image']")
   public WebElement proofRequestSenderLogo;
 
   @AndroidFindBy(xpath = "//*[@text=\"Proof Request\"]")
@@ -44,10 +45,6 @@ public class ProofRequestPageNew {
   @AndroidFindBy(xpath = "//*[@text=\"Missing Credentials\"]")
   @iOSXCUITFindBy(accessibility = "Missing Credentials")
   public WebElement missingCredentialsError;
-
-  @AndroidFindBy(xpath = "//*[@content-desc=\"selected-credential-icon\"]")
-  @iOSXCUITFindBy(accessibility = "selected-credential-icon")
-  public WebElement selectedCredentialIcon;
 
   @AndroidFindBy(xpath = "//*[@content-desc=\"arrow-forward-icon\"]")
   @iOSXCUITFindBy(accessibility = "arrow-forward-icon")
