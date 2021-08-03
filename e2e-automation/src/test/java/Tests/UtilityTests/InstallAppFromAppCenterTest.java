@@ -14,7 +14,7 @@ public class InstallAppFromAppCenterTest extends IntSetup {
         driverApp.removeApp("me.connect");
 
         try {
-            String appPath = AppCenterAPI.getAppDownloadUrl(Config.Device_Type);
+            String appPath = AppCenterAPI.getReleaseCandidateAppDownloadUrl(Config.Device_Type);
             driverApp.installApp(appPath);
         }
         catch (Exception e)

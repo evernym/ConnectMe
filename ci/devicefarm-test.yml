@@ -114,11 +114,12 @@ devicefarm-test-launch-ios-master:
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 false
 
-devicefarm-test-launch-android-weekly-upgrade-path:
-  stage: devicefarm-test-next-upgrade-path
+devicefarm-test-upgrade-path-android:
+  stage: devicefarm-test-upgrade-path
   extends: .devicefarm-test-launch-android
   dependencies:
     - build-android-merge-request
+    - upload
   rules:
     - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
       when: always

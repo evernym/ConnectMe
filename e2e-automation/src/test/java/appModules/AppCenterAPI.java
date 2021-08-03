@@ -19,6 +19,7 @@ public class AppCenterAPI {
     private static String AppCenterAPIKey = Config.ACtoken;
     private static String appDownloadFullName = "";
     public static String rcVersion = Config.RCVersion;
+    public static String LatestVersion = "latest";
     private static PlatformName normalizedPlatformName;
 
     private enum PlatformName {
@@ -47,12 +48,19 @@ public class AppCenterAPI {
         List<String> releaseIds = new LinkedList<>();
 
         // This API returns releases ordered descending by creation data so additional filtering is not needed
-        for (Object o : bodyArray) {
-            JSONObject jsonObject = (JSONObject) o;
-            if (jsonObject.getString("short_version").equals(rcVersion))
+        if (rcVersion.equals(LatestVersion)) {
+            for (int i = 0; i < 8; i++) // Get 2 latest builds artifacts
+            {
+                JSONObject jsonObject = (JSONObject) bodyArray.get(i);
                 releaseIds.add(String.valueOf(jsonObject.getInt("id")));
+            }
+        } else {
+            for (Object o : bodyArray) {
+                JSONObject jsonObject = (JSONObject) o;
+                if (jsonObject.getString("short_version").equals(rcVersion))
+                    releaseIds.add(String.valueOf(jsonObject.getInt("id")));
+            }
         }
-
         return releaseIds;
     }
 
@@ -70,8 +78,8 @@ public class AppCenterAPI {
             JSONObject bodyJson = new JSONObject(response.getBody().asString());
             String downloadUrl = bodyJson.getString("download_url");
             System.out.println("Download link: " + downloadUrl);
-            if(downloadUrl.contains("app-arm64-v8a-release.apk")) {
-            // if (downloadUrl.contains("app-armeabi-v7a-release")) {
+            if (downloadUrl.contains("app-arm64-v8a-release.apk")) {
+                // if (downloadUrl.contains("app-armeabi-v7a-release")) {
                 System.out.println("Download link is valid");
                 appDownloadFullName = System.getProperty("user.home") + "/Downloads/app.apk";
                 return downloadUrl;
@@ -85,35 +93,9 @@ public class AppCenterAPI {
         throw new NotImplementedException("Method is not available");
     }
 
-    public static String downloadApp(String downloadUrl) throws IOException {
-        Map<String, String> headersMap = new HashMap<>();
-        headersMap.put("User-Agent", "PostmanRuntime/7.28.0");
-        headersMap.put("Accept", "*/*");
-        headersMap.put("Accept-Encoding", "gzip, deflate, br");
-
-        RestAssured.urlEncodingEnabled = false;
-        byte[] response = RestAssured.given()
-            .headers(headersMap)
-            .when()
-            .get(downloadUrl)
-            .asByteArray();
-
-        try {
-            OutputStream outStream = new FileOutputStream(appDownloadFullName);
-            outStream.write(response);
-            outStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-            throw new IOException("Failed to download new binary. Refer to the log statements above");
-        }
-
-        System.out.println("App binary stored at " + appDownloadFullName);
-        return appDownloadFullName;
-    }
-
-    public static String getAppDownloadUrl(String device_Type) throws IOException {
-        if (device_Type.toLowerCase(Locale.ROOT).contains("ios")) normalizedPlatformName = PlatformName.iOS;
+    public static String getReleaseCandidateAppDownloadUrl(String device_Type) throws IOException {
+        if (device_Type.toLowerCase(Locale.ROOT).contains("ios"))
+            normalizedPlatformName = PlatformName.iOS;
         else if (device_Type.toLowerCase(Locale.ROOT).contains("android"))
             normalizedPlatformName = PlatformName.Android;
         List<String> releases = getReleaseIds(rcVersion, normalizedPlatformName);
@@ -126,7 +108,24 @@ public class AppCenterAPI {
                 appDownloadUrl = getAppDownloadUrlAndroid(releases);
                 break;
         }
-        // return downloadApp(appDownloadUrl);
+        return appDownloadUrl;
+    }
+
+    public static String getLatestAppDownloadUrl(String device_Type) throws IOException {
+        if (device_Type.toLowerCase(Locale.ROOT).contains("ios"))
+            normalizedPlatformName = PlatformName.iOS;
+        else if (device_Type.toLowerCase(Locale.ROOT).contains("android"))
+            normalizedPlatformName = PlatformName.Android;
+        List<String> releases = getReleaseIds(LatestVersion, normalizedPlatformName);
+        String appDownloadUrl = "";
+        switch (normalizedPlatformName) {
+            case iOS:
+                appDownloadUrl = getAppDownloadUrlIos();
+                break;
+            case Android:
+                appDownloadUrl = getAppDownloadUrlAndroid(releases);
+                break;
+        }
         return appDownloadUrl;
     }
 }
