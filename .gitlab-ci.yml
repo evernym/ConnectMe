@@ -289,7 +289,7 @@ devicefarm-test-upgrade-path-android:
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-merge-request
-        - upload
+        - upload-android
     rules:
         - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
           when: always
