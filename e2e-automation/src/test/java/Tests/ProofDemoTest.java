@@ -53,7 +53,7 @@ public class ProofDemoTest extends IntSetup {
         objAppUtlis.findParameterizedElement(title).isDisplayed();
         objAppUtlis.findParameterizedElement(connectionName).isDisplayed();
         proofRequestPageNew.proofRequestSenderLogo.isDisplayed();
-        objAppUtlis.findParameterizedElement(proofName).isDisplayed();
+        objAppUtlis.findParameterizedElementAlt(proofName).isDisplayed();
 
         for (JSONObject attribute : values) {
             String value = attribute.getString("name");
