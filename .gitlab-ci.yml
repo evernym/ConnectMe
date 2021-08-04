@@ -210,6 +210,12 @@ build-android-e2e-testing:
     refs:
       - e2e-testing@evernym/mobile/connectme
 
+build-android-2930:
+  extends: .build-android
+  only:
+    refs:
+      - feature/CM-2930@evernym/mobile/connectme
+
 build-android-merge-request:
   extends: .build-android
   artifacts:
