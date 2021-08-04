@@ -9,8 +9,8 @@ stages:
   - devicefarm-test-top
   - devicefarm-test-next
   - devicefarm-test-final
-  - devicefarm-test-upgrade-path
   - upload
+  - devicefarm-test-upgrade-path
 
 ### - Pre-build - ###
 # Helpers / Anchors
