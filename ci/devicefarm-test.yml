@@ -159,6 +159,19 @@ devicefarm-test-launch-ios-e2e-testing:
     refs:
       - e2e-testing@evernym/mobile/connectme
 
+devicefarm-test-upgrade-path-android:
+    stage: devicefarm-test-upgrade-path
+    extends: .devicefarm-test-launch-android
+    dependencies:
+        - build-android-merge-request
+        - upload-android
+    only:
+        refs:
+            - main@evernym/mobile/connectme
+    script:
+        - sleep 300 # android shift
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
+
 #devicefarm-test-launch-android-merge_requests-next:
 #  stage: devicefarm-test-next
 #  extends: .devicefarm-test-launch-android

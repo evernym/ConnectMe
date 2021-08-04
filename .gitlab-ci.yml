@@ -217,7 +217,7 @@ build-android-merge-request:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
+    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
 
 build-android-master:
@@ -283,19 +283,6 @@ react-native-white-label-app-check:
   only:
     refs:
       - white-label-app-e2e-testing
-
-devicefarm-test-upgrade-path-android:
-    stage: devicefarm-test-upgrade-path
-    extends: .devicefarm-test-launch-android
-    dependencies:
-        - build-android-merge-request
-        - upload
-    rules:
-        - if: '$CI_COMMIT_REF_NAME == "feature/CM-2930"'
-          when: always
-    script:
-        - sleep 300 # android shift
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
 
 ### - Devicefarm-test - ###
 include:
