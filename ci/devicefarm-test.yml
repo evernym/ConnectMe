@@ -167,9 +167,8 @@ devicefarm-test-upgrade-path-android:
         - upload-android
     only:
         refs:
-            - main@evernym/mobile/connectme
+            - feature/CM-2930@evernym/mobile/connectme
     script:
-        - sleep 300 # android shift
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
 
 #devicefarm-test-launch-android-merge_requests-next:
