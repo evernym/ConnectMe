@@ -15,7 +15,6 @@ public class UpgradePathTest extends IntSetup {
 
     private String connectionName;
     private final String connectionInvitation = "connection-invitation-upt";
-    private final String oobInvitation = "out-of-band-invitation-upt";
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
@@ -114,21 +113,13 @@ public class UpgradePathTest extends IntSetup {
         aboutPageNew.backArrow.click();
     }
 
-    @DataProvider(name = "data1")
-    public Object[][] createData() {
-        return new Object[][]{
-            {connectionInvitation},
-            {oobInvitation},
-        };
-    }
-
     // This part of the UPT is identical to the ConnectionTest class
-    @Test(dataProvider = "data1")
-    public void rejectConnectionTest(String invitationType) throws Exception {
+    @Test
+    public void rejectConnectionTest() throws Exception {
         driverBrowser = test.java.utility.BrowserDriver.getDriver();
 
         test.java.appModules.AppUtils.DoSomethingEventuallyNew(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, test.java.utility.Helpers.randomString(), invitationType),
+            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, test.java.utility.Helpers.randomString(), connectionInvitation),
             () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
             () -> test.java.appModules.AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
             () -> objConnectionModules.rejectConnectionInvitation(driverApp)
@@ -138,31 +129,18 @@ public class UpgradePathTest extends IntSetup {
         test.java.utility.BrowserDriver.closeApp();
     }
 
-    @Test(dataProvider = "data1", dependsOnMethods = "rejectConnectionTest")
-    public void setUpConnectionTest(String invitationType) throws Exception {
-        connectionName = invitationType;
-
+    @Test
+    public void setUpConnectionTest() throws Exception {
+        connectionName = connectionInvitation;
         driverBrowser = test.java.utility.BrowserDriver.getDriver();
 
         test.java.appModules.AppUtils.DoSomethingEventuallyNew(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
+            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, connectionInvitation),
             () -> test.java.appModules.AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
             () -> objConnectionModules.acceptConnectionInvitation(driverApp)
         );
 
-        try {
-            switch (connectionName) {
-                case connectionInvitation:
-                    test.java.appModules.AppUtils.waitForElementNew(driverApp, homePageNew.commonConnectedEvent);
-                    break;
-                case oobInvitation:
-                    test.java.appModules.AppUtils.waitForElementNew(driverApp, homePageNew.oobConnectedEvent);
-                    break;
-            }
-        } catch (Exception e) {
-            System.exit(1); // don't run other tests if this fails
-        }
-
+        test.java.appModules.AppUtils.waitForElementNew(driverApp, homePageNew.commonConnectedEvent);
         Thread.sleep(1000);
         test.java.utility.BrowserDriver.closeApp();
     }
@@ -170,10 +148,9 @@ public class UpgradePathTest extends IntSetup {
     @Test(dependsOnMethods = "setUpConnectionTest")
     public void validateMyConnectionRecordAppeared() throws Exception {
         passCodePageNew.openApp();
-
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
-        Thread.sleep(1000); // FIXME MSDK workaround: it goes to Settings without sleep
+        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
         myConnectionsPageNew.getConnectionByName(connectionName).click();
     }
 
@@ -199,11 +176,6 @@ public class UpgradePathTest extends IntSetup {
 
     @AfterClass
     public void AfterClass() {
-        context.setValue("connectionName", connectionName);
-        System.out.println("Connection name in context: " + connectionName);
-        System.out.println("Device ID in context: " + context.getValue("DID"));
-
         driverApp.closeApp();
-        System.out.println("Connection Test Suite has been finished!");
     }
 }
