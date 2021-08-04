@@ -3,6 +3,7 @@ package test.java.Tests;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -14,7 +15,7 @@ public class UpgradePathTest extends IntSetup {
     private test.java.utility.LocalContext context = test.java.utility.LocalContext.getInstance();
 
     private String connectionName;
-    private final String connectionInvitation = "connection-invitation-upt";
+    private final String connectionInvitation = "connection-invitation";
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
@@ -113,7 +114,26 @@ public class UpgradePathTest extends IntSetup {
         aboutPageNew.backArrow.click();
     }
 
-    // This part of the UPT is identical to the ConnectionTest class
+    @Test
+    public void deleteConnectionTest() throws Exception {
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.myConnectionsButton.click();
+
+        test.java.appModules.AppUtils.waitForElementNew(driverApp, myConnectionsPageNew.getConnectionByName(connectionInvitation));
+        myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
+
+        test.java.appModules.AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
+        connectionHistoryPageNew.threeDotsButton.click();
+        connectionDetailPageNew.deleteButton.click();
+        if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) { // delete button tapping ios issue
+            try {
+                connectionDetailPageNew.deleteButton.click();
+            } catch (Exception e) { }
+        }
+
+        Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
+    }
+
     @Test
     public void rejectConnectionTest() throws Exception {
         driverBrowser = test.java.utility.BrowserDriver.getDriver();
