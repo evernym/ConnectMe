@@ -260,7 +260,7 @@ upload-android:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - feature/CM-2930@evernym/mobile/connectme
 
 
 # Basic lint
