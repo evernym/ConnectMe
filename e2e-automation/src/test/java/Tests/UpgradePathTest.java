@@ -136,6 +136,10 @@ public class UpgradePathTest extends IntSetup {
 
     @Test
     public void rejectConnectionTest() throws Exception {
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.homeButton.isDisplayed();
+        menuPageNew.homeButton.click();
+
         driverBrowser = test.java.utility.BrowserDriver.getDriver();
 
         test.java.appModules.AppUtils.DoSomethingEventuallyNew(
