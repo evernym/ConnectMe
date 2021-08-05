@@ -171,6 +171,19 @@ devicefarm-test-upgrade-path-android:
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
 
+
+devicefarm-test-upgrade-path-ios:
+    stage: devicefarm-test-upgrade-path
+    extends: .devicefarm-test-launch-ios
+    dependencies:
+        - build-ios-2930
+        - upload-ios
+    only:
+        refs:
+            - feature/CM-2930@evernym/mobile/connectme
+    script:
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
+
 #devicefarm-test-launch-android-merge_requests-next:
 #  stage: devicefarm-test-next
 #  extends: .devicefarm-test-launch-android

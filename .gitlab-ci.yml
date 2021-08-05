@@ -216,6 +216,12 @@ build-android-2930:
     refs:
       - feature/CM-2930@evernym/mobile/connectme
 
+build-ios-2930:
+    extends: .build-ios
+    only:
+        refs:
+            - feature/CM-2930@evernym/mobile/connectme
+
 build-android-merge-request:
   extends: .build-android
   artifacts:
@@ -249,7 +255,7 @@ upload-ios:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - feature/CM-2930@evernym/mobile/connectme
 
 upload-android:
   stage: upload

@@ -81,7 +81,6 @@ public class AppCenterAPI {
             if (downloadUrl.contains("app-arm64-v8a-release.apk")) {
                 // if (downloadUrl.contains("app-armeabi-v7a-release")) {
                 System.out.println("Download link is valid");
-                appDownloadFullName = System.getProperty("user.home") + "/Downloads/app.apk";
                 return downloadUrl;
             }
         }
@@ -89,8 +88,28 @@ public class AppCenterAPI {
         throw new IOException("Failed to download new binary. Refer to the log statements above");
     }
 
-    public static String getAppDownloadUrlIos() throws IOException, NotImplementedException {
-        throw new NotImplementedException("Method is not available");
+    public static String getAppDownloadUrlIos(List<String> releaseIds) throws IOException {
+        final String baseUrl = "https://api.appcenter.ms/v0.1/apps/build-zg6l/QA-ConnectMe/releases/";
+
+        for (String releaseId : releaseIds) {
+            RestAssured.baseURI = baseUrl + releaseId;
+            Response response = RestAssured
+                .given()
+                .header(new Header("X-API-Token", AppCenterAPIKey))
+                .contentType("application/json")
+                .when()
+                .get();
+
+            JSONObject bodyJson = new JSONObject(response.getBody().asString());
+            String downloadUrl = bodyJson.getString("download_url");
+            System.out.println("Download link: " + downloadUrl);
+            if (downloadUrl.contains("appstore")) {
+                System.out.println("Download link is valid");
+                return downloadUrl;
+            }
+        }
+
+        throw new IOException("Failed to download new binary. Refer to the log statements above");
     }
 
     public static String getReleaseCandidateAppDownloadUrl(String device_Type) throws IOException {
@@ -102,7 +121,7 @@ public class AppCenterAPI {
         String appDownloadUrl = "";
         switch (normalizedPlatformName) {
             case iOS:
-                appDownloadUrl = getAppDownloadUrlIos();
+                appDownloadUrl = getAppDownloadUrlIos(releases);
                 break;
             case Android:
                 appDownloadUrl = getAppDownloadUrlAndroid(releases);
@@ -120,7 +139,7 @@ public class AppCenterAPI {
         String appDownloadUrl = "";
         switch (normalizedPlatformName) {
             case iOS:
-                appDownloadUrl = getAppDownloadUrlIos();
+                appDownloadUrl = getAppDownloadUrlIos(releases);
                 break;
             case Android:
                 appDownloadUrl = getAppDownloadUrlAndroid(releases);
