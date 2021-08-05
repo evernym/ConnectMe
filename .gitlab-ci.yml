@@ -255,7 +255,7 @@ upload-ios:
     - bundle exec fastlane upload
   only:
     refs:
-      - feature/CM-2930@evernym/mobile/connectme
+      - main@evernym/mobile/connectme
 
 upload-android:
   stage: upload
