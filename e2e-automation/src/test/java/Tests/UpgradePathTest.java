@@ -114,7 +114,7 @@ public class UpgradePathTest extends IntSetup {
         aboutPageNew.backArrow.click();
     }
 
-    @Test
+    @Test(dependsOnMethods = "checkSettings")
     public void deleteConnectionTest() throws Exception {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
@@ -134,7 +134,7 @@ public class UpgradePathTest extends IntSetup {
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
     }
 
-    @Test
+    @Test(dependsOnMethods = "deleteConnectionTest")
     public void rejectConnectionTest() throws Exception {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.homeButton.isDisplayed();
@@ -153,7 +153,7 @@ public class UpgradePathTest extends IntSetup {
         test.java.utility.BrowserDriver.closeApp();
     }
 
-    @Test
+    @Test(dependsOnMethods = "rejectConnectionTest")
     public void setUpConnectionTest() throws Exception {
         connectionName = connectionInvitation;
         driverBrowser = test.java.utility.BrowserDriver.getDriver();
@@ -176,26 +176,7 @@ public class UpgradePathTest extends IntSetup {
         menuPageNew.myConnectionsButton.click();
         myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
         myConnectionsPageNew.getConnectionByName(connectionName).click();
-    }
-
-    @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
-    public void validateConnectionHistory() throws Exception {
         connectionHistoryPageNew.connectionLogo.isDisplayed();
-        connectionHistoryPageNew.oobConnectionName.isDisplayed();
-        connectionHistoryPageNew.connectedRecord.isDisplayed();
-        connectionHistoryPageNew.oobConnectedRecordDescription.isDisplayed();
-    }
-
-    @Test(dependsOnMethods = "validateConnectionHistory")
-    public void validateConnectionDetails() throws Exception {
-        connectionHistoryPageNew.threeDotsButton.isDisplayed();
-        connectionHistoryPageNew.threeDotsButton.click();
-
-        connectionDetailPageNew.closeButton.isDisplayed();
-        connectionDetailPageNew.deleteButton.isDisplayed();
-
-        connectionDetailPageNew.closeButton.click();
-        connectionHistoryPageNew.backButton.click();
     }
 
     @AfterClass
