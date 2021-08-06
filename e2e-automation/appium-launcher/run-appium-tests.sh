@@ -38,6 +38,7 @@ sed -ri "s|VAS_Server_Link = \".*\"|VAS_Server_Link = \"${VAS_ENDPOINT}\"|" ${TE
 python appium-launcher/vas-server.py &
 
 # getting AC token
+AC_TOKEN="$AC_TOKEN"
 sed -ri "s|ACtoken = \".*\"|ACtoken = \"${AC_TOKEN}\"|" ${TESTS_CONFIG_PATH}
 
 # run Appium tests
