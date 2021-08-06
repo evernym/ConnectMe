@@ -169,7 +169,7 @@ devicefarm-test-upgrade-path-android:
         refs:
             - feature/CM-2930@evernym/mobile/connectme
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath
 
 # CM-2930
 # devicefarm-test-upgrade-path-ios:
