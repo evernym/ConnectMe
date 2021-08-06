@@ -163,11 +163,11 @@ devicefarm-test-upgrade-path-android:
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-android
     dependencies:
-        - build-android-2930
+        - build-android-master
         - upload-android
     only:
         refs:
-            - feature/CM-2930@evernym/mobile/connectme
+            - main@evernym/mobile/connectme
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl upgradePath
 
