@@ -20,7 +20,7 @@ public class QuestionPageNew {
   @iOSXCUITFindBy(accessibility = "Question")
   public WebElement header;
 
-  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"question-sender-logo\"]")
+  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='question-sender-logo']")
   @iOSXCUITFindBy(accessibility = "question-sender-logo")
   public WebElement senderLogo;
 

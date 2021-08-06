@@ -25,8 +25,9 @@ public class CredentialPageNew {
   @iOSXCUITFindBy(accessibility = "Reject")
   public WebElement rejectButton;
 
-  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"sender-avatar-image\"]")
-  @iOSXCUITFindBy(accessibility = "sender-avatar")
+  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='sender-avatar-image']")
+  @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name='default-logo'])[2]")
+  //@iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='sender-avatar-image']")
   public WebElement credentialSenderLogo;
 
   @AndroidFindBy(xpath = "//*[@text=\"Credential Offer\"]")

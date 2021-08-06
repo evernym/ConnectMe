@@ -222,14 +222,14 @@ public class ConnectionModules extends IntSetup {
     public void openConnectionHistory(String connectionName) throws Exception {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
-        Thread.sleep(1000);
+        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
         myConnectionsPageNew.getConnectionByName(connectionName).click();
-        // FIXME - validate that we drilled down to connection properly
-        if (Config.iOS_Devices.contains(Config.Device_Type)) {
+
+        if(!AppUtils.isElementAbsent(driverApp, myConnectionsPageNew.getConnectionByName(connectionName)))
+        {
             try {
                 myConnectionsPageNew.getConnectionByName(connectionName).click();
             } catch (Exception e) {
-
             }
         }
     }
