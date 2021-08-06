@@ -210,7 +210,13 @@ build-android-e2e-testing:
     refs:
       - e2e-testing@evernym/mobile/connectme
 
-# build-ios-2930: // save for ref until follow-ups are done
+build-android-2930:
+  extends: .build-android
+  only:
+    refs:
+      - feature/CM-2930@evernym/mobile/connectme
+
+# build-ios-2930:
 #    extends: .build-ios
 #    only:
 #        refs:
@@ -260,7 +266,7 @@ upload-android:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - feature/CM-2930@evernym/mobile/connectme
 
 
 # Basic lint

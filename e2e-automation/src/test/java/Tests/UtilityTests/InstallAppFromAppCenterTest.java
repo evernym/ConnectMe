@@ -17,7 +17,6 @@ public class InstallAppFromAppCenterTest extends IntSetup {
         try {
             String appPath = AppCenterAPI.getReleaseCandidateAppDownloadUrl(Config.Device_Type);
             driverApp.installApp(appPath);
-            System.out.println("Token: " + System.getenv("AC_TOKEN"));
         }
         catch (Exception e)
         {

@@ -37,6 +37,9 @@ VAS_ENDPOINT=`curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url`
 sed -ri "s|VAS_Server_Link = \".*\"|VAS_Server_Link = \"${VAS_ENDPOINT}\"|" ${TESTS_CONFIG_PATH}
 python appium-launcher/vas-server.py &
 
+# getting AC token
+sed -ri "s|ACtoken = \".*\"|ACtoken = \"${AC_TOKEN}\"|" ${TESTS_CONFIG_PATH}
+
 # run Appium tests
 sed -ri "s|Device_Type = \".*\"|Device_Type = \"${device_type}\"|" ${TESTS_CONFIG_PATH}
 mvn install -DskipTests
