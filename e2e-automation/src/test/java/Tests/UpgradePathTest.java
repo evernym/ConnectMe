@@ -21,9 +21,9 @@ public class UpgradePathTest extends IntSetup {
     private test.java.funcModules.ConnectionModules objConnectionModules = new test.java.funcModules.ConnectionModules();
     private test.java.utility.LocalContext context = test.java.utility.LocalContext.getInstance();
 
-    private String connectionName;
     private final String connectionInvitation = "connection-invitation";
     private final String oobConnection = "out-of-band-invitation";
+    private final String oobConnectionNew = "connection" + Helpers.randomString();
     private VASApi VAS;
     private AppUtils objAppUtlis;
 
@@ -77,16 +77,15 @@ public class UpgradePathTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteConnectionTest")
     public void setUpConnectionTest() throws Exception {
-        connectionName = oobConnection;
         driverBrowser = test.java.utility.BrowserDriver.getDriver();
 
         test.java.appModules.AppUtils.DoSomethingEventuallyNew(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, oobConnection),
+            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, oobConnectionNew, oobConnection),
             () -> test.java.appModules.AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
             () -> objConnectionModules.acceptConnectionInvitation(driverApp)
         );
 
-        test.java.appModules.AppUtils.waitForElementNew(driverApp, homePageNew.oobConnectedEvent);
+        AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(oobConnectionNew));
         Thread.sleep(1000);
         BrowserDriver.closeApp();
     }
@@ -96,8 +95,9 @@ public class UpgradePathTest extends IntSetup {
         passCodePageNew.openApp();
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
-        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
-        myConnectionsPageNew.getConnectionByName(connectionName).click();
+        Thread.sleep(1000);
+        myConnectionsPageNew.getConnectionByName(oobConnectionNew).isDisplayed();
+        myConnectionsPageNew.getConnectionByName(oobConnectionNew).click();
         connectionHistoryPageNew.connectionLogo.isDisplayed();
         connectionHistoryPageNew.backButton.click();
         homePageNew.tapOnBurgerMenu();
@@ -193,7 +193,7 @@ public class UpgradePathTest extends IntSetup {
         AppUtils.DoSomethingEventually(() -> VAS.askQuestion(DID, text, detail, oneOption));
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
 
-        objAppUtlis.findParameterizedElement(oobConnection).isDisplayed();
+        objAppUtlis.findParameterizedElement(oobConnectionNew).isDisplayed();
         objAppUtlis.findParameterizedElement(detail).isDisplayed();
 
         for (String validResponse : oneOption) {
