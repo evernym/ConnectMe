@@ -131,9 +131,7 @@ public class AppCenterAPI {
     }
 
     public static String getLatestAppDownloadUrl(String device_Type) throws IOException {
-        System.out.println("APIKEY value: "+ AppCenterAPIKey);
-
-        if (device_Type.toLowerCase(Locale.ROOT).contains("ios"))
+       if (device_Type.toLowerCase(Locale.ROOT).contains("ios"))
             normalizedPlatformName = PlatformName.iOS;
         else if (device_Type.toLowerCase(Locale.ROOT).contains("android"))
             normalizedPlatformName = PlatformName.Android;

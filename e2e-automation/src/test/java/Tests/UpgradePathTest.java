@@ -23,7 +23,7 @@ public class UpgradePathTest extends IntSetup {
 
     private final String connectionInvitation = "connection-invitation";
     private final String oobConnection = "out-of-band-invitation";
-    private final String oobConnectionNew = "connection" + Helpers.randomString();
+    private final String newConnectionName = "connection" + Helpers.randomString();
     private VASApi VAS;
     private AppUtils objAppUtlis;
 
@@ -47,7 +47,6 @@ public class UpgradePathTest extends IntSetup {
         myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
         myConnectionsPageNew.getConnectionByName(oobConnection).isDisplayed();
 
-        /*
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
 
@@ -59,29 +58,20 @@ public class UpgradePathTest extends IntSetup {
         connectionDetailPageNew.deleteButton.isDisplayed();
         connectionDetailPageNew.deleteButton.click();
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(oobConnection));
-
-         */
     }
 
     @Test(dependsOnMethods = "deleteConnectionTest")
     @Ignore
     public void rejectConnectionTest() throws Exception {
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.homeButton.isDisplayed();
-        menuPageNew.homeButton.click();
-
         driverBrowser = BrowserDriver.getDriver();
 
         AppUtils.DoSomethingEventually(
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), connectionInvitation)
         );
+
         objConnectionModules.acceptPushNotificationRequest(driverApp);
         AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
         objConnectionModules.rejectConnectionInvitation(driverApp);
-
-
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
     }
 
     @Test(dependsOnMethods = "deleteConnectionTest")
@@ -89,15 +79,12 @@ public class UpgradePathTest extends IntSetup {
         driverBrowser = BrowserDriver.getDriver();
 
         AppUtils.DoSomethingEventually(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, oobConnectionNew, oobConnection)
+            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, newConnectionName, connectionInvitation)
         );
 
         AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
         objConnectionModules.acceptConnectionInvitation(driverApp);
-
-        AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(oobConnectionNew));
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
+        AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(newConnectionName));
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")
@@ -106,8 +93,8 @@ public class UpgradePathTest extends IntSetup {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
         Thread.sleep(1000);
-        myConnectionsPageNew.getConnectionByName(oobConnectionNew).isDisplayed();
-        myConnectionsPageNew.getConnectionByName(oobConnectionNew).click();
+        myConnectionsPageNew.getConnectionByName(newConnectionName).isDisplayed();
+        myConnectionsPageNew.getConnectionByName(newConnectionName).click();
         connectionHistoryPageNew.connectionLogo.isDisplayed();
         connectionHistoryPageNew.backButton.click();
         homePageNew.tapOnBurgerMenu();
@@ -203,7 +190,7 @@ public class UpgradePathTest extends IntSetup {
         AppUtils.DoSomethingEventually(() -> VAS.askQuestion(DID, text, detail, oneOption));
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
 
-        objAppUtlis.findParameterizedElement(oobConnectionNew).isDisplayed();
+        objAppUtlis.findParameterizedElement(newConnectionName).isDisplayed();
         objAppUtlis.findParameterizedElement(detail).isDisplayed();
 
         for (String validResponse : oneOption) {
