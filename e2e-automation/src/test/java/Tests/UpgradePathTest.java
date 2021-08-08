@@ -65,7 +65,6 @@ public class UpgradePathTest extends IntSetup {
     public void rejectConnectionTest() throws Exception {
 
         driverBrowser = BrowserDriver.getDriver();
-
         AppUtils.DoSomethingEventually(
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), connectionInvitation)
         );
@@ -82,7 +81,6 @@ public class UpgradePathTest extends IntSetup {
         AppUtils.DoSomethingEventually(
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, newConnectionName, connectionInvitation)
         );
-
         AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
         objConnectionModules.acceptConnectionInvitation(driverApp);
         AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(newConnectionName));
