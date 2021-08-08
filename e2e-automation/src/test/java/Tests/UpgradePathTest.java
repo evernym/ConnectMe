@@ -104,7 +104,7 @@ public class UpgradePathTest extends IntSetup {
     }
     */
 
-    @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
+    @Test(dependsOnMethods = "deleteConnectionTest")
     public void acceptCredentialFromHome() throws Exception {
         String DID = context.getValue("DID");
         String credentialName = Helpers.randomString();
