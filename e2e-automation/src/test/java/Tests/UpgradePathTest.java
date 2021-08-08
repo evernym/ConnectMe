@@ -23,7 +23,7 @@ public class UpgradePathTest extends IntSetup {
 
     private final String connectionInvitation = "connection-invitation";
     private final String oobConnection = "out-of-band-invitation";
-    private final String newConnectionName = "connection" + Helpers.randomString();
+    private final String newConnectionName = Helpers.randomString();
     private VASApi VAS;
     private AppUtils objAppUtlis;
 
