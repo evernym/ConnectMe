@@ -39,26 +39,6 @@ public class UpgradePathTest extends IntSetup {
         homePageNew.checkHome();
     }
 
-    @Test(dependsOnMethods = "checkHome")
-    public void deleteConnectionTest() throws Exception {
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
-        myConnectionsPageNew.getConnectionByName(oobConnection).isDisplayed();
-
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-
-        myConnectionsPageNew.getConnectionByName(oobConnection).isDisplayed();
-        myConnectionsPageNew.getConnectionByName(oobConnection).click();
-
-        AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
-        connectionHistoryPageNew.threeDotsButton.click();
-        connectionDetailPageNew.deleteButton.isDisplayed();
-        connectionDetailPageNew.deleteButton.click();
-        Assert.assertNull(myConnectionsPageNew.getConnectionByName(oobConnection));
-    }
-
     /*
     TODO: investingate why these tests fail only in deivcefarm
     @Test(dependsOnMethods = "deleteConnectionTest")
@@ -102,7 +82,7 @@ public class UpgradePathTest extends IntSetup {
     }
     */
 
-    @Test(dependsOnMethods = "deleteConnectionTest")
+    @Test(dependsOnMethods = "checkHome")
     public void acceptCredentialFromHome() throws Exception {
         String DID = context.getValue("DID");
         String credentialName = Helpers.randomString();
@@ -114,6 +94,10 @@ public class UpgradePathTest extends IntSetup {
 
         System.out.println("Credential name: " + credentialName);
         context.setValue("credentialName", credentialName);
+
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.homeButton.isDisplayed();
+        menuPageNew.homeButton.click();
 
         AppUtils.DoSomethingEventually(
             () -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), test.java.utility.Constants.values, credentialName)
@@ -190,7 +174,7 @@ public class UpgradePathTest extends IntSetup {
         AppUtils.DoSomethingEventually(() -> VAS.askQuestion(DID, text, detail, oneOption));
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
 
-        objAppUtlis.findParameterizedElement(connectionInvitation).isDisplayed();
+        objAppUtlis.findParameterizedElement(oobConnection).isDisplayed();
         objAppUtlis.findParameterizedElement(detail).isDisplayed();
 
         for (String validResponse : oneOption) {
@@ -200,6 +184,27 @@ public class UpgradePathTest extends IntSetup {
         String answer = oneOption.get(0);
         objAppUtlis.findParameterizedElement(answer).click();
         homePageNew.questionRespondedEvent(answer).isDisplayed();
+    }
+
+    @Test(dependsOnMethods = "answerQuestionWithOneOptionFromHome")
+    public void deleteConnectionTest() throws Exception {
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.myConnectionsButton.click();
+        Thread.sleep(1000);
+        myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
+        myConnectionsPageNew.getConnectionByName(oobConnection).isDisplayed();
+
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.myConnectionsButton.click();
+
+        myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
+        myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
+
+        AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
+        connectionHistoryPageNew.threeDotsButton.click();
+        connectionDetailPageNew.deleteButton.isDisplayed();
+        connectionDetailPageNew.deleteButton.click();
+        Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
     }
 
     @AfterClass
