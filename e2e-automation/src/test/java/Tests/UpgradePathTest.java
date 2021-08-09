@@ -39,49 +39,6 @@ public class UpgradePathTest extends IntSetup {
         homePageNew.checkHome();
     }
 
-    /*
-    TODO: investingate why these tests fail only in deivcefarm
-    @Test(dependsOnMethods = "deleteConnectionTest")
-    public void rejectConnectionTest() throws Exception {
-
-        driverBrowser = BrowserDriver.getDriver();
-        AppUtils.DoSomethingEventually(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), connectionInvitation)
-        );
-
-        objConnectionModules.acceptPushNotificationRequest(driverApp);
-        AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
-        objConnectionModules.rejectConnectionInvitation(driverApp);
-    }
-
-    @Test(dependsOnMethods = "deleteConnectionTest")
-    public void setUpConnectionTest() throws Exception {
-        driverBrowser = BrowserDriver.getDriver();
-
-        AppUtils.DoSomethingEventually(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, newConnectionName, connectionInvitation)
-        );
-        AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
-        objConnectionModules.acceptConnectionInvitation(driverApp);
-        AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(newConnectionName));
-    }
-
-    @Test(dependsOnMethods = "setUpConnectionTest")
-    public void validateMyConnectionRecordAppeared() throws Exception {
-        passCodePageNew.openApp();
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        Thread.sleep(1000);
-        myConnectionsPageNew.getConnectionByName(newConnectionName).isDisplayed();
-        myConnectionsPageNew.getConnectionByName(newConnectionName).click();
-        connectionHistoryPageNew.connectionLogo.isDisplayed();
-        connectionHistoryPageNew.backButton.click();
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.homeButton.isDisplayed();
-        menuPageNew.homeButton.click();
-    }
-    */
-
     @Test(dependsOnMethods = "checkHome")
     public void acceptCredentialFromHome() throws Exception {
         String DID = context.getValue("DID");
@@ -173,7 +130,6 @@ public class UpgradePathTest extends IntSetup {
 
         AppUtils.DoSomethingEventually(() -> VAS.askQuestion(DID, text, detail, oneOption));
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
-
         objAppUtlis.findParameterizedElement(oobConnection).isDisplayed();
         objAppUtlis.findParameterizedElement(detail).isDisplayed();
 
@@ -206,6 +162,49 @@ public class UpgradePathTest extends IntSetup {
         connectionDetailPageNew.deleteButton.click();
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
     }
+    
+    /*
+    TODO: investingate why these tests fail only in deivcefarm
+    @Test(dependsOnMethods = "deleteConnectionTest")
+    public void rejectConnectionTest() throws Exception {
+
+        driverBrowser = BrowserDriver.getDriver();
+        AppUtils.DoSomethingEventually(
+            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), connectionInvitation)
+        );
+
+        objConnectionModules.acceptPushNotificationRequest(driverApp);
+        AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
+        objConnectionModules.rejectConnectionInvitation(driverApp);
+    }
+
+    @Test(dependsOnMethods = "deleteConnectionTest")
+    public void setUpConnectionTest() throws Exception {
+        driverBrowser = BrowserDriver.getDriver();
+
+        AppUtils.DoSomethingEventually(
+            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, newConnectionName, connectionInvitation)
+        );
+        AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
+        objConnectionModules.acceptConnectionInvitation(driverApp);
+        AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(newConnectionName));
+    }
+
+    @Test(dependsOnMethods = "setUpConnectionTest")
+    public void validateMyConnectionRecordAppeared() throws Exception {
+        passCodePageNew.openApp();
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.myConnectionsButton.click();
+        Thread.sleep(1000);
+        myConnectionsPageNew.getConnectionByName(newConnectionName).isDisplayed();
+        myConnectionsPageNew.getConnectionByName(newConnectionName).click();
+        connectionHistoryPageNew.connectionLogo.isDisplayed();
+        connectionHistoryPageNew.backButton.click();
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.homeButton.isDisplayed();
+        menuPageNew.homeButton.click();
+    }
+    */
 
     @AfterClass
     public void AfterClass() {
