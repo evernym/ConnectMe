@@ -22,6 +22,11 @@ if [ "$isMR" = true ] ; then
     sed -i -e '10,15d' src/test/resources/testng.xml
 fi
 
+if [ "$isMR" = upgradePath ]; then
+    # upgrade path logic
+    cp -R "src/test/resources/testng-upgrade-path.xml" "src/test/resources/testng.xml"
+fi
+
 # setup VAS server
 if [[ -v $ngrokToken ]] ; then
     ngrok authtoken $ngrokToken
@@ -31,6 +36,10 @@ sleep 5
 VAS_ENDPOINT=`curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url`
 sed -ri "s|VAS_Server_Link = \".*\"|VAS_Server_Link = \"${VAS_ENDPOINT}\"|" ${TESTS_CONFIG_PATH}
 python appium-launcher/vas-server.py &
+
+# injecting AC token
+AC_TOKEN="$AC_TOKEN"
+sed -ri "s|ACtoken = \".*\"|ACtoken = \"${AC_TOKEN}\"|" ${TESTS_CONFIG_PATH}
 
 # run Appium tests
 sed -ri "s|Device_Type = \".*\"|Device_Type = \"${device_type}\"|" ${TESTS_CONFIG_PATH}

@@ -10,6 +10,7 @@ stages:
   - devicefarm-test-next
   - devicefarm-test-final
   - upload
+  - devicefarm-test-upgrade-path
 
 ### - Pre-build - ###
 # Helpers / Anchors
@@ -208,6 +209,12 @@ build-android-e2e-testing:
   only:
     refs:
       - e2e-testing@evernym/mobile/connectme
+
+# build-ios-2930:
+#    extends: .build-ios
+#    only:
+#        refs:
+#            - feature/CM-2930@evernym/mobile/connectme
 
 build-android-merge-request:
   extends: .build-android

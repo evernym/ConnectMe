@@ -35,6 +35,9 @@ public class Config {
 	public static final String EmailList = "vladimir.shishkin@evernym.com";
 	public static final String ConnectMe_App_Link = "https://connectme.app.link/?t=";
 
+
+    public static final String ACtoken = "";
+    public static final String RCVersion = "1.6.2";
 	/*
 	* VAS settings
 	* */
@@ -58,4 +61,5 @@ public class Config {
 	public static final String DEVTEAM1_VERITY_URL = "https://vas-team1.pdev.evernym.com/api/";
 	public static final String DEVTEAM1_VERITY_DOMAIN_DID = "XNRkA8tboikwHD3x1Yh7Uz";
 	public static final String DEVTEAM1_VERITY_API_KEY = "HZ3Ak6pj9ryFASKbA9fpwqjVh42F35UDiCLQ13J58Xoh:4Wf6JtGy9enwwXVKcUgADPq7Pnf9T2YZ8LupMEVxcQQf98uuRYxWGHLAwXWp8DtaEYHo4cUeExDjApMfvLJQ48Kp";
+
 }
