@@ -156,7 +156,8 @@ public class VASApi {
 				new JSONObject()
 						.put("@id", UUID4())
 						.put("@type", "did:sov:123456789abcdefghi1234;spec/relationship/1.0/create")
-						.put("label", label);
+						.put("label", label)
+                        .put("logoUrl", "https://www.gstatic.com/webp/gallery/3.sm.jpg");
 
 		String thread = UUID4();
 		String path = "/relationship/1.0/" + thread;

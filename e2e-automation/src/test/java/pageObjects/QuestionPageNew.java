@@ -32,9 +32,9 @@ public class QuestionPageNew {
   @iOSXCUITFindBy(accessibility = "question-action-submit")
   public WebElement submitButton;
 
-  @AndroidFindBy(xpath = "//*[@text=\"How much?\"]")
-  @iOSXCUITFindBy(accessibility = "How much?")
-  public WebElement questionText;
+  @AndroidFindBy(xpath = "//*[@name='question-title'")
+  @iOSXCUITFindBy(accessibility = "question-title")
+  public WebElement questionTitle;
 
   public WebElement answerOption(String option) {
     if (test.java.utility.Config.iOS_Devices.contains(test.java.utility.Config.Device_Type)) {
