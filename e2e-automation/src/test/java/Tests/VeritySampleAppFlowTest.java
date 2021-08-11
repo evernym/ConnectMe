@@ -44,7 +44,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     // accept credential
     AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
-    String credentialName = "Degree";
+    String credentialName = "Diploma"; // credential shows schema name now
     AppUtilsInstance.acceptCredential();
 
     // share proof
