@@ -31,11 +31,15 @@ public class VeritySampleAppFlowTest extends IntSetup {
   public void verityFlowTest() throws Exception {
     // establish connection
     driverBrowser = BrowserDriver.getDriver();
-    driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink());
-    passCodePageNew.passCodeTitle.isDisplayed();
-    passCodePageNew.enterPassCode();
-    invitationPageNew.title.isDisplayed();
-    invitationPageNew.connectButton.click();
+
+    for (int i = 0; i < 3; i++) {
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink());
+      passCodePageNew.passCodeTitle.isDisplayed();
+      passCodePageNew.enterPassCode();
+      invitationPageNew.title.isDisplayed();
+      invitationPageNew.connectButton.click();
+      Thread.sleep(15000);
+    }
 
     // answer question
     AppUtils.waitForElementNew(driverApp, questionPageNew.header);
