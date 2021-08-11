@@ -22,13 +22,11 @@ import java.util.concurrent.TimeUnit;
 
 public class PushNotificationTest extends IntSetup {
     private AppUtils objAppUtlis = new AppUtils();
-    private ConnectionModules objConnectionModules = new ConnectionModules();
-
     private VASApi VAS = VASApi.getInstance();
     private LocalContext context = LocalContext.getInstance();
 
-    String connectionName = "push-connection-invitation-" + Helpers.randomString();
-    String invitationType = "connection-invitation";
+    String connectionName;
+    String DID;
     final String appBackgroundLocked = "background + locked";
     final String appBackground = "background";
 
@@ -43,18 +41,9 @@ public class PushNotificationTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         System.out.println("Push Notification Test Suite has been started!");
-        driverBrowser = BrowserDriver.getDriver();
 
-        if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
-            return;
-
-        AppUtils.DoSomethingEventually(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
-            () -> objConnectionModules.acceptConnectionInvitation(driverApp)
-        );
-        context.setValue("connectionName", connectionName);
-
-        AppUtils.waitForElementNew(driverApp, homePageNew.namedConnectionEvent(connectionName));
+        connectionName = context.getValue("connectionName");
+        DID = context.getValue("DID");
     }
 
 
@@ -80,7 +69,7 @@ public class PushNotificationTest extends IntSetup {
                 break;
         }
 
-        VAS.sendCredentialOffer(context.getValue("DID"), "PMzJsfuq4YYPAKHLSrdP4Q:3:CL:185320:tag", Constants.values, credentialName);
+        VAS.sendCredentialOffer(DID, "PMzJsfuq4YYPAKHLSrdP4Q:3:CL:185320:tag", Constants.values, credentialName);
 
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
 
@@ -137,7 +126,7 @@ public class PushNotificationTest extends IntSetup {
 
         String proofName = Helpers.randomString();
 
-        VAS.requestProof(context.getValue("DID"), proofName, requestedAttributes, null);
+        VAS.requestProof(DID, proofName, requestedAttributes, null);
 
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
 
@@ -174,7 +163,6 @@ public class PushNotificationTest extends IntSetup {
         String text = "How much?";
         String detail = "How much do you want";
         List<String> option = Arrays.asList(Helpers.randomString());
-        String DID = context.getValue("DID");
 
         switch (appState) {
             case appBackgroundLocked:
@@ -217,7 +205,7 @@ public class PushNotificationTest extends IntSetup {
 
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
         questionPageNew.senderLogo.isDisplayed();
-        objAppUtlis.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
+        objAppUtlis.findParameterizedElement(connectionName).isDisplayed();
         objAppUtlis.findParameterizedElement(text).isDisplayed();
         objAppUtlis.findParameterizedElement(detail).isDisplayed();
     }

@@ -4,30 +4,35 @@ import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-import test.java.utility.IntSetup;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
-import test.java.utility.Helpers;
-import test.java.utility.BrowserDriver;
 import test.java.utility.Config;
+import test.java.utility.Helpers;
+import test.java.utility.IntSetup;
+import test.java.utility.LocalContext;
+import test.java.funcModules.ConnectionModules;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class UpgradePathTest extends IntSetup {
-    private test.java.funcModules.ConnectionModules objConnectionModules = new test.java.funcModules.ConnectionModules();
-    private test.java.utility.LocalContext context = test.java.utility.LocalContext.getInstance();
+    private ConnectionModules objConnectionModules = new ConnectionModules();
+    private LocalContext context = LocalContext.getInstance();
 
     private final String connectionInvitation = "connection-invitation";
     private final String oobConnection = "out-of-band-invitation";
     private VASApi VAS;
     private AppUtils objAppUtlis;
+    String DID;
+    String connectionName;
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
+        DID = context.getValue("DID");
+        connectionName = context.getValue("connectionName");
+
         VAS = VASApi.getInstance();
         objAppUtlis = new AppUtils();
 
@@ -41,7 +46,6 @@ public class UpgradePathTest extends IntSetup {
 
     @Test(dependsOnMethods = "checkHome")
     public void acceptCredentialFromHome() throws Exception {
-        String DID = context.getValue("DID");
         String credentialName = Helpers.randomString();
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
             context.setValue("credDefId", "WPz8oRna9NGVyhK29fTbKa:3:CL:201655:tag");
@@ -72,7 +76,6 @@ public class UpgradePathTest extends IntSetup {
     public void shareProofRequestContainingGroupedAttributes() throws Exception {
         String attribute1 = "FirstName";
         String attribute2 = "LastName";
-        String DID = context.getValue("DID");
 
         List<JSONObject> requestedAttributes = Arrays.asList(
             new JSONObject().put("names", Arrays.asList(attribute1, attribute2))
@@ -92,7 +95,6 @@ public class UpgradePathTest extends IntSetup {
 
     @Test(dependsOnMethods = "shareProofRequestContainingGroupedAttributes")
     public void deleteCredentialFromExistingConnection() {
-        String credentialName = context.getValue("credentialName");
         String schemeName = context.getValue("credentialNameScheme");
 
         homePageNew.tapOnBurgerMenu();
@@ -100,8 +102,8 @@ public class UpgradePathTest extends IntSetup {
 
         int credsCountBefore = 0;
         try {
-            objAppUtlis.findParameterizedElementAlt(schemeName).click();
             credsCountBefore = 1;
+            objAppUtlis.findParameterizedElementAlt(schemeName).click();
             Thread.sleep(1000);
             if (AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton))
                 throw new NoSuchElementException();
@@ -119,7 +121,6 @@ public class UpgradePathTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
     public void answerQuestionWithOneOptionFromHome() throws Exception {
-        String DID = context.getValue("DID");
         List<String> oneOption = Arrays.asList(Helpers.randomString());
         String text = "How much?";
         String detail = "How much do you want";
@@ -162,7 +163,7 @@ public class UpgradePathTest extends IntSetup {
         connectionDetailPageNew.deleteButton.click();
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
     }
-    
+
     /*
     TODO: investingate why these tests fail only in deivcefarm
     @Test(dependsOnMethods = "deleteConnectionTest")

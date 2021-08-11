@@ -32,7 +32,7 @@ public class QuestionPageNew {
   @iOSXCUITFindBy(accessibility = "question-action-submit")
   public WebElement submitButton;
 
-  @AndroidFindBy(xpath = "//*[@name='question-title'")
+  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='question-sender-logo']")
   @iOSXCUITFindBy(accessibility = "question-title")
   public WebElement questionTitle;
 
