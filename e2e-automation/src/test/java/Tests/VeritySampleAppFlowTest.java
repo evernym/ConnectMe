@@ -48,8 +48,11 @@ public class VeritySampleAppFlowTest extends IntSetup {
     passCodePageNew.openApp();
 
     // answer question
-//    AppUtils.waitForElementNew(driverApp, questionPageNew.header);
-    homePageNew.newMessage.click();
+    try {
+      homePageNew.newMessage.click();
+    } catch (Exception e) {
+      AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+    }
     String answer = "Great!";
     AppUtilsInstance.findParameterizedElement(answer).click();
 
