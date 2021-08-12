@@ -39,7 +39,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       invitationPageNew.title.isDisplayed();
       invitationPageNew.connectButton.click();
 
-      Thread.sleep(30000);
+      Thread.sleep(15000);
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
@@ -48,7 +48,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
     passCodePageNew.openApp();
 
     // answer question
-    AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+//    AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+    homePageNew.newMessage.click();
     String answer = "Great!";
     AppUtilsInstance.findParameterizedElement(answer).click();
 
