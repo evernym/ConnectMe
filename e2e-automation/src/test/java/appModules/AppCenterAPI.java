@@ -33,7 +33,7 @@ public class AppCenterAPI {
                 RestAssured.baseURI = "https://api.appcenter.ms/v0.1/apps/Evernym-Inc/QA-MeConnect-Android/releases/filter_by_tester?published_only=true";
                 break;
             case iOS:
-                RestAssured.baseURI = "https://api.appcenter.ms/v0.1/apps/build-zg6l/QA-ConnectMe/releases/releases/filter_by_tester?published_only=true";
+                RestAssured.baseURI = "https://api.appcenter.ms/v0.1/apps/build-zg6l/QA-ConnectMe/releases";
                 break;
         }
 
