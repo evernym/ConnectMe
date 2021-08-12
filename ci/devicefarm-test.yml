@@ -180,9 +180,9 @@ devicefarm-test-upgrade-path-ios:
         - build-ios-3015
     only:
         refs:
-            - main@evernym/mobile/connectme
+            - feature/CM-3015@evernym/mobile/connectme
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath
 
 # CM-2930
 # devicefarm-test-upgrade-path-ios:
