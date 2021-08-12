@@ -173,7 +173,7 @@ devicefarm-test-upgrade-path-android:
 
 devicefarm-test-upgrade-path-ios:
     stage: devicefarm-test-upgrade-path
-    extends: .devicefarm-test-launch-android
+    extends: .devicefarm-test-launch-ios
     dependencies:
         #- build-ios-master
         #- upload-ios
