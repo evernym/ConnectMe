@@ -36,7 +36,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i));
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      if (i != 2) {
+      if (i != 1) {
         invitationPageNew.title.isDisplayed();
         invitationPageNew.connectButton.click();
       }
