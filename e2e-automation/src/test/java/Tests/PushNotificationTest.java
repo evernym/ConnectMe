@@ -44,6 +44,7 @@ public class PushNotificationTest extends IntSetup {
 
         connectionName = context.getValue("connectionName");
         DID = context.getValue("DID");
+        passCodePageNew.openApp();
     }
 
 
@@ -56,7 +57,7 @@ public class PushNotificationTest extends IntSetup {
 
         switch (appState) {
             case appBackgroundLocked:
-                driverBrowser.runAppInBackground(Duration.ofSeconds(-1));
+                driverApp.runAppInBackground(Duration.ofSeconds(-1));
                 try {
                     ((AndroidDriver) driverApp).lockDevice();
                 } catch (WebDriverException e) {
@@ -65,7 +66,7 @@ public class PushNotificationTest extends IntSetup {
                 }
                 break;
             case appBackground:
-                driverBrowser.runAppInBackground(Duration.ofSeconds(-1));
+                driverApp.runAppInBackground(Duration.ofSeconds(-1));
                 break;
         }
 
@@ -107,7 +108,7 @@ public class PushNotificationTest extends IntSetup {
 
         switch (appState) {
             case appBackgroundLocked:
-                driverBrowser.runAppInBackground(Duration.ofSeconds(-1));
+                driverApp.runAppInBackground(Duration.ofSeconds(-1));
                 try {
                     ((AndroidDriver) driverApp).lockDevice();
                 } catch (WebDriverException e) {
@@ -116,7 +117,7 @@ public class PushNotificationTest extends IntSetup {
                 }
                 break;
             case appBackground:
-                driverBrowser.runAppInBackground(Duration.ofSeconds(-1));
+                driverApp.runAppInBackground(Duration.ofSeconds(-1));
                 break;
         }
 
@@ -166,7 +167,7 @@ public class PushNotificationTest extends IntSetup {
 
         switch (appState) {
             case appBackgroundLocked:
-                driverBrowser.runAppInBackground(Duration.ofSeconds(-1));
+                driverApp.runAppInBackground(Duration.ofSeconds(-1));
                 try {
                     ((AndroidDriver) driverApp).lockDevice();
                 } catch (WebDriverException e) {
@@ -175,7 +176,7 @@ public class PushNotificationTest extends IntSetup {
                 }
                 break;
             case appBackground:
-                driverBrowser.runAppInBackground(Duration.ofSeconds(-1));
+                driverApp.runAppInBackground(Duration.ofSeconds(-1));
                 break;
         }
 
@@ -212,7 +213,6 @@ public class PushNotificationTest extends IntSetup {
 
     @AfterClass
     public void AfterClass() {
-        BrowserDriver.closeApp();
         driverApp.closeApp();
         System.out.println("Push Notification Test Suite has been finished!");
     }
