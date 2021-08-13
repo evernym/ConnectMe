@@ -19,8 +19,8 @@ public class QuestionTest extends IntSetup {
     private VASApi VAS;
     private String DID;
     private String connectionName;
-    private String text = "How much?";
-    private String detail = "How much do you want";
+    private String questionTitle = "How much?";
+    private String questionText = "How much do you want";
     private List<String> oneOption = Arrays.asList(Helpers.randomString());
     private List<String> twoOptions = Arrays.asList(Helpers.randomString(), Helpers.randomString());
     private List<String> threeOptions = Arrays.asList(Helpers.randomString(), Helpers.randomString(), Helpers.randomString());
@@ -35,7 +35,7 @@ public class QuestionTest extends IntSetup {
 
     private void answerQuestionFromHome(List<String> validResponses) throws Exception {
         AppUtils.DoSomethingEventually(
-            () -> VAS.askQuestion(DID, text, detail, validResponses)
+            () -> VAS.askQuestion(DID, questionTitle, questionText, validResponses)
         );
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
         validateQuestionWindow(validResponses);
@@ -53,12 +53,13 @@ public class QuestionTest extends IntSetup {
 
     private void validateQuestionWindow(List<String> validResponses) throws Exception {
         questionPageNew.senderLogo.isDisplayed();
-        objAppUtlis.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
-        questionPageNew.questionText.isDisplayed();
-        objAppUtlis.findParameterizedElement(detail).isDisplayed();
+        objAppUtlis.findParameterizedElementAlt(connectionName).isDisplayed();
+
+        questionPageNew.questionTitle.isDisplayed();
+        objAppUtlis.findParameterizedElementAlt(questionText).isDisplayed();
 
         for (String validResponse : validResponses) {
-            objAppUtlis.findParameterizedElement(validResponse).isDisplayed();
+            objAppUtlis.findParameterizedElementAlt(validResponse).isDisplayed();
         }
     }
 
