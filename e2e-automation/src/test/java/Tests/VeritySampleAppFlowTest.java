@@ -29,7 +29,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
   @Test
   public void verityFlowTest() throws Exception {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
       // establish connection
       driverBrowser = BrowserDriver.getDriver();
 
