@@ -20,6 +20,10 @@ public class Helpers {
 		return UUID.randomUUID().toString().replace("-", "");
 	}
 
+	public static List<String> oneAttributes() {
+		return Arrays.asList("Age");
+	}
+
 	public static List<String> twoAttributes() {
 		return Arrays.asList("Label", "Attachment_link");
 	}

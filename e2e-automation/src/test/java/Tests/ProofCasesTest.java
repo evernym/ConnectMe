@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
+import test.java.appModules.AcaPyApi;
 import test.java.utility.Helpers;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
@@ -23,6 +24,7 @@ public class ProofCasesTest extends IntSetup {
     private LocalContext context = LocalContext.getInstance();
 
     private VASApi VAS;
+    private AcaPyApi ACAPY;
     private String DID;
     private String issuerDID = (Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid")) ? Config.DEMO_VERITY_ISSUER_DID_ANDROID : Config.DEMO_VERITY_ISSUER_DID_IOS;
 
@@ -308,6 +310,42 @@ public class ProofCasesTest extends IntSetup {
 
         AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
     }
+
+    @Test
+    public void shareProofRequestFromAcaPy() throws Exception {
+        /*
+         * Proof request contains grouped attributes which must be filled from the same credential
+         * {"names": ["FirstName", "LastName"]},
+         * */
+        String attribute1 = "Age";
+
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject().put("names", Arrays.asList(attribute1))
+        );
+        String proofName = Helpers.randomString();
+
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject()
+                .put("name", "age")
+                .put("p_type", ">=")
+                .put("p_value": 18)
+                .put("restrictions", Arrays.asList(
+                    new JSONObject().put("schema_name", context.getValue("schemaId"))
+                ))
+        );
+        AppUtils.DoSomethingEventually(
+            () -> ACAPY.requestProof(context.getValue("connectionId"), proofName, requestedAttributes)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+
+        objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
+        objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
+
+        objAppUtlis.shareProof();
+
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
+
 
     @AfterClass
     public void AfterClass() {

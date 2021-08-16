@@ -14,6 +14,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
+import test.java.appModules.AcaPyApi;
 import test.java.utility.Config;
 import test.java.utility.AppDriver;
 import test.java.utility.LocalContext;
@@ -141,6 +142,19 @@ public class ConnectionModules extends IntSetup {
 
         String inviteURL = invitation.getString("inviteURL");
         context.setValue(invitationType, Config.ConnectMe_App_Link + inviteURL); // save link for redirection cases
+
+        openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
+    }
+
+    public void getConnectionInvitationFromAcaPyApi(AppiumDriver driverBrowser, AppiumDriver driverApp, String label, String invitationType) throws Exception {
+        AcaPyApi ACAPY = AcaPyApi.getInstance();
+        LocalContext context = LocalContext.getInstance();
+
+        JSONObject invite = ACAPY.createConnectionInvitation();
+        String inviteURL = invite.getString("invitation_url");
+        String connectionId = invite.getString("connection_id");
+
+        context.setValue("connectionId", connectionId);
 
         openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
     }
