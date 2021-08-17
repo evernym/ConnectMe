@@ -52,7 +52,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
-    String[] answers = new String[] { "Ok!", "Great!" };
+    String[] answers = new String[] { "Ok!", "Great!", "Awful..." };
     for (String answer: answers) {
       // answer question
       try {
@@ -60,7 +60,12 @@ public class VeritySampleAppFlowTest extends IntSetup {
       } catch (Exception e) {
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
       }
-      AppUtilsInstance.findParameterizedElement(answer).click();
+      if (answer.equals("Awful...")) {
+        questionPageNew.answerOption(answer).click();
+        questionPageNew.submitButton.click();
+      } else {
+        AppUtilsInstance.findParameterizedElement(answer).click();
+      }
     }
 
     // accept credential
