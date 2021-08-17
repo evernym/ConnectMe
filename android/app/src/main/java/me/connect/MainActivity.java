@@ -16,6 +16,7 @@ import org.devio.rn.splashscreen.SplashScreen;
 import io.branch.rnbranch.*;
 import com.evernym.sdk.reactnative.rnindy.LogFileObserver;
 import com.evernym.sdk.reactnative.rnindy.RNIndyStaticData;
+import com.mastercard.dis.mids.base.verification.enrollment.MIDSEnrollmentManager;
 
 import android.content.Intent;
 
