@@ -36,7 +36,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i));
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      if (i == 1) { // connection reuse case
+      if (i == 1 || i == 3) { // connection reuse case: 1 - oob, 3 - ci
         homePageNew.homeHeader.isDisplayed();
       }
       else {
