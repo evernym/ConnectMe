@@ -18,7 +18,6 @@ import test.java.utility.BrowserDriver;
  */
 public class ConnectionTest extends IntSetup {
     private ConnectionModules objConnectionModules = new ConnectionModules();
-
     private LocalContext context = LocalContext.getInstance();
 
     private String connectionName;
@@ -79,35 +78,6 @@ public class ConnectionTest extends IntSetup {
         } catch (Exception e) {
             System.exit(1); // don't run other tests if this fails
         }
-
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
-    }
-    
-    @Test(dataProvider = "data1")
-    public void acaPyRejectConnectionTest(String invitationType) throws Exception {
-        driverBrowser = BrowserDriver.getDriver();
-
-        AppUtils.DoSomethingEventuallyNew(
-            () -> objConnectionModules.getConnectionInvitationFromAcaPyApi(driverBrowser, driverApp, Helpers.randomString(), invitationType),
-            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
-            () -> objConnectionModules.rejectConnectionInvitation(driverApp)
-        );
-
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
-    }
-
-    @Test(dataProvider = "data1", dependsOnMethods = "acaPyRejectConnectionTest")
-    public void acaPySetUpConnectionTest(String invitationType) throws Exception {
-        driverBrowser = BrowserDriver.getDriver();
-
-        AppUtils.DoSomethingEventuallyNew(
-            () -> objConnectionModules.getConnectionInvitationFromAcaPyApi(driverBrowser, driverApp, Helpers.randomString(), invitationType),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
-            () -> objConnectionModules.acceptConnectionInvitation(driverApp)
-        );
 
         Thread.sleep(1000);
         BrowserDriver.closeApp();

@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
-import test.java.appModules.AcaPyApi;
 import test.java.funcModules.ConnectionModules;
 
 import test.java.utility.LocalContext;
@@ -31,9 +30,7 @@ public class CredentialTest extends IntSetup {
     private String connectionName;
     private String schemeName;
     private VASApi VAS;
-    private AcaPyApi ACAPY;
 
-    private List<String> attrs1 = Helpers.oneAttributes();
     private List<String> attrs4 = Helpers.fourAttributes();
     //	private List<String> attrs2 = Helpers.twoAttributes();
     private List<String> attrsAll = Helpers.allAttachmentsAttributes();
@@ -49,8 +46,6 @@ public class CredentialTest extends IntSetup {
 //			new Tuple(credentialNameAttachment, attrs2, "schemaIdAttachment", "credDefIdAttachment")
         new Tuple(credentialNameAttachment, attrsAll, "schemaIdAll", "credDefIdAll")
     };
-
-    private Tuple acaPyParametersList = new Tuple(credentialName, attrs1, "schema_id", "credDefId");
 
     private void validateCredentialView(String header, String title, String name, JSONObject values) throws Exception {
         if (AppUtils.isElementAbsent(driverApp, () -> objAppUtlis.findParameterizedElementAlt(header))) {
@@ -122,37 +117,6 @@ public class CredentialTest extends IntSetup {
         }
     }
 
-     private void acaPyCreateSchemaAndCredDef(String credentialName, List<String> attributes) throws Exception {
-        JSONObject schemaResponse;
-        String schemaId;
-        JSONObject credDefResponse;
-        String credDefId;
-
-        // create schema
-        try {
-            schemaResponse = ACAPY.createSchema(credentialName, "1.0", attributes);
-            schemaId = schemaResponse.getString("schema_id");
-            context.setValue("schemaId", schemaId)
-        } catch (Exception ex) {
-            schemaResponse = ACAPY.createSchema(credentialName, "1.0", attributes);
-            schemaId = schemaResponse.getString("schema_id");
-            context.setValue("schemaId", schemaId)
-        }
-
-        // create cred def
-        try {
-            credDefResponse = ACAPY.createCredentialDef(schemaResponse.getString("schema_id"));
-            credDefId = credDefResponse.getString("credential_definition_id");
-            context.setValue("credentialDefinitionId", credDefId)
-
-        } catch (Exception ex) {
-            credDefResponse = ACAPY.createCredentialDef(schemaResponse.getString("schema_id"));
-            credDefId = credDefResponse.getString("credential_definition_id");
-            context.setValue("credentialDefinitionId", credDefId)
-
-        }
-    }
-
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         DID = context.getValue("DID");
@@ -162,7 +126,6 @@ public class CredentialTest extends IntSetup {
 
         passCodePageNew.openApp();
         VAS = VASApi.getInstance();
-        ACAPY = AcaPyApi.getInstance();
 
 //		// create new schemas and cred defs
 //		for (Tuple parameters: parametersList) {
@@ -173,14 +136,6 @@ public class CredentialTest extends IntSetup {
 //				createSchemaAndCredDef(parameters.a, parameters.b, parameters.c, parameters.d);
 //			}
 //		}
-//
-//        // create new schemas and cred defs
-//        try {
-//            acaPyCreateSchemaAndCredDef(acaPyParametersList.a, acaPyParametersList.b);
-//        } catch (Exception ex) {
-//            System.err.println(ex.toString());
-//            acaPyCreateSchemaAndCredDef(acaPyParametersList.a, acaPyParametersList.b);
-//        }
 
         // use existing ones
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
@@ -211,25 +166,6 @@ public class CredentialTest extends IntSetup {
     public void acceptCredentialFromHome() throws Exception {
         AppUtils.DoSomethingEventually(
             () -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName)
-        );
-
-        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
-        schemeName = credentialPageNew.credentialSchemeName.getText();
-        context.setValue("credentialNameScheme", schemeName);
-
-		validateCredentialView("Credential Offer", "Issued by", schemeName, Constants.values);
-        objAppUtlis.acceptCredential();
-
-        homePageNew.recentEventsSection.isDisplayed();
-		homePageNew.credentialIssuedEvent(schemeName).isDisplayed();
-
-        AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
-    }
-
-    @Test
-    public void acaPyAcceptCredentialFromHome() throws Exception {
-        AppUtils.DoSomethingEventually(
-            () -> ACAPY.sendCredentialOffer(context.getValue("connectionId"), context.getValue("credentialDefinitionId"), Constants.values, credentialName)
         );
 
         AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2

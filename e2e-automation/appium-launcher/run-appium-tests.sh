@@ -1,31 +1,31 @@
 #!/bin/bash
 
-set -e
+#set -e
 
-if [ "$1" = "--help" ] ; then
-  echo "Usage: ./run-appium-tests.sh <app_file_path> <device_type=awsiOS/awsAndroid> <device=android_top5/galaxyS10/ios_top5/iphone11> <isMR=true/false>"
-  return
-fi
+#if [ "$1" = "--help" ] ; then
+#  echo "Usage: ./run-appium-tests.sh <app_file_path> <device_type=awsiOS/awsAndroid> <device=android_top5/galaxyS10/ios_top5/iphone11> <isMR=true/false>"
+#  return
+#fi
 
-app_file_path="$1"
-device_type="$2"
-device="$3"
-isMR="$4"
-ngrokToken="$5"
+#app_file_path="$1"
+#device_type="$2"
+#device="$3"
+#isMR="$4"
+#ngrokToken="$5"
 
-TESTS_CONFIG_PATH="src/test/java/utility/Config.java"
+#TESTS_CONFIG_PATH="src/test/java/utility/Config.java"
 
-cd e2e-automation
+#cd e2e-automation
 
-# update testng.xml - cut '10,15d' for MRs
-if [ "$isMR" = true ] ; then
-    sed -i -e '10,15d' src/test/resources/testng.xml
-fi
+## update testng.xml - cut '10,15d' for MRs
+#if [ "$isMR" = true ] ; then
+#    sed -i -e '10,15d' src/test/resources/testng.xml
+#fi
 
-if [ "$isMR" = upgradePath ]; then
-    # upgrade path logic
-    cp -R "src/test/resources/testng-upgrade-path.xml" "src/test/resources/testng.xml"
-fi
+#if [ "$isMR" = upgradePath ]; then
+#    # upgrade path logic
+#    cp -R "src/test/resources/testng-upgrade-path.xml" "src/test/resources/testng.xml"
+#fi
 
 # setup VAS server
 if [[ -v $ngrokToken ]] ; then

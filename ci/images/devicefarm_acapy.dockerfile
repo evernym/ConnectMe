@@ -9,9 +9,12 @@ RUN apt-get update \
    python3 \
    python3-pip
 
-RUN echo "Y" | apt-get install unzip
-RUN echo "Y" | apt-get install jq
+RUN apt-get update && apt-get install -y \
+  maven openjdk-8-jdk \
+  unzip \
+  jq
 
+##### Temporary solution
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN cat /etc/apt/sources.list.d/nodesource.list
 
@@ -19,25 +22,17 @@ RUN echo "Y" | apt -y install nodejs
 
 RUN npm install -g npm@latest
 RUN npm install -g localtunnel
+#####
 
 RUN pip3 install python3-indy \
-aries-cloudagent
+aries-cloudagent \
 
-# aca-py is in /usr/local/bin. The Backchannel is looking for it in ./bin, create a link to it in ./bin
-RUN mkdir -p ./bin
-RUN ln -s /usr/local/bin/aca-py ./bin/aca-py
-
-ENV RUNMODE=docker
-
-RUN ./bin/aca-py --version > ./acapy-version.txt
-
-ADD ngrok-wait.sh ./ngrok-wait.sh
-ADD ../e2e-automation/appium-launcher/index.js ./index.js
-ADD ../e2e-automation/appium-launcher/package.json ./package.json
+ADD e2e-automation/appium-launcher/requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
 # Install Ngrok
 RUN curl -O -s https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
     unzip ngrok-stable-linux-amd64.zip && \
     cp ngrok /usr/local/bin/.
 
-ENTRYPOINT [ "bash", "./ngrok-wait.sh" ]
+RUN pip3 install python3-indy aries-cloudagent
