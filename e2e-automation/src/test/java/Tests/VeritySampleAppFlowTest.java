@@ -44,7 +44,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         invitationPageNew.connectButton.click();
       }
 
-      Thread.sleep(20000);
+      Thread.sleep(30000);
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
@@ -52,14 +52,16 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
-    // answer question
-    try {
-      homePageNew.newMessage.click();
-    } catch (Exception e) {
-      AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+    String[] answers = new String[] { "Ok!", "Great!" };
+    for (String answer: answers) {
+      // answer question
+      try {
+        homePageNew.newMessage.click();
+      } catch (Exception e) {
+        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+      }
+      AppUtilsInstance.findParameterizedElement(answer).click();
     }
-    String answer = "Great!";
-    AppUtilsInstance.findParameterizedElement(answer).click();
 
     // accept credential
     AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
@@ -72,7 +74,9 @@ public class VeritySampleAppFlowTest extends IntSetup {
     AppUtilsInstance.shareProof();
 
     // check all events
-    homePageNew.questionRespondedEvent(answer).isDisplayed();
+    for (String answer: answers) {
+      homePageNew.questionRespondedEvent(answer).isDisplayed();
+    }
     AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(credentialName));
     AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
   }
