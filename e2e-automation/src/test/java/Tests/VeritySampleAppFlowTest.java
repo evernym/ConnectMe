@@ -12,6 +12,7 @@ import test.java.appModules.AppUtils;
 
 public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
+  private static final int connection_number = 5;
 
   @BeforeClass
   public void classSetup() {
@@ -29,14 +30,14 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
   @Test
   public void verityFlowTest() throws Exception {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < connection_number; i++) {
       // establish connection
       driverBrowser = BrowserDriver.getDriver();
 
       driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i));
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      if (i == 1) { // connection reuse case
+      if (i == 1 || i == 4) { // connection reuse cases
         homePageNew.homeHeader.isDisplayed();
       }
       else {
@@ -44,7 +45,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         invitationPageNew.connectButton.click();
       }
 
-      Thread.sleep(30000); // establishing connection on CM side
+      Thread.sleep(30000); // FIXME: establishing connection on CM side
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
