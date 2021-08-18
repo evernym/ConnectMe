@@ -15,7 +15,7 @@ import static test.java.utility.Helpers.UUID4;
 public class AcaPyApi {
   private static AcaPyApi instance;
 
-  private String ACA_PY_SERVER_ENDPOINT = "https://fresh-mayfly-89.loca.lt";
+  private String ACA_PY_SERVER_ENDPOINT = Config.ACA_PY_SERVER_ENDPOINT;
 
 	public static AcaPyApi getInstance() {
 		if (instance == null) {

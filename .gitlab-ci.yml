@@ -11,6 +11,7 @@ stages:
   - devicefarm-test-final
   - upload
   - devicefarm-test-upgrade-path
+  - devicefarm-test-acapy
 
 ### - Pre-build - ###
 # Helpers / Anchors
