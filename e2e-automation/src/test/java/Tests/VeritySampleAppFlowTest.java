@@ -41,7 +41,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       }
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      if (i == 1) { // oob reuse case
+      if (i == 1 || i == 4) { // reuse cases
         homePageNew.homeHeader.isDisplayed();
       } else {
         invitationPageNew.title.isDisplayed();
