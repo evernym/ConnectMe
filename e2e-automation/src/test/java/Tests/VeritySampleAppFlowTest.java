@@ -35,7 +35,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverBrowser = BrowserDriver.getDriver();
 
       if (i == 4) { // ci reuse case
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i - 1));
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i - 2));
       } else {
         driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i));
       }
