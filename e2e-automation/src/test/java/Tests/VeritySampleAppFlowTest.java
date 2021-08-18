@@ -41,9 +41,9 @@ public class VeritySampleAppFlowTest extends IntSetup {
       }
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      if (i == 1 || i == 4) { // reuse cases
+      try { // reuse cases
         homePageNew.homeHeader.isDisplayed();
-      } else {
+      } catch (Exception e) {
         invitationPageNew.title.isDisplayed();
         invitationPageNew.connectButton.click();
       }
