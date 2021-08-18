@@ -30,3 +30,5 @@ RUN pip3 install -r requirements.txt
 RUN curl -O -s https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
     unzip ngrok-stable-linux-amd64.zip && \
     cp ngrok /usr/local/bin/.
+
+RUN echo "Done"
