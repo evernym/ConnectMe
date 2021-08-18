@@ -60,7 +60,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       } catch (Exception e) {
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
       }
-      if (answer.equals("Awful...")) {
+      if (answer.equals("Awful")) {
         questionPageNew.answerOption(answer).click();
         questionPageNew.submitButton.click();
       } else {
