@@ -174,6 +174,15 @@ public class ConnectionModules extends IntSetup {
     return result.getString(index);
   }
 
+  public static String ensureGetInvitationLink(int index) throws InterruptedException {
+	  try {
+	    return getInvitationLink(index);
+    } catch (JSONException ex) {
+	    Thread.sleep(60000);
+      return getInvitationLink(index);
+    }
+  }
+
 	public void acceptPushNotificationRequest(AppiumDriver driverApp) {
 		if (Config.iOS_Devices.contains(Config.Device_Type)) {
 			try {

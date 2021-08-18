@@ -44,7 +44,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         invitationPageNew.connectButton.click();
       }
 
-      Thread.sleep(90000);
+      Thread.sleep(30000);
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
