@@ -34,13 +34,16 @@ public class VeritySampleAppFlowTest extends IntSetup {
       // establish connection
       driverBrowser = BrowserDriver.getDriver();
 
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i));
+      if (i == 4) { // ci reuse case
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i - 1));
+      } else {
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i));
+      }
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      if (i == 1 || i == 4) { // connection reuse cases
+      if (i == 1) { // oob reuse case
         homePageNew.homeHeader.isDisplayed();
-      }
-      else {
+      } else {
         invitationPageNew.title.isDisplayed();
         invitationPageNew.connectButton.click();
       }
