@@ -52,7 +52,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
-    String[] answers = new String[] { "Ok!", "Great!", "Awful..." };
+    String[] answers = new String[] { "Ok!", "Great!", "Awful" };
     for (String answer: answers) {
       // answer question
       try {
