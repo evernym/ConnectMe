@@ -44,7 +44,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         invitationPageNew.connectButton.click();
       }
 
-      Thread.sleep(30000);
+      Thread.sleep(30000); // establishing connection on CM side
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
@@ -52,7 +52,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
-    String[] answers = new String[] { "Ok!", "Great!", "Awful" };
+    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice" };
     for (String answer: answers) {
       // answer question
       try {
@@ -60,7 +60,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       } catch (Exception e) {
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
       }
-      if (answer.equals("Awful")) {
+      if (answer.equals("Awful") || answer.equals("Nice")) {
         questionPageNew.answerOption(answer).click();
         questionPageNew.submitButton.click();
       } else {
