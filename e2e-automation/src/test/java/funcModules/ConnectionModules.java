@@ -179,10 +179,10 @@ public class ConnectionModules extends IntSetup {
 	    return getInvitationLink(index);
     } catch (JSONException e) {
 	    try {
-        Thread.sleep(30000);
+        Thread.sleep(60000);
         return getInvitationLink(index);
       } catch (JSONException ex) {
-        Thread.sleep(60000);
+        Thread.sleep(120000);
         return getInvitationLink(index);
       }
     }
