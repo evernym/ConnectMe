@@ -177,9 +177,14 @@ public class ConnectionModules extends IntSetup {
   public static String ensureGetInvitationLink(int index) throws InterruptedException {
 	  try {
 	    return getInvitationLink(index);
-    } catch (JSONException ex) {
-	    Thread.sleep(60000);
-      return getInvitationLink(index);
+    } catch (JSONException e) {
+	    try {
+        Thread.sleep(30000);
+        return getInvitationLink(index);
+      } catch (JSONException ex) {
+        Thread.sleep(60000);
+        return getInvitationLink(index);
+      }
     }
   }
 

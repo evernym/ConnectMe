@@ -35,9 +35,9 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverBrowser = BrowserDriver.getDriver();
 
       if (i == 4) { // ci reuse case
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i - 2));
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(i - 2));
       } else {
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.getInvitationLink(i));
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(i));
       }
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
@@ -48,7 +48,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         invitationPageNew.connectButton.click();
       }
 
-      Thread.sleep(60000); // FIXME: establishing connection on CM side
+      Thread.sleep(30000); // FIXME: establishing connection on CM side
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
