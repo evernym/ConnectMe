@@ -64,6 +64,8 @@ if [ "$against" = "aca-py" ]; then
     ngrok http 8021 >> /dev/null &
     sleep 5
     ACAPY_ADMIN_ENDPOINT=`curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url`
+    echo "ACAPY_ADMIN_ENDPOINT"
+    echo "$ACAPY_ADMIN_ENDPOINT"
 
     # request specific endpoint
     lt --port 8020 --subdomain loud-dodo-84 >> /dev/null &
