@@ -49,7 +49,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         System.out.println("Connection #" + (i+1) + " was established!");
       }
 
-      Thread.sleep(60000); // FIXME: establishing connection on CM side
+      Thread.sleep(90000); // FIXME: establishing connection on CM side
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
