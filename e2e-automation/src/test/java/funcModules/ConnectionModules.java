@@ -146,7 +146,7 @@ public class ConnectionModules extends IntSetup {
         openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
     }
 
-    public void getConnectionInvitationFromAcaPyApi(AppiumDriver driverBrowser, AppiumDriver driverApp, String label, String invitationType) throws Exception {
+    public void getConnectionInvitationFromAcaPyApi(AppiumDriver driverBrowser, AppiumDriver driverApp, String label) throws Exception {
         AcaPyApi ACAPY = AcaPyApi.getInstance();
         LocalContext context = LocalContext.getInstance();
 
@@ -157,6 +157,8 @@ public class ConnectionModules extends IntSetup {
         context.setValue("connectionId", connectionId);
 
         openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
+
+        driverApp.context("NATIVE_APP");
     }
 
     public static String getInvitationLink() {
