@@ -71,6 +71,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
       } else {
         AppUtilsInstance.findParameterizedElement(answer).click();
       }
+
+      Thread.sleep(30000);
     }
 
     // accept credential
