@@ -12,7 +12,7 @@ import test.java.appModules.AppUtils;
 
 public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
-  private static final int connection_number = 5;
+  private static final int connection_number = 1; // 5
 
   @BeforeClass
   public void classSetup() {
