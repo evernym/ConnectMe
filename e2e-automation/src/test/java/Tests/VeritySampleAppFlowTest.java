@@ -41,12 +41,12 @@ public class VeritySampleAppFlowTest extends IntSetup {
       }
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      try { // reuse cases
-        homePageNew.homeHeader.isDisplayed();
-      } catch (Exception e) {
+      try {
         invitationPageNew.title.isDisplayed();
         invitationPageNew.connectButton.click();
         System.out.println("Connection #" + (i+1) + " was established!");
+      } catch (Exception e) { // reuse cases
+        homePageNew.homeHeader.isDisplayed();
       }
 
       Thread.sleep(60000); // FIXME: establishing connection on CM side
