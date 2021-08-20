@@ -43,17 +43,7 @@ if [ "$against" = "vas" ]; then
     sleep 5
     VAS_ENDPOINT=`curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url`
     sed -ri "s|VAS_Server_Link = \".*\"|VAS_Server_Link = \"${VAS_ENDPOINT}\"|" ${TESTS_CONFIG_PATH}
-    python appium-launcher/vas-server.py &
-
-    # update testng.xml - cut '10,15d' for MRs
-    if [ "$isMR" = true ] ; then
-        sed -i -e '10,15d' src/test/resources/testng.xml
-    fi
-
-    if [ "$isMR" = upgradePath ]; then
-        # upgrade path logic
-        cp -R "src/test/resources/testng-upgrade-path.xml" "src/test/resources/testng.xml"
-    fi
+    python3 appium-launcher/vas-server.py &
 
     AC_TOKEN="$AC_TOKEN"
     sed -ri "s|ACtoken = \".*\"|ACtoken = \"${AC_TOKEN}\"|" ${TESTS_CONFIG_PATH}

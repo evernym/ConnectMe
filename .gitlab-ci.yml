@@ -234,7 +234,6 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - CM-2963@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:

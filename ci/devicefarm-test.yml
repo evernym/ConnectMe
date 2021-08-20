@@ -80,7 +80,7 @@ devicefarm-test-launch-android-weekly-final:
       when: always
   script:
     - sleep 300 # android shift
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 false vas
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
 
 devicefarm-test-launch-ios-weekly-final:
   stage: devicefarm-test-final
@@ -235,9 +235,9 @@ devicefarm-test-launch-android-aca-py:
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
+    rules:
+        - if: '$CI_COMMIT_REF_SLUG == "main"'
+          when: always
     script:
         - sleep 300 # android shift
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 interop aca-py
-    only:
-        refs:
-            - CM-2963@evernym/mobile/connectme
