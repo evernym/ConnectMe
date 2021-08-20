@@ -5,6 +5,8 @@ import com.facebook.react.ReactFragmentActivity;
 
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.mastercard.dis.mids.base.verification.MIDSVerificationBaseManager;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 import android.os.Bundle;
@@ -22,7 +24,10 @@ import android.content.Intent;
 
 import android.content.ContextWrapper;
 import android.system.Os;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -71,17 +76,27 @@ public class MainActivity extends ReactActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-        case RNIndyStaticData.REQUEST_WRITE_EXTERNAL_STORAGE: {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                RNIndyStaticData.initLoggerFile(this);
 
-                Toast.makeText(this, "Logging Turned On", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Logging Turned Off", Toast.LENGTH_SHORT).show();
+      switch (requestCode) {
+            case RNIndyStaticData.REQUEST_WRITE_EXTERNAL_STORAGE: {
+                if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    RNIndyStaticData.initLoggerFile(this);
+
+                    Toast.makeText(this, "Logging Turned On", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Logging Turned Off", Toast.LENGTH_SHORT).show();
+                }
+                return;
             }
-            return;
-        }
+            case 1001: {
+              ActivityCompat.requestPermissions(this, MIDSVerificationBaseManager.getSDKPermissions(this), requestCode);
+            }
+            case 1002: {
+              ActivityCompat.requestPermissions(this, MIDSVerificationBaseManager.getSDKPermissions(this), requestCode);
+            }
+            case 1003: {
+              ActivityCompat.requestPermissions(this, MIDSVerificationBaseManager.getSDKPermissions(this), requestCode);
+            }
         }
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
