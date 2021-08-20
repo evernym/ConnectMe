@@ -1,6 +1,6 @@
 // @flow
 
-export const VCX_PUSH_TYPE = 4
+export const VCX_PUSH_TYPE = 1
 
 export const SPONSOR_ID = 'connectme'
 
