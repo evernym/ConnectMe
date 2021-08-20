@@ -75,22 +75,29 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(30000);
     }
 
-    // accept credential
-    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
-    String credentialName = "Diploma"; // credential shows schema name now
-    AppUtilsInstance.acceptCredential();
+    String[][] creds_and_proofs = new String[][] {
+      {"Passport", "Proof of Health"},
+      {"Diploma", "Proof of Degree"}
+    };
+    for (String[] entry: creds_and_proofs) {
+      // accept credential
+      AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
+      AppUtilsInstance.acceptCredential();
 
-    // share proof
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
-    String proofName = "Proof of Degree";
-    AppUtilsInstance.shareProof();
+      // share proof
+      AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+      AppUtilsInstance.shareProof();
+    }
 
     // check all events
     for (String answer: answers) {
       homePageNew.questionRespondedEvent(answer).isDisplayed();
     }
-    AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(credentialName));
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+
+    for (String[] entry: creds_and_proofs) {
+      AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(entry[0]));
+      AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(entry[1]));
+    }
   }
 
   @AfterClass
