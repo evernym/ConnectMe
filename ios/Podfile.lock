@@ -270,13 +270,13 @@ PODS:
   - react-native-branch (5.0.1):
     - Branch (= 0.37.0)
     - React-Core
-  - react-native-camera (3.33.0):
+  - react-native-camera (3.8.0):
     - React-Core
-    - react-native-camera/RCT (= 3.33.0)
-    - react-native-camera/RN (= 3.33.0)
-  - react-native-camera/RCT (3.33.0):
+    - react-native-camera/RCT (= 3.8.0)
+    - react-native-camera/RN (= 3.8.0)
+  - react-native-camera/RCT (3.8.0):
     - React-Core
-  - react-native-camera/RN (3.33.0):
+  - react-native-camera/RN (3.8.0):
     - React-Core
   - react-native-document-picker (3.5.4):
     - React-Core
@@ -402,7 +402,7 @@ PODS:
   - SSZipArchive (2.2.2)
   - Starscream (3.1.1)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.210)
+  - vcx (0.0.214)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -483,7 +483,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.210)
+  - vcx (= 0.0.214)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -677,7 +677,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d15478d0a8ada19864aa4d1cc1c697b41b3fa92f
   react-native-blur: ef741a08d020010ba65e411be0ab82d1d325e7ad
   react-native-branch: 8d541e4b80f0f9c2c9ff992523dbc80c6c75f424
-  react-native-camera: 6d49177f1a9fe72e306297aa0a50ba04e19e88e9
+  react-native-camera: cf8ef93678c3cb073c5d2bbc52337a98ab47b8a5
   react-native-document-picker: a1d2dc578f106686182595f24706adcc59a6dfe2
   react-native-fingerprint-scanner: b278a3eaf4b6b837e6cbaee374e07af6643e71e3
   react-native-image-resizer: cd7ef8c4839834b2c9e1a6303786afaa1ca3a5d2
@@ -726,9 +726,9 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: 27c15e5116864a5aea7518c93de6a931b446fc0c
+  vcx: b16d73737b1751d50ba1508b97e35ee5fbfb1e4d
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 7b5fe22fb3b6326c24a68d4bdc1ca24cd90781eb
+PODFILE CHECKSUM: 67d39d8eb074e2be38b2f972d7d5fe484840a4f0
 
 COCOAPODS: 1.10.0
