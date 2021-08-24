@@ -3,18 +3,17 @@ package me.connect.mids;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+
+import androidx.core.app.ActivityCompat;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 
 import com.mastercard.dis.mids.base.verification.MIDSVerificationBaseManager;
-
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSDocumentType;
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSDocumentVariant;
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSScanSide;
@@ -25,10 +24,8 @@ import com.mastercard.dis.mids.base.verification.data.listener.IMidsVerification
 import com.mastercard.dis.mids.base.verification.data.model.MIDSVerificationError;
 import com.mastercard.dis.mids.base.verification.data.model.MIDSCountry;
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSDataCenter;
-
 import com.mastercard.dis.mids.base.verification.views.MIDSVerificationScanView;
 import com.mastercard.dis.mids.base.verification.views.MIDSVerificationConfirmationView;
-
 import com.mastercard.dis.mids.base.verification.data.listener.IMidsVerificationScanListener;
 
 import com.facebook.react.bridge.ReactMethod;
@@ -38,22 +35,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import me.connect.R;
-import me.connect.mids.scan.ScanFragment;
+import me.connect.mids.PERMISSIONS;
 
 public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   public static final String REACT_CLASS = "MIDSDocumentVerification";
   private static ReactApplicationContext reactContext = null;
-  private static MIDSEnrollmentManager sdkManager = null;
-  private final ArrayList<MIDSScanSide> scanSides = new ArrayList<MIDSScanSide>();
-//  private static int sideIndex = 0;
 
+  private MIDSEnrollmentManager sdkManager = null;
+  private final ArrayList<MIDSScanSide> scanSidesDV = new ArrayList<MIDSScanSide>();
   private Callback resolve = null;
   private Callback reject = null;
   private MIDSCountry selectedCountry = null;
+  MIDSVerificationConfirmationView midsVerificationConfirmationView = null;
+  MIDSVerificationScanView midsVerificationScanView = null;
+  IMidsVerificationScanListener scanListener = null;
+  MIDSVerificationScanPresenter presenter = null;
+
 
   public MIDSDocumentVerification(ReactApplicationContext context) {
     // Pass in the context to the constructor and save it so you can emit events
@@ -74,7 +74,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     if (sdkManager == null) {
       System.out.println("getEnrollmentManagerInstance");
       sdkManager = new MIDSEnrollmentManager(
-        new EnrollmentSDKListener(this.resolve, this.reject, this.scanSides)
+        new EnrollmentSDKListener(this.resolve, this.reject)
       );
     }
     return sdkManager;
@@ -92,89 +92,106 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   private class EnrollmentSDKListener implements IMidsVerificationListener {
     private final Callback resolve;
     private final Callback reject;
-    private final ArrayList<MIDSScanSide> scanSides;
 
-    public EnrollmentSDKListener(Callback resolve, Callback reject, ArrayList<MIDSScanSide> scanSides) {
+    public EnrollmentSDKListener(Callback resolve, Callback reject) {
+      System.out.println("EnrollmentSDKListener INIT");
+
       this.resolve = resolve;
       this.reject = reject;
-      this.scanSides = scanSides;
-      System.out.println("EnrollmentSDKListener");
     }
 
     @Override
     public void onError(@NotNull MIDSVerificationError error) {
-      System.out.println("onErroronError ");
+      System.out.println("EnrollmentSDKListener - method: onError - error: " + error.getMessage().toString());
       reject.invoke(error.toString());
     }
 
     @Override
     public void onInitializedSuccessfully() {
-      System.out.println("onInitializedSuccessfullyonInitializedSuccessfully ");
+      System.out.println("EnrollmentSDKListener - method: onInitializedSuccessfully");
       resolve.invoke();
     }
 
     @Override
     public void onSDKConfigured(@NotNull List<? extends MIDSScanSide> scanSides) {
-      this.scanSides.clear();
-      this.scanSides.addAll(scanSides);
-//      sideIndex = 0;
+      scanSidesDV.clear();
+      scanSidesDV.addAll(scanSides);
 
-      System.out.println("onSDKConfiguredonSDKConfigured " + scanSides);
+      System.out.println("EnrollmentSDKListener - method: onSDKConfigured - scan sides: " + scanSidesDV);
+
+      try {
+        Thread.sleep(10000);
+        Thread.sleep(10000);
+
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      firstTimeScan();
     }
 
     @Override
     public void onVerificationFinished(@NotNull String referenceNumber) {
-//      getEnrollmentManagerInstance().endScan();
+      System.out.println("EnrollmentSDKListener - method: onVerificationFinished - reference number: " + referenceNumber);
+
+      getEnrollmentManagerInstance().endScan();
+      resolve.invoke(referenceNumber);
     }
   }
 
   private class ScanListener implements IMidsVerificationScanListener {
+
     @Override
     public void onCameraAvailable() {
-      System.out.println("ScanListener onCameraAvailable ");
+      System.out.println("ScanListener - method: onCameraAvailable ");
     }
 
     @Override
     public void onProcessStarted() {
-      System.out.println("ScanListener onProcessStarted ");
+      System.out.println("ScanListener - method: onProcessStarted ");
     }
 
     @Override
     public void onDocumentCaptured() {
-      System.out.println("ScanListener onDocumentCaptured ");
+      System.out.println("ScanListener - method: onDocumentCaptured ");
     }
 
     @Override
     public void onError(MIDSVerificationError error) {
-      System.out.println("ScanListener onError " + error.getMessage().toString());
+      System.out.println("ScanListener - method: onError - error: " + error.getMessage().toString());
     }
 
     @Override
     public void onPreparingScan() {
-      System.out.println("ScanListener onPreparingScan ");
+      System.out.println("ScanListener - method: onPreparingScan ");
     }
 
     @Override
     public void onProcessCancelled(MIDSVerificationError error) {
-      System.out.println("ScanListener onProcessCancelled " + error.getMessage().toString());
+      System.out.println("ScanListener - method: onProcessCancelled - error: " + error.getMessage().toString());
+      presenter.retryScan();
     }
 
     @Override
     public void onProcessFinished(MIDSScanSide scanSide, boolean allPartsScanned) {
-      System.out.println("ScanListener onProcessFinished ");
+      System.out.println("ScanListener - method: onProcessFinished - scan side: " + scanSide + " - is all parts scanned: " + allPartsScanned);
+      presenter.destroy();
+      presenter = null;
+
+      scanNextSide(MIDSScanSide.FRONT);
     }
   }
 
   @ReactMethod
   public void initMIDSSDK(String token, String withDataCenter, Callback resolve, Callback reject) {
     Activity currentActivity = reactContext.getCurrentActivity();
+//    Context currentContext = reactContext.getApplicationContext();
 
     this.resolve = resolve;
     this.reject = reject;
     MIDSDataCenter dataCanter = getDataCenter(withDataCenter);
+
     MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, 1002);
     MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, 1003);
-
     MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, 1001);
 
     if (currentActivity != null) {
@@ -185,7 +202,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getCountryList(Callback resolve, Callback reject)  {
     try {
-      MIDSVerificationResponse<List<MIDSCountry>> countryList1 = getEnrollmentManagerInstance().getCountryList();
       List<MIDSCountry> countryList = getEnrollmentManagerInstance().getCountryList().getResponse();
       JSONObject countries = new JSONObject();
       if (countryList != null) {
@@ -214,6 +230,78 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     }
   }
 
+  private MIDSDocumentType getMIDSDocumentTypeFromString(String documentType) {
+    MIDSVerificationResponse<List<MIDSDocumentType>> documentTypeResponse = getEnrollmentManagerInstance().getDocumentTypes(selectedCountry);
+    List<MIDSDocumentType> documentTypeList = documentTypeResponse.getResponse();
+
+    for (MIDSDocumentType doc : documentTypeList) {
+      if (doc.name().equals(documentType.toUpperCase())) {
+        return doc;
+      }
+    }
+    return MIDSDocumentType.PASSPORT;
+  }
+
+  private void inflateScanFragment() {
+    Activity currentActivity = reactContext.getCurrentActivity();
+    if (currentActivity != null) {
+      LayoutInflater inflater = currentActivity.getLayoutInflater();
+      ViewGroup viewGroup = (ViewGroup) ((ViewGroup) currentActivity.findViewById(android.R.id.content)).getRootView();
+      View view = inflater.inflate(R.layout.fragment_scan, viewGroup, false);
+
+      this.midsVerificationScanView = (MIDSVerificationScanView) view.findViewById(R.id.sv_scan);
+      this.midsVerificationConfirmationView = (MIDSVerificationConfirmationView) view.findViewById(R.id.cv_scan);
+    } else {
+      System.out.println("Inflate scan fragment error");
+    }
+  }
+
+  private void initScanListener() {
+    this.scanListener = new ScanListener();
+  }
+
+  private void firstTimeScan() {
+    initScanListener();
+    inflateScanFragment();
+    scanNextSide(MIDSScanSide.FACE);
+  }
+
+  private void scanNextSide(MIDSScanSide scanSide) {
+    if (scanSide == MIDSScanSide.FACE) {
+      this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_FACE);
+    } else {
+      this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_ID);
+    }
+
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    MIDSVerificationResponse<MIDSVerificationScanPresenter> presenterResponse = getEnrollmentManagerInstance().getPresenter(
+      scanSide,
+      this.midsVerificationScanView,
+      this.midsVerificationConfirmationView,
+      this.scanListener
+    );
+
+    MIDSVerificationError error = presenterResponse.getError();
+    if (error != null) {
+      System.out.println("MIDSVerificationError" + error.getMessage().toString());
+    }
+
+    this.presenter = presenterResponse.getResponse();
+
+    if (presenter != null) {
+      System.out.println("VerificationScanPresenter - startScan");
+      this.presenter.startScan();
+    } else {
+      System.out.println("Scan error");
+    }
+  }
+
+
   @SuppressLint("ResourceType")
   @ReactMethod
   public void startMIDSSDKScan(
@@ -224,26 +312,13 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   ) {
     this.resolve = resolve;
     this.reject = reject;
-
-    Activity currentActivity = reactContext.getCurrentActivity();
-
-    getEnrollmentManagerInstance().startScan(selectedCountry, MIDSDocumentType.PASSPORT, MIDSDocumentVariant.PLASTIC).getResponse();
+    MIDSDocumentType type = getMIDSDocumentTypeFromString(documentType);
+    getEnrollmentManagerInstance().startScan(selectedCountry, type, MIDSDocumentVariant.PLASTIC);
 
     try {
-      LayoutInflater inflater = currentActivity.getLayoutInflater();
-      ViewGroup viewGroup = (ViewGroup) ((ViewGroup) currentActivity.findViewById(android.R.id.content)).getRootView();
-      View view = inflater.inflate(R.layout.fragment_scan, viewGroup, false);
-      MIDSVerificationScanView midsVerificationScanView = (MIDSVerificationScanView) view.findViewById(R.id.sv_scan);
-      MIDSVerificationConfirmationView midsVerificationConfirmationView = (MIDSVerificationConfirmationView) view.findViewById(R.id.cv_scan);
+      Thread.sleep(10000);
 
-      MIDSVerificationScanPresenter presenter = getEnrollmentManagerInstance().getPresenter(
-        MIDSScanSide.FRONT,
-        midsVerificationScanView,
-        midsVerificationConfirmationView,
-        new ScanListener()
-      ).getResponse();
-      presenter.presenter.startScan();
-      resolve.invoke();
+      Thread.sleep(200000);
     } catch (Exception exception) {
       System.out.println(exception);
       reject.invoke();
