@@ -3,7 +3,8 @@
 <FrameLayout
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <!-- Scan View -->
   <com.mastercard.dis.mids.base.verification.views.MIDSVerificationScanView
@@ -17,6 +18,8 @@
     android:id="@+id/cv_scan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible" />
+    android:layout_marginHorizontal="24dp"
+    android:visibility="visible"
+    app:jumio_ratio="1"/>
 </FrameLayout>
 

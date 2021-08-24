@@ -4,8 +4,8 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactFragmentActivity;
 
 import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
-import com.mastercard.dis.mids.base.verification.MIDSVerificationBaseManager;
 
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
@@ -20,7 +20,6 @@ import me.connect.mids.PERMISSIONS;
 
 import com.evernym.sdk.reactnative.rnindy.LogFileObserver;
 import com.evernym.sdk.reactnative.rnindy.RNIndyStaticData;
-import com.mastercard.dis.mids.base.verification.enrollment.MIDSEnrollmentManager;
 
 import android.content.Intent;
 
@@ -29,6 +28,7 @@ import android.system.Os;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedOutputStream;
@@ -78,19 +78,7 @@ public class MainActivity extends ReactActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-      ActivityCompat.requestPermissions(this,
-        MIDSVerificationBaseManager.getSDKPermissions(this),
-        PERMISSIONS.ENROLLMENT_SCAN_PERMISSION
-      );
-      ActivityCompat.requestPermissions(this,
-        MIDSVerificationBaseManager.getSDKPermissions(this),
-        PERMISSIONS.AUTHENTICATION_PERMISSION
-      );
-      ActivityCompat.requestPermissions(this,
-        MIDSVerificationBaseManager.getSDKPermissions(this),
-        PERMISSIONS.ENROLLMENT_PERMISSION
-      );
-      switch (requestCode) {
+        switch (requestCode) {
             case RNIndyStaticData.REQUEST_WRITE_EXTERNAL_STORAGE: {
                 if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     RNIndyStaticData.initLoggerFile(this);
@@ -101,24 +89,6 @@ public class MainActivity extends ReactActivity {
                 }
                 return;
             }
-//            case 1001: {
-//              if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(this, MIDSVerificationBaseManager.getSDKPermissions(this), requestCode);
-//              }
-//              return;
-//            }
-//            case 1002: {
-//              if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(this, MIDSVerificationBaseManager.getSDKPermissions(this), requestCode);
-//              }
-//              return;
-//            }
-//            case 1003: {
-//              if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(this, MIDSVerificationBaseManager.getSDKPermissions(this), requestCode);
-//              }
-//              return;
-//            }
         }
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

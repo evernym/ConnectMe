@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.core.app.ActivityCompat;
-
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -48,12 +46,12 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   private final ArrayList<MIDSScanSide> scanSidesDV = new ArrayList<MIDSScanSide>();
   private Callback resolve = null;
   private Callback reject = null;
-  private MIDSCountry selectedCountry = null;
+  MIDSCountry selectedCountry = null;
   MIDSVerificationConfirmationView midsVerificationConfirmationView = null;
   MIDSVerificationScanView midsVerificationScanView = null;
   IMidsVerificationScanListener scanListener = null;
   MIDSVerificationScanPresenter presenter = null;
-
+  int sideIndex = 0;
 
   public MIDSDocumentVerification(ReactApplicationContext context) {
     // Pass in the context to the constructor and save it so you can emit events
@@ -70,7 +68,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     return REACT_CLASS;
   }
 
-  public MIDSEnrollmentManager getEnrollmentManagerInstance() {
+  private MIDSEnrollmentManager getEnrollmentManagerInstance() {
     if (sdkManager == null) {
       System.out.println("getEnrollmentManagerInstance");
       sdkManager = new MIDSEnrollmentManager(
@@ -80,13 +78,26 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     return sdkManager;
   }
 
-   public MIDSDataCenter getDataCenter(String dataCenter) {
+  private MIDSDataCenter getDataCenter(String dataCenter) {
     for (MIDSDataCenter data : MIDSDataCenter.values()) {
       if (data.name().equals(dataCenter)) {
         return data;
       }
     }
     return MIDSDataCenter.SG;
+  }
+
+  private void requestPermissionsForSDK(Activity currentActivity, Context currentContext) {
+    MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, PERMISSIONS.ENROLLMENT_PERMISSION);
+    MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, PERMISSIONS.ENROLLMENT_SCAN_PERMISSION);
+    MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, PERMISSIONS.AUTHENTICATION_PERMISSION);
+    while(!MIDSVerificationBaseManager.hasAllRequiredPermissions(currentContext)) {
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   private class EnrollmentSDKListener implements IMidsVerificationListener {
@@ -121,8 +132,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
       try {
         Thread.sleep(10000);
-        Thread.sleep(10000);
-
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
@@ -177,26 +186,25 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
       presenter.destroy();
       presenter = null;
 
-      scanNextSide(MIDSScanSide.FRONT);
+      sideIndex++;
+      if (scanSidesDV.size() - 1 <= sideIndex) {
+        scanNextSide(scanSidesDV.get(sideIndex));
+      }
     }
   }
 
   @ReactMethod
   public void initMIDSSDK(String token, String withDataCenter, Callback resolve, Callback reject) {
     Activity currentActivity = reactContext.getCurrentActivity();
-//    Context currentContext = reactContext.getApplicationContext();
+    Context currentContext = reactContext.getApplicationContext();
 
     this.resolve = resolve;
     this.reject = reject;
     MIDSDataCenter dataCanter = getDataCenter(withDataCenter);
 
-    MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, 1002);
-    MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, 1003);
-    MIDSVerificationBaseManager.requestSDKPermissions(currentActivity, 1001);
+    requestPermissionsForSDK(currentActivity, currentContext);
 
-    if (currentActivity != null) {
-      getEnrollmentManagerInstance().initializeSDK(currentActivity, token, dataCanter);
-    }
+    getEnrollmentManagerInstance().initializeSDK(currentActivity, token, dataCanter);
   }
 
   @ReactMethod
@@ -251,6 +259,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
       this.midsVerificationScanView = (MIDSVerificationScanView) view.findViewById(R.id.sv_scan);
       this.midsVerificationConfirmationView = (MIDSVerificationConfirmationView) view.findViewById(R.id.cv_scan);
+//      this.midsVerificationScanView.setVisibility();
     } else {
       System.out.println("Inflate scan fragment error");
     }
@@ -263,10 +272,12 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   private void firstTimeScan() {
     initScanListener();
     inflateScanFragment();
-    scanNextSide(MIDSScanSide.FACE);
+    scanNextSide(scanSidesDV.get(sideIndex));
   }
 
   private void scanNextSide(MIDSScanSide scanSide) {
+    System.out.println("VerificationScanPresenter - startScan" + scanSide + sideIndex);
+
     if (scanSide == MIDSScanSide.FACE) {
       this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_FACE);
     } else {
@@ -291,7 +302,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
       System.out.println("MIDSVerificationError" + error.getMessage().toString());
     }
 
-    this.presenter = presenterResponse.getResponse();
+    this.presenter = presenterResponse.response;
 
     if (presenter != null) {
       System.out.println("VerificationScanPresenter - startScan");
@@ -312,16 +323,8 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   ) {
     this.resolve = resolve;
     this.reject = reject;
+
     MIDSDocumentType type = getMIDSDocumentTypeFromString(documentType);
     getEnrollmentManagerInstance().startScan(selectedCountry, type, MIDSDocumentVariant.PLASTIC);
-
-    try {
-      Thread.sleep(10000);
-
-      Thread.sleep(200000);
-    } catch (Exception exception) {
-      System.out.println(exception);
-      reject.invoke();
-    }
   }
 }
