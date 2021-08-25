@@ -1,6 +1,5 @@
 package me.connect.mids;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -130,11 +129,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
       System.out.println("EnrollmentSDKListener - method: onSDKConfigured - scan sides: " + scanSidesDV);
 
-      try {
-        Thread.sleep(10000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
       firstTimeScan();
     }
 
@@ -162,6 +156,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     @Override
     public void onDocumentCaptured() {
       System.out.println("ScanListener - method: onDocumentCaptured ");
+      confirmMode();
     }
 
     @Override
@@ -177,7 +172,9 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     @Override
     public void onProcessCancelled(MIDSVerificationError error) {
       System.out.println("ScanListener - method: onProcessCancelled - error: " + error.getMessage().toString());
-      presenter.retryScan();
+      if (error == MIDSVerificationError.PRESENTER_ERROR_GENERIC_ERROR) {
+        presenter.retryScan();
+      }
     }
 
     @Override
@@ -259,7 +256,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
       this.midsVerificationScanView = (MIDSVerificationScanView) view.findViewById(R.id.sv_scan);
       this.midsVerificationConfirmationView = (MIDSVerificationConfirmationView) view.findViewById(R.id.cv_scan);
-//      this.midsVerificationScanView.setVisibility();
     } else {
       System.out.println("Inflate scan fragment error");
     }
@@ -276,7 +272,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
   }
 
   private void scanNextSide(MIDSScanSide scanSide) {
-    System.out.println("VerificationScanPresenter - startScan" + scanSide + sideIndex);
+    scanMode();
 
     if (scanSide == MIDSScanSide.FACE) {
       this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_FACE);
@@ -304,7 +300,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
     this.presenter = presenterResponse.response;
 
-    if (presenter != null) {
+    if (this.presenter != null) {
       System.out.println("VerificationScanPresenter - startScan");
       this.presenter.startScan();
     } else {
@@ -312,12 +308,20 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     }
   }
 
+  private void confirmMode() {
+    this.midsVerificationScanView.setVisibility(View.GONE);
+    this.midsVerificationConfirmationView.setVisibility(View.VISIBLE);
+  }
 
-  @SuppressLint("ResourceType")
+  private void scanMode() {
+    this.midsVerificationScanView.setVisibility(View.VISIBLE);
+    this.midsVerificationConfirmationView.setVisibility(View.GONE);
+  }
+
   @ReactMethod
   public void startMIDSSDKScan(
     String documentType,
-    String documentVariant,
+    String policyVersion,
     Callback resolve,
     Callback reject
   ) {
@@ -325,6 +329,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     this.reject = reject;
 
     MIDSDocumentType type = getMIDSDocumentTypeFromString(documentType);
-    getEnrollmentManagerInstance().startScan(selectedCountry, type, MIDSDocumentVariant.PLASTIC);
+    getEnrollmentManagerInstance().startScan(this.selectedCountry, type, MIDSDocumentVariant.PLASTIC);
   }
 }
