@@ -44,6 +44,11 @@ public class VeritySampleAppFlowTest extends IntSetup {
       try {
         invitationPageNew.title.isDisplayed();
         invitationPageNew.connectButton.click();
+        try {
+          invitationPageNew.connectButton.click();
+        } catch (Exception ignored) {
+
+        }
         System.out.println("Connection #" + (i+1) + " was established!");
       } catch (Exception e) { // reuse cases
         homePageNew.homeHeader.isDisplayed();
