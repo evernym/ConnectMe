@@ -98,10 +98,10 @@ public class VeritySampleAppFlowTest extends IntSetup {
 //      homePageNew.questionRespondedEvent(answer).isDisplayed();
 //    }
 
-    for (String[] entry: creds_and_proofs) {
-      AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(entry[0]));
-      AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(entry[1]));
-    }
+//    for (String[] entry: creds_and_proofs) {
+//      AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(entry[0]));
+//      AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(entry[1]));
+//    }
   }
 
   @AfterClass
