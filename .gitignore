@@ -70,6 +70,8 @@ jsconfig.json
 connectMeUITest/test-output
 connectMeUITest/*.log
 connectMeUITest/target
+e2e-automation/target/test-classes/*
+e2e-automation/.classpath
 
 ios/ConnectMe.app.dSYM.zip
 
