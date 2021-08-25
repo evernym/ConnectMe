@@ -86,10 +86,12 @@ public class VeritySampleAppFlowTest extends IntSetup {
       // accept credential
       AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
       AppUtilsInstance.acceptCredential();
+      Thread.sleep(15000);
 
       // share proof
       AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
       AppUtilsInstance.shareProof();
+      Thread.sleep(15000);
     }
 
 //    // check all events
