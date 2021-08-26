@@ -146,6 +146,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     @Override
     public void onCameraAvailable() {
       System.out.println("ScanListener - method: onCameraAvailable ");
+      presenter.retryScan();
     }
 
     @Override
@@ -252,7 +253,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     if (currentActivity != null) {
       LayoutInflater inflater = currentActivity.getLayoutInflater();
       ViewGroup viewGroup = (ViewGroup) ((ViewGroup) currentActivity.findViewById(android.R.id.content)).getRootView();
-      View view = inflater.inflate(R.layout.fragment_scan, viewGroup, false);
+      View view = inflater.inflate(R.layout.fragment_scan, viewGroup, true);
 
       this.midsVerificationScanView = (MIDSVerificationScanView) view.findViewById(R.id.sv_scan);
       this.midsVerificationConfirmationView = (MIDSVerificationConfirmationView) view.findViewById(R.id.cv_scan);
@@ -278,12 +279,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
       this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_FACE);
     } else {
       this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_ID);
-    }
-
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
     }
 
     MIDSVerificationResponse<MIDSVerificationScanPresenter> presenterResponse = getEnrollmentManagerInstance().getPresenter(
