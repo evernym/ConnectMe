@@ -122,7 +122,10 @@ extension MIDSDocumentVerification: MIDSEnrollmentDelegate {
       return
     }
 
-    UIApplication.shared.windows.first?.rootViewController?.present(scanViewController, animated: true)
+    if (UIApplication.shared.windows.first?.rootViewController?.isKind(of: MIDSCustomScanViewController.self) ?? false) {
+      UIApplication.shared.windows.first?.rootViewController?.navigationController?.viewControllers.removeLast()
+    }
+    UIApplication.shared.windows.first?.rootViewController?.present(scanViewController, animated: false)
   }
 
   func midsEnrollmentManager(didFinishScanningWith reference: String, accountID: String?, authenticationResult: Bool?)  {
