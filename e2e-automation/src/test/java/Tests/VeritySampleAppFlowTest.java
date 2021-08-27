@@ -99,6 +99,28 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(15000);
     }
 
+    BrowserDriver.closeApp();
+    driverApp.closeApp();
+
+    // oob attachment case #1
+    driverBrowser = BrowserDriver.getDriver();
+    driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number));
+    // accept credential
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
+    AppUtilsInstance.acceptCredential();
+    Thread.sleep(15000);
+
+    BrowserDriver.closeApp();
+    driverApp.closeApp();
+
+    // oob attachment case #2
+    driverBrowser = BrowserDriver.getDriver();
+    driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number + 1));
+    // share proof
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+    AppUtilsInstance.shareProof();
+    Thread.sleep(15000);
+
 //    // check all events
 //    // TODO: swipe is needed due to many events on Home!
 //    for (String answer: answers) {
