@@ -12,7 +12,7 @@
     android:id="@+id/sv_scan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone" />
+    android:visibility="visible" />
 
   <!-- Confirmation View -->
   <com.mastercard.dis.mids.base.verification.views.MIDSVerificationConfirmationView
@@ -20,7 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="24dp"
-    android:visibility="gone"
+    android:visibility="visible"
     app:jumio_ratio="1"/>
 </FrameLayout>
 
