@@ -262,7 +262,7 @@ upload-android:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - fix-main@evernym/mobile/connectme
 
 
 # Basic lint
