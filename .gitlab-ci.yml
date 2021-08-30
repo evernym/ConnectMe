@@ -232,7 +232,7 @@ build-android-master:
   extends: .build-android
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - fix-main@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
