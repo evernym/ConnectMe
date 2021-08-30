@@ -210,7 +210,7 @@ build-android-e2e-testing:
   extends: .build-android
   only:
     refs:
-      - e2e-testing@evernym/mobile/connectme
+      - fix-main@evernym/mobile/connectme
 
 # build-ios-2930:
 #    extends: .build-ios

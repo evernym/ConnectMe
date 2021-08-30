@@ -147,7 +147,7 @@ devicefarm-test-launch-android-e2e-testing:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 false # true
   only:
     refs:
-      - e2e-testing@evernym/mobile/connectme
+      - fix-main@evernym/mobile/connectme
 
 devicefarm-test-launch-ios-e2e-testing:
   extends: .devicefarm-test-launch-ios
