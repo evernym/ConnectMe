@@ -63,7 +63,7 @@ public class AppDriver {
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
         caps.setCapability("waitForQuiescence", false);
         caps.setCapability("shouldUseSingletonTestManager", true);
-        caps.setCapability(IOSMobileCapabilityType.WDA_STARTUP_RETRY_INTERVAL, "1000");
+        caps.setCapability(IOSMobileCapabilityType.WDA_STARTUP_RETRY_INTERVAL, 1000);
         return caps;
     }
 
