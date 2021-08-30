@@ -29,7 +29,7 @@ public class AppDriver {
         caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         caps.setCapability(MobileCapabilityType.NO_RESET, true);
-        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "60000");
+        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 60000);
         caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "me.connect");
         caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, Config.Device_Name);
@@ -39,10 +39,31 @@ public class AppDriver {
     private static DesiredCapabilities getSharedCapabilitiesForIos() {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(MobileCapabilityType.NO_RESET, true);
-        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "60000");
+        caps.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 60000);
         caps.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.evernym.connectme.callcenter");
         caps.setCapability(IOSMobileCapabilityType.XCODE_ORG_ID, "ES8QU3D2A4");
         caps.setCapability(IOSMobileCapabilityType.XCODE_SIGNING_ID, "iPhone Developer");
+        return caps;
+    }
+
+    private static DesiredCapabilities getLocalCapabilitiesForIos() {
+        DesiredCapabilities caps = getSharedCapabilitiesForIos();
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.IOS);
+        caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "14.5");
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, Config.Device_Name);
+        caps.setCapability(MobileCapabilityType.UDID, Config.Device_UDID);
+        caps.setCapability(IOSMobileCapabilityType.SHOW_XCODE_LOG, true);
+        caps.setCapability(IOSMobileCapabilityType.USE_NEW_WDA, true);
+        return caps;
+    }
+
+    private static DesiredCapabilities getAwsCapabilitiesForIos() {
+        DesiredCapabilities caps = getSharedCapabilitiesForIos();
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
+        caps.setCapability("waitForQuiescence", false);
+        caps.setCapability("shouldUseSingletonTestManager", true);
+        caps.setCapability(IOSMobileCapabilityType.WDA_STARTUP_RETRY_INTERVAL, "1000");
         return caps;
     }
 
@@ -52,22 +73,11 @@ public class AppDriver {
             try {
                 DesiredCapabilities capabilities;
                 if (deviceType.equals("iOS") || deviceType.equals("iOSSimulator")) {
-                    capabilities = getSharedCapabilitiesForIos();
-                    capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.IOS);
-                    capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
-                    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "14.5");
-                    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, Config.Device_Name);
-                    capabilities.setCapability(MobileCapabilityType.UDID, Config.Device_UDID);
-                    capabilities.setCapability(IOSMobileCapabilityType.SHOW_XCODE_LOG, true);
-                    capabilities.setCapability(IOSMobileCapabilityType.USE_NEW_WDA, true);
+                    capabilities = getLocalCapabilitiesForIos();
                     driver = new IOSDriver(new URL(Config.Appium_Server), capabilities);
                     System.out.println("connectMe application launched successfully in iOS");
                 } else if (deviceType.equals("awsiOS")) {
-                    capabilities = getSharedCapabilitiesForIos();
-                    capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13.0");
-                    capabilities.setCapability("waitForQuiescence", false);
-                    capabilities.setCapability("shouldUseSingletonTestManager", true);
-                    capabilities.setCapability(IOSMobileCapabilityType.WDA_STARTUP_RETRY_INTERVAL, "1000");
+                    capabilities = getAwsCapabilitiesForIos();
                     driver = new IOSDriver(new URL(Config.Appium_Server), capabilities);
                     System.out.println("connectMe application launched successfully in iOS");
                 } else if (deviceType.equals("android")) {
@@ -94,9 +104,15 @@ public class AppDriver {
     public static AppiumDriver getIosDriverWithProvidedBundle(String bundlePath)
     {
         try {
-            DesiredCapabilities caps = getSharedCapabilitiesForIos();
+            DesiredCapabilities caps;
+            if(Config.Device_Type.equals("awsiOS")) {
+                caps = getAwsCapabilitiesForIos();
+            }
+            else {
+                caps = getLocalCapabilitiesForIos();
+            }
             caps.setCapability(MobileCapabilityType.APP, bundlePath);
-            driver = new AndroidDriver(new URL(test.java.utility.Config.Appium_Server), caps);
+            driver = new IOSDriver(new URL(Config.Appium_Server), caps);
         }
         catch (Exception e) {
             Reporter.log("Class Setup | Method OpenBrowser | Exception desc : " + e.getMessage());
