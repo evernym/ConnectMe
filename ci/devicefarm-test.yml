@@ -123,7 +123,7 @@ devicefarm-test-launch-android-merge_requests:
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 true # true
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "feature/CM-3027-android-tests-stabilization"'
+    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
 
 devicefarm-test-launch-ios-merge_requests:
@@ -133,7 +133,7 @@ devicefarm-test-launch-ios-merge_requests:
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 true # true
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+    - if: '$CI_COMMIT_REF_NAME == "feature/CM-3027-android-tests-stabilization"'
       when: always
 
 
