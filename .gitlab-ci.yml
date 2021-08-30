@@ -5,11 +5,11 @@ stages:
   - check
   - test
   - build
+  - upload
   - devicefarm-test
   - devicefarm-test-top
   - devicefarm-test-next
   - devicefarm-test-final
-  - upload
   - devicefarm-test-upgrade-path
 
 ### - Pre-build - ###
