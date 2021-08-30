@@ -1,9 +1,7 @@
 package pageObjects;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -21,6 +19,8 @@ public class PushNotificationsPageNew {
   @iOSXCUITFindBy(accessibility = "not-now-notifications-button") // id?
   public WebElement notNowButton;
 
+  @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeButton[@name=\"Allow\"]")
+  @AndroidFindBy(xpath = "//*[@text='While using the app']")
   public WebElement okButton;
 }
