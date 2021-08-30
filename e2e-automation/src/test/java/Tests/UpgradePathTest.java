@@ -30,6 +30,8 @@ public class UpgradePathTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
+        driverApp.launchApp();
+        
         DID = context.getValue("DID");
         connectionName = context.getValue("connectionName");
 
