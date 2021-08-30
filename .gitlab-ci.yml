@@ -161,6 +161,8 @@ build-ios-merge-request:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
+    - if: '$CI_COMMIT_REF_NAME == "fix-country-selection-ui"'
+      when: 'always'
 
 build-ios-master:
   extends: .build-ios
