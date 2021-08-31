@@ -4,13 +4,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.java.utility.IntSetup;
-
+import test.java.utility.AppDriver;
 
 public class StartUpTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
-        driverApp.launchApp();
+        //driverApp.launchApp();
+        driverApp = AppDriver.getDriver();
     }
 
     @Test

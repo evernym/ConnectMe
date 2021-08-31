@@ -10,7 +10,7 @@ import test.java.funcModules.ConnectionModules;
 import test.java.utility.Helpers;
 import test.java.utility.LocalContext;
 import test.java.utility.BrowserDriver;
-
+import test.java.utility.AppDriver;
 
 /**
  * The ConnectionTest class is a Test class which holds test method related to
@@ -28,7 +28,8 @@ public class ConnectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Connection Test Suite has been started!");
-        driverApp.launchApp();
+        //driverApp.launchApp();
+        driverApp = AppDriver.getDriver();
     }
 
     @DataProvider(name = "data1")

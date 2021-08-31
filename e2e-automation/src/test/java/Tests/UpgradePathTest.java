@@ -12,6 +12,7 @@ import test.java.utility.Helpers;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.funcModules.ConnectionModules;
+import test.java.utility.AppDriver;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,8 +31,8 @@ public class UpgradePathTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
-        driverApp.launchApp();
-        
+        driverApp = AppDriver.getDriver();
+
         DID = context.getValue("DID");
         connectionName = context.getValue("connectionName");
 
