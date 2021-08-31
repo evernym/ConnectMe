@@ -62,6 +62,14 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
+    // sometimes connection appears after app restart
+    try {
+      invitationPageNew.title.isDisplayed();
+      invitationPageNew.connectButton.click();
+    } catch (Exception ignored) {
+
+    }
+
 //    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
     String[] answers = new String[] { "Ok!" };
     for (String answer: answers) {
