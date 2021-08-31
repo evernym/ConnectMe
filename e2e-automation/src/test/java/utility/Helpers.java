@@ -21,7 +21,7 @@ public class Helpers {
 	}
 
 	public static List<String> oneAttributes() {
-		return Arrays.asList("Age");
+		return Arrays.asList("age");
 	}
 
 	public static List<String> twoAttributes() {

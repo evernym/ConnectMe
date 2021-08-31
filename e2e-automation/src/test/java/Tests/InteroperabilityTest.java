@@ -16,55 +16,50 @@ import java.util.List;
 
 public class InteroperabilityTest extends IntSetup {
 	private LocalContext context = LocalContext.getInstance();
+    private AppUtils objAppUtlis = new AppUtils();
 
     private ConnectionModules objConnectionModules = new ConnectionModules();
-//    private AcaPyApi ACAPY;
-
+    private AcaPyApi ACAPY;
     private String connectionName = Helpers.randomString();
 
 	private String credentialName = Helpers.randomString();
 	private List<String> attrs1 = Helpers.oneAttributes();
     private Tuple acaPyParametersList = new Tuple(credentialName, attrs1, "schema_id", "credDefId");
 
-//    private void acaPyCreateSchemaAndCredDef(String credentialName, List<String> attributes) throws Exception {
-//        JSONObject schemaResponse;
-//        String schemaId;
-//        JSONObject credDefResponse;
-//        String credDefId;
-//
-//        // create schema
-//        try {
-//            schemaResponse = ACAPY.createSchema(credentialName, "1.0", attributes);
-//            schemaId = schemaResponse.getString("schema_id");
-//            context.setValue("schemaId", schemaId);
-//        } catch (Exception ex) {
-//	        System.out.println("Unable to create Schema!!!!");
-//        }
-//
-//        // create cred def
-//        try {
-//            credDefResponse = ACAPY.createCredentialDef(schemaResponse.getString("schema_id"));
-//            credDefId = credDefResponse.getString("credential_definition_id");
-//            context.setValue("credentialDefinitionId", credDefId);
-//
-//        } catch (Exception ex) {
-//	        System.out.println("Unable to create Credential Definition!!!!");
-//
-//        }
-//    }
+    // private void acaPyCreateSchemaAndCredDef(String credentialName, List<String> attributes) throws Exception {
+    //     String schemaId = "";
+    //     // create schema
+    //     try {
+    //         JSONObject schemaResponse = ACAPY.createSchema(credentialName, "1.0", attributes);
+    //         schemaId = schemaResponse.getString("schema_id");
+    //         context.setValue("schemaId", schemaId);
+    //     } catch (Exception ex) {
+	//         System.out.println("Unable to create Schema!!!!");
+    //     }
+
+    //     // create cred def
+    //     try {
+    //         JSONObject credDefResponse = ACAPY.createCredentialDef(schemaId);
+    //         String credDefId = credDefResponse.getString("credential_definition_id");
+    //         context.setValue("credentialDefinitionId", credDefId);
+
+    //     } catch (Exception ex) {
+	//         System.out.println("Unable to create Credential Definition!!!!");
+    //     }
+    // }
 
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Interoperability Test Suite has been started!");
         driverApp.launchApp();
-//        ACAPY = AcaPyApi.getInstance();
-//
-//        // create new schemas and cred defs
-//        try {
-//            acaPyCreateSchemaAndCredDef(acaPyParametersList.a, acaPyParametersList.b);
-//        } catch (Exception ex) {
-//            System.err.println(ex.toString());
-//        }
+        ACAPY = AcaPyApi.getInstance();
+
+        // create new schemas and cred defs
+        try {
+            acaPyCreateSchemaAndCredDef(acaPyParametersList.a, acaPyParametersList.b);
+        } catch (Exception ex) {
+            System.err.println(ex.toString());
+        }
     }
 
     @Test
@@ -81,24 +76,23 @@ public class InteroperabilityTest extends IntSetup {
         BrowserDriver.closeApp();
     }
 
-//    @Test
-//    public void acaPyAcceptCredentialFromHome() throws Exception {
-//        AppUtils.DoSomethingEventually(
-//                () -> ACAPY.sendCredentialOffer(context.getValue("connectionId"), context.getValue("credentialDefinitionId"), Constants.values, credentialName)
-//        );
-//
-//        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
-//        schemeName = credentialPageNew.credentialSchemeName.getText();
-//        context.setValue("credentialNameScheme", schemeName);
-//
-//        validateCredentialView("Credential Offer", "Issued by", schemeName, Constants.values);
-//        objAppUtlis.acceptCredential();
-//
-//        homePageNew.recentEventsSection.isDisplayed();
-//        homePageNew.credentialIssuedEvent(schemeName).isDisplayed();
-//
-//        AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
-//    }
+    // @Test
+    // public void acaPyAcceptCredentialFromHome() throws Exception {
+    //     AppUtils.DoSomethingEventually(
+    //             () -> ACAPY.sendCredentialOffer(context.getValue("connectionId"), context.getValue("credentialDefinitionId"))
+    //     );
+
+    //     AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
+    //     String schemeName = credentialPageNew.credentialSchemeName.getText();
+    //     context.setValue("credentialNameScheme", schemeName);
+
+    //     objAppUtlis.acceptCredential();
+
+    //     homePageNew.recentEventsSection.isDisplayed();
+    //     homePageNew.credentialIssuedEvent(schemeName).isDisplayed();
+
+    //     AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
+    // }
 //
 //    @Test
 //    public void shareProofRequestFromAcaPy() throws Exception {

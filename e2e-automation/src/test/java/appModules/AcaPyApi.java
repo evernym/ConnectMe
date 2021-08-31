@@ -69,13 +69,13 @@ public class AcaPyApi {
 
   public JSONObject createSchema(String name,
                                  String version,
-                                 List<String> attrNames
+                                 List<String> attributes
   ) throws Exception {
     JSONObject body =
       new JSONObject()
         .put("schema_name", name)
-        .put("version", version)
-        .put("schema_version", attrNames);
+        .put("schema_version", version)
+        .put("attributes", attributes);
 
     String path = "/schemas";
     JSONObject response = post(path, body.toString());
@@ -95,11 +95,10 @@ public class AcaPyApi {
   }
 
   public JSONObject sendCredentialOffer(String connectionId,
-                                        String credDefID,
-                                        String comment) {
+                                        String credDefID) {
     JSONObject at = new JSONObject()
-      .put("name", "Age")
-      .put("value", 20);
+      .put("name", "age")
+      .put("value", "20");
 
     List<JSONObject> attr = new ArrayList<JSONObject>();
     attr.add(at);
