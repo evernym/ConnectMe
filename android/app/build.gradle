@@ -77,6 +77,7 @@ import com.android.build.OutputFile
 
 //TODO Once android builds are stable. Consider removing commented code.
 project.ext.react = [
+        bundleAssetName: "index.android.bundle",
         entryFile: "index.js",
 	    enableHermes: true,  // clean and rebuild if changing
 ]
