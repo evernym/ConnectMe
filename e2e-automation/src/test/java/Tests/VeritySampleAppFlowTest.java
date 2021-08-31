@@ -54,7 +54,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         homePageNew.homeHeader.isDisplayed();
       }
 
-      Thread.sleep(60000); // FIXME: establishing connection on CM side
+      Thread.sleep(30000); // FIXME: establishing connection on CM side
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
