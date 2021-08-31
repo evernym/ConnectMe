@@ -21,6 +21,7 @@ import com.evernym.sdk.reactnative.EvernymSdkPackage;
 
 // branch needs to have a referral in initializing
 import io.branch.referral.Branch;
+import me.connect.MIDSPackage;
 
 public class MainApplication extends Application implements ShareApplication, ReactApplication {
 
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ShareApplication, Re
       List<ReactPackage> packages = new PackageList(this).getPackages();
 
       // Packages that cannot be auto linked yet can be added manually here:
+      packages.add(new MIDSPackage());
 
       return packages;
     }
