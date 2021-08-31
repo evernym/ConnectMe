@@ -62,7 +62,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
-    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
+//    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
+    String[] answers = new String[] { "Ok!" };
     for (String answer: answers) {
       // answer question
       try {
@@ -80,12 +81,15 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(15000);
     }
 
+//    String[][] creds_and_proofs = new String[][] {
+//      {"Passport", "Proof of Health"},
+//      {"Diploma", "Proof of Degree"},
+//      {"Schema #1", "Proof #1"},
+//      {"Schema #2", "Proof #2"},
+//      {"Attachment Schema", "Proof of Attachments"}
+//    };
     String[][] creds_and_proofs = new String[][] {
-      {"Passport", "Proof of Health"},
-      {"Diploma", "Proof of Degree"},
-      {"Schema #1", "Proof #1"},
-      {"Schema #2", "Proof #2"},
-      {"Attachment Schema", "Proof of Attachments"}
+      {"Passport", "Proof of Health"}
     };
     for (String[] entry: creds_and_proofs) {
       // accept credential
