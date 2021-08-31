@@ -149,9 +149,6 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
             incremental = false; //If you see any build issues, try uncommenting this line development phases. Do not commit this line uncommented
         }
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // configure branch keys
