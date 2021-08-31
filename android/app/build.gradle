@@ -149,9 +149,7 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
             incremental = false; //If you see any build issues, try uncommenting this line development phases. Do not commit this line uncommented
         }
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
+
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // configure branch keys
@@ -313,8 +311,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'kotlin-kapt'
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
