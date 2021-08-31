@@ -122,7 +122,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
     // accept credential
     AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
     AppUtilsInstance.acceptCredential();
-    Thread.sleep(15000);
+    Thread.sleep(30000);
 
     BrowserDriver.closeApp();
     driverApp.closeApp();
@@ -135,7 +135,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
     // share proof
     AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
     AppUtilsInstance.shareProof();
-    Thread.sleep(15000);
+    Thread.sleep(30000);
 
 //    // check all events
 //    // TODO: swipe is needed due to many events on Home!
