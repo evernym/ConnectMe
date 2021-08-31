@@ -140,12 +140,6 @@ android {
         if (enableHermes) {
             exclude '**/libjsc*.so'
         }
-
-        exclude "/META-INF/*.kotlin_module"
-        exclude "**/kotlin/**"
-        exclude "**/*.txt"
-        exclude "**/*.xml"
-        exclude "**/*.properties"
     }
 
     defaultConfig {
