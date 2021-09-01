@@ -27,6 +27,7 @@ public class AppElementsTest extends IntSetup {
         settingsPageNew = new SettingsPageNew(driverApp);
         chatPageNew = new ChatPageNew(driverApp);
         aboutPageNew = new AboutPageNew(driverApp);
+        menuPageNew = new MenuPageNew(driverApp);
 
         passCodePageNew.openApp();
     }
