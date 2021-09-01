@@ -12,7 +12,8 @@ import test.java.appModules.AppUtils;
 
 public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
-  private static final int connection_number = 1; // 5
+  private static final int connection_cases = 1; // 5
+  private static final int oob_attachment_cases = 2;
 
   @BeforeClass
   public void classSetup() {
@@ -30,7 +31,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
   @Test
   public void verityFlowTest() throws Exception {
-    for (int i = 0; i < connection_number; i++) {
+    for (int i = 0; i < connection_cases; i++) {
       // establish connection
       driverBrowser = BrowserDriver.getDriver();
 
@@ -70,8 +71,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     }
 
-//    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
-    String[] answers = new String[] { "Ok!" };
+    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
+//    String[] answers = new String[] { "Ok!" };
     for (String answer: answers) {
       // answer question
       try {
@@ -89,16 +90,16 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(15000);
     }
 
-//    String[][] creds_and_proofs = new String[][] {
-//      {"Passport", "Proof of Health"},
-//      {"Diploma", "Proof of Degree"},
-//      {"Schema #1", "Proof #1"},
-//      {"Schema #2", "Proof #2"},
-//      {"Attachment Schema", "Proof of Attachments"}
-//    };
     String[][] creds_and_proofs = new String[][] {
-      {"Passport", "Proof of Health"}
+      {"Passport", "Proof of Health"},
+      {"Diploma", "Proof of Degree"},
+      {"Schema #1", "Proof #1"},
+      {"Schema #2", "Proof #2"},
+      {"Attachment Schema", "Proof of Attachments"}
     };
+//    String[][] creds_and_proofs = new String[][] {
+//      {"Passport", "Proof of Health"}
+//    };
     for (String[] entry: creds_and_proofs) {
       // accept credential
       AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
@@ -111,51 +112,86 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(15000);
     }
 
-    BrowserDriver.closeApp();
-    driverApp.closeApp();
-    // oob attachment case #1
-    driverBrowser = BrowserDriver.getDriver();
-    driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number));
-    passCodePageNew.passCodeTitle.isDisplayed();
-    passCodePageNew.enterPassCode();
-    // accept credential
-    try {
-      credentialPageNew.credentialOfferHeader.isDisplayed();
-      AppUtilsInstance.acceptCredential();
-    } catch (Exception e) {
+    for (int i = 0; i < oob_attachment_cases; i++) {
       BrowserDriver.closeApp();
       driverApp.closeApp();
+      // oob attachment case #1
       driverBrowser = BrowserDriver.getDriver();
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number));
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
-      credentialPageNew.credentialOfferHeader.isDisplayed();
-      AppUtilsInstance.acceptCredential();
+      // accept credential or share proof
+      try {
+        if (i == 0) {
+          credentialPageNew.credentialOfferHeader.isDisplayed();
+          AppUtilsInstance.acceptCredential();
+        } else {
+          proofRequestPageNew.proofRequestHeader.isDisplayed();
+          AppUtilsInstance.shareProof();
+        }
+      } catch (Exception e) {
+        BrowserDriver.closeApp();
+        driverApp.closeApp();
+        driverBrowser = BrowserDriver.getDriver();
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
+        passCodePageNew.passCodeTitle.isDisplayed();
+        passCodePageNew.enterPassCode();
+        if (i == 0) {
+          credentialPageNew.credentialOfferHeader.isDisplayed();
+          AppUtilsInstance.acceptCredential();
+        } else {
+          proofRequestPageNew.proofRequestHeader.isDisplayed();
+          AppUtilsInstance.shareProof();
+        }
+      }
+      Thread.sleep(30000);
     }
-    Thread.sleep(30000);
 
-    BrowserDriver.closeApp();
-    driverApp.closeApp();
-    // oob attachment case #2
-    driverBrowser = BrowserDriver.getDriver();
-    driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number + 1));
-    passCodePageNew.passCodeTitle.isDisplayed();
-    passCodePageNew.enterPassCode();
-    // share proof
-    try {
-      proofRequestPageNew.proofRequestHeader.isDisplayed();
-      AppUtilsInstance.shareProof();
-    } catch (Exception e) {
-      BrowserDriver.closeApp();
-      driverApp.closeApp();
-      driverBrowser = BrowserDriver.getDriver();
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number + 1));
-      passCodePageNew.passCodeTitle.isDisplayed();
-      passCodePageNew.enterPassCode();
-      proofRequestPageNew.proofRequestHeader.isDisplayed();
-      AppUtilsInstance.shareProof();
-    }
-    Thread.sleep(30000);
+//    BrowserDriver.closeApp();
+//    driverApp.closeApp();
+//    // oob attachment case #1
+//    driverBrowser = BrowserDriver.getDriver();
+//    driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases));
+//    passCodePageNew.passCodeTitle.isDisplayed();
+//    passCodePageNew.enterPassCode();
+//    // accept credential
+//    try {
+//      credentialPageNew.credentialOfferHeader.isDisplayed();
+//      AppUtilsInstance.acceptCredential();
+//    } catch (Exception e) {
+//      BrowserDriver.closeApp();
+//      driverApp.closeApp();
+//      driverBrowser = BrowserDriver.getDriver();
+//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases));
+//      passCodePageNew.passCodeTitle.isDisplayed();
+//      passCodePageNew.enterPassCode();
+//      credentialPageNew.credentialOfferHeader.isDisplayed();
+//      AppUtilsInstance.acceptCredential();
+//    }
+//    Thread.sleep(30000);
+//
+//    BrowserDriver.closeApp();
+//    driverApp.closeApp();
+//    // oob attachment case #2
+//    driverBrowser = BrowserDriver.getDriver();
+//    driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + 1));
+//    passCodePageNew.passCodeTitle.isDisplayed();
+//    passCodePageNew.enterPassCode();
+//    // share proof
+//    try {
+//      proofRequestPageNew.proofRequestHeader.isDisplayed();
+//      AppUtilsInstance.shareProof();
+//    } catch (Exception e) {
+//      BrowserDriver.closeApp();
+//      driverApp.closeApp();
+//      driverBrowser = BrowserDriver.getDriver();
+//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + 1));
+//      passCodePageNew.passCodeTitle.isDisplayed();
+//      passCodePageNew.enterPassCode();
+//      proofRequestPageNew.proofRequestHeader.isDisplayed();
+//      AppUtilsInstance.shareProof();
+//    }
+//    Thread.sleep(30000);
 
 //    // check all events
 //    // TODO: swipe is needed due to many events on Home!
