@@ -113,28 +113,48 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     BrowserDriver.closeApp();
     driverApp.closeApp();
-
     // oob attachment case #1
     driverBrowser = BrowserDriver.getDriver();
     driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number));
     passCodePageNew.passCodeTitle.isDisplayed();
     passCodePageNew.enterPassCode();
     // accept credential
-    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
-    AppUtilsInstance.acceptCredential();
+    try {
+      credentialPageNew.credentialOfferHeader.isDisplayed();
+      AppUtilsInstance.acceptCredential();
+    } catch (Exception e) {
+      BrowserDriver.closeApp();
+      driverApp.closeApp();
+      driverBrowser = BrowserDriver.getDriver();
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number));
+      passCodePageNew.passCodeTitle.isDisplayed();
+      passCodePageNew.enterPassCode();
+      credentialPageNew.credentialOfferHeader.isDisplayed();
+      AppUtilsInstance.acceptCredential();
+    }
     Thread.sleep(30000);
 
     BrowserDriver.closeApp();
     driverApp.closeApp();
-
     // oob attachment case #2
     driverBrowser = BrowserDriver.getDriver();
     driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number + 1));
     passCodePageNew.passCodeTitle.isDisplayed();
     passCodePageNew.enterPassCode();
     // share proof
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
-    AppUtilsInstance.shareProof();
+    try {
+      proofRequestPageNew.proofRequestHeader.isDisplayed();
+      AppUtilsInstance.shareProof();
+    } catch (Exception e) {
+      BrowserDriver.closeApp();
+      driverApp.closeApp();
+      driverBrowser = BrowserDriver.getDriver();
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_number + 1));
+      passCodePageNew.passCodeTitle.isDisplayed();
+      passCodePageNew.enterPassCode();
+      proofRequestPageNew.proofRequestHeader.isDisplayed();
+      AppUtilsInstance.shareProof();
+    }
     Thread.sleep(30000);
 
 //    // check all events
