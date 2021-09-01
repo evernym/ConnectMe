@@ -133,8 +133,10 @@ public class VeritySampleAppFlowTest extends IntSetup {
     passCodePageNew.passCodeTitle.isDisplayed();
     passCodePageNew.enterPassCode();
     // share proof
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
-    AppUtilsInstance.shareProof();
+    AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
+    AppUtilsInstance.acceptCredential();
+//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+//    AppUtilsInstance.shareProof();
     Thread.sleep(30000);
 
 //    // check all events
