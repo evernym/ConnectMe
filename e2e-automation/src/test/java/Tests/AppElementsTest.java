@@ -1,5 +1,6 @@
 package test.java.Tests;
 
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -17,6 +18,16 @@ public class AppElementsTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
+        driverApp = test.java.utility.AppDriver.getDriver();
+        passCodePageNew = new PassCodePageNew(driverApp);
+        homePageNew = new HomePageNew(driverApp);
+        myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
+        myCredentialsPageNew = new MyCredentialsPageNew(driverApp);
+        qrScannerPageNew = new QrScannerPageNew(driverApp);
+        settingsPageNew = new SettingsPageNew(driverApp);
+        chatPageNew = new ChatPageNew(driverApp);
+        aboutPageNew = new AboutPageNew(driverApp);
+
         passCodePageNew.openApp();
     }
 

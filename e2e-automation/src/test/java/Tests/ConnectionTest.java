@@ -4,6 +4,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.funcModules.ConnectionModules;
@@ -30,6 +31,12 @@ public class ConnectionTest extends IntSetup {
         System.out.println("Connection Test Suite has been started!");
         //driverApp.launchApp();
         driverApp = AppDriver.getDriver();
+
+        passCodePageNew = new PassCodePageNew(driverApp);
+        homePageNew = new HomePageNew(driverApp);
+        menuPageNew = new MenuPageNew(driverApp);
+        myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
+        connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
     }
 
     @DataProvider(name = "data1")

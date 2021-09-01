@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
 import test.java.utility.Config;
@@ -32,6 +33,15 @@ public class UpgradePathTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         driverApp = AppDriver.getDriver();
+
+        passCodePageNew = new PassCodePageNew(driverApp);
+        homePageNew = new HomePageNew(driverApp);
+        menuPageNew = new MenuPageNew(driverApp);
+        myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
+        connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
+        credentialPageNew = new CredentialPageNew(driverApp);
+        proofRequestPageNew = new ProofRequestPageNew(driverApp);
+        connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
 
         DID = context.getValue("DID");
         connectionName = context.getValue("connectionName");
