@@ -14,7 +14,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
   private static final int connection_cases = 5; // 5
   private static final int oob_attachment_cases = 2;
-  private static final int step_wait = 15000; // tune this to fix intermittent failures
+  private static final int step_wait = 30000; // tune this to fix intermittent failures
 
   @BeforeClass
   public void classSetup() {
@@ -51,12 +51,12 @@ public class VeritySampleAppFlowTest extends IntSetup {
         } catch (Exception ignored) {
 
         }
-        System.out.println("Connection #" + (i+1) + " was established!");
+        System.out.println("Connection #" + (i + 1) + " was established!");
       } catch (Exception e) { // reuse cases
         homePageNew.homeHeader.isDisplayed();
       }
 
-      Thread.sleep(30000); // FIXME: establishing connection on CM side
+      Thread.sleep(step_wait * 2); // FIXME: establishing connection on CM side
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
