@@ -147,17 +147,6 @@ public class VeritySampleAppFlowTest extends IntSetup {
       }
       Thread.sleep(step_wait);
     }
-
-//    // check all events
-//    // TODO: swipe is needed due to many events on Home!
-//    for (String answer: answers) {
-//      homePageNew.questionRespondedEvent(answer).isDisplayed();
-//    }
-
-//    for (String[] entry: creds_and_proofs) {
-//      AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(entry[0]));
-//      AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(entry[1]));
-//    }
   }
 
   @AfterClass
