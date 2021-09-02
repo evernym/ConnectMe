@@ -91,6 +91,8 @@ public class ConnectionModules extends IntSetup {
     }
 
     public void openDeepLink(AppiumDriver driverBrowser, AppiumDriver driverApp, String link) throws InterruptedException {
+        System.out.println("Opening deeplink: " + link);
+
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) {
             driverApp.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
 
@@ -105,6 +107,7 @@ public class ConnectionModules extends IntSetup {
             params.put("arguments", args);
 
             driverBrowser.executeScript("mobile: launchApp", params);
+            Thread.sleep(5000);
             driverApp.launchApp();
         } else {
             driverBrowser.get(link);
