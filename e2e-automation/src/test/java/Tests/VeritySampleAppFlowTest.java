@@ -46,17 +46,17 @@ public class VeritySampleAppFlowTest extends IntSetup {
       try {
         invitationPageNew.title.isDisplayed();
         invitationPageNew.connectButton.click();
-        try {
-          invitationPageNew.connectButton.click();
-        } catch (Exception ignored) {
-
-        }
+//        try {
+//          invitationPageNew.connectButton.click();
+//        } catch (Exception ignored) {
+//
+//        }
         System.out.println("Connection #" + (i + 1) + " was established!");
       } catch (Exception e) { // reuse cases
         homePageNew.homeHeader.isDisplayed();
       }
 
-      Thread.sleep(step_wait * 3); // FIXME: establishing connection on CM side
+      Thread.sleep(step_wait * 2); // FIXME: establishing connection on CM side
 
       BrowserDriver.closeApp();
       driverApp.closeApp();
