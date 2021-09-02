@@ -37,6 +37,7 @@ public class ConnectionTest extends IntSetup {
         menuPageNew = new MenuPageNew(driverApp);
         myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
         connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
+        objConnectionModules = new ConnectionModules();
     }
 
     @DataProvider(name = "data1")
