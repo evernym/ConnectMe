@@ -16,10 +16,10 @@ import java.util.List;
 
 public class InteroperabilityTest extends IntSetup {
 	private LocalContext context = LocalContext.getInstance();
-    private AppUtils objAppUtlis = new AppUtils();
+    // private AppUtils objAppUtlis = new AppUtils();
 
     private ConnectionModules objConnectionModules = new ConnectionModules();
-    private AcaPyApi ACAPY;
+    // private AcaPyApi ACAPY;
     private String connectionName = Helpers.randomString();
 
 	private String credentialName = Helpers.randomString();
@@ -52,14 +52,14 @@ public class InteroperabilityTest extends IntSetup {
     public void BeforeClassSetup() {
         System.out.println("Interoperability Test Suite has been started!");
         driverApp.launchApp();
-        ACAPY = AcaPyApi.getInstance();
+        // ACAPY = AcaPyApi.getInstance();
 
-        // create new schemas and cred defs
-        try {
-            acaPyCreateSchemaAndCredDef(acaPyParametersList.a, acaPyParametersList.b);
-        } catch (Exception ex) {
-            System.err.println(ex.toString());
-        }
+        // // create new schemas and cred defs
+        // try {
+        //     acaPyCreateSchemaAndCredDef(acaPyParametersList.a, acaPyParametersList.b);
+        // } catch (Exception ex) {
+        //     System.err.println(ex.toString());
+        // }
     }
 
     @Test
