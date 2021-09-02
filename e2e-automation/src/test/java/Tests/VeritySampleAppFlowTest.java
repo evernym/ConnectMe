@@ -14,6 +14,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
   private static final int connection_cases = 1; // 5
   private static final int oob_attachment_cases = 2;
+  private static final int step_wait = 15000; // tune this to fix intermittent failures
 
   @BeforeClass
   public void classSetup() {
@@ -87,7 +88,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         questionPageNew.submitButton.click();
       }
 
-      Thread.sleep(15000);
+      Thread.sleep(step_wait);
     }
 
     String[][] creds_and_proofs = new String[][] {
@@ -104,12 +105,12 @@ public class VeritySampleAppFlowTest extends IntSetup {
       // accept credential
       AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
       AppUtilsInstance.acceptCredential();
-      Thread.sleep(15000);
+      Thread.sleep(step_wait);
 
       // share proof
       AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
       AppUtilsInstance.shareProof();
-      Thread.sleep(15000);
+      Thread.sleep(step_wait);
     }
 
     for (int i = 0; i < oob_attachment_cases; i++) {
@@ -144,7 +145,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
           AppUtilsInstance.shareProof();
         }
       }
-      Thread.sleep(30000);
+      Thread.sleep(step_wait);
     }
 
 //    BrowserDriver.closeApp();
