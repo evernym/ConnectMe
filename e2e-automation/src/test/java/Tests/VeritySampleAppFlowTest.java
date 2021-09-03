@@ -15,7 +15,7 @@ import test.java.appModules.AppUtils;
 
 public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
-  private static final int connection_cases = 5; // 5
+  private static final int connection_cases = 1; // 5
   private static final int oob_attachment_cases = 2;
   private static final int step_wait = 15000; // tune this to fix intermittent failures
 
@@ -117,8 +117,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverApp.closeApp();
       // oob attachment case #1
       driverBrowser = BrowserDriver.getDriver();
-//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
+//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
       // accept credential or share proof
@@ -134,8 +134,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
         BrowserDriver.closeApp();
         driverApp.closeApp();
         driverBrowser = BrowserDriver.getDriver();
-//        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
+//        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
         passCodePageNew.passCodeTitle.isDisplayed();
         passCodePageNew.enterPassCode();
         if (i == 0) {
