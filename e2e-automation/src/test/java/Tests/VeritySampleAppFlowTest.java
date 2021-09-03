@@ -68,14 +68,6 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
-//    // sometimes connection appears after app restart
-//    try {
-//      invitationPageNew.title.isDisplayed();
-//      invitationPageNew.connectButton.click();
-//    } catch (Exception ignored) {
-//
-//    }
-
     String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
 //    String[] answers = new String[] { "Ok!" };
     for (String answer: answers) {
@@ -122,7 +114,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverApp.closeApp();
       // oob attachment case #1
       driverBrowser = BrowserDriver.getDriver();
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
       // accept credential or share proof
