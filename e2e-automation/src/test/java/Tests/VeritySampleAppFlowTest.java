@@ -117,7 +117,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverApp.closeApp();
       // oob attachment case #1
       driverBrowser = BrowserDriver.getDriver();
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
+//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
       // accept credential or share proof
@@ -133,7 +134,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
         BrowserDriver.closeApp();
         driverApp.closeApp();
         driverBrowser = BrowserDriver.getDriver();
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
+//        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
         passCodePageNew.passCodeTitle.isDisplayed();
         passCodePageNew.enterPassCode();
         if (i == 0) {
@@ -150,8 +152,6 @@ public class VeritySampleAppFlowTest extends IntSetup {
     // self-attested proof requests
     AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-    proofRequestPageNew.missingAttributePlaceholder.isDisplayed();
-    proofRequestPageNew.arrowForwardIcon.isDisplayed();
     proofRequestPageNew.missingAttributePlaceholder.click();
     customValuesPageNew.title.isDisplayed();
     customValuesPageNew.attributeNameLabel("unknown").click();
