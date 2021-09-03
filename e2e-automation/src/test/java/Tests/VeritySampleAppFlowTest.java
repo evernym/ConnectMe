@@ -130,7 +130,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         BrowserDriver.closeApp();
         driverApp.closeApp();
         driverBrowser = BrowserDriver.getDriver();
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i));
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i));
         passCodePageNew.passCodeTitle.isDisplayed();
         passCodePageNew.enterPassCode();
         if (i == 0) {
