@@ -88,7 +88,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
     }
 
     String[][] creds_and_proofs = new String[][] {
-      {"Passport", "Proof of Health"},
+      {"Passport", "Proof of Age"},
       {"Diploma", "Proof of Degree"},
       {"Schema #1", "Proof #1"},
       {"Schema #2", "Proof #2"},
