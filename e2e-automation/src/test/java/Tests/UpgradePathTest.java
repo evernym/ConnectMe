@@ -34,14 +34,24 @@ public class UpgradePathTest extends IntSetup {
     public void BeforeClassSetup() throws Exception {
         driverApp = AppDriver.getDriver();
 
+        startUpPageNew = new StartUpPageNew(driverApp);
         passCodePageNew = new PassCodePageNew(driverApp);
         homePageNew = new HomePageNew(driverApp);
         menuPageNew = new MenuPageNew(driverApp);
         myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
+        myCredentialsPageNew = new MyCredentialsPageNew(driverApp);
+        qrScannerPageNew = new QrScannerPageNew(driverApp);
+        settingsPageNew = new SettingsPageNew(driverApp);
+        aboutPageNew = new AboutPageNew(driverApp);
+        chatPageNew = new ChatPageNew(driverApp);
+        pushNotificationsPageNew = new PushNotificationsPageNew(driverApp);
+        invitationPageNew = new InvitationPageNew(driverApp);
         connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
+        connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
         credentialPageNew = new CredentialPageNew(driverApp);
         proofRequestPageNew = new ProofRequestPageNew(driverApp);
-        connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
+        questionPageNew = new QuestionPageNew(driverApp);
+        customValuesPageNew = new CustomValuesPageNew(driverApp);
 
         DID = context.getValue("DID");
         connectionName = context.getValue("connectionName");
