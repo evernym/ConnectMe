@@ -126,21 +126,18 @@ public class AcaPyApi {
 
   public void requestProof(String connectionId,
                            String name,
-                           List<JSONObject> attributes,
-                           List<JSONObject> predicates) {
+                           List<JSONObject> attributes) {
     JSONObject proofRequest = new JSONObject()
-      .put("requested_attributes", attributes)
-      .put("requested_predicates", predicates)
-      .put("nonce", 1)
+      .put("name", name)
       .put("version", "1.0")
-      .put("name", name);
+      .put("requested_attributes", attributes);
 
     JSONObject body =
       new JSONObject()
+        .put("comment", "Comment")
         .put("connection_id", connectionId)
         .put("proof_request", proofRequest)
-        .put("trace", false)
-        .put("comment", "Comment");
+        .put("trace", true);
 
     String path = "/present-proof/send-request";
 

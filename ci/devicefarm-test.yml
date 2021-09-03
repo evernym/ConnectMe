@@ -236,7 +236,7 @@ devicefarm-test-launch-android-aca-py:
     dependencies:
         - build-android-master
     rules:
-        - if: '$CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "fix/aca-py"'
           when: always
     script:
         - sleep 300 # android shift

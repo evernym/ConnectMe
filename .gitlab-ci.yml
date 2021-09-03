@@ -5,12 +5,12 @@ stages:
   - check
   - test
   - build
-  - devicefarm-test
-  - devicefarm-test-top
-  - devicefarm-test-next
-  - devicefarm-test-final
-  - upload
-  - devicefarm-test-upgrade-path
+#  - devicefarm-test
+#  - devicefarm-test-top
+#  - devicefarm-test-next
+#  - devicefarm-test-final
+#  - upload
+#  - devicefarm-test-upgrade-path
   - devicefarm-test-acapy
 
 ### - Pre-build - ###
@@ -233,7 +233,7 @@ build-android-master:
   extends: .build-android
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - fix/aca-py@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
