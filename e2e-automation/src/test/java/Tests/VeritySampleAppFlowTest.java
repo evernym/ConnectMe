@@ -58,7 +58,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
           System.out.println("Connection #" + (i + 1) + " was established after app restart!");
           Thread.sleep(step_wait * 2); // FIXME: establishing connection on CM side
         } catch (Exception ex) { // reuse cases
-          homePageNew.homeHeader.isDisplayed();
+//          homePageNew.homeHeader.isDisplayed();
         }
       }
 
