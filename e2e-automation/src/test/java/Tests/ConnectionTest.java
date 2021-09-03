@@ -30,6 +30,9 @@ public class ConnectionTest extends IntSetup {
     public void BeforeClassSetup() {
         System.out.println("Connection Test Suite has been started!");
         //driverApp.launchApp();
+        AppDriver.quit();
+        BrowserDriver.quit();
+        
         driverApp = AppDriver.getDriver();
 
         passCodePageNew = new PassCodePageNew(driverApp);
