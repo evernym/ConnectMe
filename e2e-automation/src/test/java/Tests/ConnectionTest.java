@@ -53,13 +53,10 @@ public class ConnectionTest extends IntSetup {
     public void rejectConnectionTest(String invitationType) throws Exception {
         driverBrowser = BrowserDriver.getDriver();
 
-        AppUtils.DoSomethingEventuallyNew(
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
-            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.DoSomethingEventuallyNew(
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
-            () -> objConnectionModules.rejectConnectionInvitation(driverApp)
-        );
+            objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+            objConnectionModules.acceptPushNotificationRequest(driverApp);
+            AppUtils.DoSomethingEventuallyNew(() -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title));
+            objConnectionModules.rejectConnectionInvitation(driverApp);
 
         Thread.sleep(1000);
         BrowserDriver.closeApp();
