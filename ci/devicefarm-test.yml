@@ -169,7 +169,7 @@ devicefarm-test-launch-ios-e2e-testing:
 #        refs:
 #            - main@evernym/mobile/connectme
 #    script:
-#        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath
+#        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
     stage: devicefarm-test-upgrade-path
@@ -182,7 +182,7 @@ devicefarm-test-upgrade-path-ios:
         refs:
             - feature/CM-3015@evernym/mobile/connectme
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
 
 # CM-2930
 # devicefarm-test-upgrade-path-ios:
