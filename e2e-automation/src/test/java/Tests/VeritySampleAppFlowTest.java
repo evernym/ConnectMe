@@ -1,5 +1,8 @@
 package test.java.Tests;
 
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -143,6 +146,20 @@ public class VeritySampleAppFlowTest extends IntSetup {
       }
       Thread.sleep(step_wait);
     }
+
+    // self-attested proof requests
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+
+    proofRequestPageNew.missingAttributePlaceholder.isDisplayed();
+    proofRequestPageNew.arrowForwardIcon.isDisplayed();
+    proofRequestPageNew.missingAttributePlaceholder.click();
+    customValuesPageNew.title.isDisplayed();
+    customValuesPageNew.attributeNameLabel("unknown").click();
+    customValuesPageNew.customValueInput.sendKeys("random string");
+    AndroidDriver androidDriver = (AndroidDriver) driverApp;
+    androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
+
+    AppUtilsInstance.shareProof();
   }
 
   @AfterClass
