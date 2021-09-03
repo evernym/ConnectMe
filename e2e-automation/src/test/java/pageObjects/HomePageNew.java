@@ -126,6 +126,7 @@ public class HomePageNew {
             catch (InterruptedException e) {}
             burgerMenuButton.click();
         }
+        System.out.println("Side menu should be visible now");
     }
 
     public void checkHome() {
