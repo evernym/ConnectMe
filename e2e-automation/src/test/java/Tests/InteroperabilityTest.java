@@ -1,5 +1,6 @@
 package test.java.Tests;
 
+import java.util.*;
 import org.json.JSONObject;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -27,7 +28,6 @@ public class InteroperabilityTest extends IntSetup {
     private String proofName = Helpers.randomString();
 
     private List<String> attrs1 = Arrays.asList("age");
-    private Tuple acaPyParametersList = new Tuple(schemaName, attrs1);
 
     String schemaId = "";
     String credDefId = "";
@@ -60,7 +60,7 @@ public class InteroperabilityTest extends IntSetup {
 
          // create new schemas and cred defs
          try {
-             acaPyCreateSchemaAndCredDef(acaPyParametersList.a, acaPyParametersList.b);
+             acaPyCreateSchemaAndCredDef(schemaName, attrs1);
          } catch (Exception ex) {
              System.err.println(ex.toString());
          }
@@ -121,8 +121,7 @@ public class InteroperabilityTest extends IntSetup {
         );
         AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-        objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
-        objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
+        objAppUtlis.findParameterizedElement("age").isDisplayed();
 
         objAppUtlis.shareProof();
 

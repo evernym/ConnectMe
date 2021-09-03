@@ -126,7 +126,7 @@ public class AcaPyApi {
 
   public void requestProof(String connectionId,
                            String name,
-                           List<JSONObject> attributes) {
+                           JSONObject attributes) {
     JSONObject proofRequest = new JSONObject()
       .put("name", name)
       .put("version", "1.0")
