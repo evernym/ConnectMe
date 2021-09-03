@@ -31,7 +31,7 @@ public class ConnectionTest extends IntSetup {
         driverApp.launchApp();
     }
 
-    @DataProvider(name = "data1")
+    @DataProvider(name = "invitationTypesSource")
     public Object[][] createData() {
         return new Object[][]{
             {connectionInvitation},
@@ -39,14 +39,15 @@ public class ConnectionTest extends IntSetup {
         };
     }
 
-    @Test(dataProvider = "data1")
+    @Test(dataProvider = "invitationTypesSource")
     public void rejectConnectionTest(String invitationType) throws Exception {
         driverBrowser = BrowserDriver.getDriver();
 
         AppUtils.DoSomethingEventuallyNew(
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
             () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
+            () -> AppUtils.DoSomethingEventuallyNew(
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
             () -> objConnectionModules.rejectConnectionInvitation(driverApp)
         );
 
@@ -54,15 +55,17 @@ public class ConnectionTest extends IntSetup {
         BrowserDriver.closeApp();
     }
 
-    @Test(dataProvider = "data1", dependsOnMethods = "rejectConnectionTest")
+    @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
 
         driverBrowser = BrowserDriver.getDriver();
 
+        // Use custom iteration approach to ensure that connection would be available for the next tests
         AppUtils.DoSomethingEventuallyNew(
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
+            () -> AppUtils.DoSomethingEventuallyNew(
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
             () -> objConnectionModules.acceptConnectionInvitation(driverApp)
         );
 
