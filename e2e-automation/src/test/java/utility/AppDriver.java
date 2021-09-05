@@ -16,6 +16,9 @@ import test.java.utility.Config;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Singleton for native ConnectMe app
+ */
 public class AppDriver {
 
     private static AppiumDriver driver;
@@ -90,17 +93,22 @@ public class AppDriver {
                     driver = new AndroidDriver(new URL(test.java.utility.Config.Appium_Server), capabilities);
                     System.out.println("connectMe application launched successfully in android");
                 }
+                driver.manage().timeouts().implicitlyWait(LARGE_TIMEOUT, TimeUnit.SECONDS);
             } catch (Exception e) {
                 Reporter.log("Class Setup | Method OpenBrowser | Exception desc : " + e.getMessage());
                 System.out.println("Class Setup | Method OpenBrowser | Exception desc : " + e.getMessage());
                 Assert.fail();
             }
         }
-        driver.manage().timeouts().implicitlyWait(LARGE_TIMEOUT, TimeUnit.SECONDS);
 
         return driver;
     }
 
+    /**
+     * Instantiates new IosDriver with target .ipa bundle
+     * @param bundlePath path to the .ipa, can be local or URL
+     * @return new Appium driver casted from IosDriver to make usage close to seamless
+     */
     public static AppiumDriver getIosDriverWithProvidedBundle(String bundlePath)
     {
         try {
@@ -123,6 +131,9 @@ public class AppDriver {
         return driver;
     }
 
+    /**
+     * Shuts down driver and removes singleton instance if available
+     */
     public static void quit() {
         if (driver != null) {
             driver.quit();

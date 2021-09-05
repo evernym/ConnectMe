@@ -29,10 +29,9 @@ public class ConnectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Connection Test Suite has been started!");
-        //driverApp.launchApp();
         AppDriver.quit();
         BrowserDriver.quit();
-        
+
         driverApp = AppDriver.getDriver();
 
         passCodePageNew = new PassCodePageNew(driverApp);
@@ -42,6 +41,7 @@ public class ConnectionTest extends IntSetup {
         connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
         objConnectionModules = new ConnectionModules();
         invitationPageNew = new InvitationPageNew(driverApp);
+        connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
     }
 
     @DataProvider(name = "invitationTypesSource")
@@ -55,11 +55,12 @@ public class ConnectionTest extends IntSetup {
     @Test(dataProvider = "invitationTypesSource")
     public void rejectConnectionTest(String invitationType) throws Exception {
         driverBrowser = BrowserDriver.getDriver();
-
-            objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
-            objConnectionModules.acceptPushNotificationRequest(driverApp);
-            AppUtils.DoSomethingEventuallyNew(() -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title));
-            objConnectionModules.rejectConnectionInvitation(driverApp);
+        AppUtils.DoSomethingEventuallyNew(
+            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
+            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
+            () -> AppUtils.DoSomethingEventuallyNew(() -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
+            () -> objConnectionModules.rejectConnectionInvitation(driverApp)
+        );
 
         Thread.sleep(1000);
         BrowserDriver.closeApp();

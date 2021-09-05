@@ -107,7 +107,6 @@ public class ConnectionModules extends IntSetup {
             params.put("arguments", args);
 
             driverBrowser.executeScript("mobile: launchApp", params);
-            Thread.sleep(5000);
             driverApp.launchApp();
         } else {
             driverBrowser.get(link);

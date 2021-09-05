@@ -12,7 +12,6 @@ public class StartUpTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
-        //driverApp.launchApp();
         driverApp = AppDriver.getDriver();
         startUpPageNew = new StartUpPageNew(driverApp);
         passCodePageNew = new PassCodePageNew(driverApp);
