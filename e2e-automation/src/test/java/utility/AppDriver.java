@@ -126,6 +126,7 @@ public class AppDriver {
     public static void quit() {
         if (driver != null) {
             driver.quit();
+            driver = null;
         }
     }
 }

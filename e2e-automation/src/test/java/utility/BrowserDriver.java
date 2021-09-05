@@ -89,6 +89,7 @@ public class BrowserDriver {
     public static void quit() {
         if (driver != null) {
             driver.quit();
+            driver = null;
         }
     }
 }
