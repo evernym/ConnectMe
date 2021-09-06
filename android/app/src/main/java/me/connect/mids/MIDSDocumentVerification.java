@@ -42,7 +42,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     private static ReactApplicationContext reactContext = null;
 
     private MIDSEnrollmentManager sdkManager = null;
-    private final ArrayList<MIDSScanSide> scanSidesDV = new ArrayList<MIDSScanSide>();
+    private ArrayList<MIDSScanSide> scanSidesDV = new ArrayList<MIDSScanSide>();
     private Callback resolve = null;
     private Callback reject = null;
     private MIDSCountry selectedCountry = null;
@@ -112,8 +112,8 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         @Override
         public void onInitializedSuccessfully() {
             System.out.println("EnrollmentSDKListener - method: onInitializedSuccessfully");
-            resolve.invoke();
 
+            resolve.invoke();
             resolve = null;
         }
 
@@ -139,6 +139,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
             resolve = null;
             sdkManager = null;
             sideIndex = 0;
+            scanSidesDV = new ArrayList<MIDSScanSide>();
         }
     }
 
