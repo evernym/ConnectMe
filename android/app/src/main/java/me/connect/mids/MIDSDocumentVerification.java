@@ -45,13 +45,12 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     private final ArrayList<MIDSScanSide> scanSidesDV = new ArrayList<MIDSScanSide>();
     private Callback resolve = null;
     private Callback reject = null;
-    private Callback resolveScan = null;
-    MIDSCountry selectedCountry = null;
-    MIDSVerificationConfirmationView midsVerificationConfirmationView = null;
-    MIDSVerificationScanView midsVerificationScanView = null;
-    IMidsVerificationScanListener scanListener = null;
-    MIDSVerificationScanPresenter presenter = null;
-    int sideIndex = 0;
+    private MIDSCountry selectedCountry = null;
+    private MIDSVerificationConfirmationView midsVerificationConfirmationView = null;
+    private MIDSVerificationScanView midsVerificationScanView = null;
+    private IMidsVerificationScanListener scanListener = null;
+    private MIDSVerificationScanPresenter presenter = null;
+    private int sideIndex = 0;
 
     public MIDSDocumentVerification(ReactApplicationContext context) {
         // Pass in the context to the constructor and save it so you can emit events
@@ -72,7 +71,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         if (sdkManager == null) {
             System.out.println("getEnrollmentManagerInstance");
             sdkManager = new MIDSEnrollmentManager(
-                new EnrollmentSDKListener(this.resolve, this.reject)
+                new EnrollmentSDKListener()
             );
         }
         return sdkManager;
@@ -101,26 +100,21 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     }
 
     private class EnrollmentSDKListener implements IMidsVerificationListener {
-        private final Callback resolve;
-        private final Callback reject;
-
-        public EnrollmentSDKListener(Callback resolve, Callback reject) {
-            System.out.println("EnrollmentSDKListener INIT");
-
-            this.resolve = resolve;
-            this.reject = reject;
-        }
 
         @Override
         public void onError(@NotNull MIDSVerificationError error) {
             System.out.println("EnrollmentSDKListener - method: onError - error: " + error.getMessage().toString());
-            reject.invoke(error.toString());
+
+            reject.invoke();
+            reject = null;
         }
 
         @Override
         public void onInitializedSuccessfully() {
             System.out.println("EnrollmentSDKListener - method: onInitializedSuccessfully");
             resolve.invoke();
+
+            resolve = null;
         }
 
         @Override
@@ -138,7 +132,13 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
             System.out.println("EnrollmentSDKListener - method: onVerificationFinished - reference number: " + referenceNumber);
 
             getEnrollmentManagerInstance().endScan();
-            resolveScan.invoke(referenceNumber);
+            getEnrollmentManagerInstance().terminateSDK();
+
+            resolve.invoke(referenceNumber);
+
+            resolve = null;
+            sdkManager = null;
+            sideIndex = 0;
         }
     }
 
@@ -169,7 +169,9 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
             } else {
                 System.out.println("ScanListener - method: onError - error: " + error.getMessage());
                 presenter.destroy();
-                resolveScan.invoke();
+
+                reject.invoke();
+                reject = null;
             }
         }
 
@@ -320,7 +322,8 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         Callback resolve,
         Callback reject
     ) {
-        this.resolveScan = resolve;
+        this.resolve = resolve;
+        this.reject = reject;
 
         MIDSDocumentType type = getMIDSDocumentTypeFromString(documentType);
         System.out.println("start MIDS SDK Scan - type: " + type + " selected country: " + selectedCountry);
