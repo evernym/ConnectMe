@@ -112,42 +112,42 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(step_wait);
     }
 
-//    for (int i = 0; i < oob_attachment_cases; i++) {
-//      BrowserDriver.closeApp();
-//      driverApp.closeApp();
-//      // oob attachment case #1
-//      driverBrowser = BrowserDriver.getDriver();
+    for (int i = 0; i < oob_attachment_cases; i++) {
+      BrowserDriver.closeApp();
+      driverApp.closeApp();
+      // oob attachment case #1
+      driverBrowser = BrowserDriver.getDriver();
 //      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
-////      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
-//      passCodePageNew.passCodeTitle.isDisplayed();
-//      passCodePageNew.enterPassCode();
-//      // accept credential or share proof
-//      try {
-//        if (i == 0) {
-//          credentialPageNew.credentialOfferHeader.isDisplayed();
-//          AppUtilsInstance.acceptCredential();
-//        } else {
-//          proofRequestPageNew.proofRequestHeader.isDisplayed();
-//          AppUtilsInstance.shareProof();
-//        }
-//      } catch (Exception e) {
-//        BrowserDriver.closeApp();
-//        driverApp.closeApp();
-//        driverBrowser = BrowserDriver.getDriver();
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+      passCodePageNew.passCodeTitle.isDisplayed();
+      passCodePageNew.enterPassCode();
+      // accept credential or share proof
+      try {
+        if (i == 0) {
+          credentialPageNew.credentialOfferHeader.isDisplayed();
+          AppUtilsInstance.acceptCredential();
+        } else {
+          proofRequestPageNew.proofRequestHeader.isDisplayed();
+          AppUtilsInstance.shareProof();
+        }
+      } catch (Exception e) {
+        BrowserDriver.closeApp();
+        driverApp.closeApp();
+        driverBrowser = BrowserDriver.getDriver();
 //        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
-////        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
-//        passCodePageNew.passCodeTitle.isDisplayed();
-//        passCodePageNew.enterPassCode();
-//        if (i == 0) {
-//          credentialPageNew.credentialOfferHeader.isDisplayed();
-//          AppUtilsInstance.acceptCredential();
-//        } else {
-//          proofRequestPageNew.proofRequestHeader.isDisplayed();
-//          AppUtilsInstance.shareProof();
-//        }
-//      }
-//      Thread.sleep(step_wait);
-//    }
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+        passCodePageNew.passCodeTitle.isDisplayed();
+        passCodePageNew.enterPassCode();
+        if (i == 0) {
+          credentialPageNew.credentialOfferHeader.isDisplayed();
+          AppUtilsInstance.acceptCredential();
+        } else {
+          proofRequestPageNew.proofRequestHeader.isDisplayed();
+          AppUtilsInstance.shareProof();
+        }
+      }
+      Thread.sleep(step_wait);
+    }
 
     // self-attested proof requests
     AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
