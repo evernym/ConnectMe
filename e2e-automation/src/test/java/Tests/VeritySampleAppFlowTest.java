@@ -15,7 +15,7 @@ import test.java.appModules.AppUtils;
 
 public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
-  private static final int connection_cases = 1; // 5
+  private static final int connection_cases = 5; // 5
   private static final int oob_attachment_cases = 2;
   private static final int step_wait = 20000; // tune this to fix intermittent failures
 
@@ -71,8 +71,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     passCodePageNew.openApp();
 
-//    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
-    String[] answers = new String[] { "Ok!" };
+    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
+//    String[] answers = new String[] { "Ok!" };
     for (String answer: answers) {
       // answer question
       try {
@@ -90,16 +90,16 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(step_wait);
     }
 
-//    String[][] creds_and_proofs = new String[][] {
-//      {"Passport", "Proof of Age"},
-//      {"Diploma", "Proof of Degree"},
-//      {"Schema #1", "Proof #1"},
-//      {"Schema #2", "Proof #2"},
-//      {"Attachment Schema", "Proof of Attachments"}
-//    };
     String[][] creds_and_proofs = new String[][] {
-      {"Passport", "Proof of Health"}
+      {"Passport", "Proof of Age"},
+      {"Diploma", "Proof of Degree"},
+      {"Schema #1", "Proof #1"},
+      {"Schema #2", "Proof #2"},
+      {"Attachment Schema", "Proof of Attachments"}
     };
+//    String[][] creds_and_proofs = new String[][] {
+//      {"Passport", "Proof of Health"}
+//    };
     for (String[] entry: creds_and_proofs) {
       // accept credential
       AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
@@ -117,8 +117,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverApp.closeApp();
       // oob attachment case #1
       driverBrowser = BrowserDriver.getDriver();
-//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
+//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
       // accept credential or share proof
@@ -134,8 +134,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
         BrowserDriver.closeApp();
         driverApp.closeApp();
         driverBrowser = BrowserDriver.getDriver();
-//        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
+//        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
         passCodePageNew.passCodeTitle.isDisplayed();
         passCodePageNew.enterPassCode();
         if (i == 0) {
