@@ -36,13 +36,7 @@ public class AppElementsTest extends IntSetup {
 
         // Avatar
         menuPageNew.userAvatar.click();
-        if(!AppUtils.isElementAbsent(driverApp, menuPageNew.okButton)) {
-            menuPageNew.okButton.click();
-            menuPageNew.menuAllowButton.click();
-        }
-        else {
-            System.out.println("Permissions already have been granted!");
-        }
+        menuPageNew.getGalleryPermissions();
 
         Thread.sleep(1000);
         if((Config.Device_Type.equals("android")||Config.Device_Type.equals("awsAndroid"))) {
@@ -63,6 +57,8 @@ public class AppElementsTest extends IntSetup {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
         myCredentialsPageNew.myCredentialsHeader.isDisplayed();
+        menuPageNew.homeButton.click();
+
         homePageNew.scanButton.isDisplayed();
 
         // Settings
@@ -80,14 +76,7 @@ public class AppElementsTest extends IntSetup {
     public void checkQrScanner() throws Exception {
         homePageNew.scanButton.isDisplayed();
         homePageNew.scanButton.click();
-
-        if(!AppUtils.isElementAbsent(driverApp, qrScannerPageNew.scannerAllowButton)) {
-            qrScannerPageNew.scannerAllowButton.click();
-        }
-        else {
-            System.out.println("Permissions already have been granted!");
-        }
-
+        qrScannerPageNew.getCameraPermissions();
         Thread.sleep(1000);
         qrScannerPageNew.scannerCloseButton.click();
         Thread.sleep(1000);
@@ -100,13 +89,7 @@ public class AppElementsTest extends IntSetup {
 
         settingsPageNew.settingsContainer.isDisplayed();
         settingsPageNew.settingsHeader.isDisplayed();
-
-        // Biometrics
         settingsPageNew.biometricsButton.click();
-//        objBiometricsPage.okButton(driverApp).click(); // FIXME MSDK: now we must swipe slider but there is no slider in app hierarchy
-
-        // Change Passcode
-
         settingsPageNew.passCodeButton.click();
         passCodePageNew.backArrow.click();
 

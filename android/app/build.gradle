@@ -229,6 +229,7 @@ android.applicationVariants.all { variant ->
 dependencies {
 
     androidTestImplementation('com.wix:detox:+')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     implementation 'me.leolin:ShortcutBadger:1.1.22@aar'
 
@@ -242,8 +243,6 @@ dependencies {
     implementation 'net.java.dev.jna:jna:4.5.0@aar'
     implementation 'net.sourceforge.streamsupport:android-retrostreams:1.6.2'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.59'
-
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.50'
 
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.annotation:annotation:1.0.0'
@@ -311,5 +310,8 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
