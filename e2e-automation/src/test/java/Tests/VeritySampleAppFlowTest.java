@@ -11,6 +11,7 @@ import test.java.utility.BrowserDriver;
 import test.java.utility.Config;
 import test.java.funcModules.ConnectionModules;
 import test.java.appModules.AppUtils;
+import test.java.utility.Helpers;
 
 
 public class VeritySampleAppFlowTest extends IntSetup {
@@ -103,7 +104,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
 //      {"Attachment Schema", "Proof of Attachments"}
 //    };
     String[][] creds_and_proofs = new String[][] {
-      {"Passport", "Proof of Health"}
+      {"Passport", "Proof of Age"},
+      {"Diploma", "Proof of Degree"}
     };
     for (String[] entry: creds_and_proofs) {
       // accept credential
@@ -117,18 +119,21 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(step_wait);
     }
 
-    // self-attested proof requests
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+    String[] self_attested = new String[] { "unknown1", "unknown2", "unknown3"};
+    for (String entry: self_attested) {
+      // self-attested proof requests
+      AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-    proofRequestPageNew.missingAttributePlaceholder.click();
-    customValuesPageNew.title.isDisplayed();
-    customValuesPageNew.attributeNameLabel("unknown").click();
-    customValuesPageNew.customValueInput.sendKeys("random string");
-    AndroidDriver androidDriver = (AndroidDriver) driverApp;
-    androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
+      proofRequestPageNew.missingAttributePlaceholder.click();
+      customValuesPageNew.title.isDisplayed();
+      customValuesPageNew.attributeNameLabel(entry).click();
+      customValuesPageNew.customValueInput.sendKeys(Helpers.randomString());
+      AndroidDriver androidDriver = (AndroidDriver) driverApp;
+      androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
 
-    AppUtilsInstance.shareProof();
-    Thread.sleep(step_wait);
+      AppUtilsInstance.shareProof();
+      Thread.sleep(step_wait);
+    }
 
     for (int i = 0; i < oob_attachment_cases; i++) {
       BrowserDriver.closeApp();
