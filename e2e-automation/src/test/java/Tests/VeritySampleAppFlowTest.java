@@ -117,6 +117,19 @@ public class VeritySampleAppFlowTest extends IntSetup {
       Thread.sleep(step_wait);
     }
 
+    // self-attested proof requests
+    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+
+    proofRequestPageNew.missingAttributePlaceholder.click();
+    customValuesPageNew.title.isDisplayed();
+    customValuesPageNew.attributeNameLabel("unknown").click();
+    customValuesPageNew.customValueInput.sendKeys("random string");
+    AndroidDriver androidDriver = (AndroidDriver) driverApp;
+    androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
+
+    AppUtilsInstance.shareProof();
+    Thread.sleep(step_wait);
+
     for (int i = 0; i < oob_attachment_cases; i++) {
       BrowserDriver.closeApp();
       driverApp.closeApp();
@@ -153,18 +166,6 @@ public class VeritySampleAppFlowTest extends IntSetup {
       }
       Thread.sleep(step_wait);
     }
-
-    // self-attested proof requests
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
-
-    proofRequestPageNew.missingAttributePlaceholder.click();
-    customValuesPageNew.title.isDisplayed();
-    customValuesPageNew.attributeNameLabel("unknown").click();
-    customValuesPageNew.customValueInput.sendKeys("random string");
-    AndroidDriver androidDriver = (AndroidDriver) driverApp;
-    androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
-
-    AppUtilsInstance.shareProof();
   }
 
   @AfterClass
