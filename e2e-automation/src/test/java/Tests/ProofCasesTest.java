@@ -30,6 +30,7 @@ public class ProofCasesTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
+        reloadDriversAndPos();
         DID = context.getValue("DID");
         passCodePageNew.openApp();
         VAS = VASApi.getInstance();

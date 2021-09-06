@@ -51,7 +51,7 @@ public class InteroperabilityTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Interoperability Test Suite has been started!");
-        driverApp.launchApp();
+        reloadDriversAndPos();
         // ACAPY = AcaPyApi.getInstance();
 
         // // create new schemas and cred defs

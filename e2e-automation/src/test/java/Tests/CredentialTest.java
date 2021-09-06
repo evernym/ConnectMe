@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
@@ -119,6 +120,7 @@ public class CredentialTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
+        reloadDriversAndPos();
         DID = context.getValue("DID");
         connectionName = context.getValue("connectionName");
         System.out.println(DID);

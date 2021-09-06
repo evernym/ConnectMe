@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.*;
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
 import test.java.utility.IntSetup;
@@ -13,6 +14,7 @@ import test.java.utility.LocalContext;
 import test.java.utility.BrowserDriver;
 import test.java.utility.Constants;
 import test.java.utility.Config;
+import test.java.utility.AppDriver;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -41,7 +43,7 @@ public class PushNotificationTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         System.out.println("Push Notification Test Suite has been started!");
-
+        reloadDriversAndPos();
         connectionName = context.getValue("connectionName");
         DID = context.getValue("DID");
         passCodePageNew.openApp();

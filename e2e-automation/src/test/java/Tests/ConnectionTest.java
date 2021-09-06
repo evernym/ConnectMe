@@ -31,17 +31,7 @@ public class ConnectionTest extends IntSetup {
         System.out.println("Connection Test Suite has been started!");
         AppDriver.quit();
         BrowserDriver.quit();
-
-        driverApp = AppDriver.getDriver();
-
-        passCodePageNew = new PassCodePageNew(driverApp);
-        homePageNew = new HomePageNew(driverApp);
-        menuPageNew = new MenuPageNew(driverApp);
-        myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
-        connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
-        objConnectionModules = new ConnectionModules();
-        invitationPageNew = new InvitationPageNew(driverApp);
-        connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
+        reloadDriversAndPos();
     }
 
     @DataProvider(name = "invitationTypesSource")
