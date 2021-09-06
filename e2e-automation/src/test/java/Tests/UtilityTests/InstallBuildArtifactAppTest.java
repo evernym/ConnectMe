@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import test.java.utility.Config;
 import test.java.utility.IntSetup;
 import test.java.utility.AppDriver;
+import test.java.utility.Helpers;
 
 public class InstallBuildArtifactAppTest extends IntSetup {
     @Test
@@ -14,7 +15,7 @@ public class InstallBuildArtifactAppTest extends IntSetup {
         try {
             String appPath = AppCenterAPI.getLatestAppDownloadUrl(Config.Device_Type);
 
-            if(test.java.utility.Helpers.getPlatformType().equals(Platform.ANDROID)) {
+            if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
                 driverApp.installApp(appPath);
             }
             else
