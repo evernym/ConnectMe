@@ -4,13 +4,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.funcModules.ConnectionModules;
 import test.java.utility.Helpers;
 import test.java.utility.LocalContext;
 import test.java.utility.BrowserDriver;
-
+import test.java.utility.AppDriver;
 
 /**
  * The ConnectionTest class is a Test class which holds test method related to
@@ -28,7 +29,19 @@ public class ConnectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Connection Test Suite has been started!");
-        driverApp.launchApp();
+        AppDriver.quit();
+        BrowserDriver.quit();
+
+        driverApp = AppDriver.getDriver();
+
+        passCodePageNew = new PassCodePageNew(driverApp);
+        homePageNew = new HomePageNew(driverApp);
+        menuPageNew = new MenuPageNew(driverApp);
+        myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
+        connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
+        objConnectionModules = new ConnectionModules();
+        invitationPageNew = new InvitationPageNew(driverApp);
+        connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
     }
 
     @DataProvider(name = "invitationTypesSource")
@@ -42,12 +55,10 @@ public class ConnectionTest extends IntSetup {
     @Test(dataProvider = "invitationTypesSource")
     public void rejectConnectionTest(String invitationType) throws Exception {
         driverBrowser = BrowserDriver.getDriver();
-
         AppUtils.DoSomethingEventuallyNew(
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
             () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.DoSomethingEventuallyNew(
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
+            () -> AppUtils.DoSomethingEventuallyNew(() -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
             () -> objConnectionModules.rejectConnectionInvitation(driverApp)
         );
 

@@ -30,6 +30,9 @@ fi
 if [ "$case" = "upgradePath" ]; then
     echo "using test suite for upgrade path testing"
     cp -R "src/test/resources/testng-upgrade-path.xml" "src/test/resources/testng.xml"
+
+    AC_TOKEN="$AC_TOKEN"
+    sed -ri "s|ACtoken = \".*\"|ACtoken = \"${AC_TOKEN}\"|" ${TESTS_CONFIG_PATH}
 fi
 
 if [ "$case" = "interop" ]; then
@@ -44,9 +47,6 @@ if [ "$against" = "vas" ]; then
     VAS_ENDPOINT=`curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url`
     sed -ri "s|VAS_Server_Link = \".*\"|VAS_Server_Link = \"${VAS_ENDPOINT}\"|" ${TESTS_CONFIG_PATH}
     python3 appium-launcher/vas-server.py &
-
-    AC_TOKEN="$AC_TOKEN"
-    sed -ri "s|ACtoken = \".*\"|ACtoken = \"${AC_TOKEN}\"|" ${TESTS_CONFIG_PATH}
 fi
 
 if [ "$against" = "aca-py" ]; then
