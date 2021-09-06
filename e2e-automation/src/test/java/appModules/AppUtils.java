@@ -154,7 +154,7 @@ public class AppUtils extends IntSetup {
 
   public static void waitForElementNew(AppiumDriver driver, WebElement element) throws Exception {
     System.out.println("Wait for element to be available");
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 5; i++) {
       try {
         element.isDisplayed();
         return;
