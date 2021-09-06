@@ -72,23 +72,23 @@ public class VeritySampleAppFlowTest extends IntSetup {
     passCodePageNew.openApp();
 
 //    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
-    String[] answers = new String[] { "Ok!" };
-    for (String answer: answers) {
-      // answer question
-      try {
-        homePageNew.newMessage.click();
-      } catch (Exception e) {
-        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
-      }
-      if (answer.equals("Ok!") || answer.equals("Great!")) { // action buttons
-        AppUtilsInstance.findParameterizedElement(answer).click();
-      } else { // radio buttons
-        questionPageNew.answerOption(answer).click();
-        questionPageNew.submitButton.click();
-      }
-
-      Thread.sleep(step_wait);
-    }
+//    String[] answers = new String[] { "Ok!" };
+//    for (String answer: answers) {
+//      // answer question
+//      try {
+//        homePageNew.newMessage.click();
+//      } catch (Exception e) {
+//        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+//      }
+//      if (answer.equals("Ok!") || answer.equals("Great!")) { // action buttons
+//        AppUtilsInstance.findParameterizedElement(answer).click();
+//      } else { // radio buttons
+//        questionPageNew.answerOption(answer).click();
+//        questionPageNew.submitButton.click();
+//      }
+//
+//      Thread.sleep(step_wait);
+//    }
 
 //    String[][] creds_and_proofs = new String[][] {
 //      {"Passport", "Proof of Age"},
