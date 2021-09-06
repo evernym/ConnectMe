@@ -93,16 +93,16 @@ devicefarm-test-launch-ios-weekly-final:
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
-#devicefarm-test-launch-android-master:
-#  extends: .devicefarm-test-launch-android
-#  dependencies:
-#    - build-android-master
-#  rules:
-#    # - if: '$SCHEDULED_RUN == "false" && $CI_COMMIT_REF_SLUG == "master"'
-#    - if: '$CI_COMMIT_REF_SLUG == "main"'
-#      when: always
-#  script:
-#    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 false
+devicefarm-test-launch-android-master:
+  extends: .devicefarm-test-launch-android
+  dependencies:
+    - build-android-master
+  rules:
+    # - if: '$SCHEDULED_RUN == "false" && $CI_COMMIT_REF_SLUG == "master"'
+    - if: '$CI_COMMIT_REF_SLUG == "main"'
+      when: always
+  script:
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
 
 devicefarm-test-launch-ios-master:
   extends: .devicefarm-test-launch-ios
@@ -159,17 +159,17 @@ devicefarm-test-launch-ios-e2e-testing:
     refs:
       - e2e-testing@evernym/mobile/connectme
 
-# devicefarm-test-upgrade-path-android:
-#    stage: devicefarm-test-upgrade-path
-#    extends: .devicefarm-test-launch-android
-#    dependencies:
-#        - build-android-master
-#        - upload-android
-#    only:
-#        refs:
-#            - main@evernym/mobile/connectme
-#    script:
-#        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
+devicefarm-test-upgrade-path-android:
+    stage: devicefarm-test-upgrade-path
+    extends: .devicefarm-test-launch-android
+    dependencies:
+        - build-android-master
+        - upload-android
+    only:
+        refs:
+            - main@evernym/mobile/connectme
+    script:
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
     stage: devicefarm-test-upgrade-path
