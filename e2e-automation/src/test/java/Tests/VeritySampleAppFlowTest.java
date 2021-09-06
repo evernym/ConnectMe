@@ -17,7 +17,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
   private static final int connection_cases = 1; // 5
   private static final int oob_attachment_cases = 2;
-  private static final int step_wait = 20000; // tune this to fix intermittent failures
+  private static final int step_wait = 30000; // tune this to fix intermittent failures
 
   @BeforeClass
   public void classSetup() {
@@ -70,6 +70,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
     }
 
     passCodePageNew.openApp();
+    Thread.sleep(step_wait);
 
 //    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
 //    String[] answers = new String[] { "Ok!" };
