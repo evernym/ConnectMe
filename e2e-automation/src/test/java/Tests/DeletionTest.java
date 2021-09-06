@@ -24,7 +24,6 @@ public class DeletionTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
-        reloadDriversAndPos();
         passCodePageNew.openApp();
         credentialNameScheme = context.getValue("credentialNameScheme");
         credentialNameManyScheme = context.getValue("credentialNameManyScheme");

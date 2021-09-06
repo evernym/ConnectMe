@@ -12,7 +12,7 @@ public class StartUpTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
-        reloadDriversAndPos();
+        driverApp.launchApp();
     }
 
     @Test

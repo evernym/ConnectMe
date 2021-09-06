@@ -29,9 +29,7 @@ public class ConnectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Connection Test Suite has been started!");
-        AppDriver.quit();
-        BrowserDriver.quit();
-        reloadDriversAndPos();
+        driverApp.launchApp();
     }
 
     @DataProvider(name = "invitationTypesSource")

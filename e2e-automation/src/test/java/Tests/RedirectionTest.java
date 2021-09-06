@@ -24,7 +24,6 @@ public class RedirectionTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
-        reloadDriversAndPos();
         System.out.println("Redirection Test Suite has been started!");
         connectionInvitationLink = context.getValue("connection-invitation");
         oobInvitationLink = context.getValue("out-of-band-invitation");

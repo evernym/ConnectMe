@@ -43,7 +43,6 @@ public class PushNotificationTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         System.out.println("Push Notification Test Suite has been started!");
-        reloadDriversAndPos();
         connectionName = context.getValue("connectionName");
         DID = context.getValue("DID");
         passCodePageNew.openApp();
