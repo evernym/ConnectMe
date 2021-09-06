@@ -110,6 +110,8 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
+        Thread.sleep(5000);
+
         try {
             new AppUtils().authForAction();
         } catch (Exception e) {

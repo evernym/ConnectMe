@@ -57,6 +57,7 @@ public class AppElementsTest extends IntSetup {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
         myCredentialsPageNew.myCredentialsHeader.isDisplayed();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.homeButton.click();
 
         homePageNew.scanButton.isDisplayed();
