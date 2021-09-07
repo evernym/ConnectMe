@@ -62,7 +62,7 @@ if [ "$against" = "aca-py" ]; then
     ACAPY_SERVICE_ENDPOINT="https://loud-dodo-84.loca.lt"
     sleep 5
 
-    echo "1" | PORTS="8020:8020 8021:8021" aca-py start -l AcaPyAgent -it http 0.0.0.0 8020 -ot http --admin 0.0.0.0 8021 --admin-insecure-mode --genesis-url https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/pool_transactions_sandbox_genesis --seed 000000000000000000000000Trustee2 -e $ACAPY_SERVICE_ENDPOINT --public-invites --auto-provision --wallet-type indy --wallet-name Acapy1 --wallet-key secret --preserve-exchange-records --auto-accept-invites --auto-accept-requests --auto-store-credential --auto-ping-connection --auto-respond-messages --auto-respond-credential-proposal --auto-respond-credential-offer --auto-respond-credential-request --auto-store-credential  >> /dev/null &
+    PORTS="8020:8020 8021:8021" aca-py start -l AcaPyAgent -it http 0.0.0.0 8020 -ot http --admin 0.0.0.0 8021 --admin-insecure-mode --genesis-url https://raw.githubusercontent.com/sovrin-foundation/sovrin/master/sovrin/pool_transactions_sandbox_genesis --seed 000000000000000000000000Trustee2 -e $ACAPY_SERVICE_ENDPOINT --public-invites --auto-provision --wallet-type indy --wallet-name Acapy1 --wallet-key secret --preserve-exchange-records --auto-accept-invites --auto-accept-requests --auto-store-credential --auto-ping-connection --auto-respond-messages --auto-respond-credential-proposal --auto-respond-credential-offer --auto-respond-credential-request --auto-store-credential  >> /dev/null &
     sleep 5
 
     sed -ri "s|ACA_PY_SERVER_ENDPOINT = \".*\"|ACA_PY_SERVER_ENDPOINT = \"${ACAPY_ADMIN_ENDPOINT}\"|" ${TESTS_CONFIG_PATH}

@@ -56,14 +56,17 @@ public class InteroperabilityTest extends IntSetup {
     public void BeforeClassSetup() {
         System.out.println("Interoperability Test Suite has been started!");
         driverApp.launchApp();
-         ACAPY = AcaPyApi.getInstance();
+        ACAPY = AcaPyApi.getInstance();
+
+        // accept the transaction author agreement
+        ACAPY.acceptAgreement();
 
          // create new schemas and cred defs
-         try {
-             acaPyCreateSchemaAndCredDef(schemaName, attrs1);
-         } catch (Exception ex) {
-             System.err.println(ex.toString());
-         }
+        try {
+            acaPyCreateSchemaAndCredDef(schemaName, attrs1);
+        } catch (Exception ex) {
+            System.err.println(ex.toString());
+        }
     }
 
     @Test

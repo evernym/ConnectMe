@@ -43,6 +43,23 @@ public class AcaPyApi {
     return new JSONObject(responseBody);
   }
 
+  private JSONObject get(String path) {
+    RestAssured.baseURI = ACA_PY_SERVER_ENDPOINT + path;
+
+    System.out.println("Send GET Request on Aca-Py");
+    System.out.println("GET Request Path is => " + path);
+
+    Response response = RestAssured
+      .given()
+      .header(new Header("Content-Type", "application/json"))
+      .when()
+      .get();
+
+    String responseBody = response.getBody().asString();
+    System.out.println("GET Response Body is => " + responseBody);
+    return new JSONObject(responseBody);
+  }
+
   private JSONObject post(String path) {
     RestAssured.baseURI = ACA_PY_SERVER_ENDPOINT + path;
 
@@ -58,6 +75,25 @@ public class AcaPyApi {
     String responseBody = response.getBody().asString();
     System.out.println("POST Response Body is => " + responseBody);
     return new JSONObject(responseBody);
+  }
+
+  public void acceptAgreement() {
+      String fetchPath = "/ledger/taa";
+      JSONObject responseAgreement = get(fetchPath);
+      JSONObject result = responseAgreement.getJSONObject("result");
+      JSONObject taaRecord = result.getJSONObject("taa_record");
+
+      String version = taaRecord.getString("version");
+      String text = taaRecord.getString("text");
+
+      String postPath = "/ledger/taa/accept";
+      JSONObject body =
+          new JSONObject()
+              .put("text", text)
+              .put("version", version)
+              .put("mechanism", "wallet_agreement");
+
+      JSONObject response = post(postPath, body.toString());
   }
 
   public JSONObject createConnectionInvitation() throws Exception {
