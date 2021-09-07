@@ -16,7 +16,7 @@ import test.java.utility.Helpers;
 
 public class VeritySampleAppFlowTest extends IntSetup {
   private AppUtils AppUtilsInstance = new AppUtils();
-  private static final int connection_cases = 1; // 5
+  private static final int connection_cases = 5; // 5
   private static final int oob_attachment_cases = 2;
   private static final int step_wait = 30000; // tune this to fix intermittent failures
 
@@ -77,36 +77,36 @@ public class VeritySampleAppFlowTest extends IntSetup {
 
     }
 
-//    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
+    String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
 //    String[] answers = new String[] { "Ok!" };
-//    for (String answer: answers) {
-//      // answer question
-//      try {
-//        homePageNew.newMessage.click();
-//      } catch (Exception e) {
-//        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
-//      }
-//      if (answer.equals("Ok!") || answer.equals("Great!")) { // action buttons
-//        AppUtilsInstance.findParameterizedElement(answer).click();
-//      } else { // radio buttons
-//        questionPageNew.answerOption(answer).click();
-//        questionPageNew.submitButton.click();
-//      }
-//
-//      Thread.sleep(step_wait);
-//    }
+    for (String answer: answers) {
+      // answer question
+      try {
+        homePageNew.newMessage.click();
+      } catch (Exception e) {
+        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+      }
+      if (answer.equals("Ok!") || answer.equals("Great!")) { // action buttons
+        AppUtilsInstance.findParameterizedElement(answer).click();
+      } else { // radio buttons
+        questionPageNew.answerOption(answer).click();
+        questionPageNew.submitButton.click();
+      }
 
-//    String[][] creds_and_proofs = new String[][] {
-//      {"Passport", "Proof of Age"},
-//      {"Diploma", "Proof of Degree"},
-//      {"Schema #1", "Proof #1"},
-//      {"Schema #2", "Proof #2"},
-//      {"Attachment Schema", "Proof of Attachments"}
-//    };
+      Thread.sleep(step_wait);
+    }
+
     String[][] creds_and_proofs = new String[][] {
       {"Passport", "Proof of Age"},
-      {"Diploma", "Proof of Degree"}
+      {"Diploma", "Proof of Degree"},
+      {"Schema #1", "Proof #1"},
+      {"Schema #2", "Proof #2"},
+      {"Attachment Schema", "Proof of Attachments"}
     };
+//    String[][] creds_and_proofs = new String[][] {
+//      {"Passport", "Proof of Age"},
+//      {"Diploma", "Proof of Degree"}
+//    };
     for (String[] entry: creds_and_proofs) {
       // accept credential
       AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
@@ -140,8 +140,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverApp.closeApp();
       // oob attachment case #1
       driverBrowser = BrowserDriver.getDriver();
-//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
-      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
+//      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
       // accept credential or share proof
@@ -157,8 +157,8 @@ public class VeritySampleAppFlowTest extends IntSetup {
         BrowserDriver.closeApp();
         driverApp.closeApp();
         driverBrowser = BrowserDriver.getDriver();
-//        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
-        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
+//        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
         passCodePageNew.passCodeTitle.isDisplayed();
         passCodePageNew.enterPassCode();
         if (i == 0) {
