@@ -1,14 +1,14 @@
-.devicefarm-test-launch:
-  stage: devicefarm-test
-  image: ${CI_REGISTRY_IMAGE}/devicefarm:${CI_COMMIT_REF_SLUG}
-  tags:
-    - docker-machine
-    - large
-  before_script:
-    - mkdir ~/.aws
-    - cp ${AWS_DEVICEFARM_CONFIG} ~/.aws/config
-    - cp ${AWS_DEVICEFARM_CREDENTIALS} ~/.aws/credentials
-    - chmod +x ./e2e-automation/appium-launcher/run-appium-tests.sh
+# .devicefarm-test-launch:
+#   stage: devicefarm-test
+#   image: ${CI_REGISTRY_IMAGE}/devicefarm:${CI_COMMIT_REF_SLUG}
+#   tags:
+#     - docker-machine
+#     - large
+#   before_script:
+#     - mkdir ~/.aws
+#     - cp ${AWS_DEVICEFARM_CONFIG} ~/.aws/config
+#     - cp ${AWS_DEVICEFARM_CREDENTIALS} ~/.aws/credentials
+#     - chmod +x ./e2e-automation/appium-launcher/run-appium-tests.sh
 
 # .devicefarm-test-launch-android:
 #   extends: .devicefarm-test-launch
