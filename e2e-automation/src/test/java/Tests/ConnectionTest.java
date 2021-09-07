@@ -46,7 +46,7 @@ public class ConnectionTest extends IntSetup {
             () -> driverBrowser.launchApp(),
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
             () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.DoSomethingEventuallyNew(() -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
+            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
             () -> objConnectionModules.rejectConnectionInvitation(driverApp)
         );
 
@@ -63,8 +63,7 @@ public class ConnectionTest extends IntSetup {
             () -> driverBrowser = BrowserDriver.getDriver(),
             () -> driverBrowser.launchApp(),
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
-            () -> AppUtils.DoSomethingEventuallyNew(
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
+            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
             () -> objConnectionModules.acceptConnectionInvitation(driverApp)
         );
 

@@ -148,8 +148,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
             () -> driverBrowser.launchApp(),
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
             () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.DoSomethingEventuallyNew(
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
+            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
             () -> objConnectionModules.acceptConnectionInvitation(driverApp)
         );
 
