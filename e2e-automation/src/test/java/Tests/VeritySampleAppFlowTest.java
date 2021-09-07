@@ -169,7 +169,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
           AppUtilsInstance.shareProof();
         }
       }
-      Thread.sleep(step_wait);
+      Thread.sleep(step_wait * 2);
     }
   }
 
