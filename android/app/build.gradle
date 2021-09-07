@@ -252,7 +252,6 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
-
     // react-navigation
     // react-native-screens
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
@@ -280,8 +279,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
-//apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-parcelize'
-//apply plugin: 'kotlin-kapt'
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
