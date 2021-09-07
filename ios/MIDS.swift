@@ -15,6 +15,8 @@ class MIDSDocumentVerification: NSObject {
   static var enrollmentManager: MIDSEnrollmentManager = getEnrollmentManagerInstance()
   var resolve: RCTResponseSenderBlock!
   var reject: RCTResponseSenderBlock!
+  var currentScanView: MIDSCustomScanViewController?
+  var verifyInfoView : ConfirmScannedImageView!
   
   static func getEnrollmentManagerInstance() -> MIDSEnrollmentManager {
       if enrollmentManagerInstance == nil {
@@ -97,6 +99,7 @@ class MIDSDocumentVerification: NSObject {
 }
 
 extension MIDSDocumentVerification: MIDSEnrollmentDelegate {
+  
   func midsEnrollmentManager(scanViewController: MIDSCustomScanViewController, shouldDisplayNoUSAddressFoundHint message: String, confirmation: @escaping () -> Void) {
       NSLog("no US address")
   }
@@ -106,8 +109,6 @@ extension MIDSDocumentVerification: MIDSEnrollmentDelegate {
       self.resolve([])
       self.resolve = nil
     }
-    
-//    MIDSDocumentVerification.enrollmentManager.enrollmentDelegate = self
   }
   
   func midsEnrollmentManager(didFinishInitializationWithError error: MIDSVerifyError) {
@@ -115,6 +116,7 @@ extension MIDSDocumentVerification: MIDSEnrollmentDelegate {
   }
   
   func midsEnrollmentManager(didDetermineNextScanViewController scanViewController: MIDSCustomScanViewController, isFallback: Bool) {
+    self.currentScanView = scanViewController
     if  scanViewController.customScanViewController?.currentScanMode() == .faceCapture || scanViewController.customScanViewController?.currentScanMode() == .faceIProov {
       UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion:{ () -> Void in
         UIApplication.shared.windows.first?.rootViewController?.present(scanViewController, animated: true)
@@ -144,9 +146,28 @@ extension MIDSDocumentVerification: MIDSEnrollmentDelegate {
   }
   
   func midsEnrollmentManager(shouldDisplayConfirmationWith view: UIView, text: String, currentStep: Int, totalSteps: Int, retryEnabled: Bool, confirmEnabled: Bool, confirmation: (() -> Void)?, retake: (() -> Void)?) {
-    guard let _ = confirmation else { return }
-    let _confirmationAction = confirmation
-    _confirmationAction!()
+    
+    if confirmEnabled {
+        if (verifyInfoView != nil){
+            self.verifyInfoView.removeFromSuperview()
+        }
+        verifyInfoView = Bundle.main.loadNibNamed(ConfirmScannedImage.identifier,
+                                                  owner: self,
+                                                  options: nil)?.first as? ConfirmScannedImageView
+        
+        
+      currentScanView?.view.addSubview(verifyInfoView)
+        verifyInfoView.scannedImagePreviewView.addSubview(view)
+        
+        
+        if let frame = currentScanView?.view.bounds {
+            verifyInfoView.frame = frame
+        }
+        verifyInfoView.addConfirmationHandler(action: confirmation, confirm: confirmEnabled)
+        verifyInfoView.addRetakeHandler(action: retake, retake: retryEnabled)
+        verifyInfoView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["view":view]))
+        verifyInfoView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["view":view]))
+    }
   }
   
   func midsEnrollmentManager(didStartBiometricAnalysis scanViewController: MIDSCustomScanViewController) {}
@@ -155,5 +176,7 @@ extension MIDSDocumentVerification: MIDSEnrollmentDelegate {
   
   func midsEnrollmentManager(customScanViewControllerWillPrepareIProovController scanViewController: MIDSCustomScanViewController) {}
   
-  func midsEnrollmentManager(didCaptureAllParts status: Bool) {}
+  func midsEnrollmentManager(didCaptureAllParts status: Bool) {
+    currentScanView = nil
+  }
 }
