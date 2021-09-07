@@ -71,11 +71,12 @@ public class VeritySampleAppFlowTest extends IntSetup {
     }
 
     passCodePageNew.openApp();
-    try { // CM bug!
-      invitationPageNew.connectButton.click();
-    } catch (Exception ignored) {
-
-    }
+    // this is needed if you run 1 connection test
+//    try { // CM bug!
+//      invitationPageNew.connectButton.click();
+//    } catch (Exception ignored) {
+//
+//    }
 
     String[] answers = new String[] { "Ok!", "Great!", "Awful", "Nice", "Yep" };
 //    String[] answers = new String[] { "Ok!" };
