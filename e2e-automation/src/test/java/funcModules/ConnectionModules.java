@@ -90,7 +90,7 @@ public class ConnectionModules extends IntSetup {
 
     }
 
-    public void openDeepLink(AppiumDriver driverBrowser, AppiumDriver driverApp, String link) throws InterruptedException {
+    public void openDeepLink(AppiumDriver driverBrowser, AppiumDriver driverApp, String link) throws Exception {
         System.out.println("Opening deeplink: " + link);
 
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) {
@@ -113,12 +113,7 @@ public class ConnectionModules extends IntSetup {
         }
 
         Thread.sleep(5000);
-
-        try {
-            new AppUtils().authForAction();
-        } catch (Exception e) {
-            System.out.println("Failed to enter PIN due to: " + e.getLocalizedMessage());
-        }
+        new AppUtils().authForAction();
     }
 
     public void getConnectionInvitation(AppiumDriver driverBrowser, AppiumDriver driverApp, String label, String invitationType) throws Exception {

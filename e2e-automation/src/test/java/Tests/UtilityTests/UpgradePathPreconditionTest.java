@@ -139,12 +139,15 @@ public class UpgradePathPreconditionTest extends IntSetup {
         AppDriver.quit();
         BrowserDriver.quit();
         reloadDriversAndPos();
+        objConnectionModules = new ConnectionModules();
         connectionName = invitationType;
-        driverBrowser = test.java.utility.BrowserDriver.getDriver();
 
         // Use custom iteration approach to ensure that connection would be available for the next tests
         AppUtils.DoSomethingEventuallyNew(
+            () -> driverBrowser = BrowserDriver.getDriver(),
+            () -> driverBrowser.launchApp(),
             () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
+            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
             () -> AppUtils.DoSomethingEventuallyNew(
                 () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title)),
             () -> objConnectionModules.acceptConnectionInvitation(driverApp)
