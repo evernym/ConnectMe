@@ -143,6 +143,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
       driverBrowser = BrowserDriver.getDriver();
       driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
 //      driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+      driverApp.context("NATIVE_APP");
       passCodePageNew.passCodeTitle.isDisplayed();
       passCodePageNew.enterPassCode();
       // accept credential or share proof
@@ -160,6 +161,7 @@ public class VeritySampleAppFlowTest extends IntSetup {
         driverBrowser = BrowserDriver.getDriver();
         driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink((connection_cases - 1) + i)); // for 5!
 //        driverBrowser.get(Config.ConnectMe_App_Link + ConnectionModules.ensureGetInvitationLink(connection_cases + i)); // for 1!
+        driverApp.context("NATIVE_APP");
         passCodePageNew.passCodeTitle.isDisplayed();
         passCodePageNew.enterPassCode();
         if (i == 0) {
