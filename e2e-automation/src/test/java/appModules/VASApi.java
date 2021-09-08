@@ -31,8 +31,10 @@ public class VASApi {
 			case Demo:
 				System.out.println("Using Demo VAS.");
 				VERITY_URL = Config.DEMO_VERITY_URL;
-				VERITY_DOMAIN_DID = (Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid")) ? Config.DEMO_VERITY_DOMAIN_DID_ANDROID : Config.DEMO_VERITY_DOMAIN_DID_IOS;
-				VERITY_API_KEY = (Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid")) ? Config.DEMO_VERITY_API_KEY_ANDROID : Config.DEMO_VERITY_API_KEY_IOS;
+                VERITY_DOMAIN_DID = Config.DEMO_VERITY_DOMAIN_DID_IOS;
+                VERITY_API_KEY = Config.DEMO_VERITY_API_KEY_IOS;
+                //VERITY_DOMAIN_DID = (Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid")) ? Config.DEMO_VERITY_DOMAIN_DID_ANDROID : Config.DEMO_VERITY_DOMAIN_DID_IOS;
+				//VERITY_API_KEY = (Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid")) ? Config.DEMO_VERITY_API_KEY_ANDROID : Config.DEMO_VERITY_API_KEY_IOS;
 				break;
 			case DevTeam1:
 				System.out.println("Using DevTeam1 VAS.");
