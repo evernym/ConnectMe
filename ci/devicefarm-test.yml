@@ -96,7 +96,7 @@ devicefarm-test-launch-ios-weekly-final:
 devicefarm-test-launch-android-master:
   extends: .devicefarm-test-launch-android
   dependencies:
-    - build-android-master
+    - build-android-temp
   only:
       refs:
           - feature/improve-tests-reliability@evernym/mobile/connectme
@@ -162,7 +162,7 @@ devicefarm-test-upgrade-path-android:
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-android
     dependencies:
-        - build-android-master
+        - build-android-temp
     only:
         refs:
             - feature/improve-tests-reliability@evernym/mobile/connectme

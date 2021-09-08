@@ -227,7 +227,13 @@ build-android-master:
   extends: .build-android
   only:
     refs:
-      - feature/improve-tests-reliability@evernym/mobile/connectme
+      - main@evernym/mobile/connectme
+
+build-android-temp:
+    extends: .build-android
+    only:
+        refs:
+            - feature/improve-tests-reliability@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
