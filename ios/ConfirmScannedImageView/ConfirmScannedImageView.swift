@@ -23,13 +23,13 @@ class ConfirmScannedImageView: UIView {
     private var _retakeAction: (() -> Void)?
     
     override func layoutSubviews() {
-        setupTryAgaintButton()
+      setupTryAgaintButton()
     }
     
     func setupTryAgaintButton() {
         tryAgainButton.layer.cornerRadius = ConfirmScannedImage.tryAgainButtonCornerRadius
         tryAgainButton.layer.borderWidth = ConfirmScannedImage.tryAgainButtonBorderWidth
-        tryAgainButton.layer.borderColor = UIColor.black.cgColor
+        tryAgainButton.layer.borderColor = UIColor(red: 0.81, green: 0.04, blue: 0.14, alpha: 1.00).cgColor
     }
     
     func addConfirmationHandler(action: (() -> Void)?, confirm: Bool = true) {
