@@ -49,8 +49,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
             System.exit(1);
         }
     }
-
-    @Test
+    
     @Test(dependsOnMethods = "setUpWizardTest")
     public void checkHome() {
         homePageNew.checkHome();
