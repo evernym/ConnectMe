@@ -134,7 +134,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
         aboutPageNew.backArrow.click();
     }
 
-    @Test(dataProvider = "invitationTypesSource")
+    @Test(dataProvider = "invitationTypesSource", dependsOnMethods = "checkSettings")
     public void setUpConnectionTest(String invitationType) throws Exception {
         AppDriver.quit();
         BrowserDriver.quit();
