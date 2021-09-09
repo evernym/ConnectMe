@@ -101,7 +101,17 @@ devicefarm-test-launch-android-master:
       refs:
           - feature/improve-tests-reliability@evernym/mobile/connectme
   script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid android_top3 main vas
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS9 main vas
+
+devicefarm-test-launch-android-master-s20:
+    extends: .devicefarm-test-launch-android
+    dependencies:
+        - build-android-temp
+    only:
+        refs:
+            - feature/improve-tests-reliability@evernym/mobile/connectme
+    script:
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
 
 devicefarm-test-launch-ios-master:
   extends: .devicefarm-test-launch-ios
