@@ -80,7 +80,7 @@ public class StartUpPageNew {
 
       okButton.click();
       switch (Config.VERITY_ENV) {
-        // case "demo":
+        //case "demo":
         //  demoEnvButton.click();
         //  break;
         case "dev-rc":
