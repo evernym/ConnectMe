@@ -156,8 +156,9 @@ extension MIDSDocumentVerification: MIDSEnrollmentDelegate {
                                                   options: nil)?.first as? ConfirmScannedImageView
         
         
-      currentScanView?.view.addSubview(verifyInfoView)
+        currentScanView?.view.addSubview(verifyInfoView)
         verifyInfoView.scannedImagePreviewView.addSubview(view)
+        verifyInfoView.backgroundColor = UIColor.white
         
         
         if let frame = currentScanView?.view.bounds {
