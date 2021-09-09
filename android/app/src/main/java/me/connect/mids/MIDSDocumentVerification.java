@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.mastercard.dis.mids.base.verification.MIDSVerificationBaseManager;
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSDocumentType;
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSDocumentVariant;
@@ -225,6 +227,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
                 scanNextSide(scanSidesDV.get(sideIndex));
             }
             if (allPartsScanned) {
+                reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("FACE_SCAN", Arguments.createMap());
                 getEnrollmentManagerInstance().endScan();
             }
         }
