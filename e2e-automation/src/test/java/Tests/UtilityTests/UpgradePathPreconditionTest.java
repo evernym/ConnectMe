@@ -202,6 +202,8 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @AfterClass
     public void AfterClass() {
+        context.setValue("connectionName", connectionName);
+        System.out.println("Connection name in context: " + connectionName);
         driverApp.closeApp();
     }
 }
