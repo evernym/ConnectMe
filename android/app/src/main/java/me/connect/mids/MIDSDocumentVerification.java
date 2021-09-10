@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.mastercard.dis.mids.base.verification.MIDSVerificationBaseManager;
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSDocumentType;
 import com.mastercard.dis.mids.base.verification.data.enumeration.MIDSDocumentVariant;
@@ -67,6 +69,39 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         return REACT_CLASS;
     }
 
+    private void rejectToReact() {
+        if (reject != null) {
+            reject.invoke();
+            reject = null;
+        }
+    }
+
+    private void resolveToReact() {
+        if (resolve != null) {
+            resolve.invoke();
+            resolve = null;
+        }
+    }
+
+    private void resolveToReact(String args) {
+        System.out.println(resolve);
+        if (resolve != null) {
+            resolve.invoke(args);
+            resolve = null;
+        }
+    }
+
+    private void resetSdk() {
+        sdkManager = null;
+        scanSidesDV = new ArrayList<MIDSScanSide>();
+        resolve = null;
+        reject = null;
+        selectedCountry = null;
+        scanListener = null;
+        presenter = null;
+        sideIndex = 0;
+    }
+
     private MIDSEnrollmentManager getEnrollmentManagerInstance() {
         if (sdkManager == null) {
             System.out.println("getEnrollmentManagerInstance");
@@ -105,8 +140,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         public void onError(@NotNull MIDSVerificationError error) {
             System.out.println("EnrollmentSDKListener - method: onError - error: " + error.getMessage().toString());
 
-            reject.invoke();
-            reject = null;
+            rejectToReact();
         }
 
         @Override
@@ -133,13 +167,8 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
             getEnrollmentManagerInstance().endScan();
             getEnrollmentManagerInstance().terminateSDK();
-
-            resolve.invoke(referenceNumber);
-
-            resolve = null;
-            sdkManager = null;
-            sideIndex = 0;
-            scanSidesDV = new ArrayList<MIDSScanSide>();
+            resolveToReact(referenceNumber);
+            resetSdk();
         }
     }
 
@@ -148,7 +177,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         @Override
         public void onCameraAvailable() {
             System.out.println("ScanListener - method: onCameraAvailable ");
-            presenter.showShutterButton();
             presenter.resume();
         }
 
@@ -171,8 +199,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
                 System.out.println("ScanListener - method: onError - error: " + error.getMessage());
                 presenter.destroy();
 
-                reject.invoke();
-                reject = null;
+                rejectToReact();
             }
         }
 
@@ -200,6 +227,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
                 scanNextSide(scanSidesDV.get(sideIndex));
             }
             if (allPartsScanned) {
+                reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("FACE_SCAN", Arguments.createMap());
                 getEnrollmentManagerInstance().endScan();
             }
         }
@@ -265,7 +293,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
     private void inflateScanFragment() {
         Activity currentActivity = reactContext.getCurrentActivity();
-        if (currentActivity != null) {
+        if (currentActivity != null && midsVerificationScanView == null && midsVerificationConfirmationView == null) {
             LayoutInflater inflater = currentActivity.getLayoutInflater();
             ViewGroup viewGroup = (ViewGroup) ((ViewGroup) currentActivity.findViewById(android.R.id.content)).getRootView();
             View view = inflater.inflate(R.layout.fragment_scan, viewGroup, true);
