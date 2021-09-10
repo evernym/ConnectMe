@@ -93,33 +93,23 @@ devicefarm-test-launch-ios-weekly-final:
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
-#devicefarm-test-launch-android-master:
-#  extends: .devicefarm-test-launch-android
-#  dependencies:
-#    - build-android-temp
-#  only:
-#      refs:
-#          - feature/improve-tests-reliability@evernym/mobile/connectme
-#  script:
-#    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS9 main vas
-#
-#devicefarm-test-launch-android-master-s20:
-#    extends: .devicefarm-test-launch-android
-#    dependencies:
-#        - build-android-temp
-#    only:
-#        refs:
-#            - feature/improve-tests-reliability@evernym/mobile/connectme
-#    script:
-#        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
+devicefarm-test-launch-android-master:
+  extends: .devicefarm-test-launch-android
+  dependencies:
+    - build-android-master
+  only:
+      refs:
+          - main@evernym/mobile/connectme
+  script:
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
 
 devicefarm-test-launch-ios-master:
   extends: .devicefarm-test-launch-ios
   dependencies:
     - build-ios-master
-  rules:
-    - if: '$CI_COMMIT_REF_SLUG == "main"'
-      when: always
+  only:
+      refs:
+          - main@evernym/mobile/connectme
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 main vas
 
@@ -173,9 +163,10 @@ devicefarm-test-upgrade-path-android:
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
+        - upload-android
     only:
         refs:
-            - feature/improve-tests-reliability@evernym/mobile/connectme
+            - main@evernym/mobile/connectme
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 upgradePath vas
 
@@ -184,9 +175,10 @@ devicefarm-test-upgrade-path-ios:
     extends: .devicefarm-test-launch-ios
     dependencies:
         - build-ios-master
+        - upload-ios
     only:
         refs:
-            - feature/improve-tests-reliability@evernym/mobile/connectme
+            - main@evernym/mobile/connectme
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
 
