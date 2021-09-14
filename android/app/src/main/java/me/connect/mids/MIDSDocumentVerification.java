@@ -1,6 +1,8 @@
 package me.connect.mids;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.connect.R;
-import me.connect.mids.PERMISSIONS;
 
 public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     public static final String REACT_CLASS = "MIDSDocumentVerification";
@@ -138,7 +139,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
         @Override
         public void onError(@NotNull MIDSVerificationError error) {
-            System.out.println("EnrollmentSDKListener - method: onError - error: " + error.getMessage().toString());
+            System.out.println("EnrollmentSDKListener - method: onError - error: " + error.getMessage().toString() + MIDSVerificationError.SDK_USER_CANCELLED);
 
             rejectToReact();
         }
@@ -158,7 +159,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
 
             System.out.println("EnrollmentSDKListener - method: onSDKConfigured - scan sides: " + scanSidesDV);
 
-            firstTimeScan();
+            scanning();
         }
 
         @Override
@@ -188,7 +189,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         @Override
         public void onDocumentCaptured() {
             System.out.println("ScanListener - method: onDocumentCaptured ");
-            presenter.confirmScan();
         }
 
         @Override
@@ -211,6 +211,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         @Override
         public void onProcessCancelled(MIDSVerificationError error) {
             System.out.println("ScanListener - method: onProcessCancelled - error: " + error.getMessage().toString());
+
             if (error == MIDSVerificationError.PRESENTER_ERROR_GENERIC_ERROR) {
                 presenter.retryScan();
             }
@@ -222,10 +223,6 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
             presenter.destroy();
             presenter = null;
 
-            sideIndex++;
-            if (scanSidesDV.size() - 1 >= sideIndex && !allPartsScanned) {
-                scanNextSide(scanSidesDV.get(sideIndex));
-            }
             if (allPartsScanned) {
                 reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("FACE_SCAN", Arguments.createMap());
                 getEnrollmentManagerInstance().endScan();
@@ -291,56 +288,83 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         return MIDSDocumentType.PASSPORT;
     }
 
-    private void inflateScanFragment() {
+    private void scanning() {
+        MIDSScanSide currentScanSide = scanSidesDV.get(sideIndex);
+        System.out.println("ScanListener currentScanSide" + currentScanSide);
+
+        if (currentScanSide == MIDSScanSide.FACE) {
+            scanningFaceSide();
+            return;
+        } else if (currentScanSide == MIDSScanSide.FRONT || currentScanSide == MIDSScanSide.BACK) {
+            Activity activity = getCurrentActivity();
+            FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
+            Fragment prev = activity.getFragmentManager().findFragmentByTag(REACT_CLASS);
+            if (prev != null) {
+                ft.remove(prev);
+            }
+            ft.addToBackStack(null);
+
+            MIDSFragment newFragment = MIDSFragment.newInstance();
+            newFragment.setMIDSEnrollmentManager(getEnrollmentManagerInstance());
+            newFragment.setMIDSScanSide(currentScanSide);
+
+            newFragment.show(ft, REACT_CLASS);
+            activity.getFragmentManager().executePendingTransactions();
+            newFragment.setDismissListener(new DismissListener() {
+                @Override
+                public void onDismiss(boolean isDestroy) {
+                    if (isDestroy) {
+                        getEnrollmentManagerInstance().endScan();
+                        getEnrollmentManagerInstance().terminateSDK();
+                        reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("DESTROY", Arguments.createMap());
+                    } else if (sideIndex <= scanSidesDV.size() -1) {
+                        sideIndex = sideIndex + 1;
+                        System.out.println("ScanListener onDismiss" + sideIndex + scanSidesDV.get(sideIndex));
+                        scanning();
+                    }
+                }
+            });
+        }
+    }
+
+    private void scanningFaceSide() {
+        System.out.println("ScanListener scanningFaceSide");
+
         Activity currentActivity = reactContext.getCurrentActivity();
-        if (currentActivity != null && midsVerificationScanView == null && midsVerificationConfirmationView == null) {
+        if (currentActivity != null) {
             LayoutInflater inflater = currentActivity.getLayoutInflater();
             ViewGroup viewGroup = (ViewGroup) ((ViewGroup) currentActivity.findViewById(android.R.id.content)).getRootView();
             View view = inflater.inflate(R.layout.fragment_scan, viewGroup, true);
 
             this.midsVerificationScanView = (MIDSVerificationScanView) view.findViewById(R.id.sv_scan);
             this.midsVerificationConfirmationView = (MIDSVerificationConfirmationView) view.findViewById(R.id.cv_scan);
+
+            this.scanListener = new ScanListener();
+            this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_FACE);
+
+            MIDSVerificationResponse<MIDSVerificationScanPresenter> presenterResponse = getEnrollmentManagerInstance()
+                .getPresenter(
+                    MIDSScanSide.FACE,
+                    this.midsVerificationScanView,
+                    this.midsVerificationConfirmationView,
+                    this.scanListener
+                );
+
+            MIDSVerificationError error = presenterResponse.getError();
+            if (error != null) {
+                System.out.println("MIDSVerificationError" + error.getMessage().toString());
+            }
+
+            presenter = presenterResponse.response;
+
+            if (presenter != null) {
+                System.out.println("VerificationScanPresenter - startScan" + presenter.getHelpText());
+                presenter.startScan();
+            } else {
+                System.out.println("Scan error");
+            }
         } else {
             System.out.println("Inflate scan fragment error");
-        }
-    }
-
-    private void initScanListener() {
-        this.scanListener = new ScanListener();
-    }
-
-    private void firstTimeScan() {
-        initScanListener();
-        inflateScanFragment();
-        scanNextSide(scanSidesDV.get(sideIndex));
-    }
-
-    private void scanNextSide(MIDSScanSide scanSide) {
-        if (scanSide == MIDSScanSide.FACE) {
-            this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_FACE);
-        } else {
-            this.midsVerificationScanView.setMode(MIDSVerificationScanView.MODE_ID);
-        }
-
-        MIDSVerificationResponse<MIDSVerificationScanPresenter> presenterResponse = getEnrollmentManagerInstance().getPresenter(
-            scanSide,
-            this.midsVerificationScanView,
-            this.midsVerificationConfirmationView,
-            this.scanListener
-        );
-
-        MIDSVerificationError error = presenterResponse.getError();
-        if (error != null) {
-            System.out.println("MIDSVerificationError" + error.getMessage().toString());
-        }
-
-        presenter = presenterResponse.response;
-
-        if (presenter != null) {
-            System.out.println("VerificationScanPresenter - startScan" + presenter.getHelpText());
-            presenter.startScan();
-        } else {
-            System.out.println("Scan error");
         }
     }
 
