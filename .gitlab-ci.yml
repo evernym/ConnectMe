@@ -145,14 +145,14 @@ license-data-check:
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
-build-ios-e2e-testing:
+build-ios-update-pipeline:
   extends: .build-ios
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
   only:
     refs:
-      - e2e-testing@evernym/mobile/connectme
+      - update-pipeline@evernym/mobile/connectme
 
 build-ios-merge-request:
   extends: .build-ios
@@ -207,11 +207,11 @@ build-ios-master:
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane build
 
-build-android-e2e-testing:
+build-android-update-pipeline:
   extends: .build-android
   only:
     refs:
-      - e2e-testing@evernym/mobile/connectme
+      - update-pipeline@evernym/mobile/connectme
 
 build-android-merge-request:
   extends: .build-android
