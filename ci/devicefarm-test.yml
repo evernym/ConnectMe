@@ -206,12 +206,12 @@ devicefarm-test-upgrade-path-ios:
 #      when: always
 
 devicefarm-test-launch-android-aca-py:
-    stage: devicefarm-test-acapy
-    extends: .devicefarm-test-launch-android
-    dependencies:
-        - build-android-master
-    rules:
-        - if: '$CI_COMMIT_REF_SLUG == "main"'
-          when: always
-    script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 interop aca-py
+  stage: devicefarm-test-acapy
+  extends: .devicefarm-test-launch-android
+  dependencies:
+      - build-android-master
+  rules:
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+      when: always
+  script:
+      - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 interop aca-py
