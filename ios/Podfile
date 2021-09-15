@@ -13,6 +13,20 @@ def vcx_version_for_debug_or_release
     end
 end
 
+## Fix for XCode 12.5
+# def find_and_replace(dir, findstr, replacestr)
+#   Dir[dir].each do |name|
+#       text = File.read(name)
+#       replace = text.gsub(findstr,replacestr)
+#       if text != replace
+#           puts "Fix: " + name
+#           File.open(name, "w") { |file| file.puts replace }
+#           STDOUT.flush
+#       end
+#   end
+#   Dir[dir + '*/'].each(&method(:find_and_replace))
+# end
+
 post_install do |installer|
 		installer.pods_project.build_configurations.each do |config|
 			config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
@@ -30,7 +44,7 @@ post_install do |installer|
         end
 				if ['iProov', 'Socket.IO-Client-Swift', 'Starscream'].include? target.name
 					target.build_configurations.each do |config|
-							config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES' 
+							config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
 					end
 				end
     end
@@ -96,5 +110,11 @@ target 'ConnectMe' do
 	end
 
 	use_native_modules!
+
+  ## Fix for XCode 12.5
+    #   find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
+    #   "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
+    #   find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
+    #   "RCTBridgeModuleNameForClass(module))", "RCTBridgeModuleNameForClass(Class(module)))")
 
 end
