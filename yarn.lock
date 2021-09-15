@@ -1039,7 +1039,7 @@
 
 "@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#add-jumio-id-verification":
   version "1.0.0"
-  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#6bc699a6ebc30779fb014602532c91ef22a2e9d3"
+  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#738af95db981b7a72327d15a31bd6fe2eb9f0f98"
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
