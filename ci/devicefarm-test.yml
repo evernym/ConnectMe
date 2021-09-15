@@ -101,7 +101,7 @@ devicefarm-test-launch-android-master:
     - if: '$CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
 
 devicefarm-test-launch-ios-master:
   extends: .devicefarm-test-launch-ios
@@ -111,7 +111,7 @@ devicefarm-test-launch-ios-master:
     - if: '$CI_COMMIT_REF_SLUG == "main"'
       when: always
   script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 main vas
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
 
 devicefarm-test-launch-android-merge_requests:
   extends: .devicefarm-test-launch-android
@@ -120,7 +120,7 @@ devicefarm-test-launch-android-merge_requests:
   variables:
     ANDROID_APK_PATH: 'android/app/build/outputs/apk/release/app-arm64-v8a-release.apk'
   script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas # true
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
@@ -130,34 +130,34 @@ devicefarm-test-launch-ios-merge_requests:
   dependencies:
     - build-ios-merge-request
   script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas # true
+    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
 
 devicefarm-test-upgrade-path-android:
-    stage: devicefarm-test-upgrade-path
-    extends: .devicefarm-test-launch-android
-    dependencies:
-        - build-android-master
-        - upload-android
-    only:
-        refs:
-            - main@evernym/mobile/connectme
-    script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
+  stage: devicefarm-test-upgrade-path
+  extends: .devicefarm-test-launch-android
+  dependencies:
+      - build-android-master
+      - upload-android
+  rules:
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+      when: always
+  script:
+      - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
-    stage: devicefarm-test-upgrade-path
-    extends: .devicefarm-test-launch-ios
-    dependencies:
-        - build-ios-master
-        - upload-ios
-    only:
-        refs:
-            - main@evernym/mobile/connectme
-    script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
+  stage: devicefarm-test-upgrade-path
+  extends: .devicefarm-test-launch-ios
+  dependencies:
+      - build-ios-master
+      - upload-ios
+  rules:
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+      when: always
+  script:
+      - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
 
 #devicefarm-test-launch-android-merge_requests-next:
 #  stage: devicefarm-test-next
