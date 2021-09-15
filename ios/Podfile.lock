@@ -101,6 +101,8 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - Permission-Camera (3.0.5):
+    - RNPermissions
   - PromisesObjC (1.2.12)
   - RCTRequired (0.61.4)
   - RCTTypeSafety (0.61.4):
@@ -378,6 +380,8 @@ PODS:
     - TOCropViewController
   - RNLocalize (1.4.3):
     - React-Core
+  - RNPermissions (3.0.5):
+    - React-Core
   - RNReanimated (1.9.0):
     - React-Core
   - RNScreens (2.17.1):
@@ -424,6 +428,7 @@ DEPENDENCIES:
   - JumioMobileSDK/NetverifyNFC (~> 3.9.0)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -476,6 +481,7 @@ DEPENDENCIES:
   - RNImageColors (from `../node_modules/react-native-image-colors`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNLocalize (from `../node_modules/react-native-localize`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
@@ -527,6 +533,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/lottie-ios"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
+  Permission-Camera:
+    :path: "../node_modules/react-native-permissions/ios/Camera"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -625,6 +633,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-crop-picker"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -665,6 +675,7 @@ SPEC CHECKSUMS:
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 634369419ccfe6e4b891f6f74e903f1515ff6804
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  Permission-Camera: ac603073e4128e51e6ca3c39129778f05b4082fa
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RCTRequired: f3b3fb6f4723e8e52facb229d0c75fdc76773849
   RCTTypeSafety: 2ec60de6abb1db050b56ecc4b60188026078fd10
@@ -715,6 +726,7 @@ SPEC CHECKSUMS:
   RNImageColors: 18783bf3f6f2ed5fcf4385a9003e6fa1f8f0d35f
   RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
   RNLocalize: 7c7aeda16c01db7a0918981c14875c0a53be9b79
+  RNPermissions: 7043bacbf928eae25808275cfe73799b8f618911
   RNReanimated: f05baf4cd76b6eab2e4d7e2b244424960b968918
   RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
   RNShare: e11014e7afd7802aba95b6f52946061a5a55d8cf
@@ -729,6 +741,6 @@ SPEC CHECKSUMS:
   vcx: 0df8141a83380af3cecfb29f08aa4bafc3782801
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 67d39d8eb074e2be38b2f972d7d5fe484840a4f0
+PODFILE CHECKSUM: ae6b85174474bbb63047a08723ddb6c5bce8ec7d
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
