@@ -203,6 +203,8 @@ build-ios-master:
     - mkdir -p $HOME/keystores/
     - yes | sdkmanager --licenses || true
     - cd android
+    - ./gradlew wrapper --gradle-version=5.5 --distribution-type=bin
+    - ./gradlew tasks
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane build
