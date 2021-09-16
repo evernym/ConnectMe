@@ -9,7 +9,7 @@ buildscript {
     }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     ext.kotlinVersion = '1.4.20'
     dependencies {
@@ -38,7 +38,6 @@ allprojects {
             url "$rootDir/../node_modules/detox/Detox-android"
         }
         google()
-        maven { url "https://jcenter.bintray.com" }
         maven {
             url 'https://evernym.mycloudrepo.io/public/repositories/libvcx-android'
         }
@@ -47,7 +46,6 @@ allprojects {
             name 'Google'
         }
         maven { url 'http://mobile-sdk.jumio.com' }
-        jcenter()
         mavenCentral()
         flatDir {
             dirs 'libs'
