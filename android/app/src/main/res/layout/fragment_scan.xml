@@ -85,7 +85,7 @@
             android:textAllCaps="false"
             android:textSize="17sp"
             android:stateListAnimator="@null"
-            android:text="Yes, Continue"
+            android:text="Continue"
             android:visibility="invisible" />
 
             <!-- Try Again Button -->
