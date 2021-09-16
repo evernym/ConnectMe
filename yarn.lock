@@ -10644,9 +10644,10 @@ react-native-safe-modules@^1.0.0:
   dependencies:
     dedent "^0.6.0"
 
-"react-native-screens@https://github.com/Pamagiti/react-native-screens.git#lock-orientation":
+react-native-screens@2.17.1:
   version "2.17.1"
-  resolved "https://github.com/Pamagiti/react-native-screens.git#7973e9875379cb22bbc59e4d12c0987a0763f769"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.17.1.tgz#c3c0ac750af48741c5b1635511e6af2a27b74309"
+  integrity sha512-B4gD5e4csvlVwlhf+RNqjQZ9mHTwe/iL3rXondgZxnKz4oW0QAmtLnLRKOrYVxoaJaF9Fy7jhjo//24/472APQ==
 
 react-native-sensitive-info@5.5.5:
   version "5.5.5"
