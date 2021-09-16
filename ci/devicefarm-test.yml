@@ -135,7 +135,7 @@ devicefarm-test-launch-ios-merge_requests:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
 
-.devicefarm-test-upgrade-path-android:
+devicefarm-test-upgrade-path-android:
   stage: devicefarm-test-upgrade-path
   extends: .devicefarm-test-launch-android
   dependencies:
@@ -148,7 +148,7 @@ devicefarm-test-launch-ios-merge_requests:
       - sleep 300 # android shift
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
-.devicefarm-test-upgrade-path-ios:
+devicefarm-test-upgrade-path-ios:
   stage: devicefarm-test-upgrade-path
   extends: .devicefarm-test-launch-ios
   dependencies:
@@ -160,7 +160,7 @@ devicefarm-test-launch-ios-merge_requests:
   script:
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
 
-.devicefarm-test-launch-android-aca-py:
+devicefarm-test-launch-android-aca-py:
   stage: devicefarm-test-acapy
   extends: .devicefarm-test-launch-android
   dependencies:
