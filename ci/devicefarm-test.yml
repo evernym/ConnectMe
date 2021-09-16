@@ -30,8 +30,10 @@ devicefarm-test-launch-android-weekly-top:
   dependencies:
     - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
     - sleep 300 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
@@ -42,8 +44,10 @@ devicefarm-test-launch-ios-weekly-top:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXS main vas
 
@@ -53,8 +57,10 @@ devicefarm-test-launch-android-weekly-next:
   dependencies:
     - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
     - sleep 300 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
@@ -65,8 +71,10 @@ devicefarm-test-launch-ios-weekly-next:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus main vas
 
@@ -76,8 +84,10 @@ devicefarm-test-launch-android-weekly-final:
   dependencies:
     - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
     - sleep 300 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
@@ -88,8 +98,10 @@ devicefarm-test-launch-ios-weekly-final:
   dependencies:
     - build-ios-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
@@ -142,9 +154,12 @@ devicefarm-test-upgrade-path-android:
       - build-android-master
       - upload-android
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
+      - sleep 300 # android shift
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
@@ -154,56 +169,12 @@ devicefarm-test-upgrade-path-ios:
       - build-ios-master
       - upload-ios
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
-
-#devicefarm-test-launch-android-merge_requests-next:
-#  stage: devicefarm-test-next
-#  extends: .devicefarm-test-launch-android
-#  dependencies:
-#    - build-android-merge-request
-#  script:
-#      - sleep 300 # android shift
-#      - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl true
-#  rules:
-#    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-#      when: always
-
-#devicefarm-test-launch-ios-merge_requests-next:
-#  stage: devicefarm-test-next
-#  extends: .devicefarm-test-launch-ios
-#  dependencies:
-#    - build-ios-merge-request
-#  script:
-#      - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus true
-#  rules:
-#    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-#      when: always
-
-#devicefarm-test-launch-android-merge_requests-final:
-#  stage: devicefarm-test-final
-#  extends: .devicefarm-test-launch-android
-#  dependencies:
-#    - build-android-merge-request
-#  script:
-#      - sleep 300 # android shift
-#      - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 true
-#  rules:
-#    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-#      when: always
-
-#devicefarm-test-launch-ios-merge_requests-final:
-#  stage: devicefarm-test-final
-#  extends: .devicefarm-test-launch-ios
-#  dependencies:
-#    - build-ios-merge-request
-#  script:
-#      - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR true
-#  rules:
-#    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-#      when: always
 
 devicefarm-test-launch-android-aca-py:
   stage: devicefarm-test-acapy
@@ -211,27 +182,29 @@ devicefarm-test-launch-android-aca-py:
   dependencies:
       - build-android-master
   rules:
-    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-      when: always
+    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+    #   when: always
+      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+        when: always
   script:
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 interop aca-py
 
-devicefarm-test-launch-android-update-pipeline:
-  extends: .devicefarm-test-launch-android
-  dependencies:
-    - build-android-update-pipeline
-  rules:
-    - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
-      when: always
-  script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
+# devicefarm-test-launch-android-update-pipeline:
+#   extends: .devicefarm-test-launch-android
+#   dependencies:
+#     - build-android-update-pipeline
+#   rules:
+#     - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+#       when: always
+#   script:
+#     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
 
-devicefarm-test-launch-ios-update-pipeline:
-  extends: .devicefarm-test-launch-ios
-  dependencies:
-    - build-ios-update-pipeline
-  rules:
-    - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
-      when: always
-  script:
-    - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
+# devicefarm-test-launch-ios-update-pipeline:
+#   extends: .devicefarm-test-launch-ios
+#   dependencies:
+#     - build-ios-update-pipeline
+#   rules:
+#     - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
+#       when: always
+#   script:
+#     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
