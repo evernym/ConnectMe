@@ -47,7 +47,6 @@ allprojects {
         }
         maven { url 'http://mobile-sdk.jumio.com' }
         mavenCentral()
-        mavenCentral()
         flatDir {
             dirs 'libs'
         }
