@@ -92,7 +92,7 @@ public class MIDSScanFragment extends DialogFragment {
         title.setTextColor(Color.rgb(165, 165, 165));
         title.setText("Good job");
         subtitle.setTextColor(Color.rgb(119, 119, 119));
-        subtitle.setText("If your document has two sides, flip it over and press Continue to scan the back.");
+        subtitle.setText("If your document has two sides, flip it over and press continue to scan the back. Otherwise just press continue.");
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
