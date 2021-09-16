@@ -228,6 +228,8 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - main@evernym/mobile/connectme
+      - fixci@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
@@ -261,21 +263,26 @@ upload-android:
 
 
 # Basic lint
-yarn-test:
-  stage: test
-  image: ${CI_REGISTRY_IMAGE}/ubuntu18:${CI_COMMIT_REF_SLUG}
-  script:
-    - yarn config set ignore-engines true
-    - yarn install
-    - yarn lint
-  only:
-    refs:
-      - branches
-      - tags
-  tags:
-    - docker-machine
-  except:
-    - white-label-app-e2e-testing
+#yarn-test:
+#  stage: test
+#  image: ${CI_REGISTRY_IMAGE}/ubuntu18:${CI_COMMIT_REF_SLUG}
+#  script:
+#    - dig @8.8.8.8 google.com
+#    - dig google.com
+#    - dig www.npmjs.com
+#    - dig https://jcenter.bintray.com
+#    - dig @8.8.8.8 https://jcenter.bintray.com
+#    - yarn config set ignore-engines true
+#    - yarn install
+#    - yarn lint
+#  only:
+#    refs:
+#      - branches
+#      - tags
+#  tags:
+#    - docker-machine
+#  except:
+#    - white-label-app-e2e-testing
 
 react-native-white-label-app-check:
   stage: react-check

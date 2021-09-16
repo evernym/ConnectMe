@@ -5,7 +5,8 @@ RUN apt-get update -y && apt-get install -y \
     git \
     curl \
     ca-certificates \
-    software-properties-common
+    software-properties-common \
+    dnsutils
 
 # Install Nodejs
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \

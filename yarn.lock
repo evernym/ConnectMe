@@ -1039,7 +1039,7 @@
 
 "@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#add-jumio-id-verification":
   version "1.0.0"
-  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#738af95db981b7a72327d15a31bd6fe2eb9f0f98"
+  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#cab0ca4f626ebc0feb2ac873248f7d47789b831d"
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
@@ -10578,6 +10578,11 @@ react-native-modal@11.5.6:
 "react-native-pbkdf2@git://github.com/evernym/react-native-pbkdf2.git#v0.1.5":
   version "0.1.3"
   resolved "git://github.com/evernym/react-native-pbkdf2.git#030f87c2df4f9e71b7ca5378cb0e88bad8cdd40f"
+
+react-native-permissions@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.0.5.tgz#94542a343abdac801fa0a4593ea2c751cb45c41f"
+  integrity sha512-hcvLtHhTyOTXC+CCv79d4Qtdnj6PGuY5Ms0fhW8V6Et1T/mPvzO6++Du4jwEv/oHZ62qMWKUDq0/Tsh63QHuyQ==
 
 react-native-picker-select@^8.0.4:
   version "8.0.4"
