@@ -38,6 +38,7 @@ allprojects {
             url "$rootDir/../node_modules/detox/Detox-android"
         }
         google()
+        maven { url "https://jcenter.bintray.com" }
         maven {
             url 'https://evernym.mycloudrepo.io/public/repositories/libvcx-android'
         }
