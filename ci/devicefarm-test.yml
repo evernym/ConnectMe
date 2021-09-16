@@ -28,7 +28,8 @@ devicefarm-test-launch-android-weekly-top:
   stage: devicefarm-test-top
   extends: .devicefarm-test-launch-android
   dependencies:
-    - build-android-master
+    # - build-android-master
+    - build-android-update-pipeline
   rules:
     # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
     #   when: always
@@ -42,7 +43,8 @@ devicefarm-test-launch-ios-weekly-top:
   stage: devicefarm-test-top
   extends: .devicefarm-test-launch-ios
   dependencies:
-    - build-ios-master
+    # - build-ios-master
+    - build-ios-update-pipeline
   rules:
     # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
     #   when: always
@@ -55,7 +57,8 @@ devicefarm-test-launch-android-weekly-next:
   stage: devicefarm-test-next
   extends: .devicefarm-test-launch-android
   dependencies:
-    - build-android-master
+    # - build-android-master
+    - build-android-update-pipeline
   rules:
     # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
     #   when: always
@@ -69,7 +72,8 @@ devicefarm-test-launch-ios-weekly-next:
   stage: devicefarm-test-next
   extends: .devicefarm-test-launch-ios
   dependencies:
-    - build-ios-master
+    # - build-ios-master
+    - build-ios-update-pipeline
   rules:
     # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
     #   when: always
@@ -82,7 +86,8 @@ devicefarm-test-launch-android-weekly-final:
   stage: devicefarm-test-final
   extends: .devicefarm-test-launch-android
   dependencies:
-    - build-android-master
+    # - build-android-master
+    - build-android-update-pipeline
   rules:
     # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
     #   when: always
@@ -96,7 +101,8 @@ devicefarm-test-launch-ios-weekly-final:
   stage: devicefarm-test-final
   extends: .devicefarm-test-launch-ios
   dependencies:
-    - build-ios-master
+    # - build-ios-master
+    - build-ios-update-pipeline
   rules:
     # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
     #   when: always
@@ -147,45 +153,39 @@ devicefarm-test-launch-ios-merge_requests:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
 
-devicefarm-test-upgrade-path-android:
+.devicefarm-test-upgrade-path-android:
   stage: devicefarm-test-upgrade-path
   extends: .devicefarm-test-launch-android
   dependencies:
       - build-android-master
       - upload-android
   rules:
-    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-    #   when: always
-      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
-        when: always
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+      when: always
   script:
       - sleep 300 # android shift
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
-devicefarm-test-upgrade-path-ios:
+.devicefarm-test-upgrade-path-ios:
   stage: devicefarm-test-upgrade-path
   extends: .devicefarm-test-launch-ios
   dependencies:
       - build-ios-master
       - upload-ios
   rules:
-    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-    #   when: always
-      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
-        when: always
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+      when: always
   script:
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
 
-devicefarm-test-launch-android-aca-py:
+.devicefarm-test-launch-android-aca-py:
   stage: devicefarm-test-acapy
   extends: .devicefarm-test-launch-android
   dependencies:
       - build-android-master
   rules:
-    # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-    #   when: always
-      - if: '$CI_COMMIT_REF_SLUG == "update-pipeline"'
-        when: always
+    - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+      when: always
   script:
       - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 interop aca-py
 
