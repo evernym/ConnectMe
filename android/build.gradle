@@ -9,7 +9,7 @@ buildscript {
     }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     ext.kotlinVersion = '1.4.20'
     dependencies {
@@ -46,7 +46,7 @@ allprojects {
             name 'Google'
         }
         maven { url 'http://mobile-sdk.jumio.com' }
-        jcenter()
+        mavenCentral()
         mavenCentral()
         flatDir {
             dirs 'libs'
