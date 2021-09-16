@@ -1,9 +1,11 @@
 package me.connect.mids;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +42,12 @@ import java.util.List;
 
 import me.connect.R;
 
+import static com.facebook.react.bridge.UiThreadUtil.runOnUiThread;
+
 public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
     public static final String REACT_CLASS = "MIDSDocumentVerification";
+    public static final String SCAN_DIALOG = "SCAN_DIALOG";
+
     private static ReactApplicationContext reactContext = null;
 
     private MIDSEnrollmentManager sdkManager = null;
@@ -213,7 +219,7 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
             System.out.println("ScanListener - method: onProcessCancelled - error: " + error.getMessage().toString());
 
             if (error == MIDSVerificationError.PRESENTER_ERROR_GENERIC_ERROR) {
-                presenter.retryScan();
+                showModal();
             }
         }
 
@@ -298,17 +304,17 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
         } else if (currentScanSide == MIDSScanSide.FRONT || currentScanSide == MIDSScanSide.BACK) {
             Activity activity = getCurrentActivity();
             FragmentTransaction ft = activity.getFragmentManager().beginTransaction();
-            Fragment prev = activity.getFragmentManager().findFragmentByTag(REACT_CLASS);
+            Fragment prev = activity.getFragmentManager().findFragmentByTag(SCAN_DIALOG);
             if (prev != null) {
                 ft.remove(prev);
             }
             ft.addToBackStack(null);
 
-            MIDSFragment newFragment = MIDSFragment.newInstance();
+            MIDSScanFragment newFragment = MIDSScanFragment.newInstance();
             newFragment.setMIDSEnrollmentManager(getEnrollmentManagerInstance());
             newFragment.setMIDSScanSide(currentScanSide);
 
-            newFragment.show(ft, REACT_CLASS);
+            newFragment.show(ft, SCAN_DIALOG);
             activity.getFragmentManager().executePendingTransactions();
             newFragment.setDismissListener(new DismissListener() {
                 @Override
@@ -325,6 +331,33 @@ public class MIDSDocumentVerification extends ReactContextBaseJavaModule {
                 }
             });
         }
+    }
+
+    private void showModal() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(reactContext.getCurrentActivity())
+                    .setTitle("Something went wrong")
+                    .setPositiveButton("Retry scan", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            presenter.retryScan();
+                        }
+                    })
+
+                    .setNegativeButton("Finish scan", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            presenter.destroy();
+                            getEnrollmentManagerInstance().endScan();
+                            getEnrollmentManagerInstance().terminateSDK();
+                            resetSdk();
+                            reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("DESTROY", Arguments.createMap());
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            }
+        });
     }
 
     private void scanningFaceSide() {

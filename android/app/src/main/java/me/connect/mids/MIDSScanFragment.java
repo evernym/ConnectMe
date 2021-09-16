@@ -1,5 +1,6 @@
 package me.connect.mids;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
@@ -25,11 +26,11 @@ import com.mastercard.dis.mids.base.verification.enrollment.MIDSEnrollmentManage
 import com.mastercard.dis.mids.base.verification.views.MIDSVerificationConfirmationView;
 import com.mastercard.dis.mids.base.verification.views.MIDSVerificationScanView;
 
-import org.w3c.dom.Text;
-
 import me.connect.R;
 
-public class MIDSFragment extends DialogFragment {
+import static com.facebook.react.bridge.UiThreadUtil.runOnUiThread;
+
+public class MIDSScanFragment extends DialogFragment {
     private MIDSEnrollmentManager midsEnrollmentManager;
     private MIDSScanSide midsScanSide;
     private MIDSVerificationConfirmationView midsVerificationConfirmationView = null;
@@ -46,8 +47,8 @@ public class MIDSFragment extends DialogFragment {
     private DismissListener listener = null;
     private boolean isDestroy = false;
 
-    public static MIDSFragment newInstance() {
-        return new MIDSFragment();
+    public static MIDSScanFragment newInstance() {
+        return new MIDSScanFragment();
     }
 
     public void setDismissListener(DismissListener listener) {
@@ -75,18 +76,10 @@ public class MIDSFragment extends DialogFragment {
         }
     }
 
-    @Override
-    public int show(FragmentTransaction transaction, String tag) {
-        System.out.println("MIDSFragment show " + midsScanSide);
-        return super.show(transaction, tag);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                                       @Nullable Bundle savedInstanceState) {
-        System.out.println("MIDSFragment onCreateView " + midsScanSide);
-
         View view = inflater.inflate(R.layout.fragment_scan, container, false);
         midsVerificationScanView = (MIDSVerificationScanView) view.findViewById(R.id.sv_scan);
         midsVerificationConfirmationView = (MIDSVerificationConfirmationView) view.findViewById(R.id.cv_scan);
@@ -164,7 +157,6 @@ public class MIDSFragment extends DialogFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        System.out.println("MIDSFragment onViewCreated ");
         super.onViewCreated(view, savedInstanceState);
 
         if (presenter != null) {
@@ -181,6 +173,33 @@ public class MIDSFragment extends DialogFragment {
 
     public void setMIDSScanSide(MIDSScanSide midsScanSide) {
         this.midsScanSide = midsScanSide;
+    }
+
+    private void showModal() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(getActivity())
+                    .setTitle("Сouldn't recognize document. Please try again...")
+                    .setPositiveButton("Retry scan", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            presenter.retryScan();
+                        }
+                    })
+                    .setNegativeButton("Finish scan", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            isDestroy = true;
+                            presenter.destroy();
+                            presenter = null;
+                            continueButton.setVisibility(View.INVISIBLE);
+                            retryButton.setVisibility(View.VISIBLE);
+                            onDestroyView();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            }
+        });
     }
 
     private class ScanListener implements IMidsVerificationScanListener {
@@ -227,7 +246,7 @@ public class MIDSFragment extends DialogFragment {
         public void onProcessCancelled(MIDSVerificationError error) {
             System.out.println("ScanListener - method: onProcessCancelled - error: " + error.getMessage().toString());
             if (error == MIDSVerificationError.PRESENTER_ERROR_GENERIC_ERROR) {
-                presenter.retryScan();
+                showModal();
             }
         }
 
