@@ -19,5 +19,8 @@ export const OIDC_TRUSTED_DOMAINS = ['connectme.app.link']
 // ConnectMe uses Push Notifications instead of Polling
 export const USE_PUSH_NOTIFICATION = true
 
+// ConnectMe uses Document Verification feature
+export const USE_DOCUMENT_VERIFICATION = true
+
 // Branch.io Deep link address
 export const DEEP_LINK = 'https://link.comect.me/'
