@@ -126,7 +126,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Please allow us access to Camera so that we can scan QR code</string>
+	<string>Please allow us access to Camera so that we can scan QR codes and documents</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Enabling Face ID allows you quick and secure access to your app.</string>
 	<key>NSMicrophoneUsageDescription</key>

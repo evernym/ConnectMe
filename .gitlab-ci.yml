@@ -10,6 +10,8 @@ stages:
   - devicefarm-test-next
   - devicefarm-test-final
   - upload
+  - devicefarm-test-upgrade-path
+  - devicefarm-test-acapy
 
 ### - Pre-build - ###
 # Helpers / Anchors
@@ -143,14 +145,14 @@ license-data-check:
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
-build-ios-e2e-testing:
+build-ios-update-pipeline:
   extends: .build-ios
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
   only:
     refs:
-      - e2e-testing@evernym/mobile/connectme
+      - update-pipeline@evernym/mobile/connectme
 
 build-ios-merge-request:
   extends: .build-ios
@@ -160,6 +162,8 @@ build-ios-merge-request:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
+    - if: '$CI_COMMIT_REF_NAME == "fix-country-selection-ui"'
+      when: 'always'
 
 build-ios-master:
   extends: .build-ios
@@ -203,11 +207,11 @@ build-ios-master:
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane build
 
-build-android-e2e-testing:
+build-android-update-pipeline:
   extends: .build-android
   only:
     refs:
-      - e2e-testing@evernym/mobile/connectme
+      - update-pipeline@evernym/mobile/connectme
 
 build-android-merge-request:
   extends: .build-android
@@ -224,6 +228,8 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - main@evernym/mobile/connectme
+      - fixci@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
@@ -257,21 +263,26 @@ upload-android:
 
 
 # Basic lint
-yarn-test:
-  stage: test
-  image: ${CI_REGISTRY_IMAGE}/ubuntu18:${CI_COMMIT_REF_SLUG}
-  script:
-    - yarn config set ignore-engines true
-    - yarn install
-    - yarn lint
-  only:
-    refs:
-      - branches
-      - tags
-  tags:
-    - docker-machine
-  except:
-    - white-label-app-e2e-testing
+#yarn-test:
+#  stage: test
+#  image: ${CI_REGISTRY_IMAGE}/ubuntu18:${CI_COMMIT_REF_SLUG}
+#  script:
+#    - dig @8.8.8.8 google.com
+#    - dig google.com
+#    - dig www.npmjs.com
+#    - dig https://jcenter.bintray.com
+#    - dig @8.8.8.8 https://jcenter.bintray.com
+#    - yarn config set ignore-engines true
+#    - yarn install
+#    - yarn lint
+#  only:
+#    refs:
+#      - branches
+#      - tags
+#  tags:
+#    - docker-machine
+#  except:
+#    - white-label-app-e2e-testing
 
 react-native-white-label-app-check:
   stage: react-check

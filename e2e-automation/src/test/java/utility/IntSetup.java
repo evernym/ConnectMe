@@ -62,4 +62,30 @@ public class IntSetup {
             System.out.println(">> Test " + testName + " successfully finished.");
         }
     }
+
+    /**
+     * Explicitly initializes new driver page object instances
+     */
+    public void reloadDriversAndPos()
+    {
+        driverApp = AppDriver.getDriver();
+        startUpPageNew = new StartUpPageNew(driverApp);
+        passCodePageNew = new PassCodePageNew(driverApp);
+        homePageNew = new HomePageNew(driverApp);
+        menuPageNew = new MenuPageNew(driverApp);
+        myConnectionsPageNew = new MyConnectionsPageNew(driverApp);
+        myCredentialsPageNew = new MyCredentialsPageNew(driverApp);
+        qrScannerPageNew = new QrScannerPageNew(driverApp);
+        settingsPageNew = new SettingsPageNew(driverApp);
+        aboutPageNew = new AboutPageNew(driverApp);
+        chatPageNew = new ChatPageNew(driverApp);
+        pushNotificationsPageNew = new PushNotificationsPageNew(driverApp);
+        invitationPageNew = new InvitationPageNew(driverApp);
+        connectionHistoryPageNew = new ConnectionHistoryPageNew(driverApp);
+        connectionDetailPageNew = new ConnectionDetailPageNew(driverApp);
+        credentialPageNew = new CredentialPageNew(driverApp);
+        proofRequestPageNew = new ProofRequestPageNew(driverApp);
+        questionPageNew = new QuestionPageNew(driverApp);
+        customValuesPageNew = new CustomValuesPageNew(driverApp);
+    }
 }

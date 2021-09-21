@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import test.java.appModules.AppUtils;
 
 import io.appium.java_client.AppiumDriver;
@@ -112,15 +113,20 @@ public class HomePageNew {
     }
 
     public void tapOnBurgerMenu() {
-        burgerMenuButton.click();
-        try { Thread.sleep(1000); }
-        catch (InterruptedException e) {}
+        try {
+            burgerMenuButton.click();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) { }
+        }
+        catch (StaleElementReferenceException e) {}
         if (!AppUtils.isElementAbsent(driver, burgerMenuButton)) {
             System.out.println("Failed to open side menu, retrying");
             try { Thread.sleep(1000); }
             catch (InterruptedException e) {}
             burgerMenuButton.click();
         }
+        System.out.println("Side menu should be visible now");
     }
 
     public void checkHome() {

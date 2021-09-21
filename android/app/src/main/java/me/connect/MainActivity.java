@@ -4,7 +4,9 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactFragmentActivity;
 
 import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.os.Build;
 
 import org.devio.rn.splashscreen.SplashScreen;
 import io.branch.rnbranch.*;
+
 import com.evernym.sdk.reactnative.rnindy.LogFileObserver;
 import com.evernym.sdk.reactnative.rnindy.RNIndyStaticData;
 
@@ -21,7 +24,11 @@ import android.content.Intent;
 
 import android.content.ContextWrapper;
 import android.system.Os;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -71,16 +78,16 @@ public class MainActivity extends ReactActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
-        case RNIndyStaticData.REQUEST_WRITE_EXTERNAL_STORAGE: {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                RNIndyStaticData.initLoggerFile(this);
+            case RNIndyStaticData.REQUEST_WRITE_EXTERNAL_STORAGE: {
+                if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    RNIndyStaticData.initLoggerFile(this);
 
-                Toast.makeText(this, "Logging Turned On", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Logging Turned Off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Logging Turned On", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Logging Turned Off", Toast.LENGTH_SHORT).show();
+                }
+                return;
             }
-            return;
-        }
         }
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

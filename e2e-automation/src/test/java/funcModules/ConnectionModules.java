@@ -14,6 +14,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
+import test.java.appModules.AcaPyApi;
 import test.java.utility.Config;
 import test.java.utility.AppDriver;
 import test.java.utility.LocalContext;
@@ -89,7 +90,9 @@ public class ConnectionModules extends IntSetup {
 
     }
 
-    public void openDeepLink(AppiumDriver driverBrowser, AppiumDriver driverApp, String link) throws InterruptedException {
+    public void openDeepLink(AppiumDriver driverBrowser, AppiumDriver driverApp, String link) throws Exception {
+        System.out.println("Opening deeplink: " + link);
+
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) {
             driverApp.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
 
@@ -109,11 +112,8 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
-        try {
-            new AppUtils().authForAction();
-        } catch (Exception e) {
-            System.out.println("Failed to enter PIN due to: " + e.getLocalizedMessage());
-        }
+        Thread.sleep(5000);
+        new AppUtils().authForAction();
     }
 
     public void getConnectionInvitation(AppiumDriver driverBrowser, AppiumDriver driverApp, String label, String invitationType) throws Exception {
@@ -145,7 +145,22 @@ public class ConnectionModules extends IntSetup {
         openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
     }
 
-    public static String getInvitationLink() {
+    public void getConnectionInvitationFromAcaPyApi(AppiumDriver driverBrowser, AppiumDriver driverApp, String label) throws Exception {
+        AcaPyApi ACAPY = AcaPyApi.getInstance();
+        LocalContext context = LocalContext.getInstance();
+
+        JSONObject invite = ACAPY.createConnectionInvitation();
+        String inviteURL = invite.getString("invitation_url");
+        String connectionId = invite.getString("connection_id");
+
+        context.setValue("connectionId", connectionId);
+
+        openDeepLink(driverBrowser, driverApp, Config.ConnectMe_App_Link + inviteURL);
+
+        driverApp.context("NATIVE_APP");
+    }
+
+    public static String getInvitationLink(int index) {
         RestAssured.baseURI = Config.VAS_Server_Link;
 
         Response response = RestAssured
@@ -162,9 +177,23 @@ public class ConnectionModules extends IntSetup {
         } catch (JSONException ex) {
             // ignore
         }
-        System.out.println("String is =>  " + result.getString(0));
+        System.out.println("String is =>  " + result.getString(index));
 
-        return result.getString(0);
+        return result.getString(index);
+    }
+
+    public static String ensureGetInvitationLink(int index) throws InterruptedException {
+        try {
+            return getInvitationLink(index);
+        } catch (JSONException e) {
+            try {
+                Thread.sleep(120000);
+                return getInvitationLink(index);
+            } catch (JSONException ex) {
+                Thread.sleep(180000);
+                return getInvitationLink(index);
+            }
+        }
     }
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
@@ -222,14 +251,14 @@ public class ConnectionModules extends IntSetup {
     public void openConnectionHistory(String connectionName) throws Exception {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
-        Thread.sleep(1000);
+        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
         myConnectionsPageNew.getConnectionByName(connectionName).click();
-        // FIXME - validate that we drilled down to connection properly
-        if (Config.iOS_Devices.contains(Config.Device_Type)) {
+
+        if(!AppUtils.isElementAbsent(driverApp, myConnectionsPageNew.getConnectionByName(connectionName)))
+        {
             try {
                 myConnectionsPageNew.getConnectionByName(connectionName).click();
             } catch (Exception e) {
-
             }
         }
     }

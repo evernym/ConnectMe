@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,9 +18,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1725322F2C664CF289317758 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC9D114DDD644860A23CCA8D /* Octicons.ttf */; };
-		1B953C2B4E2BF0EB319C4CFB /* Pods_ConnectMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4EF6F25A24DDAA4C3EFB78D /* Pods_ConnectMeTests.framework */; };
 		2772C0BC1EF14F93009DE7B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2772C0BB1EF14F93009DE7B6 /* GoogleService-Info.plist */; };
 		2776B0F1354D4CE79BD1A4C4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47A962A206204795B77F3195 /* MaterialCommunityIcons.ttf */; };
+		294C0F1C061B79294C383106 /* Pods_ConnectMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9487A892816F4C9228E3DF /* Pods_ConnectMeTests.framework */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -47,13 +47,20 @@
 		DD188B32266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD188B30266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift */; };
 		DD86E6C324BCEBF50099BB78 /* libswiftAVFoundation.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DD86E6C224BCEBCF0099BB78 /* libswiftAVFoundation.tbd */; };
 		DD86E6C524BCEC130099BB78 /* libswiftUIKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DD86E6C424BCEC070099BB78 /* libswiftUIKit.tbd */; };
+		DDA2818926B1CFDF001F50B7 /* MIDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA2818826B1CFDF001F50B7 /* MIDS.swift */; };
+		DDA283B626B1F7B2001F50B7 /* MIDS.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA283B526B1F7B2001F50B7 /* MIDS.m */; };
+		DDA283DA26B315C6001F50B7 /* MIDSAssistSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA283D426B315B9001F50B7 /* MIDSAssistSDK.xcframework */; };
+		DDA283DB26B315C6001F50B7 /* MIDSAssistSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DDA283D426B315B9001F50B7 /* MIDSAssistSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DDA283DC26B315C8001F50B7 /* MIDSVerificationSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */; };
+		DDA283DD26B315C9001F50B7 /* MIDSVerificationSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DDC281F526E66E3100525461 /* ConfirmScannedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC281F326E66E3100525461 /* ConfirmScannedImageView.swift */; };
+		DDC281F626E66E3100525461 /* ConfirmScannedImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC281F426E66E3100525461 /* ConfirmScannedImageView.xib */; };
 		DDD64CBD216D4A1000BE706A /* css in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CB9216D4A0F00BE706A /* css */; };
 		DDD64CBE216D4A1000BE706A /* eula_ios.html in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CBA216D4A0F00BE706A /* eula_ios.html */; };
 		DDD64CBF216D4A1000BE706A /* images in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CBB216D4A0F00BE706A /* images */; };
 		DDD64CC0216D4A1000BE706A /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CBC216D4A1000BE706A /* privacy.html */; };
 		EC657F2C78CA4325A7F0D28A /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A43B7EE6108C43AEA9443B36 /* Lato-Semibold.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
-		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		EFBF378977C641A6AC393DA4 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE7B65242F6E4722BD3EF358 /* FontAwesome5_Brands.ttf */; };
 		F4231D8934B94C7795C3CCDF /* Lato-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7702F1E1DB794FE6803D1FB9 /* Lato-MediumItalic.ttf */; };
 /* End PBXBuildFile section */
@@ -194,6 +201,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DDA282E226B1D60D001F50B7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DDA283DD26B315C9001F50B7 /* MIDSVerificationSDK.xcframework in Embed Frameworks */,
+				DDA283DB26B315C6001F50B7 /* MIDSAssistSDK.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00DE7DCFB73E4DF8B1201CE9 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
@@ -243,16 +265,13 @@
 		7D574DAA90D74CB795F753DF /* Lato-HeavyItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-HeavyItalic.ttf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/Lato/Lato-HeavyItalic.ttf"; sourceTree = "<group>"; };
 		83E7F1AAAA7843A8B868498C /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/Lato/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		8E9ADA5A2175670100F3DAD2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		8EEECB4E217FC50C004F9994 /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EEECBD4217FCDF0004F9994 /* ConnectMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ConnectMe-Bridging-Header.h"; path = "ConnectMe/ConnectMe-Bridging-Header.h"; sourceTree = "<group>"; };
-		8EEECBD5217FCED6004F9994 /* QBImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EEECBD9217FD3AC004F9994 /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		922C5E6A7C0143A6B6B78CD5 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BlackItalic.ttf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/Lato/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		9427435001634D8E9FD0A12B /* libreact-native-branch.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libreact-native-branch.a"; sourceTree = "<group>"; };
 		9BBDEE56AAFF4887BD6CA87E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		9F9487A892816F4C9228E3DF /* Pods_ConnectMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConnectMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B85DC158DC404A9EDB867B /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		A43B7EE6108C43AEA9443B36 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Semibold.ttf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/Lato/Lato-Semibold.ttf"; sourceTree = "<group>"; };
-		A4EF6F25A24DDAA4C3EFB78D /* Pods_ConnectMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConnectMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAA1D8F3C0F6456FB999E520 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		AC9D114DDD644860A23CCA8D /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		B09965FBE6864F91A0D3FD4C /* Lato-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Thin.ttf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/Lato/Lato-Thin.ttf"; sourceTree = "<group>"; };
@@ -265,13 +284,17 @@
 		D5195723B48F485BA8835F82 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		DA7BA45366374CBDAB9927BD /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		DD188B30266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "do-not-delete-file-only-for-runtime-library.swift"; sourceTree = "<group>"; };
-		DD424AE7243DDDE000FA70C4 /* libswiftAVFoundation.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftAVFoundation.tbd; path = /usr/lib/swift/libswiftAVFoundation.tbd; sourceTree = SDKROOT; };
-		DD424AE9243DDE3E00FA70C4 /* libswiftUIKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftUIKit.tbd; path = /usr/lib/swift/libswiftUIKit.tbd; sourceTree = SDKROOT; };
 		DD858D8620A99E0F004B3CB5 /* libvcx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvcx.a; path = Pods/vcx/vcx/vcx.framework/lib/libvcx.a; sourceTree = "<group>"; };
 		DD86E6C224BCEBCF0099BB78 /* libswiftAVFoundation.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftAVFoundation.tbd; path = usr/lib/swift/libswiftAVFoundation.tbd; sourceTree = SDKROOT; };
 		DD86E6C424BCEC070099BB78 /* libswiftUIKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftUIKit.tbd; path = usr/lib/swift/libswiftUIKit.tbd; sourceTree = SDKROOT; };
 		DD8ED357266E63840010A55F /* ConnectMe.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ConnectMe.entitlements; sourceTree = "<group>"; };
 		DD8ED358266E65400010A55F /* ConnectMe-release.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "ConnectMe-release.entitlements"; sourceTree = "<group>"; };
+		DDA2818826B1CFDF001F50B7 /* MIDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDS.swift; sourceTree = "<group>"; };
+		DDA283B526B1F7B2001F50B7 /* MIDS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MIDS.m; path = ConnectMe/MIDS.m; sourceTree = "<group>"; };
+		DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MIDSVerificationSDK.xcframework; sourceTree = "<group>"; };
+		DDA283D426B315B9001F50B7 /* MIDSAssistSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MIDSAssistSDK.xcframework; sourceTree = "<group>"; };
+		DDC281F326E66E3100525461 /* ConfirmScannedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmScannedImageView.swift; sourceTree = "<group>"; };
+		DDC281F426E66E3100525461 /* ConfirmScannedImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmScannedImageView.xib; sourceTree = "<group>"; };
 		DDCFDEAD1F879B8900F932F8 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Black.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
 		DDCFDEAE1F879B8900F932F8 /* SF-Pro-Display-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-BlackItalic.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-BlackItalic.otf"; sourceTree = "<group>"; };
 		DDCFDEAF1F879B8900F932F8 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Bold.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -311,7 +334,6 @@
 		E59F017D298ACF00EDAE360A /* Pods-ConnectMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConnectMe.debug.xcconfig"; path = "Target Support Files/Pods-ConnectMe/Pods-ConnectMe.debug.xcconfig"; sourceTree = "<group>"; };
 		EBC83535D6244D318A899CC5 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-LightItalic.ttf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/Lato/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EE0D23D481324711B3988D76 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F11F315E1EF109D2007A8D70 /* react-native-splash-screen */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "react-native-splash-screen"; path = "../node_modules/react-native-splash-screen"; sourceTree = "<group>"; };
 		FE7B65242F6E4722BD3EF358 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
@@ -325,7 +347,7 @@
 			files = (
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				1B953C2B4E2BF0EB319C4CFB /* Pods_ConnectMeTests.framework in Frameworks */,
+				294C0F1C061B79294C383106 /* Pods_ConnectMeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,10 +355,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */,
+				DDA283DA26B315C6001F50B7 /* MIDSAssistSDK.xcframework in Frameworks */,
 				4B0AFC4C695A4198A3D2AB69 /* libz.tbd in Frameworks */,
 				DD86E6C324BCEBF50099BB78 /* libswiftAVFoundation.tbd in Frameworks */,
 				C9032935B9D08145B0F5DC06 /* Pods_ConnectMe.framework in Frameworks */,
+				DDA283DC26B315C8001F50B7 /* MIDSVerificationSDK.xcframework in Frameworks */,
 				DD86E6C524BCEC130099BB78 /* libswiftUIKit.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +402,7 @@
 		13B07FAE1A68108700A75B9A /* ConnectMe */ = {
 			isa = PBXGroup;
 			children = (
+				DDC281F226E66E3100525461 /* ConfirmScannedImageView */,
 				DD8ED358266E65400010A55F /* ConnectMe-release.entitlements */,
 				DD8ED357266E63840010A55F /* ConnectMe.entitlements */,
 				DDD64CA8216D460A00BE706A /* connectme-website */,
@@ -392,6 +416,8 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				DD188B30266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift */,
+				DDA2818826B1CFDF001F50B7 /* MIDS.swift */,
+				DDA283B526B1F7B2001F50B7 /* MIDS.m */,
 			);
 			name = ConnectMe;
 			sourceTree = "<group>";
@@ -424,18 +450,12 @@
 			children = (
 				DD86E6C424BCEC070099BB78 /* libswiftUIKit.tbd */,
 				DD86E6C224BCEBCF0099BB78 /* libswiftAVFoundation.tbd */,
-				DD424AE9243DDE3E00FA70C4 /* libswiftUIKit.tbd */,
-				DD424AE7243DDDE000FA70C4 /* libswiftAVFoundation.tbd */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				8EEECBD9217FD3AC004F9994 /* RSKImageCropper.framework */,
-				8EEECBD5217FCED6004F9994 /* QBImagePicker.framework */,
-				8EEECB4E217FC50C004F9994 /* RSKImageCropper.framework */,
 				8E9ADA5A2175670100F3DAD2 /* AVFoundation.framework */,
 				DD858D8620A99E0F004B3CB5 /* libvcx.a */,
 				EE0D23D481324711B3988D76 /* libz.tbd */,
 				DEE40D020E150B72A7A8B796 /* Pods_ConnectMe.framework */,
-				A4EF6F25A24DDAA4C3EFB78D /* Pods_ConnectMeTests.framework */,
+				9F9487A892816F4C9228E3DF /* Pods_ConnectMeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -462,6 +482,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				DDA282D326B1D5BE001F50B7 /* EmbeddedFrameworks */,
 				13B07FAE1A68108700A75B9A /* ConnectMe */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ConnectMeTests */,
@@ -559,6 +580,24 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		DDA282D326B1D5BE001F50B7 /* EmbeddedFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDA283D426B315B9001F50B7 /* MIDSAssistSDK.xcframework */,
+				DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */,
+			);
+			path = EmbeddedFrameworks;
+			sourceTree = "<group>";
+		};
+		DDC281F226E66E3100525461 /* ConfirmScannedImageView */ = {
+			isa = PBXGroup;
+			children = (
+				DDC281F326E66E3100525461 /* ConfirmScannedImageView.swift */,
+				DDC281F426E66E3100525461 /* ConfirmScannedImageView.xib */,
+			);
+			path = ConfirmScannedImageView;
+			sourceTree = "<group>";
+		};
 		DDD64CA8216D460A00BE706A /* connectme-website */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,6 +673,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				5724D5DDF2ECD3AE9898174E /* [CP] Embed Pods Frameworks */,
 				F9C6D32C6D60126AC7354E2B /* [CP-User] [RNFB] Core Configuration */,
+				DDA282E226B1D60D001F50B7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -913,6 +953,7 @@
 				D7CF24B6CF8648649CD3E93E /* Lato-Bold.ttf in Resources */,
 				CBAF34C79DA848F495B816FB /* Lato-BoldItalic.ttf in Resources */,
 				9A273D51F4DB427AA24DEE95 /* Lato-Italic.ttf in Resources */,
+				DDC281F626E66E3100525461 /* ConfirmScannedImageView.xib in Resources */,
 				36C1D67FE63A494B9967BC76 /* Lato-Medium.ttf in Resources */,
 				F4231D8934B94C7795C3CCDF /* Lato-MediumItalic.ttf in Resources */,
 				A07C3C32C7314BFE821C0880 /* Lato-Regular.ttf in Resources */,
@@ -991,10 +1032,21 @@
 				"${BUILT_PRODUCTS_DIR}/Folly/folly.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/JumioCore.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/BAMCheckout.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/Netverify.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/Microblink.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/NetverifyBarcode.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/NetverifyFace.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/ZoomAuthentication.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/DocumentVerification.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/JumioNFC.framework",
+				"${PODS_ROOT}/JumioMobileSDK/JumioMobileSDK-3.9.0/JumioIProov.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCAsyncStorage/RNCAsyncStorage.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCPushNotificationIOS/RNCPushNotificationIOS.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
 				"${BUILT_PRODUCTS_DIR}/RNFileViewer/RNFileViewer.framework",
@@ -1002,6 +1054,7 @@
 				"${BUILT_PRODUCTS_DIR}/RNImageColors/RNImageColors.framework",
 				"${BUILT_PRODUCTS_DIR}/RNImageCropPicker/RNImageCropPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/RNLocalize/RNLocalize.framework",
+				"${BUILT_PRODUCTS_DIR}/RNPermissions/RNPermissions.framework",
 				"${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework",
 				"${BUILT_PRODUCTS_DIR}/RNSVG/RNSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework",
@@ -1026,6 +1079,8 @@
 				"${BUILT_PRODUCTS_DIR}/React-jsinspector/jsinspector.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/apptentive-ios/Apptentive.framework",
@@ -1053,6 +1108,7 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-white-label-app/react_native_white_label_app.framework",
 				"${BUILT_PRODUCTS_DIR}/rn-fetch-blob/rn_fetch_blob.framework",
 				"${PODS_ROOT}/vcx/vcx/vcx.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/iProov/iProov.framework/iProov",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1067,10 +1123,21 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/folly.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JumioCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BAMCheckout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Netverify.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Microblink.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NetverifyBarcode.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NetverifyFace.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZoomAuthentication.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DocumentVerification.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JumioNFC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JumioIProov.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTTypeSafety.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCAsyncStorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCMaskedView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCPushNotificationIOS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFileViewer.framework",
@@ -1078,6 +1145,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNImageColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNImageCropPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNLocalize.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNPermissions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNReanimated.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNScreens.framework",
@@ -1102,6 +1170,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/jsinspector.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactCommon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apptentive.framework",
@@ -1129,6 +1199,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_white_label_app.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/rn_fetch_blob.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/vcx.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iProov.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1204,8 +1275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA283B626B1F7B2001F50B7 /* MIDS.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				DDC281F526E66E3100525461 /* ConfirmScannedImageView.swift in Sources */,
 				DD188B31266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift in Sources */,
+				DDA2818926B1CFDF001F50B7 /* MIDS.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1291,7 +1365,11 @@
 				);
 				INFOPLIST_FILE = ConnectMeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1341,7 +1419,11 @@
 				);
 				INFOPLIST_FILE = ConnectMeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1370,7 +1452,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = ConnectMe.entitlements;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Evernym Automation (3XVZBU8VAE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: Evernym-Mobile Dev (YZ645BH8YJ)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 70211;
 				DEAD_CODE_STRIPPING = NO;
@@ -1378,6 +1460,11 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/EmbeddedFrameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Pods/vcx/**",
 					"$(inherited)",
@@ -1402,7 +1489,10 @@
 				);
 				INFOPLIST_FILE = ConnectMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/lib/swift",
 					"$(inherited)",
@@ -1444,6 +1534,11 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/EmbeddedFrameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Pods/vcx/**",
 					"$(inherited)",
@@ -1468,7 +1563,10 @@
 				);
 				INFOPLIST_FILE = ConnectMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/lib/swift",
 					"$(inherited)",
@@ -1529,7 +1627,10 @@
 					"$(SRCROOT)/../node_modules/react-native-check-notification-permission/ios",
 				);
 				INFOPLIST_FILE = "ConnectMe-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1588,7 +1689,10 @@
 					"$(SRCROOT)/../node_modules/react-native-check-notification-permission/ios",
 				);
 				INFOPLIST_FILE = "ConnectMe-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1629,7 +1733,11 @@
 					"$(SRCROOT)/../node_modules/react-native-check-notification-permission/ios",
 				);
 				INFOPLIST_FILE = "ConnectMe-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1669,7 +1777,11 @@
 					"$(SRCROOT)/../node_modules/react-native-check-notification-permission/ios",
 				);
 				INFOPLIST_FILE = "ConnectMe-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

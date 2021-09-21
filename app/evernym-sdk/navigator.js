@@ -7,18 +7,19 @@ import VersionNumber from 'react-native-version-number'
 import { verticalScale, moderateScale } from 'react-native-size-matters'
 
 import { svgIcons } from './icons'
-import {FONT_FAMILY} from "./font";
-import {COLORS} from "./colors";
+import { FONT_FAMILY } from './font'
+import { COLORS } from './colors'
 
 // options (and their labels) to be shown.
 export const MENU_NAVIGATION_OPTIONS = [
   { name: 'Connections', label: 'My Connections' },
   { name: 'Credentials', label: 'My Credentials' },
+  { name: 'PhysicalDocumentVerification', label: 'Document Verification' },
   { name: 'Settings', label: 'Settings' },
 ]
 
 // component to be displayed in the navigation drawer at the top, above the navigation section
-export const DrawerHeaderContent = () =>
+export const DrawerHeaderContent = () => (
   <SvgIcon
     testID="connect-me-banner"
     accessible={true}
@@ -29,6 +30,7 @@ export const DrawerHeaderContent = () =>
     height={verticalScale(18)}
     fill={COLORS.gray3}
   />
+)
 
 const evernymSquareIcon = require('./images/evernym_square.png')
 const versionNumber = VersionNumber
