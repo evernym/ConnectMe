@@ -17,6 +17,8 @@ The identity wallet app enables myriad use cases, including proving you’re ove
   - [Connect.Me Android beta](https://play.google.com/store/apps/details?id=me.connect)
 - We have released a white-label-able version of Connect.Me [here](https://gitlab.com/evernym/mobile/react-native-white-label-app)
 - [Mobile SDK repository](https://gitlab.com/evernym/mobile/mobile-sdk)
+- [FAQs: what happens if a user has forgotten their Connect.Me passcode](https://gitlab.com/evernym/mobile/react-native-white-label-app/-/blob/main/FAQ.md#frequenly-asked-questions)
+
 
 # Prerequisites to run
 
