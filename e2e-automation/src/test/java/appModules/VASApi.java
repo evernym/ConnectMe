@@ -91,6 +91,9 @@ public class VASApi {
 		try {
 			result = new JSONObject(responseBody);
 		} catch (JSONException ex) {
+            System.out.println("Failed to parse GET response: " + ex.toString());
+            System.out.println("Response body was following:");
+            System.out.println(responseBody);
 			// ignore
 		}
 
