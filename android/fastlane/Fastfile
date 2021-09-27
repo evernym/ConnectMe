@@ -3,26 +3,26 @@ fastlane_version "2.27.0"
 default_platform :android
 
 platform :android do
-  # before_all do
-  #   unless ENV["SLACK_CREDENTIAL"].nil?
-  #      ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_CREDENTIAL"]}"
-  #   end
-  # end
+  before_all do
+    unless ENV["SLACK_CREDENTIAL"].nil?
+       ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_CREDENTIAL"]}"
+    end
+  end
 
-  # after_all do |lane|
-  #   unless ENV["SLACK_CREDENTIAL"].nil?
-  #      slack(channel: "connectme_build", message: "#{ENV["BUILD_NAME"]} Android build #{ENV["BUILD_VERSION_CODE"]}")
-  #   end
-  # end
+  after_all do |lane|
+    unless ENV["SLACK_CREDENTIAL"].nil?
+       slack(channel: "connectme_build", message: "#{ENV["BUILD_NAME"]} Android build #{ENV["BUILD_VERSION_CODE"]}")
+    end
+  end
 
-  # error do |lane, exception|
-  #   unless ENV["SLACK_CREDENTIAL"].nil?
-  #      slack(
-  #        message: exception.message,
-  #        success: false
-  #      )
-  #   end
-  # end
+  error do |lane, exception|
+    unless ENV["SLACK_CREDENTIAL"].nil?
+       slack(
+         message: exception.message,
+         success: false
+       )
+    end
+  end
 
   lane :build do
     project_version_bump

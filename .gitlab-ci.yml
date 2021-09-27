@@ -227,7 +227,6 @@ build-android-master:
   extends: .build-android
   only:
     refs:
-      - upload-apk@evernym/mobile/connectme
       - main@evernym/mobile/connectme
       - fixci@evernym/mobile/connectme
 
@@ -259,7 +258,6 @@ upload-android:
     - bundle exec fastlane upload
   only:
     refs:
-      - upload-apk@evernym/mobile/connectme
       - main@evernym/mobile/connectme
 
 
