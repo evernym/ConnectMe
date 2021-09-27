@@ -175,6 +175,7 @@ build-ios-master:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - feature/auto/CM-3100-fix-weekly
 
 ### - Android - ###
 .build-android:
@@ -228,8 +229,8 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - main@evernym/mobile/connectme
       - fixci@evernym/mobile/connectme
+      - feature/auto/CM-3100-fix-weekly
 
 # Upload jobs
 upload-ios:
