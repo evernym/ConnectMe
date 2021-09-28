@@ -41,14 +41,12 @@ public class ConnectionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource")
     public void rejectConnectionTest(String invitationType) throws Exception {
-        AppUtils.DoSomethingEventuallyNew(
-            () -> driverBrowser = BrowserDriver.getDriver(),
-            () -> driverBrowser.launchApp(),
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
-            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
-            () -> objConnectionModules.rejectConnectionInvitation(driverApp)
-        );
+
+        driverBrowser = BrowserDriver.getDriver();
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+        objConnectionModules.acceptPushNotificationRequest(driverApp);
+        AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
+        objConnectionModules.rejectConnectionInvitation(driverApp);
 
         Thread.sleep(1000);
         BrowserDriver.closeApp();
@@ -58,14 +56,11 @@ public class ConnectionTest extends IntSetup {
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
 
-        // Use custom iteration approach to ensure that connection would be available for the next tests
-        AppUtils.DoSomethingEventuallyNew(
-            () -> driverBrowser = BrowserDriver.getDriver(),
-            () -> driverBrowser.launchApp(),
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
-            () -> objConnectionModules.acceptConnectionInvitation(driverApp)
-        );
+        driverBrowser = BrowserDriver.getDriver();
+        driverBrowser.launchApp();
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
+        AppUtils.waitForElementNew(driverApp, invitationPageNew.title);
+        objConnectionModules.acceptConnectionInvitation(driverApp);
 
         try {
             switch (connectionName) {
