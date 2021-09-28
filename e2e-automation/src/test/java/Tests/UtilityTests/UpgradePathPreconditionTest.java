@@ -20,7 +20,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
-        reloadDriversAndPos();
     }
 
     @DataProvider(name = "invitationTypesSource")
@@ -40,6 +39,8 @@ public class UpgradePathPreconditionTest extends IntSetup {
     @Test
     public void setUpWizardTest() {
         try {
+            driverApp.launchApp();
+            reloadDriversAndPos();
             startUpPageNew.setUpButton.click();
             passCodePageNew.enterPassCode();
             Thread.sleep(2000);
@@ -50,7 +51,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
         }
     }
 
-    @Test
+    @Test(dependsOnMethods = "setUpWizardTest")
     public void checkHome() {
         homePageNew.checkHome();
     }
@@ -134,7 +135,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
         aboutPageNew.backArrow.click();
     }
 
-    @Test(dataProvider = "invitationTypesSource")
+    @Test(dataProvider = "invitationTypesSource", dependsOnMethods = "checkSettings")
     public void setUpConnectionTest(String invitationType) throws Exception {
         AppDriver.quit();
         BrowserDriver.quit();
@@ -201,6 +202,8 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @AfterClass
     public void AfterClass() {
+        context.setValue("connectionName", connectionName);
+        System.out.println("Connection name in context: " + connectionName);
         driverApp.closeApp();
     }
 }
