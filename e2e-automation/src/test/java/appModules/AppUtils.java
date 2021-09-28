@@ -176,6 +176,24 @@ public class AppUtils extends IntSetup {
         throw new RuntimeException("Expected element not found!");
     }
 
+    public static void waitForElementNew(AppiumDriver driver, WebElement element, int timeout) throws Exception {
+        System.out.println("Wait for element to be available");
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+        for (int i = 1; i < 4; i++) {
+            try {
+                element.isDisplayed();
+                return;
+            } catch (Exception e) {
+                System.out.println(e.getMessage() + " Retry #" + i);
+                pullScreenDown(driver);
+            }
+            finally {
+                driver.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
+            }
+        }
+        throw new RuntimeException("Expected element not found!");
+    }
+
     public static void pullScreenDown(AppiumDriver driver) {
         System.out.println("Pull screen down to refresh");
         Dimension dims = driver.manage().window().getSize();
