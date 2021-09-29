@@ -1,5 +1,47 @@
 # Changelog
 
+# Release notes - ConnectMe 1.6.2 Aug 24 2021
+
+## Bugs
+* [CM-2949] - Text is too faint when hiding empty attributes
+* [CM-2948] - Sometimes getting stuck when the app is started
+* [CM-2947] - ConnectMe crashes scanning credential Show Credential issued using proprietary protocol
+* [CM-2942] - Connection name says 'Unknown' in recent history for shared proofs
+* [CM-2912] - Canceling of entering biometrics leaves me stuck
+* [CM-2909] - Deeplink opening hangs indefinitely when I unlock the app quickly
+* [CM-2906] - Entering and leaving the password screen causes inconsistent state
+* [CM-2884] - I get stuck if I deny camera permissions at a certain time
+* [CM-2878] - Connect.Me does not send logs when shake-for-logs is activated
+* [CM-2868] - Credential screen touch target is too small
+* [CM-2867] - QR code URL format not recognized
+* [CM-2850] - CSV attachment is shown as Unknown type in credential offer preview
+* [CM-2828] - CMe and MP should work against AcaPy when using certain protocols
+* [CM-2790] - Connect.me incorrectly showing broken Wi-Fi symbol when there is connectivity
+* [CM-2735] - Issue with opening “Give app feedback” modal on some devices
+
+## Tasks
+* [CM-2456] - I want to use multiple Indy ledgers simultaneously
+* [CM-2946] - MISC Connect.Me UX improvements
+* [CM-2944] - My Connections view styling improvements
+* [CM-2943] - I want the credentials view to look a bit better (some style and layout improvements)
+* [CM-2890] - Use Native Stack navigator for ConnectMe navigation
+* [CM-2887] - ONLINE — I want to prove with a QR code (I have an internet connection)
+* [CM-2883] - Change text of button label in settings
+* [CM-2879] - Implement SafetyNet and DeviceCheck for Step #2 of provisioning security
+* [CM-2874] - I want to scan and verify a proof from another CMe user
+* [CM-2852] - I want to still be able to use Connect.Me without internet connectivity
+* [CM-2837] - Attributes left blank should be hidden by default
+* [CM-2801] - The back button should always go to the Home view before exiting the app
+* [CM-2773] - CMe should handle failed connections gracefully
+* [CM-2846] - Add sponsor for ConnectMe
+* [CM-2709] - Public CI / CD for Connect.Me
+* [CM-2708] - Connect.me code on GitHub
+* [CM-2707] - Connect.Me repo with a clean history
+* [CM-2434] - CMe app preview (when switching between apps) shouldn't show any info inside CMe
+* [CM-2204] - Connect.Me shouldn't be dependent on ledger connectivity for presenting proofs
+* [CM-2856] - ConnectMe should be able to open deeplinks containing Out-of-Band invitation with attachment
+* [CM-2885] - Implement 'events' via Apptentive so we can track usage and do app surveys
+
 # Release notes - ConnectMe 1.5.2 Mar 1 2021
 
 ## Bugs
@@ -24,7 +66,7 @@
 * [CM-2781] - Updated the delete credentials and connections UX to be consistent
 * [CM-2792] - Updated the empty state throughout the app
 * [CM-2800] - Changed the order of action buttons. Now the primary action button is the top option. This is consistent with iOS paradigms.
-* [CM-2835] - Removed Onfido
+* [CM-2835] - Connect.me code on GitHub
 
 # Release notes - ConnectMe 1.4.1 Dec 18 2020
 
