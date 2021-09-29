@@ -52,6 +52,8 @@ public class ConnectionTest extends IntSetup {
 
         Thread.sleep(1000);
         BrowserDriver.closeApp();
+
+        Thread.sleep(60000);
     }
 
     @Test(dataProvider = "invitationTypesSource")
@@ -81,6 +83,8 @@ public class ConnectionTest extends IntSetup {
 
         Thread.sleep(1000);
         BrowserDriver.closeApp();
+
+        Thread.sleep(60000);
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")
