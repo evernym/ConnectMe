@@ -28,4 +28,7 @@ RCT_EXTERN_METHOD(startMIDSSDKScan: (NSString *)documentType
                   resolver: (RCTResponseSenderBlock *)resolve
                   rejecter: (RCTResponseSenderBlock *)reject)
 
+RCT_EXTERN_METHOD(terminateSDK: (RCTResponseSenderBlock *)resolve
+                  rejecter: (RCTResponseSenderBlock *)reject)
+
 @end
