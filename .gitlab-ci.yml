@@ -64,15 +64,15 @@ stages:
 # Jobs
 
 ## Build image for Appium tests ##
-devicefarm-buildtools:
-  stage: prebuild
-  extends: .kaniko_build
-  variables:
-    DOCKERFILE_PATH: ci/images/devicefarm.dockerfile
-    DOCKER_IMAGE_NAME: devicefarm
-  only:
-    changes:
-      - ci/images/devicefarm.dockerfile
+#devicefarm-buildtools:
+#  stage: prebuild
+#  extends: .kaniko_build
+#  variables:
+#    DOCKERFILE_PATH: ci/images/devicefarm.dockerfile
+#    DOCKER_IMAGE_NAME: devicefarm
+#  only:
+#    changes:
+#      - ci/images/devicefarm.dockerfile
 
 ubuntu-build:
   stage: prebuild
@@ -105,73 +105,74 @@ license-data-check:
 ### - Test - ###
 
 ### - iOS - ###
-.build-ios:
-  stage: build
-  tags:
-    - macos
-    - bigsur
-    - xcode-12-4
-  artifacts:
-    paths:
-      - ios/ConnectMe.ipa
-      - ios/ConnectMe-appstore.ipa
-  script:
-    - xcversion select --verbose --symlink 12.4
-    - xcversion selected
-    - sudo xcodebuild -license accept
-    - cd ios
-    - gem uninstall bundler
-    - gem install bundler
-    - bundler update --bundler
-    - gem install cocoapods
-    - cd ..
-    - mkdir -p ~/.ssh/
-    - ssh-keyscan -4H gitlab.corp.evernym.com > ~/.ssh/known_hosts
-    - eval $(ssh-agent -s)
-    - echo "$CALLCENTER_CERTS_DEPLOY_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - echo "$IOSDEV_EVERNYM_RSA_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - chmod 644 ~/.ssh/known_hosts
-    - nvm use
-    - yarn install
-    - security -v unlock-keychain -p ${VAGRANT_USER_PASS} ~/Library/Keychains/login.keychain-db
-    - git config --global user.name 'Gitlab'
-    - git config --global user.email 'it@evernym.com'
-    - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
-    - cd ios
-    - bundle install
-    - bundle exec fastlane build
-  after_script:
-    - cat ./ios/react-native-xcode.sh.log
-
-build-ios-e2e-testing:
-  extends: .build-ios
-  variables:
-    BUILD_TYPE: 'ConnectMe Dev Build'
-    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-  only:
-    refs:
-      - e2e-testing@evernym/mobile/connectme
-
-build-ios-merge-request:
-  extends: .build-ios
-  variables:
-    BUILD_TYPE: 'ConnectMe Dev Build'
-    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-      when: always
-
-build-ios-master:
-  extends: .build-ios
-  # Variable expansion doesn't work in `variables` section. Do it here instead.
-  variables:
-    BUILD_TYPE: 'QA ConnectMe Build'
-    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    # this gets passed to the anchor
-  only:
-    refs:
-      - main@evernym/mobile/connectme
-      - cm-3089-iata-china@evernym/mobile/connectme
+#.build-ios:
+#  stage: build
+#  tags:
+#    - macos
+#    - bigsur
+#    - xcode-12-4
+#  artifacts:
+#    paths:
+#      - ios/ConnectMe.ipa
+#      - ios/ConnectMe-appstore.ipa
+#  script:
+#    - xcversion select --verbose --symlink 12.4
+#    - xcversion selected
+#    - sudo xcodebuild -license accept
+#    - cd ios
+#    - gem uninstall bundler
+#    - gem install bundler
+#    - bundler update --bundler
+#    - gem install cocoapods
+#    - cd ..
+#    - mkdir -p ~/.ssh/
+#    - ssh-keyscan -4H gitlab.corp.evernym.com > ~/.ssh/known_hosts
+#    - eval $(ssh-agent -s)
+#    - echo "$CALLCENTER_CERTS_DEPLOY_KEY" | tr -d '\r' | ssh-add - > /dev/null
+#    - echo "$IOSDEV_EVERNYM_RSA_KEY" | tr -d '\r' | ssh-add - > /dev/null
+#    - chmod 644 ~/.ssh/known_hosts
+#    - nvm use
+#    - yarn install
+#    - security -v unlock-keychain -p ${VAGRANT_USER_PASS} ~/Library/Keychains/login.keychain-db
+#    - git config --global user.name 'Gitlab'
+#    - git config --global user.email 'it@evernym.com'
+#    - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
+#    - cd ios
+#    - bundle install
+#    - bundle exec fastlane build
+#  after_script:
+#    - cat ./ios/react-native-xcode.sh.log
+#
+#build-ios-e2e-testing:
+#  extends: .build-ios
+#  variables:
+#    BUILD_TYPE: 'ConnectMe Dev Build'
+#    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+#  only:
+#    refs:
+#      - e2e-testing@evernym/mobile/connectme
+#
+#build-ios-merge-request:
+#  extends: .build-ios
+#  variables:
+#    BUILD_TYPE: 'ConnectMe Dev Build'
+#    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+#  rules:
+#    - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+#      when: always
+#
+#build-ios-master:
+#  extends: .build-ios
+#  # Variable expansion doesn't work in `variables` section. Do it here instead.
+#  variables:
+#    BUILD_TYPE: 'QA ConnectMe Build'
+#    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+#    # this gets passed to the anchor
+#  only:
+#    refs:
+#      - main@evernym/mobile/connectme
+#      - cheqd@evernym/mobile/connectme
+#      - cm-3089-iata-china@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -225,26 +226,29 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - cheqd@evernym/mobile/connectme
+      - cheqd-publish@evernym/mobile/connectme
       - cm-3089-iata-china@evernym/mobile/connectme
 
 # Upload jobs
-upload-ios:
-  stage: upload
-  tags:
-    - macos
-    - bigsur
-    - xcode-12-4
-  script:
-    - xcversion select --verbose --symlink 12.4
-    - xcversion selected
-    - sudo xcodebuild -license accept
-    - cd ios
-    - gem install fastlane
-    - bundle install
-    - bundle exec fastlane upload
-  only:
-    refs:
-      - main@evernym/mobile/connectme
+#upload-ios:
+#  stage: upload
+#  tags:
+#    - macos
+#    - bigsur
+#    - xcode-12-4
+#  script:
+#    - xcversion select --verbose --symlink 12.4
+#    - xcversion selected
+#    - sudo xcodebuild -license accept
+#    - cd ios
+#    - gem install fastlane
+#    - bundle install
+#    - bundle exec fastlane upload
+#  only:
+#    refs:
+#      - main@evernym/mobile/connectme
+#      - cheqd@evernym/mobile/connectme
 
 upload-android:
   stage: upload
@@ -256,6 +260,7 @@ upload-android:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - cheqd-publish@evernym/mobile/connectme
 
 
 # Basic lint

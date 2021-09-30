@@ -14,7 +14,8 @@ import {COLORS} from "./colors";
 export const MENU_NAVIGATION_OPTIONS = [
   { name: 'Connections', label: 'My Connections' },
   { name: 'Credentials', label: 'My Credentials' },
-  { name: 'Settings', label: 'Settings' },
+  { name: 'CheqdToken', label: 'Cheqd Token' },
+  { name: 'Settings', label: 'Settings' }
 ]
 
 // component to be displayed in the navigation drawer at the top, above the navigation section
