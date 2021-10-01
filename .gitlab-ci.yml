@@ -1,6 +1,5 @@
 ---
 stages:
-  - react-check
   - prebuild
   - check
   - test
@@ -145,15 +144,6 @@ license-data-check:
   after_script:
     - cat ./ios/react-native-xcode.sh.log
 
-build-ios-update-pipeline:
-  extends: .build-ios
-  variables:
-    BUILD_TYPE: 'ConnectMe Dev Build'
-    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-  only:
-    refs:
-      - update-pipeline@evernym/mobile/connectme
-
 build-ios-merge-request:
   extends: .build-ios
   variables:
@@ -162,8 +152,6 @@ build-ios-merge-request:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
-    - if: '$CI_COMMIT_REF_NAME == "fix-country-selection-ui"'
-      when: 'always'
 
 build-ios-master:
   extends: .build-ios
@@ -188,30 +176,17 @@ build-ios-master:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
   script:
-    - node --version
-    - sudo apt-get remove -y nodejs
-    - curl -sL https://deb.nodesource.com/setup_12.x | bash -
-    - apt-get install -y nodejs
-    - node --version
-    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    - sudo apt-get update && sudo apt-get install -y yarn
-    - yarn config set ignore-engines true
-    - yarn config set ignore-platforms true
+    - chmod +x ./ci/install-nodejs.sh
+    - ./ci/install-nodejs.sh
     - yarn
     - gem install fastlane
     - mkdir -p $HOME/keystores/
     - yes | sdkmanager --licenses || true
     - cd android
+    - gem install bundler:1.17.2
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane build
-
-build-android-update-pipeline:
-  extends: .build-android
-  only:
-    refs:
-      - update-pipeline@evernym/mobile/connectme
 
 build-android-merge-request:
   extends: .build-android
@@ -228,7 +203,6 @@ build-android-master:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - fixci@evernym/mobile/connectme
       - feature/auto/CM-3100-fix-weekly
 
 # Upload jobs
@@ -261,7 +235,6 @@ upload-android:
     refs:
       - main@evernym/mobile/connectme
 
-
 # Basic lint
 #yarn-test:
 #  stage: test
@@ -283,16 +256,6 @@ upload-android:
 #    - docker-machine
 #  except:
 #    - white-label-app-e2e-testing
-
-react-native-white-label-app-check:
-  stage: react-check
-  script:
-    - 'sed -i "s/.*react-native-white-label-app\.git/react-native-white-label-app\.git\#$REACT_SOURCE_BRANCH/" package.json'
-    - echo "Going to run build and devicefarm jobs"
-    - echo "Source branch is $REACT_SOURCE_BRANCH"
-  only:
-    refs:
-      - white-label-app-e2e-testing
 
 ### - Devicefarm-test - ###
 include:
