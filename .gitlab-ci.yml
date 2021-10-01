@@ -176,21 +176,14 @@ build-ios-master:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
   script:
-    - node --version
-    - sudo apt-get remove -y nodejs
-    - curl -sL https://deb.nodesource.com/setup_12.x | bash -
-    - apt-get install -y nodejs
-    - node --version
-    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    - sudo apt-get update && sudo apt-get install -y yarn
-    - yarn config set ignore-engines true
-    - yarn config set ignore-platforms true
+    - chmod +x ./ci/install-nodejs.sh
+    - ./ci/install-nodejs.sh
     - yarn
     - gem install fastlane
     - mkdir -p $HOME/keystores/
     - yes | sdkmanager --licenses || true
     - cd android
+    - gem install bundler:1.17.2
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane build
