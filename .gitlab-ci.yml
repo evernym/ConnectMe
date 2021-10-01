@@ -21,7 +21,7 @@ stages:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
-    - if [ "$CI_COMMIT_REF_SLUG" == 'main' ]; then KANIKO_ARGS="--destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:latest $KANIKO_ARGS"; fi
+    - if [ "$CI_COMMIT_REF_SLUG" == 'main' ] || [ "$CI_COMMIT_REF_SLUG" == 'cheqd' ]; then KANIKO_ARGS="--destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:latest $KANIKO_ARGS"; fi
     - echo "${KANIKO_ARGS}"
     - |
       echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" \
@@ -186,14 +186,17 @@ license-data-check:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
   script:
-#    - node --version
-#    - sudo apt-get remove -y nodejs
-#    - curl -sL https://deb.nodesource.com/setup_12.x | bash -
-#    - apt-get install -y nodejs
-#    - node --version
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-    - source ~/.bashrc
-    - nvm use
+    - mv /etc/apt/sources.list.d/nodesource.list /etc/apt/sources.list.d/nodesource.list.disabled
+    - apt-get update
+    - apt-get -y upgrade
+    - apt-get  install -y ca-certificates libgnutls30
+    - mv /etc/apt/sources.list.d/nodesource.list.disabled /etc/apt/sources.list.d/nodesource.list
+    - apt-get update
+    - apt-get install -y nodejs
+    - node --version
+    - curl -sL https://deb.nodesource.com/setup_12.x | bash -
+    - apt-get install -y nodejs
+    - node --version
     - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     - sudo apt-get update && sudo apt-get install -y yarn
@@ -204,6 +207,7 @@ license-data-check:
     - mkdir -p $HOME/keystores/
     - yes | sdkmanager --licenses || true
     - cd android
+    - gem install bundler:1.17.2
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
     - bundle exec fastlane build
@@ -262,6 +266,7 @@ upload-android:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - cheqd@evernym/mobile/connectme
 
 
 # Basic lint
