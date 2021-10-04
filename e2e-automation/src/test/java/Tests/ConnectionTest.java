@@ -49,13 +49,14 @@ public class ConnectionTest extends IntSetup {
         }
         catch (Exception e)
         {
+            System.out.println(e.getMessage());
             AppUtils.DoSomethingEventuallyNew(
                 () -> driverApp.closeApp(),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5),
-                () -> objConnectionModules.rejectConnectionInvitation(driverApp));
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
         }
+        objConnectionModules.rejectConnectionInvitation(driverApp);
         driverBrowser.closeApp();
     }
 
@@ -70,14 +71,16 @@ public class ConnectionTest extends IntSetup {
         }
         catch (Exception e)
         {
+            System.out.println(e.getMessage());
             AppUtils.DoSomethingEventuallyNew(
                 () -> driverApp.closeApp(),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5),
-                () -> objConnectionModules.acceptConnectionInvitation(driverApp)
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5)
             );
         }
+        objConnectionModules.acceptConnectionInvitation(driverApp);
+
 
         try {
             switch (connectionName) {
