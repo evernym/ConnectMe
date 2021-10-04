@@ -50,7 +50,7 @@ public class ConnectionTest extends IntSetup {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            AppUtils.DoSomethingEventuallyNew(
+            AppUtils.DoSomethingEventuallyNew(15, 
                 () -> driverApp.closeApp(),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
@@ -72,7 +72,7 @@ public class ConnectionTest extends IntSetup {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            AppUtils.DoSomethingEventuallyNew(
+            AppUtils.DoSomethingEventuallyNew(15,
                 () -> driverApp.closeApp(),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
@@ -94,7 +94,7 @@ public class ConnectionTest extends IntSetup {
         } catch (Exception e) {
             System.exit(1); // don't run other tests if this fails
         }
-        
+
         BrowserDriver.closeApp();
     }
 

@@ -113,6 +113,38 @@ public class AppUtils extends IntSetup {
         }
     }
 
+    public static void DoSomethingEventuallyNew(int timeout, Func... fns) {
+        driverApp.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+        try {
+            for (Func fn : fns) {
+                fn.call();
+            }
+        } catch (Exception e) {
+            System.out.println(">>> Exception is thrown 1st time:");
+            System.out.println(e.getMessage());
+            System.out.println(">>> Retrying...");
+            try {
+                for (Func fn : fns) {
+                    fn.call();
+                }
+            } catch (Exception ex) {
+                System.out.println(">>> Exception is thrown 2nd time:");
+                System.out.println(ex.getMessage());
+                System.out.println(">>> Retrying...");
+                try {
+                    for (Func fn : fns) {
+                        fn.call();
+                    }
+                } catch (Exception exc) {
+                    System.out.println(">>> Exception is thrown 3rd time:");
+                    throw new RuntimeException(exc);
+                }
+            }
+        }
+        driverApp.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
+    }
+
+
     public static boolean isElementAbsent(AppiumDriver driver, Func getterFunction) {
         try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
