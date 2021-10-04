@@ -41,32 +41,43 @@ public class ConnectionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource")
     public void rejectConnectionTest(String invitationType) throws Exception {
-        AppUtils.DoSomethingEventuallyNew(
-            () -> driverBrowser = BrowserDriver.getDriver(),
-            () -> driverBrowser.launchApp(),
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
-            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5),
-            () -> objConnectionModules.rejectConnectionInvitation(driverApp)
-        );
-
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
-
-        Thread.sleep(60000);
+        try {
+            driverBrowser = BrowserDriver.getDriver();
+            objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+            objConnectionModules.acceptPushNotificationRequest(driverApp);
+            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+        }
+        catch (Exception e)
+        {
+            AppUtils.DoSomethingEventuallyNew(
+                () -> driverApp.closeApp(),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5),
+                () -> objConnectionModules.rejectConnectionInvitation(driverApp));
+        }
+        driverBrowser.closeApp();
     }
 
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
 
-        AppUtils.DoSomethingEventuallyNew(
-            () -> driverBrowser = BrowserDriver.getDriver(),
-            () -> driverBrowser.launchApp(),
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5),
-            () -> objConnectionModules.acceptConnectionInvitation(driverApp)
-        );
+        try {
+            driverBrowser.launchApp();
+            objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
+            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+        }
+        catch (Exception e)
+        {
+            AppUtils.DoSomethingEventuallyNew(
+                () -> driverApp.closeApp(),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5),
+                () -> objConnectionModules.acceptConnectionInvitation(driverApp)
+            );
+        }
 
         try {
             switch (connectionName) {
@@ -80,11 +91,8 @@ public class ConnectionTest extends IntSetup {
         } catch (Exception e) {
             System.exit(1); // don't run other tests if this fails
         }
-
-        Thread.sleep(1000);
+        
         BrowserDriver.closeApp();
-
-        Thread.sleep(60000);
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")
