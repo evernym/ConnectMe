@@ -49,12 +49,12 @@ public class Config {
 	/* Demo VAS*/
 	public static final String DEMO_VERITY_URL = "https://vas.pps.evernym.com/api/";
 
-	//public static final String DEMO_VERITY_DOMAIN_DID_ANDROID = "KdK2xgbCKQUEFQD51JaoZR";
-	//public static final String DEMO_VERITY_API_KEY_ANDROID = "8U6eCDSTkKXfHAn14N37cG9HcY3nDpijudEz5DayxViP:zPWDhGRfzkTzUk1X9sRboh7ub6EB545jtpZWzHsXEaJepGZW5nBLpAJdCsyPR2cgF3bwHnw3G5Nf5BjtMUaDYiC";
-	//public static final String DEMO_VERITY_ISSUER_DID_ANDROID = "PMzJsfuq4YYPAKHLSrdP4Q";
-    public static final String DEMO_VERITY_DOMAIN_DID_ANDROID = "2RPEiMfWeUJ6Gt746Znmqn";
-    public static final String DEMO_VERITY_API_KEY_ANDROID = "CTxDkBdhCDJiYo38nc3MMmAooeUGCyUEsgCfHGZUU4sS:3DMKCkNhDL3KXSHpvQ52KSXqYgAdcqr5aJgtSAV5NWtMsd14cx2tfY5XysHUNYDR9VoWjc59X2SPCQi51nD3CBcZ";
-    public static final String DEMO_VERITY_ISSUER_DID_ANDROID = "R3RPR1Wh6geWSyCkD2aLNJ";
+	public static final String DEMO_VERITY_DOMAIN_DID_ANDROID = "KdK2xgbCKQUEFQD51JaoZR";
+	public static final String DEMO_VERITY_API_KEY_ANDROID = "8U6eCDSTkKXfHAn14N37cG9HcY3nDpijudEz5DayxViP:zPWDhGRfzkTzUk1X9sRboh7ub6EB545jtpZWzHsXEaJepGZW5nBLpAJdCsyPR2cgF3bwHnw3G5Nf5BjtMUaDYiC";
+	public static final String DEMO_VERITY_ISSUER_DID_ANDROID = "PMzJsfuq4YYPAKHLSrdP4Q";
+    //public static final String DEMO_VERITY_DOMAIN_DID_ANDROID = "2RPEiMfWeUJ6Gt746Znmqn";
+    //public static final String DEMO_VERITY_API_KEY_ANDROID = "CTxDkBdhCDJiYo38nc3MMmAooeUGCyUEsgCfHGZUU4sS:3DMKCkNhDL3KXSHpvQ52KSXqYgAdcqr5aJgtSAV5NWtMsd14cx2tfY5XysHUNYDR9VoWjc59X2SPCQi51nD3CBcZ";
+    //public static final String DEMO_VERITY_ISSUER_DID_ANDROID = "R3RPR1Wh6geWSyCkD2aLNJ";
 
 	public static final String DEMO_VERITY_DOMAIN_DID_IOS = "3RTb2h99K8mAs9EqSmsG8X";
 	public static final String DEMO_VERITY_API_KEY_IOS = "LMoU19tBv23R517hucfKmusbZ51c9Vm6sJMUh9R7j4k:2WsMGiTJTNuWnDrA1SYXaETFnmg13ZJLQJEE8xT6jzeCuAAyGkzrLWJhU61T9T3nPxmRhPEpK689f7VvUfQNRBvg";
