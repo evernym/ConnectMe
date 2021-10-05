@@ -113,6 +113,7 @@ devicefarm-test-launch-ios-master:
   only:
       refs:
           - main@evernym/mobile/connectme
+          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
 

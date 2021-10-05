@@ -163,6 +163,7 @@ build-ios-master:
   only:
     refs:
       - main@evernym/mobile/connectme
+      - feature/auto/CM-3100-fix-weekly
 
 ### - Android - ###
 .build-android:
