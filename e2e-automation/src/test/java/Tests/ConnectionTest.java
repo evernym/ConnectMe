@@ -41,17 +41,18 @@ public class ConnectionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource")
     public void rejectConnectionTest(String invitationType) throws Exception {
+        driverBrowser = BrowserDriver.getDriver();
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+        objConnectionModules.acceptPushNotificationRequest(driverApp);
+
         try {
-            driverBrowser = BrowserDriver.getDriver();
-            objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
-            objConnectionModules.acceptPushNotificationRequest(driverApp);
             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            AppUtils.DoSomethingEventuallyNew(15, 
-                () -> driverApp.closeApp(),
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
                 () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
@@ -63,17 +64,17 @@ public class ConnectionTest extends IntSetup {
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
+        driverBrowser.launchApp();
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
 
         try {
-            driverBrowser.launchApp();
-            objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
             AppUtils.DoSomethingEventuallyNew(15,
-                () -> driverApp.closeApp(),
+                () -> driverApp.terminateApp("me.connect"),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
                 () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5)

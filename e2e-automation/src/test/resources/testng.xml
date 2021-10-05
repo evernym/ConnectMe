@@ -5,7 +5,6 @@
         <classes>
             <class name="test.java.Tests.StartUpTest"/>
             <class name="test.java.Tests.ConnectionTest"/>
-            <class name="test.java.Tests.PushNotificationTest"/>
         </classes>
     </test>
 </suite>
