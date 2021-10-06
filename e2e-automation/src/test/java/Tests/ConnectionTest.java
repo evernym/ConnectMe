@@ -1,5 +1,6 @@
 package test.java.Tests;
 
+import org.openqa.selenium.Platform;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -58,7 +59,8 @@ public class ConnectionTest extends IntSetup {
                 () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
         }
         objConnectionModules.rejectConnectionInvitation(driverApp);
-        driverBrowser.closeApp();
+
+        if(Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
     }
 
     @Test(dataProvider = "invitationTypesSource")
@@ -96,7 +98,7 @@ public class ConnectionTest extends IntSetup {
             System.exit(1); // don't run other tests if this fails
         }
 
-        BrowserDriver.closeApp();
+        if(Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")

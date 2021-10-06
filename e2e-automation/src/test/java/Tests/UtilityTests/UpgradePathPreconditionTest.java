@@ -3,6 +3,7 @@ package test.java.Tests.UtilityTests;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import org.openqa.selenium.Platform;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -174,7 +175,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
             System.exit(1); // don't run other tests if this fails
         }
 
-        BrowserDriver.closeApp();
+        if(test.java.utility.Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")
