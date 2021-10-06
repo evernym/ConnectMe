@@ -113,6 +113,7 @@ public class AppUtils extends IntSetup {
         }
     }
 
+    // Alternative eventuality helper for more/less frequent polling
     public static void DoSomethingEventuallyNew(int timeout, Func... fns) {
         driverApp.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         try {
