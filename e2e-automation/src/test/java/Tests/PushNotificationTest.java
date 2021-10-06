@@ -15,7 +15,6 @@ import test.java.utility.Config;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 public class PushNotificationTest extends IntSetup {
@@ -80,7 +79,7 @@ public class PushNotificationTest extends IntSetup {
         AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
     }
 
-    @Test(dataProvider = "appStates")
+    @Test(dataProvider = "appStates", dependsOnMethods = "checkCredOfferNotificationAppRunningInBackground")
     public void checkProofRequestNotificationAppRunningInBackground(String appState) throws Exception {
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
             return;
@@ -116,7 +115,7 @@ public class PushNotificationTest extends IntSetup {
         AppUtils.waitForElement(driverApp, () -> homePageNew.proofSharedEvent(proofName)).isDisplayed();
     }
 
-    @Test(dataProvider = "appStates")
+    @Test(dataProvider = "appStates", dependsOnMethods = "checkProofRequestNotificationAppRunningInBackground")
     public void checkStructuredMessageNotificationAppRunningInBackground(String appState) throws Exception {
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
             return;
