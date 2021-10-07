@@ -24,7 +24,7 @@ fi
 
 if [ "$case" = "mr" ] ; then
     echo "using test suite for merge requests"
-    sed -i -e '10,15d' src/test/resources/testng.xml
+    #sed -i -e '10,15d' src/test/resources/testng.xml
 fi
 
 if [ "$case" = "upgradePath" ]; then
