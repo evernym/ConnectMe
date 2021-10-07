@@ -1039,7 +1039,7 @@
 
 "@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#add-jumio-id-verification":
   version "1.0.0"
-  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#24101fd44edf6886f5d5ff8ead5a321aca8c7f3e"
+  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#1eb96551af3e77c4ef7dfe9923c60445f8d07b80"
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
@@ -10646,8 +10646,7 @@ react-native-safe-modules@^1.0.0:
 
 react-native-screens@2.17.1:
   version "2.17.1"
-  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.17.1.tgz#c3c0ac750af48741c5b1635511e6af2a27b74309"
-  integrity sha512-B4gD5e4csvlVwlhf+RNqjQZ9mHTwe/iL3rXondgZxnKz4oW0QAmtLnLRKOrYVxoaJaF9Fy7jhjo//24/472APQ==
+  resolved "https://github.com/Pamagiti/react-native-screens.git#7973e9875379cb22bbc59e4d12c0987a0763f769"
 
 react-native-sensitive-info@5.5.5:
   version "5.5.5"
