@@ -25,7 +25,7 @@
     IOS_IPA_PATH: 'ios/ConnectMe.ipa'
 
 devicefarm-test-launch-android-weekly-top:
-  #stage: devicefarm-test-top
+  stage: devicefarm-test-top
   extends: .devicefarm-test-launch-android
   dependencies:
     - build-android-master
@@ -38,7 +38,7 @@ devicefarm-test-launch-android-weekly-top:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
 
 devicefarm-test-launch-ios-weekly-top:
-  #stage: devicefarm-test-top
+  stage: devicefarm-test-top
   extends: .devicefarm-test-launch-ios
   dependencies:
     - build-ios-master
@@ -50,7 +50,7 @@ devicefarm-test-launch-ios-weekly-top:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXS main vas
 
 devicefarm-test-launch-android-weekly-next:
-  #stage: devicefarm-test-next
+  stage: devicefarm-test-next
   extends: .devicefarm-test-launch-android
   dependencies:
     - build-android-master
@@ -63,7 +63,7 @@ devicefarm-test-launch-android-weekly-next:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
 
 devicefarm-test-launch-ios-weekly-next:
-  #stage: devicefarm-test-next
+  stage: devicefarm-test-next
   extends: .devicefarm-test-launch-ios
   dependencies:
     - build-ios-master
@@ -75,7 +75,7 @@ devicefarm-test-launch-ios-weekly-next:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus main vas
 
 devicefarm-test-launch-android-weekly-final:
-  #stage: devicefarm-test-final
+  stage: devicefarm-test-final
   extends: .devicefarm-test-launch-android
   dependencies:
     - build-android-master
@@ -88,7 +88,7 @@ devicefarm-test-launch-android-weekly-final:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
 
 devicefarm-test-launch-ios-weekly-final:
-  #stage: devicefarm-test-final
+  stage: devicefarm-test-final
   extends: .devicefarm-test-launch-ios
   dependencies:
     - build-ios-master
