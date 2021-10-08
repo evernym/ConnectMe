@@ -95,6 +95,14 @@ public class VASApi {
             System.out.println("Response body was following:");
             System.out.println(responseBody);
 			// ignore
+
+            System.out.println("Latest responses were: ");
+            RestAssured.baseURI = VAS_SERVER_ENDPOINT + '/';
+            response = RestAssured
+                .given()
+                .relaxedHTTPSValidation()
+                .request(Method.GET);
+            System.out.println(response.getBody().toString());
 		}
 
 		return result;
