@@ -54,7 +54,7 @@ platform :ios do
     appcenter_token = ENV["APPCENTER_API_TOKEN"]
     UI.user_error!("You didn't set token for AppCenter") if appcenter_token.empty?
     build_type = ENV["BUILD_TYPE"] || "#{build_type}"
-    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "user", app_name: "QA-ConnectMe", ipa: "ConnectMe-appstore.ipa")
+    appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "user", app_name: "QA-ConnectMe", ipa: "ConnectMe.ipa")
 
     api_key = app_store_connect_api_key()
 
