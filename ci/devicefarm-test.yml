@@ -98,10 +98,10 @@ devicefarm-test-launch-android-master:
   extends: .devicefarm-test-launch-android
   dependencies:
     - build-android-master
-    - feature/auto/CM-3100-fix-weekly
   only:
       refs:
           - main@evernym/mobile/connectme
+          - feature/auto/CM-3100-fix-weekly
   script:
     - sleep 300 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
