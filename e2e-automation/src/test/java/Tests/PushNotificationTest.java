@@ -1,5 +1,6 @@
 package test.java.Tests;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriverException;
@@ -63,7 +64,23 @@ public class PushNotificationTest extends IntSetup {
         VAS.sendCredentialOffer(DID, "PMzJsfuq4YYPAKHLSrdP4Q:3:CL:185320:tag", Constants.values, credentialName);
 
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
-        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+
+        // TODO: remove later
+        System.out.println(">>>>>>>>>>>>>>>> Device info");
+        System.out.println(driverApp.getCapabilities().getCapability("deviceName").toString());
+        System.out.println(driverApp.getCapabilities().getCapability("deviceModel").toString());
+        System.out.println(driverApp.getCapabilities().getCapability("CapabilityType.VERSION").toString());
+
+        System.out.println(driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.model")).toString());
+        System.out.println(driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.name")).toString());
+        System.out.println(driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.device")).toString());
+
+        if (((AndroidDriver) driverApp).isDeviceLocked())
+        {
+            System.out.println("Forcibly unlocking device via shell");
+            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 26"));
+            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 82"));
+        }
 
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.credentialOfferNotification.click();
@@ -97,8 +114,12 @@ public class PushNotificationTest extends IntSetup {
         String proofName = Helpers.randomString();
 
         VAS.requestProof(DID, proofName, requestedAttributes, null);
-        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
-        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+        if (((AndroidDriver) driverApp).isDeviceLocked())
+        {
+            System.out.println("Forcibly unlocking device via shell");
+            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 26"));
+            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 82"));
+        }
 
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.proofRequestNotification.click();
@@ -130,9 +151,13 @@ public class PushNotificationTest extends IntSetup {
 
         VAS.askQuestion(DID, text, detail, option);
 
-        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
-        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
-        
+        if (((AndroidDriver) driverApp).isDeviceLocked())
+        {
+            System.out.println("Forcibly unlocking device via shell");
+            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 26"));
+            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 82"));
+        }
+
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.questionNotification.click();
 

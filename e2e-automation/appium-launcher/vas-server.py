@@ -41,8 +41,8 @@ class RequestHandler(BaseHTTPRequestHandler):
                     break
                 elif i == 10:
                     response = '{}'
-                print("No response on " + i +  "th iteration, waiting for 20s before retry.")
-                time.sleep(20)
+                print("No response on " + i +  "th iteration, waiting for 10s before retry.")
+                time.sleep(10)
         else:
             response = '{}'
 

@@ -191,7 +191,7 @@ public class VASApi {
             catch (JSONException e)
             {
                 System.out.println("Error during relationship creation: " + e.getMessage());
-                Thread.sleep(30000);
+                Thread.sleep(15000);
             }
         }
         return null;
@@ -223,7 +223,7 @@ public class VASApi {
             catch (JSONException e)
             {
                 System.out.println("Error during receiving connection invitation: " + e.getMessage());
-                Thread.sleep(30000);
+                Thread.sleep(15000);
             }
         }
         return null;
