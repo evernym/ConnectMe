@@ -2,6 +2,7 @@
 from http.server import BaseHTTPRequestHandler
 from socketserver import ThreadingTCPServer
 import json
+import time
 
 ADDRESS = "localhost"
 PORT = 1338
@@ -32,7 +33,16 @@ class RequestHandler(BaseHTTPRequestHandler):
             response = json.dumps(self.server.VASResponses)
         elif self.path.startswith("/"):
             thid = self.path[1:]
-            response = self.server.VASResponses[thid] or '{}'
+
+            for i in range(1, 10, 1):
+                temp = self.server.VASResponses[thid]
+                if temp is not None:
+                    response = temp
+                    break
+                elif i == 10:
+                    response = '{}'
+                print("No response on " + i +  "th iteration, waiting for 20s before retry.")
+                time.sleep(20)
         else:
             response = '{}'
 
