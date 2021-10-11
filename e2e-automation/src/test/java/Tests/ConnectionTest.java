@@ -99,6 +99,8 @@ public class ConnectionTest extends IntSetup {
         }
 
         if(Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
+
+        context.setValue(invitationType + "_DID", context.getValue("DID"));
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")
