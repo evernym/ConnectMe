@@ -71,7 +71,6 @@ devicefarm-test-launch-ios-weekly-next:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus main vas
 
 devicefarm-test-launch-android-weekly-final:
-  stage: devicefarm-test-final
   extends: .devicefarm-test-launch-android
   dependencies:
     - build-android-master
@@ -91,7 +90,6 @@ devicefarm-test-launch-ios-weekly-final:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
@@ -100,6 +98,7 @@ devicefarm-test-launch-android-master:
   extends: .devicefarm-test-launch-android
   dependencies:
     - build-android-master
+    - feature/auto/CM-3100-fix-weekly
   only:
       refs:
           - main@evernym/mobile/connectme
