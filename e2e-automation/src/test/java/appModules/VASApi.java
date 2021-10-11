@@ -110,7 +110,7 @@ public class VASApi {
 
 	private JSONObject getVASResponse(String expectedType, String thread) throws Exception {
 		for (int i = 0; i < 6; i++) {
-			Thread.sleep(10000);
+			Thread.sleep(15000);
 			JSONObject VASResponse = getLastVASResponse(thread);
 			if (VASResponse.has("@type") && VASResponse.getString("@type").equals(expectedType)) {
 				return VASResponse;
@@ -165,9 +165,6 @@ public class VASApi {
 	}
 
 	public JSONObject createRelationship(String label) throws Exception {
-        for(int i = 1; i <= 5; i++) {
-            System.out.println("Attempt #" + i + " to create relationship");
-            try {
                 JSONObject body =
                     new JSONObject()
                         .put("@id", UUID4())
@@ -180,6 +177,9 @@ public class VASApi {
 
                 post(path, body.toString());
 
+        for(int i = 1; i <= 5; i++) {
+            System.out.println("Attempt #" + i + " to create relationship");
+            try {
                 JSONObject result = new JSONObject();
                 JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/created", thread);
 
@@ -191,6 +191,7 @@ public class VASApi {
             catch (JSONException e)
             {
                 System.out.println("Error during relationship creation: " + e.getMessage());
+                Thread.sleep(30000);
             }
         }
         return null;
