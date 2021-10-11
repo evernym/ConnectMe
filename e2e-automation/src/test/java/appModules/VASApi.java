@@ -226,7 +226,7 @@ public class VASApi {
                 Thread.sleep(30000);
             }
         }
-        return null
+        return null;
 	}
 
 	public JSONObject createSchema(String name,
