@@ -32,7 +32,6 @@ devicefarm-test-launch-android-weekly-top:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - sleep 300 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
@@ -45,7 +44,6 @@ devicefarm-test-launch-ios-weekly-top:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXS main vas
 
@@ -57,7 +55,6 @@ devicefarm-test-launch-android-weekly-next:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - sleep 300 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
@@ -70,7 +67,6 @@ devicefarm-test-launch-ios-weekly-next:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus main vas
 
@@ -107,7 +103,6 @@ devicefarm-test-launch-android-master:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - sleep 300 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
@@ -119,7 +114,6 @@ devicefarm-test-launch-ios-master:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
 
