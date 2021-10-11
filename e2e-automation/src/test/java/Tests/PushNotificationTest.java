@@ -53,12 +53,7 @@ public class PushNotificationTest extends IntSetup {
         switch (appState) {
             case appBackgroundLocked:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
-                try {
-                    ((AndroidDriver) driverApp).lockDevice();
-                } catch (WebDriverException e) {
-                    // TODO: this bug has been fixed in 6.0+ client version
-                    if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
-                }
+                ((AndroidDriver) driverApp).lockDevice();
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
@@ -68,6 +63,8 @@ public class PushNotificationTest extends IntSetup {
         VAS.sendCredentialOffer(DID, "PMzJsfuq4YYPAKHLSrdP4Q:3:CL:185320:tag", Constants.values, credentialName);
 
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.credentialOfferNotification.click();
         objAppUtlis.authForAction();
@@ -87,12 +84,7 @@ public class PushNotificationTest extends IntSetup {
         switch (appState) {
             case appBackgroundLocked:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
-                try {
-                    ((AndroidDriver) driverApp).lockDevice();
-                } catch (WebDriverException e) {
-                    // TODO: this bug has been fixed in 6.0+ client version
-                    if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
-                }
+                ((AndroidDriver) driverApp).lockDevice();
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
@@ -106,6 +98,8 @@ public class PushNotificationTest extends IntSetup {
 
         VAS.requestProof(DID, proofName, requestedAttributes, null);
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.proofRequestNotification.click();
 
@@ -127,12 +121,7 @@ public class PushNotificationTest extends IntSetup {
         switch (appState) {
             case appBackgroundLocked:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
-                try {
-                    ((AndroidDriver) driverApp).lockDevice();
-                } catch (WebDriverException e) {
-                    // TODO: this bug has been fixed in 6.0+ client version
-                    if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
-                }
+                ((AndroidDriver) driverApp).lockDevice();
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
@@ -142,6 +131,8 @@ public class PushNotificationTest extends IntSetup {
         VAS.askQuestion(DID, text, detail, option);
 
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
+        
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.questionNotification.click();
 
