@@ -207,22 +207,26 @@ public class VASApi {
 						.put("~for_relationship", DID)
 						.put("shortInvite", true);
 
-		// TODO: remove it when VE-2628 would be deployed.
-		if(invitationType.equals("out-of-band-invitation")) {
-		  body.put("goalCode", "issue-vc");
-		  body.put("goal", "To issue a credential");
-    }
-
 		String path = "/relationship/1.0/" + relationshipThreadID;
-
 		post(path, body.toString());
 
-		JSONObject result = new JSONObject();
-		JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/invitation", relationshipThreadID);
+        for(int i = 1; i <= 5; i++) {
+            System.out.println("Attempt #" + i + " to create connection invitation");
+            try {
+                JSONObject result = new JSONObject();
+                JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/invitation", relationshipThreadID);
 
-		result.put("inviteURL", VASResponse.getString("shortInviteURL"));
+                result.put("inviteURL", VASResponse.getString("shortInviteURL"));
 
-		return result;
+                return result;
+            }
+            catch (JSONException e)
+            {
+                System.out.println("Error during receiving connection invitation: " + e.getMessage());
+                Thread.sleep(30000);
+            }
+        }
+        return null
 	}
 
 	public JSONObject createSchema(String name,
