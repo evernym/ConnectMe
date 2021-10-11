@@ -1,6 +1,5 @@
 ---
 stages:
-  - react-check
   - prebuild
   - check
   - test
@@ -9,6 +8,9 @@ stages:
   - devicefarm-test-top
   - devicefarm-test-next
   - devicefarm-test-final
+  - upload
+  - devicefarm-test-upgrade-path
+  - devicefarm-test-acapy
 
 ### - Pre-build - ###
 # Helpers / Anchors
@@ -113,6 +115,7 @@ license-data-check:
   artifacts:
     paths:
       - ios/ConnectMe.ipa
+      - ios/ConnectMe-appstore.ipa
   script:
     - xcversion select --verbose --symlink 12.4
     - xcversion selected
@@ -137,34 +140,15 @@ license-data-check:
     - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
     - cd ios
     - bundle install
-    - ${FASTLANE_COMMAND}
+    - bundle exec fastlane build
   after_script:
     - cat ./ios/react-native-xcode.sh.log
-
-build-android-e2e-testing:
-  extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
-  only:
-    refs:
-      - e2e-testing@evernym/mobile/connectme
-
-build-ios-e2e-testing:
-  extends: .build-ios
-  variables:
-    BUILD_TYPE: 'ConnectMe Dev Build'
-    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
-  only:
-    refs:
-      - e2e-testing@evernym/mobile/connectme
 
 build-ios-merge-request:
   extends: .build-ios
   variables:
     BUILD_TYPE: 'ConnectMe Dev Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    FASTLANE_COMMAND: 'bundle exec fastlane ci --verbose'
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
@@ -176,7 +160,6 @@ build-ios-master:
     BUILD_TYPE: 'QA ConnectMe Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
     # this gets passed to the anchor
-    FASTLANE_COMMAND: 'bundle exec fastlane cd --disable_runner_upgrades --verbose'
   only:
     refs:
       - main@evernym/mobile/connectme
@@ -193,24 +176,17 @@ build-ios-master:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
   script:
-    - node --version
-    - sudo apt-get remove -y nodejs
-    - curl -sL https://deb.nodesource.com/setup_12.x | bash -
-    - apt-get install -y nodejs
-    - node --version
-    - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    - sudo apt-get update && sudo apt-get install -y yarn
-    - yarn config set ignore-engines true
-    - yarn config set ignore-platforms true
+    - chmod +x ./ci/install-nodejs.sh
+    - ./ci/install-nodejs.sh
     - yarn
     - gem install fastlane
     - mkdir -p $HOME/keystores/
     - yes | sdkmanager --licenses || true
     - cd android
+    - gem install bundler:1.17.2
     - bundle install
     - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
-    - ${FASTLANE_COMMAND}
+    - bundle exec fastlane build
 
 build-android-merge-request:
   extends: .build-android
@@ -218,46 +194,67 @@ build-android-merge-request:
     paths:
       - android/app/build/outputs/apk/release/*.apk
     expire_in: 1 week
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane ci'
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
 
 build-android-master:
   extends: .build-android
-  variables:
-    FASTLANE_COMMAND: 'bundle exec fastlane cd'
+  only:
+    refs:
+      - main@evernym/mobile/connectme
+
+# Upload jobs
+upload-ios:
+  stage: upload
+  tags:
+    - macos
+    - bigsur
+    - xcode-12-4
+  script:
+    - xcversion select --verbose --symlink 12.4
+    - xcversion selected
+    - sudo xcodebuild -license accept
+    - cd ios
+    - gem install fastlane
+    - bundle install
+    - bundle exec fastlane upload
+  only:
+    refs:
+      - main@evernym/mobile/connectme
+
+upload-android:
+  stage: upload
+  script:
+    - cd android
+    - gem install fastlane
+    - bundle install
+    - bundle exec fastlane upload
   only:
     refs:
       - main@evernym/mobile/connectme
 
 # Basic lint
-yarn-test:
-  stage: test
-  image: ${CI_REGISTRY_IMAGE}/ubuntu18:${CI_COMMIT_REF_SLUG}
-  script:
-    - yarn config set ignore-engines true
-    - yarn install
-    - yarn lint
-  only:
-    refs:
-      - branches
-      - tags
-  tags:
-    - docker-machine
-  except:
-    - white-label-app-e2e-testing
-
-react-native-white-label-app-check:
-  stage: react-check
-  script:
-    - 'sed -i "s/.*react-native-white-label-app\.git/react-native-white-label-app\.git\#$REACT_SOURCE_BRANCH/" package.json'
-    - echo "Going to run build and devicefarm jobs"
-    - echo "Source branch is $REACT_SOURCE_BRANCH"
-  only:
-    refs:
-      - white-label-app-e2e-testing
+#yarn-test:
+#  stage: test
+#  image: ${CI_REGISTRY_IMAGE}/ubuntu18:${CI_COMMIT_REF_SLUG}
+#  script:
+#    - dig @8.8.8.8 google.com
+#    - dig google.com
+#    - dig www.npmjs.com
+#    - dig https://jcenter.bintray.com
+#    - dig @8.8.8.8 https://jcenter.bintray.com
+#    - yarn config set ignore-engines true
+#    - yarn install
+#    - yarn lint
+#  only:
+#    refs:
+#      - branches
+#      - tags
+#  tags:
+#    - docker-machine
+#  except:
+#    - white-label-app-e2e-testing
 
 ### - Devicefarm-test - ###
 include:

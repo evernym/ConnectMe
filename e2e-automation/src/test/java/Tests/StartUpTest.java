@@ -3,8 +3,10 @@ package test.java.Tests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pageObjects.PassCodePageNew;
+import pageObjects.StartUpPageNew;
 import test.java.utility.IntSetup;
-
+import test.java.utility.AppDriver;
 
 public class StartUpTest extends IntSetup {
 
@@ -24,13 +26,6 @@ public class StartUpTest extends IntSetup {
         } catch (Exception e) {
             System.exit(1); // don't run other tests if this fails
         }
-    }
-
-    @Test(dependsOnMethods = "setUpWizardTest")
-    public void checkMenuElementsVisibility() throws Exception {
-      homePageNew.homeHeader.isDisplayed();
-      homePageNew.burgerMenuButton.isDisplayed();
-      homePageNew.scanButton.isDisplayed();
     }
 
     @AfterClass

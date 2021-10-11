@@ -1,5 +1,8 @@
 package test.java.Tests;
 
+import pageObjects.*;
+import test.java.appModules.AppUtils;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -19,16 +22,13 @@ public class AppElementsTest extends IntSetup {
     }
 
     @Test
-    public void checkHome() throws Exception {
-        // Home
-        homePageNew.homeHeader.isDisplayed();
-        homePageNew.burgerMenuButton.isDisplayed();
-        homePageNew.scanButton.isDisplayed();
+    public void checkHome() {
+        homePageNew.checkHome();
     }
 
     @Test(dependsOnMethods = "checkHome")
-    public void checkMenu() throws Exception {
-        homePageNew.burgerMenuButton.click();
+    public void checkMenu() throws InterruptedException {
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.menuContainer.isDisplayed();
         menuPageNew.banner.isDisplayed();
         menuPageNew.logo.isDisplayed();
@@ -37,42 +37,39 @@ public class AppElementsTest extends IntSetup {
 
         // Avatar
         menuPageNew.userAvatar.click();
-        try {
-            menuPageNew.okButton.click();
-            menuPageNew.menuAllowButton.click();
+        menuPageNew.getGalleryPermissions();
+
+        Thread.sleep(1000);
+        if((Config.Device_Type.equals("android")||Config.Device_Type.equals("awsAndroid"))) {
+            ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
+        } else {
+            menuPageNew.cancelButton.click();
         }
-        catch (NoSuchElementException e) {
-            System.out.println("Permissions already have been granted!");
-        }
-        finally {
-            Thread.sleep(1000);
-            if((Config.Device_Type.equals("android")||Config.Device_Type.equals("awsAndroid"))) {
-                ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
-            } else {
-                menuPageNew.cancelButton.click();
-            }
-        }
+
         menuPageNew.homeButton.click();
 
         // My Connections
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.myConnectionsButton.click();
         myConnectionsPageNew.myConnectionsHeader.isDisplayed();
         homePageNew.scanButton.isDisplayed();
 
         // My Credentials
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
         myCredentialsPageNew.myCredentialsHeader.isDisplayed();
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.homeButton.click();
+
         homePageNew.scanButton.isDisplayed();
 
         // Settings
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.settingsButton.click();
         // TODO check Settings header
 
         // Go Back Home
-        homePageNew.burgerMenuButton.click();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.homeButton.click();
         homePageNew.homeHeader.isDisplayed();
     }
@@ -81,33 +78,20 @@ public class AppElementsTest extends IntSetup {
     public void checkQrScanner() throws Exception {
         homePageNew.scanButton.isDisplayed();
         homePageNew.scanButton.click();
-        try {
-            qrScannerPageNew.scannerAllowButton.click();
-        }
-        catch (NoSuchElementException e) {
-            System.out.println("Permissions already have been granted!");
-        }
-        finally {
-            Thread.sleep(1000);
-            qrScannerPageNew.scannerCloseButton.click();
-            Thread.sleep(1000);
-        }
+        qrScannerPageNew.getCameraPermissions();
+        Thread.sleep(1000);
+        qrScannerPageNew.scannerCloseButton.click();
+        Thread.sleep(1000);
     }
 
     @Test(dependsOnMethods = "checkQrScanner")
     public void checkSettings() throws Exception {
-        homePageNew.burgerMenuButton.click(); // go to Menu
+        homePageNew.tapOnBurgerMenu(); // go to Menu
         menuPageNew.settingsButton.click(); // go to Settings
 
         settingsPageNew.settingsContainer.isDisplayed();
         settingsPageNew.settingsHeader.isDisplayed();
-
-        // Biometrics
         settingsPageNew.biometricsButton.click();
-//        objBiometricsPage.okButton(driverApp).click(); // FIXME MSDK: now we must swipe slider but there is no slider in app hierarchy
-
-        // Change Passcode
-
         settingsPageNew.passCodeButton.click();
         passCodePageNew.backArrow.click();
 

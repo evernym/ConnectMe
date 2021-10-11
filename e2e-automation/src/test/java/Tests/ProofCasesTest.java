@@ -19,318 +19,299 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ProofCasesTest extends IntSetup {
-	private AppUtils objAppUtlis = new AppUtils();
-	private LocalContext context = LocalContext.getInstance();
+    private AppUtils objAppUtlis = new AppUtils();
+    private LocalContext context = LocalContext.getInstance();
 
-	private VASApi VAS;
-	private String DID;
-	private String issuerDID = (Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid")) ? Config.DEMO_VERITY_ISSUER_DID_ANDROID : Config.DEMO_VERITY_ISSUER_DID_IOS;
+    private VASApi VAS;
+    private String DID;
+    private String issuerDID = (Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid")) ? Config.DEMO_VERITY_ISSUER_DID_ANDROID : Config.DEMO_VERITY_ISSUER_DID_IOS;
 
-	private String header = "Proof Request";
+    private String header = "Proof Request";
 
-	@BeforeClass
-	public void BeforeClassSetup() throws Exception {
-		DID = context.getValue("DID");
-    passCodePageNew.openApp();
-		VAS = VASApi.getInstance();
-	}
+    @BeforeClass
+    public void BeforeClassSetup() throws Exception {
+        DID = context.getValue("DID");
+        passCodePageNew.openApp();
+        VAS = VASApi.getInstance();
+    }
 
-	@Test
-	public void shareProofRequestContainingGroupedAttributes() throws Exception {
-		/*
-		 * Proof request contains grouped attributes which must be filled from the same credential
-		 * {"names": ["FirstName", "LastName"]},
-		 * */
-		String attribute1 = "FirstName";
-		String attribute2 = "LastName";
+    @Test
+    public void shareProofRequestContainingGroupedAttributes() throws Exception {
+        /*
+         * Proof request contains grouped attributes which must be filled from the same credential
+         * {"names": ["FirstName", "LastName"]},
+         * */
+        String attribute1 = "FirstName";
+        String attribute2 = "LastName";
 
-		List<JSONObject> requestedAttributes = Arrays.asList(
-				new JSONObject().put("names", Arrays.asList(attribute1, attribute2))
-		);
-		String proofName = Helpers.randomString();
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject().put("names", Arrays.asList(attribute1, attribute2))
+        );
+        String proofName = Helpers.randomString();
 
-		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-//				() -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header)) // option 1
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-    objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
-    objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
-//		proofRequestPageNew.selectedCredentialIcon.isDisplayed(); // FIXME this doesn't work for ios
+        objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
+        objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
 
-		objAppUtlis.shareProof();
+        objAppUtlis.shareProof();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
-	}
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
 
-	@Test(dependsOnMethods = "shareProofRequestContainingGroupedAttributes")
-	public void rejectProofRequestContainingMissingAttributes() throws Exception {
-		/*
-		 * Proof request contains attribute which can not be provided
-		 * {"name": "Missing attribute", "self_attest_allowed": false}
-		 * */
-		String attribute = "Missing attribute";
-		List<JSONObject> requestedAttributes = Arrays.asList(
-				new JSONObject()
-						.put("name", attribute)
-						.put("self_attest_allowed", false)
-		);
-		String proofName = Helpers.randomString();
+    @Test(dependsOnMethods = "shareProofRequestContainingGroupedAttributes")
+    public void rejectProofRequestContainingMissingAttributes() throws Exception {
+        /*
+         * Proof request contains attribute which can not be provided
+         * {"name": "Missing attribute", "self_attest_allowed": false}
+         * */
+        String attribute = "Missing attribute";
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject()
+                .put("name", attribute)
+                .put("self_attest_allowed", false)
+        );
+        String proofName = Helpers.randomString();
 
-		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
-//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError);
-//
-//		proofRequestPageNew.okButton.click();
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-    objAppUtlis.findParameterizedElement(attribute).isDisplayed();
-    proofRequestPageNew.notFoundError.isDisplayed();
-    proofRequestPageNew.notFoundIcon.isDisplayed();
+        objAppUtlis.findParameterizedElement(attribute).isDisplayed();
+        proofRequestPageNew.notFoundError.isDisplayed();
+        proofRequestPageNew.notFoundIcon.isDisplayed();
 
-		objAppUtlis.rejectProof();
+        objAppUtlis.rejectProof();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
-	}
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
+    }
 
-	@Test(dependsOnMethods = "rejectProofRequestContainingMissingAttributes")
-	public void rejectProofRequestContainingMissingGroupedAttributes() throws Exception {
-		/*
-		 * Proof request contains grouped attributes which cannot be filled credential
-		 * {"names": ["FirstName", "Missing attribute"]},
-		 * */
-		String attribute1 = "FirstName";
-		String attribute2 = "Missing attribute";
+    @Test(dependsOnMethods = "rejectProofRequestContainingMissingAttributes")
+    public void rejectProofRequestContainingMissingGroupedAttributes() throws Exception {
+        /*
+         * Proof request contains grouped attributes which cannot be filled credential
+         * {"names": ["FirstName", "Missing attribute"]},
+         * */
+        String attribute1 = "FirstName";
+        String attribute2 = "Missing attribute";
 
-		List<JSONObject> requestedAttributes = Arrays.asList(
-				new JSONObject().put("names", Arrays.asList(attribute1, attribute2))
-		);
-		String proofName = Helpers.randomString();
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject().put("names", Arrays.asList(attribute1, attribute2))
+        );
+        String proofName = Helpers.randomString();
 
-		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
-//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError);
-//
-//    proofRequestPageNew.okButton.click();
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
 
-    objAppUtlis.findParameterizedElement(attribute1 + "," + attribute2).isDisplayed();
-    proofRequestPageNew.notFoundError.isDisplayed();
-    proofRequestPageNew.notFoundIcon.isDisplayed();
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-		objAppUtlis.rejectProof();
+        objAppUtlis.findParameterizedElement(attribute1 + "," + attribute2).isDisplayed();
+        proofRequestPageNew.notFoundError.isDisplayed();
+        proofRequestPageNew.notFoundIcon.isDisplayed();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
-	}
+        objAppUtlis.rejectProof();
 
-	@Test(dependsOnMethods = "rejectProofRequestContainingMissingGroupedAttributes")
-	public void shareProofRequestContainingSelfAttestedAttributes() throws Exception {
-		/*
-		 * Proof request contains attribute which can not be provided
-		 * {"name": "Missing attribute"}
-		 * */
-		String attribute = "Test attribute";
-		String value = "Custom Value";
-		List<JSONObject> requestedAttributes = Arrays.asList(
-				new JSONObject()
-						.put("name", attribute)
-						.put("self_attest_allowed", true)
-		);
-		String proofName = Helpers.randomString();
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
+    }
 
-		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-//        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+    @Test(dependsOnMethods = "rejectProofRequestContainingMissingGroupedAttributes")
+    public void shareProofRequestContainingSelfAttestedAttributes() throws Exception {
+        /*
+         * Proof request contains attribute which can not be provided
+         * {"name": "Missing attribute"}
+         * */
+        String attribute = "Test attribute";
+        String value = "Custom Value";
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject()
+                .put("name", attribute)
+                .put("self_attest_allowed", true)
+        );
+        String proofName = Helpers.randomString();
 
-    proofRequestPageNew.missingAttributePlaceholder.isDisplayed();
-    proofRequestPageNew.arrowForwardIcon.isDisplayed();
-    proofRequestPageNew.missingAttributePlaceholder.click();
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-		customValuesPageNew.title.isDisplayed();
-//		customValuesPage.description(driverApp).isDisplayed(); // FIXME MSDK
-    customValuesPageNew.attributeNameLabel(attribute).click();
-    customValuesPageNew.customValueInput.sendKeys(value);
+        proofRequestPageNew.missingAttributePlaceholder.isDisplayed();
+        proofRequestPageNew.arrowForwardIcon.isDisplayed();
+        proofRequestPageNew.missingAttributePlaceholder.click();
 
-		if (Config.iOS_Devices.contains(Config.Device_Type))
-		{
-      customValuesPageNew.customValueInput.sendKeys(Keys.RETURN);
-		}
-		else {
-			AndroidDriver androidDriver = (AndroidDriver) driverApp;
-//			androidDriver.pressKeyCode(AndroidKeyCode.KEYCODE_ENTER);
-      androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
-		}
+        customValuesPageNew.title.isDisplayed();
+        customValuesPageNew.attributeNameLabel(attribute).click();
+        customValuesPageNew.customValueInput.sendKeys(value);
 
-    objAppUtlis.findParameterizedElement(value).isDisplayed();
+        if (Config.iOS_Devices.contains(Config.Device_Type)) {
+            customValuesPageNew.customValueInput.sendKeys(Keys.RETURN);
+        } else {
+            AndroidDriver androidDriver = (AndroidDriver) driverApp;
+            androidDriver.pressKey(new KeyEvent(AndroidKey.ENTER));
+        }
 
-		objAppUtlis.shareProof();
+        objAppUtlis.findParameterizedElement(value).isDisplayed();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
-	}
+        objAppUtlis.shareProof();
 
-	@Test(dependsOnMethods = "shareProofRequestContainingSelfAttestedAttributes")
-	public void shareProofRequestFromCredentialButCanBeSelfAttested() throws Exception {
-		/*
-		 * Proof request contains attribute which can be provided from credential and also can be self-attested
-		 * {"name": "Missing attribute"}
-		 * */
-		String attribute = "Status";
-		List<JSONObject> requestedAttributes = Arrays.asList(
-				new JSONObject()
-						.put("name", attribute)
-						.put("self_attest_allowed", true)
-		);
-		String proofName = Helpers.randomString();
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
 
-		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-//        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+    @Test(dependsOnMethods = "shareProofRequestContainingSelfAttestedAttributes")
+    public void shareProofRequestFromCredentialButCanBeSelfAttested() throws Exception {
+        /*
+         * Proof request contains attribute which can be provided from credential and also can be self-attested
+         * {"name": "Missing attribute"}
+         * */
+        String attribute = "Status";
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject()
+                .put("name", attribute)
+                .put("self_attest_allowed", true)
+        );
+        String proofName = Helpers.randomString();
 
-		objAppUtlis.shareProof();
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
-	}
+        objAppUtlis.shareProof();
 
-	@Test(dependsOnMethods = "shareProofRequestFromCredentialButCanBeSelfAttested")
-	public void shareProofRequestContainingPredicates() throws Exception {
-		/*
-		 * Proof request contains grouped attributes which must be filled from the same credential
-		 * {"name": "Years", "p_type":">=", "p_value": 20},
-		 * */
-		String attribute = "Years";
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
 
-		List<JSONObject> requestedPredicates = Arrays.asList(
-				new JSONObject()
-						.put("name", attribute)
-						.put("p_type", ">=")
-						.put("p_value", 20)
-		);
-		String proofName = Helpers.randomString();
+    @Test(dependsOnMethods = "shareProofRequestFromCredentialButCanBeSelfAttested")
+    public void shareProofRequestContainingPredicates() throws Exception {
+        /*
+         * Proof request contains grouped attributes which must be filled from the same credential
+         * {"name": "Years", "p_type":">=", "p_value": 20},
+         * */
+        String attribute = "Years";
 
-		AppUtils.DoSomethingEventually(
-				() -> VAS.requestProof(DID, proofName, null, requestedPredicates)
-//        () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+        List<JSONObject> requestedPredicates = Arrays.asList(
+            new JSONObject()
+                .put("name", attribute)
+                .put("p_type", ">=")
+                .put("p_value", 20)
+        );
+        String proofName = Helpers.randomString();
 
-    objAppUtlis.findParameterizedElement(attribute).isDisplayed();
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, null, requestedPredicates)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+
+        objAppUtlis.findParameterizedElement(attribute).isDisplayed();
 //    proofRequestPageNew.selectedCredentialIcon.isDisplayed(); // FIXME this doesn't work for ios
 
-		objAppUtlis.shareProof();
+        objAppUtlis.shareProof();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
-	}
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
 
-	@Test(dependsOnMethods = "shareProofRequestContainingPredicates")
-	public void rejectProofRequestContainingMissingPredicate() throws Exception {
-		/*
-		 * Proof request contains grouped attributes which cannot be filled credential
-		 * {"name": "Years", "p_type":">=", "p_value": 60},
-		 * */
-		String attribute = "Years";
+    @Test(dependsOnMethods = "shareProofRequestContainingPredicates")
+    public void rejectProofRequestContainingMissingPredicate() throws Exception {
+        /*
+         * Proof request contains grouped attributes which cannot be filled credential
+         * {"name": "Years", "p_type":">=", "p_value": 60},
+         * */
+        String attribute = "Years";
 
-		List<JSONObject> requestedPredicates = Arrays.asList(
-				new JSONObject()
-						.put("name", attribute)
-						.put("p_type", ">=")
-						.put("p_value", 60)
-		);
+        List<JSONObject> requestedPredicates = Arrays.asList(
+            new JSONObject()
+                .put("name", attribute)
+                .put("p_type", ">=")
+                .put("p_value", 60)
+        );
 
-		String proofName = Helpers.randomString();
+        String proofName = Helpers.randomString();
 
-		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, null, requestedPredicates)
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
-//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.missingCredentialsError);
-//
-//		proofRequestPageNew.okButton.click();
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, null, requestedPredicates)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-    objAppUtlis.findParameterizedElement(attribute).isDisplayed();
-    proofRequestPageNew.unresolvedPredicateError("Greater than or equal to 60").isDisplayed();
-    proofRequestPageNew.notFoundIcon.isDisplayed();
+        objAppUtlis.findParameterizedElement(attribute).isDisplayed();
+        proofRequestPageNew.unresolvedPredicateError("Greater than or equal to 60").isDisplayed();
+        proofRequestPageNew.notFoundIcon.isDisplayed();
 
-		objAppUtlis.rejectProof();
+        objAppUtlis.rejectProof();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
-	}
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofRequestRejectedEvent(proofName));
+    }
 
-	@Test(dependsOnMethods = "rejectProofRequestContainingMissingPredicate")
-	public void shareProofRequestContainingAttributesWithSchemaCredDefRestrictions() throws Exception {
-		/*
-		 * Proof request contains grouped attributes which must be filled from the same credential
-		 * {"name": "FirstName", "restrictions":[{"cred_def_id":"cred_def_id"}]"},
-		 * {"name": "LastName", "restrictions":[{"schema_id":"schema_id"}]"}
-		 * */
-		List<JSONObject> requestedAttributes = Arrays.asList(
-				new JSONObject()
-						.put("name", "FirstName")
-						.put("restrictions", Arrays.asList(
-								new JSONObject().put("cred_def_id", context.getValue("credDefId"))
-						)),
-				new JSONObject()
-						.put("name", "LastName")
-						.put("restrictions", Arrays.asList(
-								new JSONObject().put("schema_id", context.getValue("schemaId"))
-						))
-		);
-		String proofName = Helpers.randomString();
+    @Test(dependsOnMethods = "rejectProofRequestContainingMissingPredicate")
+    public void shareProofRequestContainingAttributesWithSchemaCredDefRestrictions() throws Exception {
+        /*
+         * Proof request contains grouped attributes which must be filled from the same credential
+         * {"name": "FirstName", "restrictions":[{"cred_def_id":"cred_def_id"}]"},
+         * {"name": "LastName", "restrictions":[{"schema_id":"schema_id"}]"}
+         * */
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject()
+                .put("name", "FirstName")
+                .put("restrictions", Arrays.asList(
+                    new JSONObject().put("cred_def_id", context.getValue("credDefId"))
+                )),
+            new JSONObject()
+                .put("name", "LastName")
+                .put("restrictions", Arrays.asList(
+                    new JSONObject().put("schema_id", context.getValue("schemaId"))
+                ))
+        );
+        String proofName = Helpers.randomString();
 
-		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-//      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-		objAppUtlis.shareProof();
+        objAppUtlis.shareProof();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
-	}
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
 
-	@Test(dependsOnMethods = "shareProofRequestContainingAttributesWithSchemaCredDefRestrictions")
-	public void shareProofRequestContainingAttributesWithDIDRestrictions() throws Exception {
-		/*
-		 * Proof request contains grouped attributes which must be filled from the same credential
-		 * {"name": "Years", "restrictions":[*** one DID ***]"},
-		 * {"name": "Status", "restrictions":[*** list of DIDs ***]"}
-		 * */
-		List<JSONObject> requestedAttributes = Arrays.asList(
-				new JSONObject()
-						.put("name", "Years")
-						.put("restrictions", Arrays.asList(
-								new JSONObject().put("issuer_did", issuerDID)
-						)),
-				new JSONObject()
-						.put("name", "Status")
-						.put("restrictions", Arrays.asList(
-								new JSONObject().put("issuer_did", issuerDID),
-								new JSONObject().put("issuer_did", "PMzJsfuq4YYPAKHLSrdP4R"),
-								new JSONObject().put("issuer_did", "PMzJsfuq4YYPAKHLSrdP4S")
-						))
-		);
-		String proofName = Helpers.randomString();
+    @Test(dependsOnMethods = "shareProofRequestContainingAttributesWithSchemaCredDefRestrictions")
+    public void shareProofRequestContainingAttributesWithDIDRestrictions() throws Exception {
+        /*
+         * Proof request contains grouped attributes which must be filled from the same credential
+         * {"name": "Years", "restrictions":[*** one DID ***]"},
+         * {"name": "Status", "restrictions":[*** list of DIDs ***]"}
+         * */
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject()
+                .put("name", "Years")
+                .put("restrictions", Arrays.asList(
+                    new JSONObject().put("issuer_did", issuerDID)
+                )),
+            new JSONObject()
+                .put("name", "Status")
+                .put("restrictions", Arrays.asList(
+                    new JSONObject().put("issuer_did", issuerDID),
+                    new JSONObject().put("issuer_did", "PMzJsfuq4YYPAKHLSrdP4R"),
+                    new JSONObject().put("issuer_did", "PMzJsfuq4YYPAKHLSrdP4S")
+                ))
+        );
+        String proofName = Helpers.randomString();
 
-		AppUtils.DoSomethingEventually(
-			() -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-//      () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header))
-		);
-    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
 
-		objAppUtlis.shareProof();
+        objAppUtlis.shareProof();
 
-    AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
-	}
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
 
-	@AfterClass
-	public void AfterClass() {
-		driverApp.closeApp();
-	}
+    @AfterClass
+    public void AfterClass() {
+        driverApp.closeApp();
+    }
 
 }

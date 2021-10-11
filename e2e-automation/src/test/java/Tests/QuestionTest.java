@@ -13,35 +13,33 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QuestionTest extends IntSetup {
-	private AppUtils objAppUtlis = new AppUtils();
-	private LocalContext context = LocalContext.getInstance();
+    private AppUtils objAppUtlis = new AppUtils();
+    private LocalContext context = LocalContext.getInstance();
 
-	private VASApi VAS;
-	private String DID;
-	private String connectionName;
-	private String text = "How much?";
-	private String detail = "How much do you want";
-	private List<String> oneOption = Arrays.asList(Helpers.randomString());
-	private List<String> twoOptions = Arrays.asList(Helpers.randomString(), Helpers.randomString());
-	private List<String> threeOptions = Arrays.asList(Helpers.randomString(), Helpers.randomString(), Helpers.randomString());
+    private VASApi VAS;
+    private String DID;
+    private String connectionName;
+    private String questionTitle = "How much?";
+    private String questionText = "How much do you want";
+    private List<String> oneOption = Arrays.asList(Helpers.randomString());
+    private List<String> twoOptions = Arrays.asList(Helpers.randomString(), Helpers.randomString());
+    private List<String> threeOptions = Arrays.asList(Helpers.randomString(), Helpers.randomString(), Helpers.randomString());
 
-	@BeforeClass
-	public void BeforeClassSetup() throws Exception {
-		DID = context.getValue("DID");
-		connectionName = context.getValue("connectionName");
-    passCodePageNew.openApp();
-		VAS = VASApi.getInstance();
-	}
+    @BeforeClass
+    public void BeforeClassSetup() throws Exception {
+        DID = context.getValue("DID");
+        connectionName = context.getValue("connectionName");
+        passCodePageNew.openApp();
+        VAS = VASApi.getInstance();
+    }
 
-	private void answerQuestionFromHome(List<String> validResponses) throws Exception {
-    AppUtils.DoSomethingEventually(
-        () -> VAS.askQuestion(DID, text, detail, validResponses)
-//      () -> questionPage.header(driverApp).isDisplayed()
-//		    () -> AppUtils.waitForElementNew(driverApp, questionPageNew.header)
-    );
-    AppUtils.waitForElementNew(driverApp, questionPageNew.header);
-		validateQuestionWindow(validResponses);
-	}
+    private void answerQuestionFromHome(List<String> validResponses) throws Exception {
+        AppUtils.DoSomethingEventually(
+            () -> VAS.askQuestion(DID, questionTitle, questionText, validResponses)
+        );
+        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+        validateQuestionWindow(validResponses);
+    }
 
 //	private void answerQuestionFromConnectionHistory(List<String> validResponses) throws Exception {
 //		VAS.askQuestion(DID, text, detail, validResponses);
@@ -53,68 +51,61 @@ public class QuestionTest extends IntSetup {
 //		validateQuestionWindow(validResponses);
 //	}
 
+    private void validateQuestionWindow(List<String> validResponses) throws Exception {
+        questionPageNew.senderLogo.isDisplayed();
+        objAppUtlis.findParameterizedElementAlt(connectionName).isDisplayed();
 
-	private void validateQuestionWindow(List<String> validResponses) throws Exception {
-//    questionPageNew.senderLogo.isDisplayed(); // FIXME this doesn't work
-    objAppUtlis.findParameterizedElement(context.getValue("connectionName")).isDisplayed();
-//    questionPageNew.findParameterizedElement(text).isDisplayed(); // FIXME this doesn't work for ios
-//    questionPageNew.questionText.isDisplayed(); FIXME this doesn't work too
-    objAppUtlis.findParameterizedElement(detail).isDisplayed();
+        questionPageNew.questionTitle.isDisplayed();
+        objAppUtlis.findParameterizedElementAlt(questionText).isDisplayed();
 
-		for (String validResponse : validResponses) {
-      objAppUtlis.findParameterizedElement(validResponse).isDisplayed();
-		}
-	}
+        for (String validResponse : validResponses) {
+            objAppUtlis.findParameterizedElementAlt(validResponse).isDisplayed();
+        }
+    }
 
-	@Test
-	public void answerQuestionWithOneOptionFromHome() throws Exception {
-		answerQuestionFromHome(oneOption);
+    @Test
+    public void answerQuestionWithOneOptionFromHome() throws Exception {
+        answerQuestionFromHome(oneOption);
 
-		String answer = oneOption.get(0);
-    objAppUtlis.findParameterizedElement(answer).click();
-		homePageNew.questionRespondedEvent(answer).isDisplayed();
-	}
+        String answer = oneOption.get(0);
+        objAppUtlis.findParameterizedElement(answer).click();
+        homePageNew.questionRespondedEvent(answer).isDisplayed();
+    }
 
-	@Test(dependsOnMethods = "answerQuestionWithOneOptionFromHome")
-	public void answerQuestionWithTwoOptionsFromHome() throws Exception {
-		answerQuestionFromHome(twoOptions);
+    @Test(dependsOnMethods = "answerQuestionWithOneOptionFromHome")
+    public void answerQuestionWithTwoOptionsFromHome() throws Exception {
+        answerQuestionFromHome(twoOptions);
 
-		String answer = twoOptions.get(0);
-    objAppUtlis.findParameterizedElement(answer).click();
-    homePageNew.questionRespondedEvent(answer).isDisplayed();
-	}
+        String answer = twoOptions.get(0);
+        objAppUtlis.findParameterizedElement(answer).click();
+        homePageNew.questionRespondedEvent(answer).isDisplayed();
+    }
 
-	@Test(dependsOnMethods = "answerQuestionWithTwoOptionsFromHome")
-	public void answerQuestionWithThreeOptionsFromHome() throws Exception {
-		answerQuestionFromHome(threeOptions);
+    @Test(dependsOnMethods = "answerQuestionWithTwoOptionsFromHome")
+    public void answerQuestionWithThreeOptionsFromHome() throws Exception {
+        answerQuestionFromHome(threeOptions);
 
-		String answer = threeOptions.get(0);
-    questionPageNew.answerOption(answer).click();
-    questionPageNew.submitButton.click();
-    homePageNew.questionRespondedEvent(answer).isDisplayed();
-	}
+        String answer = threeOptions.get(0);
+        questionPageNew.answerOption(answer).click();
+        questionPageNew.submitButton.click();
+        homePageNew.questionRespondedEvent(answer).isDisplayed();
+    }
 
-	@Test(dependsOnMethods = "answerQuestionWithThreeOptionsFromHome")
-	public void validateConnectionHistory() throws Exception {
-		homePageNew.burgerMenuButton.click();
-		menuPageNew.myConnectionsButton.click();
-		myConnectionsPageNew.testConnection(connectionName).click();
-//		// TODO: move this logic to helper
-//		try {
-			connectionHistoryPageNew.questionAnswerRecord.isDisplayed();
-//		} catch (Exception ex) {
-//			AppUtils.pullScreenUp(driverApp);
-//			connectionHistoryPage.questionAnswerRecord(driverApp).isDisplayed();
-//		}
+    @Test(dependsOnMethods = "answerQuestionWithThreeOptionsFromHome")
+    public void validateConnectionHistory() throws Exception {
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.myConnectionsButton.click();
+        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
+        myConnectionsPageNew.getConnectionByName(connectionName).click();
+        connectionHistoryPageNew.questionAnswerRecord.isDisplayed();
+        connectionHistoryPageNew.questionAnswerRecordDescription(oneOption.get(0)).isDisplayed();
+        connectionHistoryPageNew.questionAnswerRecordDescription(twoOptions.get(0)).isDisplayed();
+        connectionHistoryPageNew.questionAnswerRecordDescription(threeOptions.get(0)).isDisplayed();
+    }
 
-		connectionHistoryPageNew.questionAnswerRecordDescription(oneOption.get(0)).isDisplayed();
-    connectionHistoryPageNew.questionAnswerRecordDescription(twoOptions.get(0)).isDisplayed();
-    connectionHistoryPageNew.questionAnswerRecordDescription(threeOptions.get(0)).isDisplayed();
-	}
-
-	/*
-	* NOTE: These tests don't work for iOS simulator because of lack of push notifications
-	* */
+    /*
+     * NOTE: These tests don't work for iOS simulator because of lack of push notifications
+     * */
 	/*
 	@Test(dependsOnMethods = "validateConnectionHistory")
 	public void answerQuestionWithOneOptionFromConnectionHistory() throws Exception {
@@ -151,8 +142,8 @@ public class QuestionTest extends IntSetup {
 	}
 	*/
 
-	@AfterClass
-	public void AfterClass() {
-		driverApp.closeApp();
-	}
+    @AfterClass
+    public void AfterClass() {
+        driverApp.closeApp();
+    }
 }

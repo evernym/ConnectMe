@@ -4,47 +4,55 @@ default_platform :android
 
 platform :android do
   before_all do
-     unless ENV["SLACK_CREDENTIAL"].nil?
-        ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_CREDENTIAL"]}"
-     end
+    unless ENV["SLACK_CREDENTIAL"].nil?
+       ENV["SLACK_URL"] = "https://hooks.slack.com/services/#{ENV["SLACK_CREDENTIAL"]}"
+    end
   end
 
   after_all do |lane|
-     unless ENV["SLACK_CREDENTIAL"].nil?
-        slack(channel: "connectme_build", message: "#{ENV["BUILD_NAME"]} Android build #{ENV["BUILD_VERSION_CODE"]}")
-     end
+    unless ENV["SLACK_CREDENTIAL"].nil?
+       slack(channel: "connectme_build", message: "#{ENV["BUILD_NAME"]} Android build #{ENV["BUILD_VERSION_CODE"]}")
+    end
   end
 
   error do |lane, exception|
-     unless ENV["SLACK_CREDENTIAL"].nil?
-        slack(
-          message: exception.message,
-          success: false
-        )
-     end
+    unless ENV["SLACK_CREDENTIAL"].nil?
+       slack(
+         message: exception.message,
+         success: false
+       )
+    end
   end
 
-  lane :ci do
-    gradle(
-      task: "assemble",
-      build_type: "Release",
-    )
-  end
-
-  lane :cd do
+  lane :build do
     project_version_bump
 
     gradle(
       task: "assemble",
       build_type: "Release",
     )
+  end
 
+  lane :upload do
     ENV["BUILD_NAME"] = "QA ConnectMe"
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-armeabi-v7a-release.apk")
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-arm64-v8a-release.apk")
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86-release.apk")
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
 
+    supply(
+      track: "beta",
+      apk_paths: [
+        "app/build/outputs/apk/release/app-armeabi-v7a-release.apk",
+        "app/build/outputs/apk/release/app-arm64-v8a-release.apk",
+        "app/build/outputs/apk/release/app-x86-release.apk",
+        "app/build/outputs/apk/release/app-x86_64-release.apk"
+      ],
+      json_key_data: ENV["GOOGLE_PLAY_STORE_JSON_KEY_DATA"],
+      skip_upload_metadata: true,
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
   end
 
   #==============================================#
@@ -62,7 +70,7 @@ platform :android do
     reVersionCode = /versionCode\s+(\d+)/
     reVersionName = /versionName\s+(\S+)/
 
-    newVersionName = "\"1.6.2\""
+    newVersionName = "\"1.7.0\""
 
     puts 'new version number: ' + newVersionName.to_s
     puts 'new version code: ' + versionCode.to_s

@@ -25,8 +25,8 @@ public class CredentialPageNew {
   @iOSXCUITFindBy(accessibility = "Reject")
   public WebElement rejectButton;
 
-  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"sender-avatar-image\"]")
-  @iOSXCUITFindBy(accessibility = "sender-avatar")
+  @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='sender-avatar-image']")
+  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name='sender-avatar']")
   public WebElement credentialSenderLogo;
 
   @AndroidFindBy(xpath = "//*[@text=\"Credential Offer\"]")
@@ -44,4 +44,9 @@ public class CredentialPageNew {
   @AndroidFindBy(xpath = "//*[@text=\"Delete Credential\"]")
   @iOSXCUITFindBy(accessibility = "Delete Credential")
   public WebElement deleteButton;
+
+  @AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/" +
+    "android.view.ViewGroup[2]/android.widget.TextView")
+  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeStaticText")
+  public WebElement credentialSchemeName;
 }

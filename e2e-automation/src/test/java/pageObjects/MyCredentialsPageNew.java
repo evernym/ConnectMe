@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import test.java.utility.Config;
 
+import java.util.List;
+
 public class MyCredentialsPageNew {
   AppiumDriver driver;
 
@@ -24,4 +26,11 @@ public class MyCredentialsPageNew {
   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"burger-menu\"]")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"burger-menu\"]")
   public WebElement burgerMenuButton;
+
+  public List<WebElement> getConnectionsBySchemeName(String schemeName)
+  {
+      String locator = Config.iOS_Devices.contains(Config.Device_Type)?
+            "//*[@label='" + schemeName + "']" : "//*[@label='" + schemeName + "']";
+      return (List<WebElement>)driver.findElementsByXPath(locator);
+  }
 }
