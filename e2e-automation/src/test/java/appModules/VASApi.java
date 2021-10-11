@@ -165,25 +165,34 @@ public class VASApi {
 	}
 
 	public JSONObject createRelationship(String label) throws Exception {
-		JSONObject body =
-				new JSONObject()
-						.put("@id", UUID4())
-						.put("@type", "did:sov:123456789abcdefghi1234;spec/relationship/1.0/create")
-						.put("label", label)
+        for(int i = 1; i <= 5; i++) {
+            System.out.println("Attempt #" + i + " to create relationship");
+            try {
+                JSONObject body =
+                    new JSONObject()
+                        .put("@id", UUID4())
+                        .put("@type", "did:sov:123456789abcdefghi1234;spec/relationship/1.0/create")
+                        .put("label", label)
                         .put("logoUrl", "https://www.gstatic.com/webp/gallery/3.sm.jpg");
 
-		String thread = UUID4();
-		String path = "/relationship/1.0/" + thread;
+                String thread = UUID4();
+                String path = "/relationship/1.0/" + thread;
 
-		post(path, body.toString());
+                post(path, body.toString());
 
-		JSONObject result = new JSONObject();
-		JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/created", thread);
+                JSONObject result = new JSONObject();
+                JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/created", thread);
 
-		result.put("relationshipThreadID", VASResponse.getJSONObject("~thread").getString("thid"));
-		result.put("DID", VASResponse.getString("did"));
+                result.put("relationshipThreadID", VASResponse.getJSONObject("~thread").getString("thid"));
+                result.put("DID", VASResponse.getString("did"));
 
-		return result;
+                return result;
+            }
+            catch (JSONException e)
+            {
+                System.out.println("Error during relationship creation: " + e.getMessage());
+            }
+        }
 	}
 
 	public JSONObject createConnectionInvitation(String relationshipThreadID,
