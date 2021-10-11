@@ -193,6 +193,7 @@ public class VASApi {
                 System.out.println("Error during relationship creation: " + e.getMessage());
             }
         }
+        return null;
 	}
 
 	public JSONObject createConnectionInvitation(String relationshipThreadID,
