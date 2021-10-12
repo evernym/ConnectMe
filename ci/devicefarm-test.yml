@@ -79,7 +79,7 @@ devicefarm-test-launch-android-weekly-final:
           - main@evernym/mobile/connectme
           - feature/auto/CM-3100-fix-weekly
   script:
-    - sleep 300 # android shift
+    - sleep 900 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
 
 devicefarm-test-launch-ios-weekly-final:
@@ -103,7 +103,7 @@ devicefarm-test-launch-android-master:
           - main@evernym/mobile/connectme
           - feature/auto/CM-3100-fix-weekly
   script:
-    - sleep 300 # android shift
+    - sleep 60 # android shift
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
 
 devicefarm-test-launch-ios-master:

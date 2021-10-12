@@ -3,6 +3,7 @@ package test.java.Tests;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONObject;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.*;
 import test.java.appModules.AppUtils;
@@ -25,6 +26,7 @@ public class PushNotificationTest extends IntSetup {
 
     String connectionName;
     String DID;
+    String deviceModel;
     final String appBackgroundLocked = "background + locked";
     final String appBackground = "background";
 
@@ -41,13 +43,25 @@ public class PushNotificationTest extends IntSetup {
         System.out.println("Push Notification Test Suite has been started!");
         connectionName = "connection-invitation";
         DID = context.getValue(connectionName + "_DID");
+        deviceModel = driverApp.getCapabilities().getCapability("deviceModel").toString();
         passCodePageNew.openApp();
+
+        // TODO: remove later
+        System.out.println(">>>>>>>>>>>>>>>> Device info");
+        System.out.println("Device name: " + driverApp.getCapabilities().getCapability("deviceName").toString());
+        System.out.println("Device model: " + driverApp.getCapabilities().getCapability("deviceModel").toString());
+        System.out.println("Cap type:version: " + driverApp.getCapabilities().getCapability("CapabilityType.VERSION").toString());
+
+        System.out.println("Shell model: " + driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.model")).toString());
+        System.out.println("Shell product name: " + driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.name")).toString());
+        System.out.println("Shell product device: " +driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.device")).toString());
+
     }
 
 
     @Test(dataProvider = "appStates")
     public void checkCredOfferNotificationAppRunningInBackground(String appState) throws Exception {
-        if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator")) return;
+        if (Helpers.getPlatformType().equals(Platform.IOS) || deviceModel.equals("Pixel 2 XL")) return;
 
         String credentialName = Helpers.randomString();
 
@@ -65,23 +79,6 @@ public class PushNotificationTest extends IntSetup {
 
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
 
-        // TODO: remove later
-        System.out.println(">>>>>>>>>>>>>>>> Device info");
-        System.out.println(driverApp.getCapabilities().getCapability("deviceName").toString());
-        System.out.println(driverApp.getCapabilities().getCapability("deviceModel").toString());
-        System.out.println(driverApp.getCapabilities().getCapability("CapabilityType.VERSION").toString());
-
-        System.out.println(driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.model")).toString());
-        System.out.println(driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.name")).toString());
-        System.out.println(driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.device")).toString());
-
-        if (((AndroidDriver) driverApp).isDeviceLocked())
-        {
-            System.out.println("Forcibly unlocking device via shell");
-            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 26"));
-            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 82"));
-        }
-
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.credentialOfferNotification.click();
         objAppUtlis.authForAction();
@@ -95,8 +92,7 @@ public class PushNotificationTest extends IntSetup {
 
     @Test(dataProvider = "appStates", dependsOnMethods = "checkCredOfferNotificationAppRunningInBackground")
     public void checkProofRequestNotificationAppRunningInBackground(String appState) throws Exception {
-        if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
-            return;
+        if (Helpers.getPlatformType().equals(Platform.IOS) || deviceModel.equals("Pixel 2 XL")) return;
 
         switch (appState) {
             case appBackgroundLocked:
@@ -114,13 +110,7 @@ public class PushNotificationTest extends IntSetup {
         String proofName = Helpers.randomString();
 
         VAS.requestProof(DID, proofName, requestedAttributes, null);
-        if (((AndroidDriver) driverApp).isDeviceLocked())
-        {
-            System.out.println("Forcibly unlocking device via shell");
-            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 26"));
-            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 82"));
-        }
-
+        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver)driverApp).unlockDevice();
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.proofRequestNotification.click();
 
@@ -132,8 +122,7 @@ public class PushNotificationTest extends IntSetup {
 
     @Test(dataProvider = "appStates", dependsOnMethods = "checkProofRequestNotificationAppRunningInBackground")
     public void checkStructuredMessageNotificationAppRunningInBackground(String appState) throws Exception {
-        if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
-            return;
+        if (Helpers.getPlatformType().equals(Platform.IOS) || deviceModel.equals("Pixel 2 XL")) return;
 
         String text = "How much?";
         String detail = "How much do you want";
@@ -151,13 +140,7 @@ public class PushNotificationTest extends IntSetup {
 
         VAS.askQuestion(DID, text, detail, option);
 
-        if (((AndroidDriver) driverApp).isDeviceLocked())
-        {
-            System.out.println("Forcibly unlocking device via shell");
-            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 26"));
-            driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "input keyevent 82"));
-        }
-
+        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver)driverApp).unlockDevice();
         ((AndroidDriver) driverApp).openNotifications();
         homePageNew.questionNotification.click();
 
