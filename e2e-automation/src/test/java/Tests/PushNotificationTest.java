@@ -1,18 +1,18 @@
 package test.java.Tests;
 
-import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONObject;
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriverException;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
-import test.java.utility.IntSetup;
-import test.java.utility.Helpers;
-import test.java.utility.LocalContext;
 import test.java.utility.Constants;
-import test.java.utility.Config;
+import test.java.utility.Helpers;
+import test.java.utility.IntSetup;
+import test.java.utility.LocalContext;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -26,7 +26,7 @@ public class PushNotificationTest extends IntSetup {
 
     String connectionName;
     String DID;
-    String deviceModel;
+    String deviceModel = "";
     final String appBackgroundLocked = "background + locked";
     final String appBackground = "background";
 
@@ -43,18 +43,12 @@ public class PushNotificationTest extends IntSetup {
         System.out.println("Push Notification Test Suite has been started!");
         connectionName = "connection-invitation";
         DID = context.getValue(connectionName + "_DID");
-        deviceModel = driverApp.getCapabilities().getCapability("deviceModel").toString();
+        try {
+            // This is mainly used for workaround on Google Pixel 2 XL devices since Appium's unlock() function does not work reliably on them
+            deviceModel = driverApp.getCapabilities().getCapability("deviceModel").toString();
+        }
+        catch (Exception e) { } // Suppress exceptions for different behaviors on different devices
         passCodePageNew.openApp();
-
-        // TODO: remove later
-        System.out.println(">>>>>>>>>>>>>>>> Device info");
-        System.out.println("Device name: " + driverApp.getCapabilities().getCapability("deviceName").toString());
-        System.out.println("Device model: " + driverApp.getCapabilities().getCapability("deviceModel").toString());
-        System.out.println("Cap type:version: " + driverApp.getCapabilities().getCapability("CapabilityType.VERSION").toString());
-
-        System.out.println("Shell model: " + driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.model")).toString());
-        System.out.println("Shell product name: " + driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.name")).toString());
-        System.out.println("Shell product device: " +driverApp.executeScript("mobile: shell", ImmutableMap.of("command", "getprop ro.product.device")).toString());
 
     }
 
