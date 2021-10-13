@@ -32,7 +32,6 @@ devicefarm-test-launch-android-weekly-top:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
 
@@ -55,7 +54,6 @@ devicefarm-test-launch-android-weekly-next:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
 
@@ -78,7 +76,6 @@ devicefarm-test-launch-android-weekly-final:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
 
@@ -101,7 +98,6 @@ devicefarm-test-launch-android-master:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
   script:
     - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
 

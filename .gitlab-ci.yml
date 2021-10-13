@@ -203,7 +203,6 @@ build-android-master:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - feature/auto/CM-3100-fix-weekly
 
 # Upload jobs
 upload-ios:
