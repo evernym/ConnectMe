@@ -13,6 +13,36 @@ def vcx_version_for_debug_or_release
     end
 end
 
+## Fix for XCode 13
+# def find_and_replace(dir, findstr, replacestr)
+#   Dir[dir].each do |name|
+#       text = File.read(name)
+#       replace = text.gsub(findstr,replacestr)
+#       if text != replace
+#           puts "Fix: " + name
+#           File.open(name, "w") { |file| file.puts replace }
+#           STDOUT.flush
+#       end
+#   end
+#   Dir[dir + '*/'].each(&method(:find_and_replace))
+# end
+
+# Convert all permission pods into static libraries
+pre_install do |installer|
+  Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+
+  installer.pod_targets.each do |pod|
+    if pod.name.eql?('RNPermissions') || pod.name.start_with?('Permission-')
+      def pod.build_type;
+        # Uncomment the line corresponding to your CocoaPods version
+        Pod::BuildType.static_library # >= 1.9
+        # Pod::Target::BuildType.static_library # < 1.9
+      end
+    end
+  end
+end
+
+
 post_install do |installer|
 		installer.pods_project.build_configurations.each do |config|
 			config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
@@ -30,10 +60,16 @@ post_install do |installer|
         end
 				if ['iProov', 'Socket.IO-Client-Swift', 'Starscream'].include? target.name
 					target.build_configurations.each do |config|
-							config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES' 
+							config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
 					end
 				end
     end
+
+		## Fix for XCode 13
+    # find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
+    # "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
+		# find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
+		# "RCTBridgeModuleNameForClass(module))", "RCTBridgeModuleNameForClass(Class(module)))")
 end
 
 target 'ConnectMe' do
@@ -62,6 +98,8 @@ target 'ConnectMe' do
 	pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
 	pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
 	pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
+
+    pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
 
 	pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
 	pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
@@ -96,5 +134,11 @@ target 'ConnectMe' do
 	end
 
 	use_native_modules!
+
+  ## Fix for XCode 12.5
+    #   find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
+    #   "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
+    #   find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
+    #   "RCTBridgeModuleNameForClass(module))", "RCTBridgeModuleNameForClass(Class(module)))")
 
 end

@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
 import test.java.utility.Config;
@@ -12,6 +13,7 @@ import test.java.utility.Helpers;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.funcModules.ConnectionModules;
+import test.java.utility.AppDriver;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +32,7 @@ public class UpgradePathTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
+        reloadDriversAndPos();
         DID = context.getValue("DID");
         connectionName = context.getValue("connectionName");
 

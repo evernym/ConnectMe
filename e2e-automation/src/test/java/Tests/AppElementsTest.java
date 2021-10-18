@@ -1,5 +1,6 @@
 package test.java.Tests;
 
+import pageObjects.*;
 import test.java.appModules.AppUtils;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -57,6 +58,7 @@ public class AppElementsTest extends IntSetup {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
         myCredentialsPageNew.myCredentialsHeader.isDisplayed();
+        homePageNew.tapOnBurgerMenu();
         menuPageNew.homeButton.click();
 
         homePageNew.scanButton.isDisplayed();

@@ -90,7 +90,9 @@ public class ConnectionModules extends IntSetup {
 
     }
 
-    public void openDeepLink(AppiumDriver driverBrowser, AppiumDriver driverApp, String link) throws InterruptedException {
+    public void openDeepLink(AppiumDriver driverBrowser, AppiumDriver driverApp, String link) throws Exception {
+        System.out.println("Opening deeplink: " + link);
+
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) {
             driverApp.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
 
@@ -110,11 +112,8 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
-        try {
-            new AppUtils().authForAction();
-        } catch (Exception e) {
-            System.out.println("Failed to enter PIN due to: " + e.getLocalizedMessage());
-        }
+        Thread.sleep(5000);
+        new AppUtils().authForAction();
     }
 
     public void getConnectionInvitation(AppiumDriver driverBrowser, AppiumDriver driverApp, String label, String invitationType) throws Exception {
@@ -161,7 +160,7 @@ public class ConnectionModules extends IntSetup {
         driverApp.context("NATIVE_APP");
     }
 
-    public static String getInvitationLink() {
+    public static String getInvitationLink(int index) {
         RestAssured.baseURI = Config.VAS_Server_Link;
 
         Response response = RestAssured
@@ -178,9 +177,23 @@ public class ConnectionModules extends IntSetup {
         } catch (JSONException ex) {
             // ignore
         }
-        System.out.println("String is =>  " + result.getString(0));
+        System.out.println("String is =>  " + result.getString(index));
 
-        return result.getString(0);
+        return result.getString(index);
+    }
+
+    public static String ensureGetInvitationLink(int index) throws InterruptedException {
+        try {
+            return getInvitationLink(index);
+        } catch (JSONException e) {
+            try {
+                Thread.sleep(120000);
+                return getInvitationLink(index);
+            } catch (JSONException ex) {
+                Thread.sleep(180000);
+                return getInvitationLink(index);
+            }
+        }
     }
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {

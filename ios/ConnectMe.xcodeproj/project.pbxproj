@@ -53,6 +53,8 @@
 		DDA283DB26B315C6001F50B7 /* MIDSAssistSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DDA283D426B315B9001F50B7 /* MIDSAssistSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DDA283DC26B315C8001F50B7 /* MIDSVerificationSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */; };
 		DDA283DD26B315C9001F50B7 /* MIDSVerificationSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DDC281F526E66E3100525461 /* ConfirmScannedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC281F326E66E3100525461 /* ConfirmScannedImageView.swift */; };
+		DDC281F626E66E3100525461 /* ConfirmScannedImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC281F426E66E3100525461 /* ConfirmScannedImageView.xib */; };
 		DDD64CBD216D4A1000BE706A /* css in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CB9216D4A0F00BE706A /* css */; };
 		DDD64CBE216D4A1000BE706A /* eula_ios.html in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CBA216D4A0F00BE706A /* eula_ios.html */; };
 		DDD64CBF216D4A1000BE706A /* images in Resources */ = {isa = PBXBuildFile; fileRef = DDD64CBB216D4A0F00BE706A /* images */; };
@@ -291,6 +293,8 @@
 		DDA283B526B1F7B2001F50B7 /* MIDS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MIDS.m; path = ConnectMe/MIDS.m; sourceTree = "<group>"; };
 		DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MIDSVerificationSDK.xcframework; sourceTree = "<group>"; };
 		DDA283D426B315B9001F50B7 /* MIDSAssistSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MIDSAssistSDK.xcframework; sourceTree = "<group>"; };
+		DDC281F326E66E3100525461 /* ConfirmScannedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmScannedImageView.swift; sourceTree = "<group>"; };
+		DDC281F426E66E3100525461 /* ConfirmScannedImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmScannedImageView.xib; sourceTree = "<group>"; };
 		DDCFDEAD1F879B8900F932F8 /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Black.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
 		DDCFDEAE1F879B8900F932F8 /* SF-Pro-Display-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-BlackItalic.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-BlackItalic.otf"; sourceTree = "<group>"; };
 		DDCFDEAF1F879B8900F932F8 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Bold.otf"; path = "../node_modules/@evernym/react-native-white-label-app/src/fonts/SF Pro/SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 		13B07FAE1A68108700A75B9A /* ConnectMe */ = {
 			isa = PBXGroup;
 			children = (
+				DDC281F226E66E3100525461 /* ConfirmScannedImageView */,
 				DD8ED358266E65400010A55F /* ConnectMe-release.entitlements */,
 				DD8ED357266E63840010A55F /* ConnectMe.entitlements */,
 				DDD64CA8216D460A00BE706A /* connectme-website */,
@@ -582,6 +587,15 @@
 				DDA283D326B315B6001F50B7 /* MIDSVerificationSDK.xcframework */,
 			);
 			path = EmbeddedFrameworks;
+			sourceTree = "<group>";
+		};
+		DDC281F226E66E3100525461 /* ConfirmScannedImageView */ = {
+			isa = PBXGroup;
+			children = (
+				DDC281F326E66E3100525461 /* ConfirmScannedImageView.swift */,
+				DDC281F426E66E3100525461 /* ConfirmScannedImageView.xib */,
+			);
+			path = ConfirmScannedImageView;
 			sourceTree = "<group>";
 		};
 		DDD64CA8216D460A00BE706A /* connectme-website */ = {
@@ -939,6 +953,7 @@
 				D7CF24B6CF8648649CD3E93E /* Lato-Bold.ttf in Resources */,
 				CBAF34C79DA848F495B816FB /* Lato-BoldItalic.ttf in Resources */,
 				9A273D51F4DB427AA24DEE95 /* Lato-Italic.ttf in Resources */,
+				DDC281F626E66E3100525461 /* ConfirmScannedImageView.xib in Resources */,
 				36C1D67FE63A494B9967BC76 /* Lato-Medium.ttf in Resources */,
 				F4231D8934B94C7795C3CCDF /* Lato-MediumItalic.ttf in Resources */,
 				A07C3C32C7314BFE821C0880 /* Lato-Regular.ttf in Resources */,
@@ -1039,6 +1054,7 @@
 				"${BUILT_PRODUCTS_DIR}/RNImageColors/RNImageColors.framework",
 				"${BUILT_PRODUCTS_DIR}/RNImageCropPicker/RNImageCropPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/RNLocalize/RNLocalize.framework",
+				"${BUILT_PRODUCTS_DIR}/RNPermissions/RNPermissions.framework",
 				"${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework",
 				"${BUILT_PRODUCTS_DIR}/RNSVG/RNSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework",
@@ -1129,6 +1145,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNImageColors.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNImageCropPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNLocalize.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNPermissions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNReanimated.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNScreens.framework",
@@ -1260,6 +1277,7 @@
 			files = (
 				DDA283B626B1F7B2001F50B7 /* MIDS.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				DDC281F526E66E3100525461 /* ConfirmScannedImageView.swift in Sources */,
 				DD188B31266A84A9009FE2F1 /* do-not-delete-file-only-for-runtime-library.swift in Sources */,
 				DDA2818926B1CFDF001F50B7 /* MIDS.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
