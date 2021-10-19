@@ -75,6 +75,7 @@
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https" android:host="connectme.app.link" />
             <data android:scheme="https" android:host="link.comect.me" />
+            <data android:scheme="https" android:host="vty.im" />
             <!-- We might have to enable on the basis of debugging with above link -->
             <!-- <data android:scheme="https" android:host="bnc.lt" /> -->
             <data android:scheme="connectme" android:host="app.link" />

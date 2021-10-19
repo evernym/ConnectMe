@@ -161,8 +161,8 @@ build-ios-master:
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
     # this gets passed to the anchor
   only:
-    refs:
-      - main@evernym/mobile/connectme
+      refs:
+          - main@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -201,8 +201,8 @@ build-android-merge-request:
 build-android-master:
   extends: .build-android
   only:
-    refs:
-      - main@evernym/mobile/connectme
+      refs:
+          - main@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:

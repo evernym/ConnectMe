@@ -1854,9 +1854,9 @@
     ws "^1.1.0"
 
 "@react-native-community/masked-view@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
-  integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.11.tgz#2f4c6e10bee0786abff4604e39a37ded6f3980ce"
+  integrity sha512-rQfMIGSR/1r/SyN87+VD8xHHzDYeHaJq6elOSCAD+0iLagXkSI2pfA0LmSXP21uw5i3em7GkkRjfJ8wpqWXZNw==
 
 "@react-native-community/netinfo@^5.9.2":
   version "5.9.10"
@@ -1882,11 +1882,6 @@
   version "10.5.1"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-10.5.1.tgz#f4b833f6ff6a7c234e790bae1f01289ac08199d8"
   integrity sha512-cpx87M3vaR34vUYEFdpsFQk0/A29225tD5lqqvKW+l/u8FHD9KHyjm+XoEenV2eCayF8IxkmO9PQKsufgg4FHQ==
-
-"@react-native-picker/picker@^1.16.4", "@react-native-picker/picker@^1.8.3":
-  version "1.16.4"
-  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.16.4.tgz#85712375dbf0a38e8c20ee1b2d71253c0a1cd520"
-  integrity sha512-V/8XNlTU3QJ/mdY+mCQnuCCZJfIOpgfSnfFDinftWDi66mGuf6tRd+sfCOeKqjug38sdJm9CeNry/66W0EYodw==
 
 "@react-navigation/compat@^5.1.26":
   version "5.3.14"
@@ -3291,7 +3286,7 @@ base-64@0.1.0:
   resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
   integrity sha1-eAqZyE59YAJgNhURxId2E78k9rs=
 
-base64-js@^1.0.2, base64-js@^1.1.2, base64-js@^1.2.3, base64-js@^1.3.1, base64-js@^1.5.1:
+base64-js@^1.1.2, base64-js@^1.2.3, base64-js@^1.3.1, base64-js@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
@@ -3543,15 +3538,6 @@ buffer-indexof-polyfill@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/buffer-indexof-polyfill/-/buffer-indexof-polyfill-1.0.2.tgz#d2732135c5999c64b277fcf9b1abe3498254729c"
   integrity sha512-I7wzHwA3t1/lwXQh+A5PbNvJxgfo5r3xulgpYDB5zckTu/Z9oUK9biouBKQUjEqzaz3HnAT6TYoovmE+GqSf7A==
-
-buffer@^4.9.1:
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/buffer/-/buffer-4.9.2.tgz#230ead344002988644841ab0244af8c44bbe3ef8"
-  integrity sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==
-  dependencies:
-    base64-js "^1.0.2"
-    ieee754 "^1.1.4"
-    isarray "^1.0.0"
 
 buffer@^5.2.0, buffer@^5.2.1, buffer@^5.4.3, buffer@^5.5.0:
   version "5.7.1"
@@ -6533,7 +6519,7 @@ iconv-lite@^0.6.2:
   dependencies:
     safer-buffer ">= 2.1.2 < 3.0.0"
 
-ieee754@^1.1.13, ieee754@^1.1.4:
+ieee754@^1.1.13:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
   integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
@@ -10199,7 +10185,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@15.7.2, prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@15.7.2, prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -10552,16 +10538,6 @@ react-native-keyboard-aware-scroll-view@^0.9.1:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-list-view-select@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-list-view-select/-/react-native-list-view-select-1.0.4.tgz#9eeb7f929e277c28aebf3d3f4b6cd05afcd01d1a"
-  integrity sha1-nut/kp4nfCiuvz0/S2zQWvzQHRo=
-
-react-native-localize@^1.4.0:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.4.3.tgz#6fde2fb1e73a7205910419a680cb4734187d556f"
-  integrity sha512-n3pi89LBeSzB825CBagyaYRtBS93LdvNz3sI386iXwLSg1ONjEGR1Ez36JBuxZalZgORjrKzV2Pun6MO7iwD6w==
-
 react-native-mail@6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/react-native-mail/-/react-native-mail-6.1.0.tgz#cd7fa390824f5d1182fbe0599d135d221d11d205"
@@ -10584,14 +10560,6 @@ react-native-permissions@^3.0.5:
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.0.5.tgz#94542a343abdac801fa0a4593ea2c751cb45c41f"
   integrity sha512-hcvLtHhTyOTXC+CCv79d4Qtdnj6PGuY5Ms0fhW8V6Et1T/mPvzO6++Du4jwEv/oHZ62qMWKUDq0/Tsh63QHuyQ==
 
-react-native-picker-select@^8.0.4:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-8.0.4.tgz#3f7f1f42df69b06e7d2c10338288332a6c40fd10"
-  integrity sha512-orBjPIwBkV5oipyVw263YNMI56f6Kj3p/ejabZoCYYNSG3AiLVVhC2RqsxMgDA7IayyURAW+AlV+mDJyVqLBkg==
-  dependencies:
-    "@react-native-picker/picker" "^1.8.3"
-    lodash.isequal "^4.5.0"
-
 react-native-qrcode-svg@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/react-native-qrcode-svg/-/react-native-qrcode-svg-6.1.1.tgz#19dd15545b1cbcfc1b2738af170e9fd0f1d4d8a0"
@@ -10599,14 +10567,6 @@ react-native-qrcode-svg@^6.1.1:
   dependencies:
     prop-types "^15.7.2"
     qrcode "^1.4.4"
-
-react-native-randombytes@3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.5.3.tgz#b3bdcd11473cce106551a586244b98855e443cd1"
-  integrity sha512-n/7QwMrRJxHr+/3mt2KxqqacGylM+ssW+FfBTgXGzvwq5KzSohooEWf6Z6MTSByuJ/izP9VbSPtwomPwzvupKQ==
-  dependencies:
-    buffer "^4.9.1"
-    sjcl "^1.0.3"
 
 react-native-ratings@^7.2.0:
   version "7.5.0"
@@ -10711,13 +10671,6 @@ react-native-swipe-list-view@^3.2.3:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/react-native-swipe-list-view/-/react-native-swipe-list-view-3.2.6.tgz#dde8f65dcdc24f50fafc05da9e90b139b1c3b185"
   integrity sha512-FIrLzYjdxpMmD1hinP6bLSVS2eR2bhFdFuaqOJ+6/EuWDqZMBQcL4FLbkIwulMOc39JGdGZAxGExJYs7VKiQeQ==
-
-react-native-switch@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-switch/-/react-native-switch-1.5.0.tgz#a5c8e72f87def649d1c9de027c5ae27e2037ea40"
-  integrity sha1-pcjnL4fe9knRyd4CfFrifiA36kA=
-  dependencies:
-    prop-types "^15.6.0"
 
 react-native-unique-id@2.0.0:
   version "2.0.0"
@@ -11883,11 +11836,6 @@ sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
-
-sjcl@^1.0.3:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/sjcl/-/sjcl-1.0.8.tgz#f2ec8d7dc1f0f21b069b8914a41a8f236b0e252a"
-  integrity sha512-LzIjEQ0S0DpIgnxMEayM1rq9aGwGRG4OnZhCdjx7glTaJtf4zRfpg87ImfjSJjoW9vKpagd82McDOwbRT5kQKQ==
 
 slash@^2.0.0:
   version "2.0.0"
