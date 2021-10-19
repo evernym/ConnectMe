@@ -1039,6 +1039,7 @@
 
 "@evernym/react-native-white-label-app@../react-native-white-label-app":
   version "1.0.0"
+  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#5a72d96f17cda1609c60abe275a88356afb16ad1"
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
