@@ -46,7 +46,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>didcomm</string>
+			<string>vty.im</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>vty.im</string>
