@@ -1,6 +1,7 @@
 package test.java.funcModules;
 
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.appmanagement.ApplicationState;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -96,7 +97,14 @@ public class ConnectionModules extends IntSetup {
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) {
             driverApp.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
 
-            driverBrowser.executeScript("mobile: terminateApp", ImmutableMap.of("bundleId", "com.apple.mobilesafari"));
+            ApplicationState appState = driverBrowser.queryAppState("com.apple.mobilesafari");
+            System.out.println("Safari app state: " + appState);
+            if(appState.equals(ApplicationState.RUNNING_IN_BACKGROUND) || appState.equals(ApplicationState.RUNNING_IN_FOREGROUND)
+                || appState.equals(ApplicationState.RUNNING_IN_BACKGROUND_SUSPENDED))
+            {
+                // Call to kill safari only when it's already running, otherwise it'll terminate tcp connection to the device
+                driverBrowser.executeScript("mobile: terminateApp", ImmutableMap.of("bundleId", "com.apple.mobilesafari"));
+            }
 
             List args = new ArrayList();
             args.add("-U");

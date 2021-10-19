@@ -3,6 +3,7 @@ package test.java.Tests.UtilityTests;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import org.openqa.selenium.Platform;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -142,16 +143,24 @@ public class UpgradePathPreconditionTest extends IntSetup {
         reloadDriversAndPos();
         objConnectionModules = new ConnectionModules();
         connectionName = invitationType;
+        driverBrowser.launchApp();
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
 
-        // Use custom iteration approach to ensure that connection would be available for the next tests
-        AppUtils.DoSomethingEventuallyNew(
-            () -> driverBrowser = BrowserDriver.getDriver(),
-            () -> driverBrowser.launchApp(),
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
-            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
-            () -> objConnectionModules.acceptConnectionInvitation(driverApp)
-        );
+        try {
+            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5)
+            );
+        }
+        objConnectionModules.acceptConnectionInvitation(driverApp);
+
 
         try {
             switch (connectionName) {
@@ -166,8 +175,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
             System.exit(1); // don't run other tests if this fails
         }
 
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
+        if(test.java.utility.Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")

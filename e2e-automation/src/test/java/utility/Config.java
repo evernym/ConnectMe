@@ -21,11 +21,11 @@ public class Config {
 	public static final String Device_Type = "awsAndroid";
 	public static final String Device_Name = "connectme2"; // android emulator name
 
-    //  public static final String Device_Type = "awsAndroid";
+    //  public static final String Device_Type = "iOS";
     //  public static final String Device_Name = "iPhone";
     //  public static final String Device_UDID = "00008020-001105121E22402E";
 
-	//  public static final String Device_Type = "awsAndroid"; // for ios run - or awsiOS for devicefarm run
+	//  public static final String Device_Type = "iOS"; // for ios run - or awsiOS for devicefarm run
 	//  public static final String Device_Name = "iPhone 11"; // iphone 11 simulator name
 	public static final String Device_UDID = "4CD03CA6-BD03-490D-BEE0-09DB5954ED5B"; // iphone 11 simulator UDID
 
