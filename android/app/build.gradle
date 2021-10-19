@@ -98,7 +98,7 @@ def enableSeparateBuildPerCPUArchitecture = true
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = true
+def enableProguardInReleaseBuilds = false
 
 /**
  * The preferred build flavor of JavaScriptCore.
@@ -144,9 +144,6 @@ android {
         multiDexEnabled true
         versionCode 70211
         versionName "1.5.6"
-        ndk {
-          debugSymbolLevel 'FULL'
-        }
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
