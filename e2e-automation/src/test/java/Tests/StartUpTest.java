@@ -20,6 +20,7 @@ public class StartUpTest extends IntSetup {
               passCodePageNew.enterPassCode();
             }
             startUpPageNew.switchEnv();
+            homePageNew.homeHeader.isDisplayed();
         } catch (Exception e) {
             System.exit(1); // don't run other tests if this fails
         }
