@@ -99,5 +99,6 @@ public class StartUpPageNew {
     // steps for both platforms
     noThanksButton.click();
     eulaAcceptButton.click();
+    Thread.sleep(10000); // FIXME - probably it's a bug in CM
   }
 }
