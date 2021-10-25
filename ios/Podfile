@@ -7,9 +7,9 @@ source 'https://gitlab.com/evernym/mobile/mobile-sdk.git'
 
 def vcx_version_for_debug_or_release
     if ENV['CONNECTME_DEBUG'] == "true"
-        '0.0.214'
+        '0.0.216'
     else
-        '0.0.213'
+        '0.0.215'
     end
 end
 

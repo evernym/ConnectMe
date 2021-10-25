@@ -348,14 +348,12 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.12.1):
     - React-Core
-  - RNCMaskedView (0.1.10):
-    - React-Core
-  - RNCPicker (1.16.4):
+  - RNCMaskedView (0.1.11):
     - React-Core
   - RNCPushNotificationIOS (1.8.0):
     - React-Core
   - RNDeviceInfo (5.6.5):
-    - React-Core
+    - React
   - RNFBApp (10.5.0):
     - Firebase/CoreOnly (~> 7.4.0)
     - React-Core
@@ -378,8 +376,6 @@ PODS:
     - React-Core
     - React-RCTImage
     - TOCropViewController
-  - RNLocalize (1.4.3):
-    - React-Core
   - RNPermissions (3.0.5):
     - React-Core
   - RNReanimated (1.9.0):
@@ -406,7 +402,7 @@ PODS:
   - SSZipArchive (2.2.2)
   - Starscream (3.1.1)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.213)
+  - vcx (0.0.215)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -471,7 +467,6 @@ DEPENDENCIES:
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
-  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
@@ -480,7 +475,6 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageColors (from `../node_modules/react-native-image-colors`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
-  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -489,7 +483,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.213)
+  - vcx (= 0.0.215)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -613,8 +607,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
-  RNCPicker:
-    :path: "../node_modules/@react-native-picker/picker"
   RNCPushNotificationIOS:
     :path: "../node_modules/@react-native-community/push-notification-ios"
   RNDeviceInfo:
@@ -631,8 +623,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-colors"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
-  RNLocalize:
-    :path: "../node_modules/react-native-localize"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
@@ -715,17 +705,15 @@ SPEC CHECKSUMS:
   ReactCommon: a6a294e7028ed67b926d29551aa9394fd989c24c
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
-  RNCMaskedView: bed2a1eb783ec4b149167f0fd72d05593686d745
-  RNCPicker: c620feabdfb8b131fc1be42b407be5bacc147fea
+  RNCMaskedView: 38c3d9675c1d352e4becc13cbf321c7b1176267c
   RNCPushNotificationIOS: 61a7c72bd1ebad3568025957d001e0f0e7b32191
-  RNDeviceInfo: f7698670a863ade5b010e873c5966b307194532c
+  RNDeviceInfo: c5f8f3a456adcbba405ace475254b08febc4c095
   RNFBApp: 1b64430cb117cb709ac7fc2a1d859ecb406a3e1d
   RNFBMessaging: d847df779006a360993b85dbcd00dbc028933f84
   RNFileViewer: 83cc066ad795b1f986791d03b56fe0ee14b6a69f
   RNGestureHandler: 90e274c7f94b32e116b1e4d6be2f28477291ce37
   RNImageColors: 18783bf3f6f2ed5fcf4385a9003e6fa1f8f0d35f
   RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
-  RNLocalize: 7c7aeda16c01db7a0918981c14875c0a53be9b79
   RNPermissions: 7043bacbf928eae25808275cfe73799b8f618911
   RNReanimated: f05baf4cd76b6eab2e4d7e2b244424960b968918
   RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
@@ -738,9 +726,9 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: 0df8141a83380af3cecfb29f08aa4bafc3782801
+  vcx: b832b8c0c9350fe2a3424803121568ee60306f16
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 23dffdb8ac12f33a5466cb109886fdbc2b6f85ca
+PODFILE CHECKSUM: 9165266d6710f5c6d2719994d3bbea202e0acd9f
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
