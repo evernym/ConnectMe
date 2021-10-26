@@ -43,16 +43,6 @@
 			</array>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>vty.im</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>vty.im</string>
-			</array>
-		</dict>
-		<dict>
 			<key>CFBundleIdentifier</key>
 			<string></string>
 			<key>CFBundleTypeRole</key>
