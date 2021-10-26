@@ -7,13 +7,13 @@ source 'https://gitlab.com/evernym/mobile/mobile-sdk.git'
 
 def vcx_version_for_debug_or_release
     if ENV['CONNECTME_DEBUG'] == "true"
-        '0.0.214'
+        '0.0.216'
     else
-        '0.0.213'
+        '0.0.215'
     end
 end
 
-## Fix for XCode 13
+## Fix for XCode 12.5+
 # def find_and_replace(dir, findstr, replacestr)
 #   Dir[dir].each do |name|
 #       text = File.read(name)
@@ -64,12 +64,6 @@ post_install do |installer|
 					end
 				end
     end
-
-		## Fix for XCode 13
-    # find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
-    # "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
-		# find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
-		# "RCTBridgeModuleNameForClass(module))", "RCTBridgeModuleNameForClass(Class(module)))")
 end
 
 target 'ConnectMe' do
@@ -135,7 +129,7 @@ target 'ConnectMe' do
 
 	use_native_modules!
 
-  ## Fix for XCode 12.5
+  ## Fix for XCode 12.5+
     #   find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
     #   "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
     #   find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
