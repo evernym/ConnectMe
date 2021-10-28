@@ -355,7 +355,7 @@ PODS:
   - RNCPushNotificationIOS (1.8.0):
     - React-Core
   - RNDeviceInfo (5.6.5):
-    - React-Core
+    - React
   - RNFBApp (10.5.0):
     - Firebase/CoreOnly (~> 7.4.0)
     - React-Core
@@ -406,7 +406,7 @@ PODS:
   - SSZipArchive (2.2.2)
   - Starscream (3.1.1)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.213)
+  - vcx (0.0.214)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -489,7 +489,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.213)
+  - vcx (= 0.0.214)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -702,7 +702,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: 008ca4ae20f54b9ef4ff703154ced7c54cd899b1
+  react-native-white-label-app: 3c77a90a5e72f77c729c5f282e40350b77449510
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
   React-RCTBlob: 8e0b23d95c9baa98f6b0e127e07666aaafd96c34
@@ -718,7 +718,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: bed2a1eb783ec4b149167f0fd72d05593686d745
   RNCPicker: c620feabdfb8b131fc1be42b407be5bacc147fea
   RNCPushNotificationIOS: 61a7c72bd1ebad3568025957d001e0f0e7b32191
-  RNDeviceInfo: f7698670a863ade5b010e873c5966b307194532c
+  RNDeviceInfo: c5f8f3a456adcbba405ace475254b08febc4c095
   RNFBApp: 1b64430cb117cb709ac7fc2a1d859ecb406a3e1d
   RNFBMessaging: d847df779006a360993b85dbcd00dbc028933f84
   RNFileViewer: 83cc066ad795b1f986791d03b56fe0ee14b6a69f
@@ -738,9 +738,9 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: 0df8141a83380af3cecfb29f08aa4bafc3782801
+  vcx: b16d73737b1751d50ba1508b97e35ee5fbfb1e4d
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 23dffdb8ac12f33a5466cb109886fdbc2b6f85ca
+PODFILE CHECKSUM: 5547ad380cf710fea327913cd57716d00e6d2294
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.2
