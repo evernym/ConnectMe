@@ -31,7 +31,7 @@ public class SettingsPageNew {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Passcode Change your Connect.Me passcode\"]")
   public WebElement passCodeButton;
 
-  @AndroidFindBy(xpath = "//*[@text=\"Give app feedback\"]")
+  @AndroidFindBy(xpath = "//*[@text=\"Give app feedback\"]/parent::*")
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Give app feedback Tell us what you think of Connect.Me\"]")
   public WebElement chatButton;
 
