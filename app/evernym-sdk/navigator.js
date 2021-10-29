@@ -14,7 +14,6 @@ import { COLORS } from './colors'
 export const MENU_NAVIGATION_OPTIONS = [
   { name: 'Connections', label: 'My Connections' },
   { name: 'Credentials', label: 'My Credentials' },
-  { name: 'PhysicalDocumentVerification', label: 'Document Verification' },
   { name: 'Settings', label: 'Settings' },
 ]
 

@@ -7,9 +7,9 @@ source 'https://gitlab.com/evernym/mobile/mobile-sdk.git'
 
 def vcx_version_for_debug_or_release
     if ENV['CONNECTME_DEBUG'] == "true"
-        '0.0.214'
+        '0.0.216'
     else
-        '0.0.213'
+        '0.0.215'
     end
 end
 
@@ -80,7 +80,7 @@ target 'ConnectMe' do
 	$RNFirebaseAsStaticFramework = true
 
 	pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
-	pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
+    pod 'FBReactNativeSpec', :path => "../node_modules/react-native/React/FBReactNativeSpec"
 	pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
 	pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
 	pod 'React', :path => '../node_modules/react-native/'
@@ -102,16 +102,18 @@ target 'ConnectMe' do
 	pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
 
 	pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
+	pod 'React-runtimeexecutor', :path => '../node_modules/react-native/ReactCommon/runtimeexecutor'
 	pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
 	pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
 	pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
-	pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
+    pod 'React-callinvoker', :path => "../node_modules/react-native/ReactCommon/callinvoker"
 	pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
 	pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+    pod 'React-perflogger', :path => '../node_modules/react-native/ReactCommon/reactperflogger'
 
 	pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
 	pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
-	pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+    pod 'RCT-Folly', :podspec => '../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec'
 
 	# Pod dependecy for MIDS
 	pod 'JumioMobileSDK', '~>3.9.0' # Use Netverify, Authentication, Document Verification and BAM Checkout together in your app

@@ -1,7 +1,6 @@
 package me.connect;
 
 import com.facebook.react.ReactActivity;
-import com.facebook.react.ReactFragmentActivity;
 
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactInstanceManager;

@@ -1,5 +1,6 @@
 package test.java.Tests;
 
+import org.openqa.selenium.Platform;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -41,31 +42,48 @@ public class ConnectionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource")
     public void rejectConnectionTest(String invitationType) throws Exception {
-        AppUtils.DoSomethingEventuallyNew(
-            () -> driverBrowser = BrowserDriver.getDriver(),
-            () -> driverBrowser.launchApp(),
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType),
-            () -> objConnectionModules.acceptPushNotificationRequest(driverApp),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
-            () -> objConnectionModules.rejectConnectionInvitation(driverApp)
-        );
+        driverBrowser = BrowserDriver.getDriver();
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+        objConnectionModules.acceptPushNotificationRequest(driverApp);
 
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
+        try {
+            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
+        }
+        objConnectionModules.rejectConnectionInvitation(driverApp);
+
+        if(Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
     }
 
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
+        driverBrowser.launchApp();
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
 
-        // Use custom iteration approach to ensure that connection would be available for the next tests
-        AppUtils.DoSomethingEventuallyNew(
-            () -> driverBrowser = BrowserDriver.getDriver(),
-            () -> driverBrowser.launchApp(),
-            () -> objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType),
-            () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title),
-            () -> objConnectionModules.acceptConnectionInvitation(driverApp)
-        );
+        try {
+            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5)
+            );
+        }
+        objConnectionModules.acceptConnectionInvitation(driverApp);
+
 
         try {
             switch (connectionName) {
@@ -80,8 +98,9 @@ public class ConnectionTest extends IntSetup {
             System.exit(1); // don't run other tests if this fails
         }
 
-        Thread.sleep(1000);
-        BrowserDriver.closeApp();
+        if(Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
+
+        context.setValue(invitationType + "_DID", context.getValue("DID"));
     }
 
     @Test(dependsOnMethods = "setUpConnectionTest")
