@@ -1393,10 +1393,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@evernym/react-native-white-label-app@1.0.0-395499044":
-  version "1.0.0-395499044"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-395499044.tgz#b28a72b7424fc39b115ff8e6f7fed9e1800f5c69"
-  integrity sha512-rCybpeQGtXIE8PD3+ysXoufCFVFdjgpI2xmir9rdXu5x55iA7xCmNqbd2QE8r6WVKBi0yIxEvU8v2kE+NsCGhQ==
+"@evernym/react-native-white-label-app@1.0.0-397138231":
+  version "1.0.0-397138231"
+  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-397138231.tgz#c74f5acdbea230a06544adc15549e22cd2d336b0"
+  integrity sha512-B7C1JGz8PXNXgVUWqqfW97QaEVDWpzO8Y7JHubV74ez9t1jUASrXBxL1ftKgYlnNrP+TB3w1PhCDbVlgYB5DfQ==
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
@@ -3014,10 +3014,10 @@ appdirsjs@^1.2.4:
   resolved "https://registry.yarnpkg.com/appdirsjs/-/appdirsjs-1.2.5.tgz#c9888c8a0a908014533d5176ec56f1d5a8fd3700"
   integrity sha512-UyaAyzj+7XLoKhbXJi4zoAw8IDXCiLNCKfQEiuCsCCTkDmiG1vpCliQn/MoUvO3DZqCN1i6gOahokcFtNSIrVA==
 
-apptentive-react-native@5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/apptentive-react-native/-/apptentive-react-native-5.5.0.tgz#416e22c4f848bd6a31585f05390d9890ced3d7c5"
-  integrity sha512-gtNvcCB6TpUJALjxI50QjqwBVjcIpHhm5xYOnRi41+6BpMA4naq639gcWldToZAizRn1aHQMlOhtJbkL7XFv0w==
+apptentive-react-native@^5.7.2:
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/apptentive-react-native/-/apptentive-react-native-5.7.2.tgz#73d42b72c4266291cedc0c3e5122e62a4faedb95"
+  integrity sha512-BRjZAQbhWkT2nzHrtAd/KPEy/ipSlG6TMUSaiygW51CswkLIXOt0AL/i+wWwrFxgRvo21E4ra60tMwm7n+OrzA==
 
 argparse@^1.0.7, argparse@^1.0.9:
   version "1.0.10"

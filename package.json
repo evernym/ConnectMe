@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "@evernym/react-native-white-label-app": "1.0.0-395499044",
+    "@evernym/react-native-white-label-app": "1.0.0-397138231",
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.10",
@@ -40,7 +40,7 @@
     "@react-navigation/stack": "5.12.0",
     "@redux-saga/delay-p": "1.1.2",
     "ajv": "^6.12.2",
-    "apptentive-react-native": "5.5.0",
+    "apptentive-react-native": "^5.7.2",
     "bignumber.js": "^9.0.0",
     "color": "^3.1.2",
     "dayjs": "^1.9.1",
