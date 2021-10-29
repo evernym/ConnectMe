@@ -98,9 +98,9 @@ devicefarm-test-launch-android-master:
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
-    rules:
-        - if: '$CI_COMMIT_REF_SLUG == "main"'
-          when: always
+    only:
+        refs:
+            - feature/auto/CM-3142-fix-locators
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
 
@@ -108,9 +108,9 @@ devicefarm-test-launch-ios-master:
     extends: .devicefarm-test-launch-ios
     dependencies:
         - build-ios-master
-    rules:
-        - if: '$CI_COMMIT_REF_SLUG == "main"'
-          when: always
+    only:
+        refs:
+            - feature/auto/CM-3142-fix-locators
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
 

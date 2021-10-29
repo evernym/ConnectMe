@@ -164,6 +164,7 @@ build-ios-master:
       refs:
           - main@evernym/mobile/connectme
           - update-rn@evernym/mobile/connectme
+          - feature/auto/CM-3142-fix-locators
 
 ### - Android - ###
 .build-android:
@@ -205,6 +206,7 @@ build-android-master:
       refs:
           - main@evernym/mobile/connectme
           - update-rn@evernym/mobile/connectme
+          - feature/auto/CM-3142-fix-locators
 
 # Upload jobs
 upload-ios:
