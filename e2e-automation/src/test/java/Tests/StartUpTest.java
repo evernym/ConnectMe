@@ -22,6 +22,8 @@ public class StartUpTest extends IntSetup {
             startUpPageNew.switchEnv();
             homePageNew.homeHeader.isDisplayed();
         } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Aborting test run");
             System.exit(1); // don't run other tests if this fails
         }
     }

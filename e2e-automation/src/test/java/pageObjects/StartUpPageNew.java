@@ -98,6 +98,7 @@ public class StartUpPageNew {
     }
     // steps for both platforms
     noThanksButton.click();
+    Thread.sleep(3000);
     eulaAcceptButton.click();
   }
 }
