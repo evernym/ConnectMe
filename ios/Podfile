@@ -115,17 +115,6 @@ target 'ConnectMe' do
 	pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
     pod 'RCT-Folly', :podspec => '../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec'
 
-	# Pod dependecy for MIDS
-	pod 'JumioMobileSDK', '~>3.9.0' # Use Netverify, Authentication, Document Verification and BAM Checkout together in your app
-	pod 'JumioMobileSDK/Netverify', '~>3.9.0' # Use full Netverify and Authentication functionality
-	pod 'JumioMobileSDK/NetverifyBase', '~>3.9.0' # For Fastfill, Netverify basic functionality
-	pod 'JumioMobileSDK/NetverifyNFC', '~>3.9.0' # For Fastfill, Netverify functionality with NFC extraction
-	pod 'JumioMobileSDK/NetverifyBarcode', '~>3.9.0' # For Fastfill, Netverify functionality with barcode extraction
-	pod 'JumioMobileSDK/NetverifyFace+iProov', '~>3.9.0' # For Fastfill, Netverify functionality with Identity Verification, Authentication
-	pod 'JumioMobileSDK/NetverifyFace+Zoom', '~>3.9.0' # For Fastfill, Netverify functionality with Identity Verification, Authentication
-	pod 'JumioMobileSDK/DocumentVerification', '~>3.9.0' # Use Document Verification functionality
-	pod 'JumioMobileSDK/BAMCheckout', '~>3.9.0' # Use BAM Checkout functionality
-
 	# Other pods dependency
 
 	pod 'vcx', vcx_version_for_debug_or_release

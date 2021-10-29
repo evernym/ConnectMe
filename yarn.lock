@@ -1393,10 +1393,8 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@evernym/react-native-white-label-app@1.0.0-395499044":
-  version "1.0.0-395499044"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-395499044.tgz#b28a72b7424fc39b115ff8e6f7fed9e1800f5c69"
-  integrity sha512-rCybpeQGtXIE8PD3+ysXoufCFVFdjgpI2xmir9rdXu5x55iA7xCmNqbd2QE8r6WVKBi0yIxEvU8v2kE+NsCGhQ==
+"@evernym/react-native-white-label-app@../react-native-white-label-app":
+  version "1.0.0"
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
