@@ -96,7 +96,7 @@ public class StartUpPageNew {
       Thread.sleep(2000);
       saveButton.click();
     }
-    // steps for both platforms
+    // steps for both platforms 
     noThanksButton.click();
     Thread.sleep(3000);
     eulaAcceptButton.click();
