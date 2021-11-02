@@ -91,7 +91,18 @@ public class VASApi {
 		try {
 			result = new JSONObject(responseBody);
 		} catch (JSONException ex) {
+            System.out.println("Failed to parse GET response: " + ex.toString());
+            System.out.println("Response body was following:");
+            System.out.println(responseBody);
 			// ignore
+
+            System.out.println("Latest responses were: ");
+            RestAssured.baseURI = VAS_SERVER_ENDPOINT + '/';
+            response = RestAssured
+                .given()
+                .relaxedHTTPSValidation()
+                .request(Method.GET);
+            System.out.println(response.getBody().toString());
 		}
 
 		return result;
@@ -99,7 +110,7 @@ public class VASApi {
 
 	private JSONObject getVASResponse(String expectedType, String thread) throws Exception {
 		for (int i = 0; i < 6; i++) {
-			Thread.sleep(10000);
+			Thread.sleep(15000);
 			JSONObject VASResponse = getLastVASResponse(thread);
 			if (VASResponse.has("@type") && VASResponse.getString("@type").equals(expectedType)) {
 				return VASResponse;
@@ -154,25 +165,36 @@ public class VASApi {
 	}
 
 	public JSONObject createRelationship(String label) throws Exception {
-		JSONObject body =
-				new JSONObject()
-						.put("@id", UUID4())
-						.put("@type", "did:sov:123456789abcdefghi1234;spec/relationship/1.0/create")
-						.put("label", label)
+                JSONObject body =
+                    new JSONObject()
+                        .put("@id", UUID4())
+                        .put("@type", "did:sov:123456789abcdefghi1234;spec/relationship/1.0/create")
+                        .put("label", label)
                         .put("logoUrl", "https://www.gstatic.com/webp/gallery/3.sm.jpg");
 
-		String thread = UUID4();
-		String path = "/relationship/1.0/" + thread;
+                String thread = UUID4();
+                String path = "/relationship/1.0/" + thread;
 
-		post(path, body.toString());
+                post(path, body.toString());
 
-		JSONObject result = new JSONObject();
-		JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/created", thread);
+        for(int i = 1; i <= 5; i++) {
+            System.out.println("Attempt #" + i + " to create relationship");
+            try {
+                JSONObject result = new JSONObject();
+                JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/created", thread);
 
-		result.put("relationshipThreadID", VASResponse.getJSONObject("~thread").getString("thid"));
-		result.put("DID", VASResponse.getString("did"));
+                result.put("relationshipThreadID", VASResponse.getJSONObject("~thread").getString("thid"));
+                result.put("DID", VASResponse.getString("did"));
 
-		return result;
+                return result;
+            }
+            catch (JSONException e)
+            {
+                System.out.println("Error during relationship creation: " + e.getMessage());
+                Thread.sleep(15000);
+            }
+        }
+        return null;
 	}
 
 	public JSONObject createConnectionInvitation(String relationshipThreadID,
@@ -185,22 +207,26 @@ public class VASApi {
 						.put("~for_relationship", DID)
 						.put("shortInvite", true);
 
-		// TODO: remove it when VE-2628 would be deployed.
-		if(invitationType.equals("out-of-band-invitation")) {
-		  body.put("goalCode", "issue-vc");
-		  body.put("goal", "To issue a credential");
-    }
-
 		String path = "/relationship/1.0/" + relationshipThreadID;
-
 		post(path, body.toString());
 
-		JSONObject result = new JSONObject();
-		JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/invitation", relationshipThreadID);
+        for(int i = 1; i <= 5; i++) {
+            System.out.println("Attempt #" + i + " to create connection invitation");
+            try {
+                JSONObject result = new JSONObject();
+                JSONObject VASResponse = getVASResponse("did:sov:123456789abcdefghi1234;spec/relationship/1.0/invitation", relationshipThreadID);
 
-		result.put("inviteURL", VASResponse.getString("shortInviteURL"));
+                result.put("inviteURL", VASResponse.getString("shortInviteURL"));
 
-		return result;
+                return result;
+            }
+            catch (JSONException e)
+            {
+                System.out.println("Error during receiving connection invitation: " + e.getMessage());
+                Thread.sleep(15000);
+            }
+        }
+        return null;
 	}
 
 	public JSONObject createSchema(String name,

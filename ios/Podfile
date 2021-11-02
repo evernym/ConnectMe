@@ -7,25 +7,25 @@ source 'https://gitlab.com/evernym/mobile/mobile-sdk.git'
 
 def vcx_version_for_debug_or_release
     if ENV['CONNECTME_DEBUG'] == "true"
-        '0.0.214'
+        '0.0.216'
     else
-        '0.0.213'
+        '0.0.215'
     end
 end
 
 ## Fix for XCode 13
-# def find_and_replace(dir, findstr, replacestr)
-#   Dir[dir].each do |name|
-#       text = File.read(name)
-#       replace = text.gsub(findstr,replacestr)
-#       if text != replace
-#           puts "Fix: " + name
-#           File.open(name, "w") { |file| file.puts replace }
-#           STDOUT.flush
-#       end
-#   end
-#   Dir[dir + '*/'].each(&method(:find_and_replace))
-# end
+def find_and_replace(dir, findstr, replacestr)
+  Dir[dir].each do |name|
+      text = File.read(name)
+      replace = text.gsub(findstr,replacestr)
+      if text != replace
+          puts "Fix: " + name
+          File.open(name, "w") { |file| file.puts replace }
+          STDOUT.flush
+      end
+  end
+  Dir[dir + '*/'].each(&method(:find_and_replace))
+end
 
 # Convert all permission pods into static libraries
 pre_install do |installer|
@@ -66,10 +66,10 @@ post_install do |installer|
     end
 
 		## Fix for XCode 13
-    # find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
-    # "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
-		# find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
-		# "RCTBridgeModuleNameForClass(module))", "RCTBridgeModuleNameForClass(Class(module)))")
+    find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
+    "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
+		find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
+		"RCTBridgeModuleNameForClass(module))", "RCTBridgeModuleNameForClass(Class(module)))")
 end
 
 target 'ConnectMe' do
@@ -80,7 +80,7 @@ target 'ConnectMe' do
 	$RNFirebaseAsStaticFramework = true
 
 	pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
-	pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
+    pod 'FBReactNativeSpec', :path => "../node_modules/react-native/React/FBReactNativeSpec"
 	pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
 	pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
 	pod 'React', :path => '../node_modules/react-native/'
@@ -99,30 +99,21 @@ target 'ConnectMe' do
 	pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
 	pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
 
-    pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
+	pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera"
 
 	pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
+	pod 'React-runtimeexecutor', :path => '../node_modules/react-native/ReactCommon/runtimeexecutor'
 	pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
 	pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
 	pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
-	pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
+    pod 'React-callinvoker', :path => "../node_modules/react-native/ReactCommon/callinvoker"
 	pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
 	pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+    pod 'React-perflogger', :path => '../node_modules/react-native/ReactCommon/reactperflogger'
 
 	pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
 	pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
-	pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
-	# Pod dependecy for MIDS
-	pod 'JumioMobileSDK', '~>3.9.0' # Use Netverify, Authentication, Document Verification and BAM Checkout together in your app
-	pod 'JumioMobileSDK/Netverify', '~>3.9.0' # Use full Netverify and Authentication functionality
-	pod 'JumioMobileSDK/NetverifyBase', '~>3.9.0' # For Fastfill, Netverify basic functionality
-	pod 'JumioMobileSDK/NetverifyNFC', '~>3.9.0' # For Fastfill, Netverify functionality with NFC extraction
-	pod 'JumioMobileSDK/NetverifyBarcode', '~>3.9.0' # For Fastfill, Netverify functionality with barcode extraction
-	pod 'JumioMobileSDK/NetverifyFace+iProov', '~>3.9.0' # For Fastfill, Netverify functionality with Identity Verification, Authentication
-	pod 'JumioMobileSDK/NetverifyFace+Zoom', '~>3.9.0' # For Fastfill, Netverify functionality with Identity Verification, Authentication
-	pod 'JumioMobileSDK/DocumentVerification', '~>3.9.0' # Use Document Verification functionality
-	pod 'JumioMobileSDK/BAMCheckout', '~>3.9.0' # Use BAM Checkout functionality
+    pod 'RCT-Folly', :podspec => '../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec'
 
 	# Other pods dependency
 
@@ -134,11 +125,5 @@ target 'ConnectMe' do
 	end
 
 	use_native_modules!
-
-  ## Fix for XCode 12.5
-    #   find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
-    #   "_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
-    #   find_and_replace("../node_modules/react-native/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm",
-    #   "RCTBridgeModuleNameForClass(module))", "RCTBridgeModuleNameForClass(Class(module)))")
 
 end

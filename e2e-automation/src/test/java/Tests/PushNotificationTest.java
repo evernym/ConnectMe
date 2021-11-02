@@ -2,22 +2,21 @@ package test.java.Tests;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.json.JSONObject;
-import org.openqa.selenium.WebDriverException;
-import org.testng.annotations.*;
+import org.openqa.selenium.Platform;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import test.java.appModules.AppUtils;
 import test.java.appModules.VASApi;
-import test.java.utility.IntSetup;
-import test.java.funcModules.ConnectionModules;
-import test.java.utility.Helpers;
-import test.java.utility.LocalContext;
-import test.java.utility.BrowserDriver;
 import test.java.utility.Constants;
-import test.java.utility.Config;
+import test.java.utility.Helpers;
+import test.java.utility.IntSetup;
+import test.java.utility.LocalContext;
 
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 public class PushNotificationTest extends IntSetup {
@@ -27,6 +26,7 @@ public class PushNotificationTest extends IntSetup {
 
     String connectionName;
     String DID;
+    String deviceModel = "";
     final String appBackgroundLocked = "background + locked";
     final String appBackground = "background";
 
@@ -41,29 +41,28 @@ public class PushNotificationTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         System.out.println("Push Notification Test Suite has been started!");
-
-        connectionName = context.getValue("connectionName");
-        DID = context.getValue("DID");
+        connectionName = "connection-invitation";
+        DID = context.getValue(connectionName + "_DID");
+        try {
+            // This is mainly used for workaround on Google Pixel 2 XL devices since Appium's unlock() function does not work reliably on them
+            deviceModel = driverApp.getCapabilities().getCapability("deviceModel").toString();
+        }
+        catch (Exception e) { } // Suppress exceptions for different behaviors on different devices
         passCodePageNew.openApp();
+
     }
 
 
     @Test(dataProvider = "appStates")
     public void checkCredOfferNotificationAppRunningInBackground(String appState) throws Exception {
-        if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
-            return;
+        if (Helpers.getPlatformType().equals(Platform.IOS) || deviceModel.equals("Pixel 2 XL")) return;
 
         String credentialName = Helpers.randomString();
 
         switch (appState) {
             case appBackgroundLocked:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
-                try {
-                    ((AndroidDriver) driverApp).lockDevice();
-                } catch (WebDriverException e) {
-                    // TODO: this bug has been fixed in 6.0+ client version
-                    if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
-                }
+                ((AndroidDriver) driverApp).lockDevice();
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
@@ -75,24 +74,8 @@ public class PushNotificationTest extends IntSetup {
         if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
 
         ((AndroidDriver) driverApp).openNotifications();
-
-        AppUtils.DoSomethingEventually(
-            () -> homePageNew.credentialOfferNotification.click()
-        );
-
-        driverApp.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        try {
-            objAppUtlis.unlockApp(driverApp);
-        } catch (Exception ex) {
-            System.out.println("Unlocking is not needed here!");
-        }
-
-        try {
-            homePageNew.newMessage.click();
-        } catch (Exception ex) {
-            System.out.println("New message tapping is not needed here!");
-        }
-        driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        homePageNew.credentialOfferNotification.click();
+        objAppUtlis.authForAction();
 
         AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialSenderLogo);
         String schemeName = credentialPageNew.credentialSchemeName.getText();
@@ -101,20 +84,14 @@ public class PushNotificationTest extends IntSetup {
         AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
     }
 
-    @Test(dataProvider = "appStates")
+    @Test(dataProvider = "appStates", dependsOnMethods = "checkCredOfferNotificationAppRunningInBackground")
     public void checkProofRequestNotificationAppRunningInBackground(String appState) throws Exception {
-        if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
-            return;
+        if (Helpers.getPlatformType().equals(Platform.IOS) || deviceModel.equals("Pixel 2 XL")) return;
 
         switch (appState) {
             case appBackgroundLocked:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
-                try {
-                    ((AndroidDriver) driverApp).lockDevice();
-                } catch (WebDriverException e) {
-                    // TODO: this bug has been fixed in 6.0+ client version
-                    if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
-                }
+                ((AndroidDriver) driverApp).lockDevice();
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
@@ -124,42 +101,22 @@ public class PushNotificationTest extends IntSetup {
         String attribute1 = "FirstName";
         String attribute2 = "LastName";
         List<JSONObject> requestedAttributes = Arrays.asList(new JSONObject().put("names", Arrays.asList(attribute1, attribute2)));
-
         String proofName = Helpers.randomString();
 
         VAS.requestProof(DID, proofName, requestedAttributes, null);
-
-        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
-
+        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver)driverApp).unlockDevice();
         ((AndroidDriver) driverApp).openNotifications();
+        homePageNew.proofRequestNotification.click();
 
-        AppUtils.DoSomethingEventually(
-            () -> homePageNew.proofRequestNotification.click()
-        );
-
-        driverApp.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        try {
-            objAppUtlis.unlockApp(driverApp);
-        } catch (Exception ex) {
-            System.out.println("Unlocking is not needed here!");
-        }
-
-        try {
-            homePageNew.newMessage.click();
-        } catch (Exception ex) {
-            System.out.println("New message tapping is not needed here!");
-        }
-        driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-
+        objAppUtlis.authForAction();
         objAppUtlis.shareProof();
         homePageNew.recentEventsSection.isDisplayed();
         AppUtils.waitForElement(driverApp, () -> homePageNew.proofSharedEvent(proofName)).isDisplayed();
     }
 
-    @Test(dataProvider = "appStates")
+    @Test(dataProvider = "appStates", dependsOnMethods = "checkProofRequestNotificationAppRunningInBackground")
     public void checkStructuredMessageNotificationAppRunningInBackground(String appState) throws Exception {
-        if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS")) || Config.Device_Type.equals("iOSSimulator"))
-            return;
+        if (Helpers.getPlatformType().equals(Platform.IOS) || deviceModel.equals("Pixel 2 XL")) return;
 
         String text = "How much?";
         String detail = "How much do you want";
@@ -168,12 +125,7 @@ public class PushNotificationTest extends IntSetup {
         switch (appState) {
             case appBackgroundLocked:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
-                try {
-                    ((AndroidDriver) driverApp).lockDevice();
-                } catch (WebDriverException e) {
-                    // TODO: this bug has been fixed in 6.0+ client version
-                    if (!((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).lockDevice();
-                }
+                ((AndroidDriver) driverApp).lockDevice();
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
@@ -182,28 +134,11 @@ public class PushNotificationTest extends IntSetup {
 
         VAS.askQuestion(DID, text, detail, option);
 
-        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver) driverApp).unlockDevice();
-
+        if (((AndroidDriver) driverApp).isDeviceLocked()) ((AndroidDriver)driverApp).unlockDevice();
         ((AndroidDriver) driverApp).openNotifications();
+        homePageNew.questionNotification.click();
 
-        AppUtils.DoSomethingEventually(
-            () -> homePageNew.questionNotification.click()
-        );
-
-        driverApp.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        try {
-            objAppUtlis.unlockApp(driverApp);
-        } catch (Exception ex) {
-            System.out.println("Unlocking is not needed here!");
-        }
-
-        try {
-            homePageNew.newMessage.click();
-        } catch (Exception ex) {
-            System.out.println("New message tapping is not needed here!");
-        }
-        driverApp.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-
+        objAppUtlis.authForAction();
         AppUtils.waitForElementNew(driverApp, questionPageNew.header);
         questionPageNew.senderLogo.isDisplayed();
         objAppUtlis.findParameterizedElement(connectionName).isDisplayed();
