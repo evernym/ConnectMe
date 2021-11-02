@@ -118,7 +118,7 @@ target 'ConnectMe' do
 	# Other pods dependency
 
 	pod 'vcx', vcx_version_for_debug_or_release
-	pod 'apptentive-ios', '5.2.2'
+	pod 'apptentive-ios'
 
 	target 'ConnectMeTests' do
         inherit! :search_paths
