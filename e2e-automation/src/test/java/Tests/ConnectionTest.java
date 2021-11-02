@@ -47,7 +47,7 @@ public class ConnectionTest extends IntSetup {
         objConnectionModules.acceptPushNotificationRequest(driverApp);
 
         try {
-            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 15);
         }
         catch (Exception e)
         {
@@ -56,7 +56,7 @@ public class ConnectionTest extends IntSetup {
                 () -> driverApp.terminateApp("me.connect"),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 15));
         }
         objConnectionModules.rejectConnectionInvitation(driverApp);
 
