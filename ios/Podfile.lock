@@ -1,7 +1,7 @@
 PODS:
-  - apptentive-ios (5.2.2)
-  - apptentive-react-native (5.4.6):
-    - apptentive-ios (~> 5)
+  - apptentive-ios (5.3.1)
+  - apptentive-react-native (5.7.2):
+    - apptentive-ios (< 6.0, >= 5.3.1)
     - React-Core
   - boost-for-react-native (1.63.0)
   - Branch (0.37.0)
@@ -330,7 +330,7 @@ PODS:
     - React-Core
   - react-native-webview (10.1.1):
     - React-Core
-  - react-native-white-label-app (1.0.0-395499044):
+  - react-native-white-label-app (1.0.0-397138231):
     - React-Core
     - vcx
   - React-perflogger (0.65.1)
@@ -455,11 +455,11 @@ PODS:
   - SSZipArchive (2.2.2)
   - Starscream (3.1.1)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.215)
+  - vcx (0.0.216)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
-  - apptentive-ios (= 5.2.2)
+  - apptentive-ios
   - apptentive-react-native (from `../node_modules/apptentive-react-native`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -538,7 +538,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.215)
+  - vcx (= 0.0.216)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -705,8 +705,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  apptentive-ios: a38ab3b2244f7294a06dd08e56afb8018d414bf4
-  apptentive-react-native: f91958c55b9090aba7f776e56ede2f9dae57906b
+  apptentive-ios: 94a2e90b4759051a3b73e6e2ae85f16361e20b9c
+  apptentive-react-native: b977aeb105b77929c47fa616f1d42277176edff4
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   Branch: 49c609eb0ac0130b8491d0923a9298714731bd0d
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
@@ -719,7 +719,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 5ad92c898e1328b66e8dd58811964d6fe4d334c3
   FirebaseMessaging: 6112b5cd04e0ff58c4a9920e5e29cf193ea88439
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  glog: 5337263514dd6f09803962437687240c5dc39aa4
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
   iProov: 867e796a694061aef01758a855f279ae5b1deb08
@@ -756,7 +756,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: c9f1444fc24777ea88e94f83b1324f6d3e22f1af
+  react-native-white-label-app: 600a93c7c84c4535c4b8b451a2cb970de4b03659
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -792,9 +792,9 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: b832b8c0c9350fe2a3424803121568ee60306f16
+  vcx: 7a3936aa95302394ffbe8be8bb44390ed3d412f2
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
-PODFILE CHECKSUM: 8b80e4d85b4bcb450bb0b5bb53a3f1d2c70b003a
+PODFILE CHECKSUM: 5779e0a1f34aa7f9c09160dea34aa8af598ea7fb
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
