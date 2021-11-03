@@ -102,7 +102,7 @@ devicefarm-test-launch-android-master:
         refs:
             - feature/auto/CM-3142-fix-locators
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl mr vas
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
 
 devicefarm-test-launch-ios-master:
     extends: .devicefarm-test-launch-ios
