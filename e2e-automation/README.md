@@ -3,7 +3,7 @@
 - JDK 8
 - Node >12.13 . Preferred way to install node is via [nvm](https://www.sitepoint.com/quick-tip-multiple-versions-node-nvm/)
 - [React native setup](http://facebook.github.io/react-native/docs/getting-started.html). Use tab `Building Projects with Native Code`.
-- Appium 1.15.1 or higher
+- [Appium](https://appium.io/) 1.15.1 or higher
 - Android
     - Android SDK
     - Android Studio 3.1.4 or higher
@@ -16,11 +16,13 @@
         ```
 - iOS
     - XCode 11 +
+    - [Real Device Setup](https://appium.io/docs/en/drivers/ios-xcuitest-real-devices/#configuring-the-app-under-test)
 
 # Steps to run
 
-- Create and Start Android emulator
-- Start Appium server
+> Note: Test currently properly working only on real devices. Emulators are not supported!
+
+- Start Appium server. 
 - Run [VAS Server](./appium-launcher/vas-server.py)
     - Start Ngrok on 1338 HTTP port
     - Copy URL and put into `VAS_Server_Link` setting in [config](./src/test/java/utility/Config.java)
@@ -28,11 +30,12 @@
     - Start server with `python3 vas-server.py`
 - Android:
   - Update [config](./src/test/java/utility/Config.java) file:
-    - Set `android` into `Device_Type` variable.
-    - Set your device id into `Device_Name` variable (use `adb devices` to get list of devices).
-  - Make sure that Appium's chromedriver version matches Chrome's version on the device. You can specify path to your `chromedriverExecutable` in [file](./src/test/java/utility/BrowserDriver.java)
+    - Put `android` into `Device_Type` setting.
+    - Put your device id into `Device_Name` setting (use `adb devices` to get list of devices).
+    - Make sure that Appium's chromedriver version matches Chrome's version on the device. If they are different you need to download a proper driver and add `chromedriverExecutable` capability (path to the driver on your OS) in the [file](./src/test/java/utility/BrowserDriver.java)
+- iOS:
+  - Update [config](./src/test/java/utility/Config.java) file:
+      - Put `iOS` into `Device_Type` setting.
+      - Put your device name into `Device_Name` setting.
+      - Put your device id into `Device_UDID` setting.
 - Run tests: `mvn test`
-
-
-
-

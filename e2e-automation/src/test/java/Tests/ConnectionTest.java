@@ -35,7 +35,7 @@ public class ConnectionTest extends IntSetup {
     @DataProvider(name = "invitationTypesSource")
     public Object[][] createData() {
         return new Object[][]{
-            {connectionInvitation},
+//             {connectionInvitation},
             {oobInvitation},
         };
     }

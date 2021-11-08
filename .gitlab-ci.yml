@@ -22,7 +22,7 @@ stages:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
-    - if [ "$CI_COMMIT_REF_SLUG" == 'skip-e2e-tests' ]; then KANIKO_ARGS="--destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:latest $KANIKO_ARGS"; fi
+    - if [ "$CI_COMMIT_REF_SLUG" == 'main' ]; then KANIKO_ARGS="--destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:latest $KANIKO_ARGS"; fi
     - echo "${KANIKO_ARGS}"
     - |
       echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" \
@@ -164,7 +164,6 @@ build-ios-master:
       refs:
           - main@evernym/mobile/connectme
           - update-rn@evernym/mobile/connectme
-          - skip-e2e-tests@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -206,7 +205,6 @@ build-android-master:
       refs:
           - main@evernym/mobile/connectme
           - update-rn@evernym/mobile/connectme
-          - skip-e2e-tests@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
