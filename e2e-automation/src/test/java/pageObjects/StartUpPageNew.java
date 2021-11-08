@@ -48,7 +48,7 @@ public class StartUpPageNew {
   @AndroidFindBy(xpath = "//android.widget.Button[@content-desc=\"switch-environment-demo\"]/android.widget.TextView")
   public WebElement demoEnvButton;
 
-  @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Use Staging Net An alternative network for app developers\"])[2]/XCUIElementTypeOther[2]/XCUIElementTypeButton")
+  @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Use Staging Net An alternative network for app developers\"])[2]//XCUIElementTypeSwitch")
   public WebElement stagingNetSlider;
 
   @AndroidFindBy(xpath = "//*[@text=\"No thanks\"]")

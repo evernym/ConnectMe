@@ -26,7 +26,11 @@
     - Copy URL and put into `VAS_Server_Link` setting in [config](./src/test/java/utility/Config.java)
     - Go to `e2e-automation/appium-launcher` folder
     - Start server with `python3 vas-server.py`
-- Make sure that Appium's chromedriver version matches Chrome's version on the device. You can specify path to your `chromedriverExecutable` in [file](./src/test/java/utility/BrowserDriver.java)
+- Android:
+  - Update [config](./src/test/java/utility/Config.java) file:
+    - Set `android` into `Device_Type` variable.
+    - Set your device id into `Device_Name` variable (use `adb devices` to get list of devices).
+  - Make sure that Appium's chromedriver version matches Chrome's version on the device. You can specify path to your `chromedriverExecutable` in [file](./src/test/java/utility/BrowserDriver.java)
 - Run tests: `mvn test`
 
 
