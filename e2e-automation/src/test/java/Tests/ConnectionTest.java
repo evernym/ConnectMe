@@ -35,33 +35,33 @@ public class ConnectionTest extends IntSetup {
     @DataProvider(name = "invitationTypesSource")
     public Object[][] createData() {
         return new Object[][]{
-//             {connectionInvitation},
+            {connectionInvitation},
             {oobInvitation},
         };
     }
 
-    @Test(dataProvider = "invitationTypesSource")
-    public void rejectConnectionTest(String invitationType) throws Exception {
-        driverBrowser = BrowserDriver.getDriver();
-        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
-        objConnectionModules.acceptPushNotificationRequest(driverApp);
-
-        try {
-            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            AppUtils.DoSomethingEventuallyNew(15,
-                () -> driverApp.terminateApp("me.connect"),
-                () -> driverApp.launchApp(),
-                () -> new AppUtils().authForAction(),
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
-        }
-        objConnectionModules.rejectConnectionInvitation(driverApp);
-
-        if(Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
-    }
+//     @Test(dataProvider = "invitationTypesSource")
+//     public void rejectConnectionTest(String invitationType) throws Exception {
+//         driverBrowser = BrowserDriver.getDriver();
+//         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+//         objConnectionModules.acceptPushNotificationRequest(driverApp);
+//
+//         try {
+//             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+//         }
+//         catch (Exception e)
+//         {
+//             System.out.println(e.getMessage());
+//             AppUtils.DoSomethingEventuallyNew(15,
+//                 () -> driverApp.terminateApp("me.connect"),
+//                 () -> driverApp.launchApp(),
+//                 () -> new AppUtils().authForAction(),
+//                 () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
+//         }
+//         objConnectionModules.rejectConnectionInvitation(driverApp);
+//
+//         if(Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
+//     }
 
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
