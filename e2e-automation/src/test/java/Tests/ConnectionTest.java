@@ -66,7 +66,7 @@ public class ConnectionTest extends IntSetup {
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         driverBrowser = BrowserDriver.getDriver();
-        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
         objConnectionModules.acceptPushNotificationRequest(driverApp);
         connectionName = invitationType;
 
