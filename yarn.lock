@@ -1091,10 +1091,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@evernym/react-native-white-label-app@1.0.0-404024623":
-  version "1.0.0-404024623"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-404024623.tgz#7d610d37c11ab55c3bcd7a62c5b4190f77175b37"
-  integrity sha512-WVoZI9KD6wDEy7+btshSwT5ViE84LF5nRNyGAUHa8WgMhXK+inlA55OxzleQb3uEBeLvDsoson+9KedJbSoQOQ==
+"@evernym/react-native-white-label-app@^1.0.0-407734201":
+  version "1.0.0-407734201"
+  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-407734201.tgz#f837c394ad23af6f2cc3b38155babd831151d463"
+  integrity sha512-kt60kAekXYAKI0ZyN0olV3zfNHNfY+HDUG+3Srxt/Cq/+irRwWNCpMr9kw6ULPjYg8FujhPGPiOar+SomKNPQA==
 
 "@expo/babel-preset-cli@0.2.16":
   version "0.2.16"
@@ -10064,9 +10064,9 @@ react-native-modal@13.0.0:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
-"react-native-pbkdf2@git+https://github.com/evernym/react-native-pbkdf2.git#v0.1.5":
+"react-native-pbkdf2@git://github.com/evernym/react-native-pbkdf2.git#v0.1.5":
   version "0.1.3"
-  resolved "git+https://github.com/evernym/react-native-pbkdf2.git#030f87c2df4f9e71b7ca5378cb0e88bad8cdd40f"
+  resolved "git://github.com/evernym/react-native-pbkdf2.git#030f87c2df4f9e71b7ca5378cb0e88bad8cdd40f"
 
 react-native-permissions@^3.1.0:
   version "3.1.0"
@@ -10134,10 +10134,10 @@ react-native-screens@3.8.0:
   dependencies:
     warn-once "^0.1.0"
 
-react-native-sensitive-info@5.5.8:
-  version "5.5.8"
-  resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.5.8.tgz#6ebb67eed83d1c2867bd435630ef2c41eef204ed"
-  integrity sha512-p99oaEW4QG1RdUNrkvd/c6Qdm856dQw/Rk81f9fA6Y3DlPs6ADNdU+jbPuTz3CcOUJwuKBDNenX6LR9KfmGFEg==
+react-native-sensitive-info@5.5.5:
+  version "5.5.5"
+  resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-5.5.5.tgz#0559aaff6bd59b6a14d92035c032b46bd007b55f"
+  integrity sha512-ShRqvHTZnY4VYNEF+5pCBUu/2wslojY445FdA9nuH9nkVqOQRXxIGYqTRYXJ42mDLTt+KnW5hcvuAjpVVokafQ==
 
 react-native-shake@4.0.2:
   version "4.0.2"
