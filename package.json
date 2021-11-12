@@ -42,7 +42,7 @@
     "ajv": "^8.6.3",
     "apptentive-react-native": "^5.7.2",
     "bignumber.js": "^9.0.1",
-    "color": "^4.0.1",
+    "color": "^3.1.2",
     "dayjs": "^1.10.7",
     "hoist-non-react-statics": "3.3.2",
     "jwt-decode": "3.1.2",
