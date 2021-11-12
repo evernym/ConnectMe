@@ -327,7 +327,7 @@ PODS:
     - React
   - react-native-webview (11.14.1):
     - React-Core
-  - react-native-white-label-app (1.0.0):
+  - react-native-white-label-app (1.0.0-407734201):
     - React-Core
     - vcx
   - React-perflogger (0.65.1)
@@ -779,7 +779,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-version-number: b415bbec6a13f2df62bf978e85bc0d699462f37f
   react-native-webview: db22ab831b8c5f7697957a67f7a7ac1cecfed18d
-  react-native-white-label-app: 008ca4ae20f54b9ef4ff703154ced7c54cd899b1
+  react-native-white-label-app: 53ce3a79e4da70492fdaf50134d3f494c4d6d3e7
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -820,4 +820,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1c89020d44af02baf08eb28cf77d51b5d342a8c8
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.2
