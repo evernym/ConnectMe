@@ -64,7 +64,7 @@ post_install do |installer|
 					end
 				end
     end
-
+		
 		## Fix for XCode 12.5+
 		find_and_replace("../node_modules/react-native/React/CxxBridge/RCTCxxBridge.mm",
 		"_initializeModules:(NSArray<id<RCTBridgeModule>> *)modules", "_initializeModules:(NSArray<Class> *)modules")
