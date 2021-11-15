@@ -9,7 +9,7 @@ index 9ad1441..8c67e6d 100644
 +        mavenCentral()
          google()
      }
- 
+
 diff --git a/node_modules/apptentive-react-native/apptentive-react-native.podspec b/node_modules/apptentive-react-native/apptentive-react-native.podspec
 index 3f36342..34f8ad0 100644
 --- a/node_modules/apptentive-react-native/apptentive-react-native.podspec

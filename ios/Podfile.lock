@@ -1,10 +1,10 @@
 PODS:
-  - apptentive-ios (5.3.1)
+  - apptentive-ios (5.3.4)
   - apptentive-react-native (5.7.2):
     - apptentive-ios (< 6.0, >= 5.3.1)
     - React-Core
   - boost-for-react-native (1.63.0)
-  - Branch (0.37.0)
+  - Branch (1.39.4)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.65.1)
   - FBReactNativeSpec (0.65.1):
@@ -14,88 +14,85 @@ PODS:
     - React-Core (= 0.65.1)
     - React-jsi (= 0.65.1)
     - ReactCommon/turbomodule/core (= 0.65.1)
-  - Firebase/CoreOnly (7.4.0):
-    - FirebaseCore (= 7.4.0)
-  - Firebase/Messaging (7.4.0):
+  - Firebase/CoreOnly (8.8.0):
+    - FirebaseCore (= 8.8.0)
+  - Firebase/Messaging (8.8.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 7.4.0)
-  - FirebaseCore (7.4.0):
-    - FirebaseCoreDiagnostics (~> 7.4)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-  - FirebaseCoreDiagnostics (7.10.0):
-    - GoogleDataTransport (~> 8.4)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
+    - FirebaseMessaging (~> 8.8.0)
+  - FirebaseCore (8.8.0):
+    - FirebaseCoreDiagnostics (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Logger (~> 7.4)
+  - FirebaseCoreDiagnostics (8.9.0):
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GoogleUtilities/Logger (~> 7.6)
     - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (7.10.0):
-    - FirebaseCore (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (7.10.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-  - FirebaseMessaging (7.4.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstanceID (~> 7.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Reachability (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
+  - FirebaseInstallations (8.9.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GoogleUtilities/UserDefaults (~> 7.6)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseMessaging (8.8.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleDataTransport (~> 9.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Reachability (~> 7.4)
+    - GoogleUtilities/UserDefaults (~> 7.4)
+    - nanopb (~> 2.30908.0)
   - fmt (6.2.1)
   - glog (0.3.5)
-  - GoogleDataTransport (8.4.0):
+  - GoogleDataTransport (9.1.2):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.3.1):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.3.1):
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.3.1):
+  - GoogleUtilities/Environment (7.6.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.6.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.3.1):
+  - GoogleUtilities/Network (7.6.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.3.1)"
-  - GoogleUtilities/Reachability (7.3.1):
+  - "GoogleUtilities/NSData+zlib (7.6.0)"
+  - GoogleUtilities/Reachability (7.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.3.1):
+  - GoogleUtilities/UserDefaults (7.6.0):
     - GoogleUtilities/Logger
-  - iProov (8.2.0):
-    - Socket.IO-Client-Swift (~> 15.2)
-  - JumioMobileSDK (3.9.0):
-    - JumioMobileSDK/JumioMobileSDK (= 3.9.0)
-  - JumioMobileSDK/BAMCheckout (3.9.2)
-  - JumioMobileSDK/DocumentVerification (3.9.2)
-  - JumioMobileSDK/JumioMobileSDK (3.9.0):
-    - iProov (= 8.2.0)
-  - JumioMobileSDK/Netverify (3.9.0):
-    - iProov (= 8.2.0)
-  - JumioMobileSDK/NetverifyBarcode (3.9.2)
-  - JumioMobileSDK/NetverifyBase (3.9.2)
-  - "JumioMobileSDK/NetverifyFace+iProov (3.9.0)":
-    - iProov (= 8.2.0)
+  - iProov (9.0.1):
+    - Socket.IO-Client-Swift (~> 16.0)
+  - JumioMobileSDK (3.9.4):
+    - JumioMobileSDK/JumioMobileSDK (= 3.9.4)
+  - JumioMobileSDK/BAMCheckout (3.9.4)
+  - JumioMobileSDK/DocumentVerification (3.9.4)
+  - JumioMobileSDK/JumioMobileSDK (3.9.4):
+    - iProov (= 9.0.1)
+  - JumioMobileSDK/Netverify (3.9.4):
+    - iProov (= 9.0.1)
+  - JumioMobileSDK/NetverifyBarcode (3.9.4)
+  - JumioMobileSDK/NetverifyBase (3.9.4)
+  - "JumioMobileSDK/NetverifyFace+iProov (3.9.4)":
+    - iProov (= 9.0.1)
   - "JumioMobileSDK/NetverifyFace+Zoom (3.9.0)"
-  - JumioMobileSDK/NetverifyNFC (3.9.2)
-  - lottie-ios (3.1.8)
-  - lottie-react-native (3.4.0):
-    - lottie-ios (~> 3.1.3)
+  - JumioMobileSDK/NetverifyNFC (3.9.4)
+  - lottie-ios (3.2.3)
+  - lottie-react-native (4.1.3):
+    - lottie-ios (~> 3.2.3)
     - React-Core
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - Permission-Camera (3.0.5):
+  - Permission-Camera (3.1.0):
     - RNPermissions
-  - PromisesObjC (1.2.12)
+  - PromisesObjC (2.0.0)
   - RCT-Folly (2021.04.26.00):
     - boost-for-react-native
     - DoubleConversion
@@ -293,9 +290,9 @@ PODS:
   - React-jsinspector (0.65.1)
   - react-native-blur (0.8.0):
     - React-Core
-  - react-native-branch (5.0.1):
-    - Branch (= 0.37.0)
-    - React-Core
+  - react-native-branch (5.1.0):
+    - Branch (= 1.39.4)
+    - React
   - react-native-camera (4.2.1):
     - React-Core
     - react-native-camera/RCT (= 4.2.1)
@@ -304,33 +301,33 @@ PODS:
     - React-Core
   - react-native-camera/RN (4.2.1):
     - React-Core
-  - react-native-document-picker (3.5.4):
+  - react-native-document-picker (7.1.1):
     - React-Core
   - react-native-fingerprint-scanner (6.0.0):
     - React-Core
-  - react-native-image-resizer (1.2.3):
+  - react-native-image-resizer (1.4.5):
     - React-Core
-  - react-native-mail (6.1.0):
+  - react-native-mail (6.1.1):
     - React-Core
-  - react-native-netinfo (5.9.10):
+  - react-native-netinfo (6.0.4):
     - React-Core
   - react-native-pbkdf2 (0.1.3):
+    - React
+  - react-native-randombytes (3.6.1):
     - React-Core
-  - react-native-randombytes (3.5.3):
-    - React-Core
-  - react-native-safe-area-context (3.0.5):
+  - react-native-safe-area-context (3.3.2):
     - React-Core
   - react-native-sensitive-info (5.5.5):
-    - React-Core
-  - react-native-shake (3.4.0):
-    - React-Core
+    - React
+  - react-native-shake (4.0.2):
+    - React
   - react-native-splash-screen (3.2.0):
-    - React-Core
+    - React
   - react-native-version-number (0.3.6):
+    - React
+  - react-native-webview (11.14.1):
     - React-Core
-  - react-native-webview (10.1.1):
-    - React-Core
-  - react-native-white-label-app (1.0.0-397138231):
+  - react-native-white-label-app (1.0.0-407734201):
     - React-Core
     - vcx
   - React-perflogger (0.65.1)
@@ -403,15 +400,15 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.11):
     - React-Core
-  - RNCPushNotificationIOS (1.8.0):
+  - RNCPushNotificationIOS (1.10.1):
     - React-Core
-  - RNDeviceInfo (8.4.2):
+  - RNDeviceInfo (8.4.3):
     - React-Core
-  - RNFBApp (10.5.0):
-    - Firebase/CoreOnly (~> 7.4.0)
+  - RNFBApp (12.9.3):
+    - Firebase/CoreOnly (= 8.8.0)
     - React-Core
-  - RNFBMessaging (10.5.1):
-    - Firebase/Messaging (~> 7.4.0)
+  - RNFBMessaging (12.9.3):
+    - Firebase/Messaging (= 8.8.0)
     - React-Core
     - RNFBApp
   - RNFileViewer (2.1.4):
@@ -420,42 +417,70 @@ PODS:
     - React-Core
   - RNImageColors (1.4.0):
     - React-Core
-  - RNImageCropPicker (0.32.3):
+  - RNImageCropPicker (0.36.4):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.32.3)
+    - RNImageCropPicker/QBImagePickerController (= 0.36.4)
     - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.32.3):
+  - RNImageCropPicker/QBImagePickerController (0.36.4):
     - React-Core
     - React-RCTImage
     - TOCropViewController
-  - RNPermissions (3.0.5):
+  - RNPermissions (3.1.0):
     - React-Core
-  - RNReanimated (1.9.0):
+  - RNReanimated (2.2.3):
+    - DoubleConversion
+    - FBLazyVector
+    - FBReactNativeSpec
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-callinvoker
     - React-Core
-  - RNScreens (2.17.1):
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - React-RCTVibration
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNScreens (3.8.0):
     - React-Core
-  - RNShare (3.4.0):
+    - React-RCTImage
+  - RNShare (7.2.0):
     - React-Core
-  - RNSnackbar (2.2.3):
+  - RNSnackbar (2.4.0):
     - React-Core
-  - RNSVG (12.1.0):
+  - RNSVG (12.1.1):
+    - React
+  - RNVectorIcons (9.0.0):
     - React-Core
-  - RNVectorIcons (6.6.0):
+  - RNZipArchive (6.0.3):
     - React-Core
-  - RNZipArchive (5.0.2):
+    - RNZipArchive/Core (= 6.0.3)
+    - SSZipArchive (= 2.2.3)
+  - RNZipArchive/Core (6.0.3):
     - React-Core
-    - RNZipArchive/Core (= 5.0.2)
-    - SSZipArchive (= 2.2.2)
-  - RNZipArchive/Core (5.0.2):
-    - React-Core
-    - SSZipArchive (= 2.2.2)
-  - Socket.IO-Client-Swift (15.2.0):
-    - Starscream (~> 3.1)
-  - SSZipArchive (2.2.2)
-  - Starscream (3.1.1)
+    - SSZipArchive (= 2.2.3)
+  - Socket.IO-Client-Swift (16.0.1):
+    - Starscream (~> 4.0)
+  - SSZipArchive (2.2.3)
+  - Starscream (4.0.4)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.216)
+  - vcx (0.0.215)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -538,7 +563,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.216)
+  - vcx (= 0.0.215)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -552,7 +577,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
-    - FirebaseInstanceID
     - FirebaseMessaging
     - fmt
     - GoogleDataTransport
@@ -705,30 +729,29 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  apptentive-ios: 94a2e90b4759051a3b73e6e2ae85f16361e20b9c
+  apptentive-ios: e5be8ad11cfad2259a0063150ce898b04b7c1090
   apptentive-react-native: b977aeb105b77929c47fa616f1d42277176edff4
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  Branch: 49c609eb0ac0130b8491d0923a9298714731bd0d
+  Branch: d21c40c47b5c15c6ab709cdf7d965a50059e0546
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   FBLazyVector: 33c82491102f20ecddb6c6a2c273696ace3191e0
   FBReactNativeSpec: df8f81d2a7541ee6755a047b398a5cb5a72acd0e
-  Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
-  FirebaseCore: 99c06e5a1e8d6952e75cb1f0a6d0b23c0f5ccdcf
-  FirebaseCoreDiagnostics: 5662a3823ffcc0acbaa9a21ba5ed302fac634705
-  FirebaseInstallations: bf2ec8dbf36ff4c91af6b9a003d15855757680c1
-  FirebaseInstanceID: 5ad92c898e1328b66e8dd58811964d6fe4d334c3
-  FirebaseMessaging: 6112b5cd04e0ff58c4a9920e5e29cf193ea88439
+  Firebase: 629510f1a9ddb235f3a7c5c8ceb23ba887f0f814
+  FirebaseCore: 98b29e3828f0a53651c363937a7f7d92a19f1ba2
+  FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
+  FirebaseInstallations: caa7c8e0d3e2345b8829d2fa9ca1b4dfbf2fcc85
+  FirebaseMessaging: 419b5c9d84f294a753c6501d8cfb9ced1ce37304
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 5337263514dd6f09803962437687240c5dc39aa4
-  GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
-  GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
-  iProov: 867e796a694061aef01758a855f279ae5b1deb08
-  JumioMobileSDK: 31377f29125fc674efe9e47abc1c8a984f069cb9
-  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
-  lottie-react-native: 634369419ccfe6e4b891f6f74e903f1515ff6804
+  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
+  iProov: 229c72183e440790a58a0298ae24f1515eea1432
+  JumioMobileSDK: 8111f5e1a871c739d3e5620e8f16710caa7bd208
+  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  lottie-react-native: b561920bba7ec727ec94a473b683cffba00faece
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  Permission-Camera: ac603073e4128e51e6ca3c39129778f05b4082fa
-  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Permission-Camera: 0db4fd6e1c556c1cf47f38b989a8084cea3ec3dd
+  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RCT-Folly: 0dd9e1eb86348ecab5ba76f910b56f4b5fef3c46
   RCTRequired: 6cf071ab2adfd769014b3d94373744ee6e789530
   RCTTypeSafety: b829c59453478bb5b02487b8de3336386ab93ab1
@@ -741,22 +764,22 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 43f2542aed3c26e42175b339f8d37fe3dd683765
   React-jsinspector: 41e58e5b8e3e0bf061fdf725b03f2144014a8fb0
   react-native-blur: ef741a08d020010ba65e411be0ab82d1d325e7ad
-  react-native-branch: 8d541e4b80f0f9c2c9ff992523dbc80c6c75f424
+  react-native-branch: 4759b0ee607dc609878484a103698591423beddf
   react-native-camera: 3eae183c1d111103963f3dd913b65d01aef8110f
-  react-native-document-picker: a1d2dc578f106686182595f24706adcc59a6dfe2
+  react-native-document-picker: f4cc4df2eff8c9015d862a59bdaef11a153f1292
   react-native-fingerprint-scanner: b278a3eaf4b6b837e6cbaee374e07af6643e71e3
-  react-native-image-resizer: cd7ef8c4839834b2c9e1a6303786afaa1ca3a5d2
-  react-native-mail: 82d9a99b31de76084e279ed3a161dd9ed11001f0
-  react-native-netinfo: 30fb89fa913c342be82a887b56e96be6d71201dd
-  react-native-pbkdf2: 8a536cc2ce4add6fb49796c265f1b61892133499
-  react-native-randombytes: 9459ae6ee3ba9a4b355aebf285695faba32c7d48
-  react-native-safe-area-context: 922cbe0ebc80b9ad2db8b40f6db119bdd757bf89
-  react-native-sensitive-info: e194060cbe8595d4ff83bad5962ef77142035bb4
-  react-native-shake: fa76960c03db3ab4c9a26764800e2debd39c7dc2
-  react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
-  react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
-  react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: 600a93c7c84c4535c4b8b451a2cb970de4b03659
+  react-native-image-resizer: d9fb629a867335bdc13230ac2a58702bb8c8828f
+  react-native-mail: 8fdcd3aef007c33a6877a18eb4cf7447a1d4ce4a
+  react-native-netinfo: 1c7676413ab265759c7b3da205efab163f5366ef
+  react-native-pbkdf2: 5ab65b8c48aca9d49ae5899653e757c2f291f213
+  react-native-randombytes: 421f1c7d48c0af8dbcd471b0324393ebf8fe7846
+  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
+  react-native-sensitive-info: 4629b223484a08225c3eb088ff3f91b03097b5e5
+  react-native-shake: 24ebfb0eda62f9c2cb4bcaa780dbc7857988e921
+  react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
+  react-native-version-number: b415bbec6a13f2df62bf978e85bc0d699462f37f
+  react-native-webview: db22ab831b8c5f7697957a67f7a7ac1cecfed18d
+  react-native-white-label-app: 53ce3a79e4da70492fdaf50134d3f494c4d6d3e7
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -772,29 +795,29 @@ SPEC CHECKSUMS:
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCMaskedView: 38c3d9675c1d352e4becc13cbf321c7b1176267c
-  RNCPushNotificationIOS: 61a7c72bd1ebad3568025957d001e0f0e7b32191
-  RNDeviceInfo: cedc9766f284962d87465dd5611b67ee8e65850b
-  RNFBApp: 1b64430cb117cb709ac7fc2a1d859ecb406a3e1d
-  RNFBMessaging: d847df779006a360993b85dbcd00dbc028933f84
+  RNCPushNotificationIOS: 87b8d16d3ede4532745e05b03c42cff33a36cc45
+  RNDeviceInfo: 25a16a2a03049e88e800f3f41ca540e645b8a95a
+  RNFBApp: aa6a864798daa054bda002bb3d6905800d6d4156
+  RNFBMessaging: 8d3dc5212a844b0c2d4552382394aad046d551fe
   RNFileViewer: 83cc066ad795b1f986791d03b56fe0ee14b6a69f
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNImageColors: f6b4dc737d15bf01bf379369655467e03b361861
-  RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
-  RNPermissions: 7043bacbf928eae25808275cfe73799b8f618911
-  RNReanimated: f05baf4cd76b6eab2e4d7e2b244424960b968918
-  RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
-  RNShare: e11014e7afd7802aba95b6f52946061a5a55d8cf
-  RNSnackbar: ce24f8dad64f65e345e6a93b777733707379913c
-  RNSVG: 59dfa0b461f9e94136e1b1f3878da58a743d4795
-  RNVectorIcons: 493939c397a9ffaf44d8bc407f709c65787d1528
-  RNZipArchive: ad14dfbae8d51dc92f94634344277425060e524b
-  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
-  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
-  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  RNImageCropPicker: 73891a709e6fd8a47d32104d942757971f220aee
+  RNPermissions: 4b54095940aea8c03fa3e6c92d4ac3647b31ed4e
+  RNReanimated: aaf2cf65595b293daae808015761a6014a97b284
+  RNScreens: 6e1ea5787989f92b0671049b808aef64fa1ef98c
+  RNShare: 70356a1bb406bc46ae03196a5d3048c702bb71a7
+  RNSnackbar: be3333a21a453ccc272f41a8add5a71f7d44dfcd
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+  RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8
+  RNZipArchive: 924d63f15f2838837f8379ee6e9955d8ff4736c4
+  Socket.IO-Client-Swift: c116d6dc9fd6be9c259bacfe143f8725bce7d79e
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: 7a3936aa95302394ffbe8be8bb44390ed3d412f2
+  vcx: b832b8c0c9350fe2a3424803121568ee60306f16
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
-PODFILE CHECKSUM: 5779e0a1f34aa7f9c09160dea34aa8af598ea7fb
+PODFILE CHECKSUM: 1c89020d44af02baf08eb28cf77d51b5d342a8c8
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.2
