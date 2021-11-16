@@ -25,7 +25,6 @@
         IOS_IPA_PATH: 'ios/ConnectMe.ipa'
 
 devicefarm-test-launch-android-weekly-top:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-top
     extends: .devicefarm-test-launch-android
     dependencies:
@@ -38,7 +37,6 @@ devicefarm-test-launch-android-weekly-top:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
 
 devicefarm-test-launch-ios-weekly-top:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-top
     extends: .devicefarm-test-launch-ios
     dependencies:
@@ -50,7 +48,6 @@ devicefarm-test-launch-ios-weekly-top:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXS main vas
 
 devicefarm-test-launch-android-weekly-next:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-next
     extends: .devicefarm-test-launch-android
     dependencies:
@@ -63,7 +60,6 @@ devicefarm-test-launch-android-weekly-next:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
 
 devicefarm-test-launch-ios-weekly-next:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-next
     extends: .devicefarm-test-launch-ios
     dependencies:
@@ -75,7 +71,6 @@ devicefarm-test-launch-ios-weekly-next:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus main vas
 
 devicefarm-test-launch-android-weekly-final:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-final
     extends: .devicefarm-test-launch-android
     dependencies:
@@ -88,7 +83,6 @@ devicefarm-test-launch-android-weekly-final:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
 
 devicefarm-test-launch-ios-weekly-final:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-final
     extends: .devicefarm-test-launch-ios
     dependencies:
@@ -100,7 +94,6 @@ devicefarm-test-launch-ios-weekly-final:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
 devicefarm-test-launch-android-master:
-    allow_failure: true # CM-3076
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
@@ -111,7 +104,6 @@ devicefarm-test-launch-android-master:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
 
 devicefarm-test-launch-ios-master:
-    allow_failure: true # CM-3076
     extends: .devicefarm-test-launch-ios
     dependencies:
         - build-ios-master
@@ -122,7 +114,6 @@ devicefarm-test-launch-ios-master:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
 
 devicefarm-test-launch-android-merge_requests:
-    allow_failure: true # CM-3076
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-merge-request
@@ -135,7 +126,6 @@ devicefarm-test-launch-android-merge_requests:
           when: always
 
 devicefarm-test-launch-ios-merge_requests:
-    allow_failure: true # CM-3076
     extends: .devicefarm-test-launch-ios
     dependencies:
         - build-ios-merge-request
@@ -146,7 +136,6 @@ devicefarm-test-launch-ios-merge_requests:
           when: always
 
 devicefarm-test-upgrade-path-android:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-android
     dependencies:
@@ -160,7 +149,6 @@ devicefarm-test-upgrade-path-android:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-ios
     dependencies:
@@ -173,7 +161,6 @@ devicefarm-test-upgrade-path-ios:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
 
 devicefarm-test-launch-android-aca-py:
-    allow_failure: true # CM-3076
     stage: devicefarm-test-acapy
     extends: .devicefarm-test-launch-android
     dependencies:
