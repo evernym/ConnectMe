@@ -68,22 +68,22 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.3.1):
     - GoogleUtilities/Logger
-  - iProov (8.2.0):
-    - Socket.IO-Client-Swift (~> 15.2)
-  - JumioMobileSDK (3.9.0):
-    - JumioMobileSDK/JumioMobileSDK (= 3.9.0)
-  - JumioMobileSDK/BAMCheckout (3.9.2)
-  - JumioMobileSDK/DocumentVerification (3.9.2)
-  - JumioMobileSDK/JumioMobileSDK (3.9.0):
-    - iProov (= 8.2.0)
-  - JumioMobileSDK/Netverify (3.9.0):
-    - iProov (= 8.2.0)
-  - JumioMobileSDK/NetverifyBarcode (3.9.2)
-  - JumioMobileSDK/NetverifyBase (3.9.2)
-  - "JumioMobileSDK/NetverifyFace+iProov (3.9.0)":
-    - iProov (= 8.2.0)
+  - iProov (9.0.1):
+    - Socket.IO-Client-Swift (~> 16.0)
+  - JumioMobileSDK (3.9.4):
+    - JumioMobileSDK/JumioMobileSDK (= 3.9.4)
+  - JumioMobileSDK/BAMCheckout (3.9.4)
+  - JumioMobileSDK/DocumentVerification (3.9.4)
+  - JumioMobileSDK/JumioMobileSDK (3.9.4):
+    - iProov (= 9.0.1)
+  - JumioMobileSDK/Netverify (3.9.4):
+    - iProov (= 9.0.1)
+  - JumioMobileSDK/NetverifyBarcode (3.9.4)
+  - JumioMobileSDK/NetverifyBase (3.9.4)
+  - "JumioMobileSDK/NetverifyFace+iProov (3.9.4)":
+    - iProov (= 9.0.1)
   - "JumioMobileSDK/NetverifyFace+Zoom (3.9.0)"
-  - JumioMobileSDK/NetverifyNFC (3.9.2)
+  - JumioMobileSDK/NetverifyNFC (3.9.4)
   - lottie-ios (3.1.8)
   - lottie-react-native (3.4.0):
     - lottie-ios (~> 3.1.3)
@@ -330,7 +330,7 @@ PODS:
     - React-Core
   - react-native-webview (10.1.1):
     - React-Core
-  - react-native-white-label-app (1.0.0-397138231):
+  - react-native-white-label-app (1.0.0-404024623):
     - React-Core
     - vcx
   - React-perflogger (0.65.1)
@@ -450,10 +450,10 @@ PODS:
   - RNZipArchive/Core (5.0.2):
     - React-Core
     - SSZipArchive (= 2.2.2)
-  - Socket.IO-Client-Swift (15.2.0):
-    - Starscream (~> 3.1)
+  - Socket.IO-Client-Swift (16.0.1):
+    - Starscream (~> 4.0)
   - SSZipArchive (2.2.2)
-  - Starscream (3.1.1)
+  - Starscream (4.0.4)
   - TOCropViewController (2.6.0)
   - vcx (0.0.216)
   - Yoga (1.14.0)
@@ -722,8 +722,8 @@ SPEC CHECKSUMS:
   glog: 5337263514dd6f09803962437687240c5dc39aa4
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
-  iProov: 867e796a694061aef01758a855f279ae5b1deb08
-  JumioMobileSDK: 31377f29125fc674efe9e47abc1c8a984f069cb9
+  iProov: 229c72183e440790a58a0298ae24f1515eea1432
+  JumioMobileSDK: 8111f5e1a871c739d3e5620e8f16710caa7bd208
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 634369419ccfe6e4b891f6f74e903f1515ff6804
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
@@ -756,7 +756,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: 600a93c7c84c4535c4b8b451a2cb970de4b03659
+  react-native-white-label-app: 1fc1f7eef2240dd230237f9b11698d20fc99036a
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -788,13 +788,13 @@ SPEC CHECKSUMS:
   RNSVG: 59dfa0b461f9e94136e1b1f3878da58a743d4795
   RNVectorIcons: 493939c397a9ffaf44d8bc407f709c65787d1528
   RNZipArchive: ad14dfbae8d51dc92f94634344277425060e524b
-  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
+  Socket.IO-Client-Swift: c116d6dc9fd6be9c259bacfe143f8725bce7d79e
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
-  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   vcx: 7a3936aa95302394ffbe8be8bb44390ed3d412f2
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
-PODFILE CHECKSUM: 5779e0a1f34aa7f9c09160dea34aa8af598ea7fb
+PODFILE CHECKSUM: 1c89020d44af02baf08eb28cf77d51b5d342a8c8
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.2

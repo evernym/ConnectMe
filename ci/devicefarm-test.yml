@@ -105,7 +105,7 @@ devicefarm-test-launch-android-master:
     dependencies:
         - build-android-master
     rules:
-        - if: '$CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "fix-appium-tests"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
@@ -116,7 +116,7 @@ devicefarm-test-launch-ios-master:
     dependencies:
         - build-ios-master
     rules:
-        - if: '$CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "fix-appium-tests"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas

@@ -163,7 +163,7 @@ build-ios-master:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - update-rn@evernym/mobile/connectme
+          - fix-appium-tests@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -204,7 +204,7 @@ build-android-master:
   only:
       refs:
           - main@evernym/mobile/connectme
-          - update-rn@evernym/mobile/connectme
+          - fix-appium-tests@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
