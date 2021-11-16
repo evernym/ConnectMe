@@ -164,7 +164,7 @@ build-ios-master:
       refs:
           - main@evernym/mobile/connectme
           - update-rn@evernym/mobile/connectme
-          - CM-3140@evernym/mobile/connectme
+          - fix-appium-old-main@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:

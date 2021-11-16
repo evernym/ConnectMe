@@ -117,6 +117,7 @@ devicefarm-test-launch-ios-master:
         - build-ios-master
     rules:
         - if: '$CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "fix-appium-old-main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
