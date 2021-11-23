@@ -18,16 +18,16 @@ public class Config {
 	* */
 	public static final List<String> iOS_Devices = Arrays.asList("iOS", "iOSSimulator", "awsiOS");
 
-	public static final String Device_Type = "awsAndroid";
-	public static final String Device_Name = "connectme2"; // android emulator name
+//	public static final String Device_Type = "awsAndroid";
+//	public static final String Device_Name = "connectme2"; // android emulator name
 
     //  public static final String Device_Type = "iOS";
     //  public static final String Device_Name = "iPhone";
     //  public static final String Device_UDID = "00008020-001105121E22402E";
 
-	//  public static final String Device_Type = "iOS"; // for ios run - or awsiOS for devicefarm run
-	//  public static final String Device_Name = "iPhone 11"; // iphone 11 simulator name
-	public static final String Device_UDID = "4CD03CA6-BD03-490D-BEE0-09DB5954ED5B"; // iphone 11 simulator UDID
+    public static final String Device_Type = "iOSSimulator"; // for ios run - or awsiOS for devicefarm run
+    public static final String Device_Name = "iPhone 12"; // iphone 11 simulator name
+	public static final String Device_UDID = "D79092AD-FCE2-4FEA-85EE-D7D313F9D308"; // iphone 11 simulator UDID
 
     public static final String VERITY_ENV = "demo"; // dev-rc | team1 // for verity-release acceptance test
 	public static final EnvType Env_Type = EnvType.Demo;
@@ -41,7 +41,7 @@ public class Config {
 	/*
 	* VAS settings
 	* */
-	public static final String VAS_Server_Link = "http://3dae-83-139-159-140.ngrok.io"; // ngrok public url
+	public static final String VAS_Server_Link = "http://23c2-2a03-ed80-1-0-f49d-b949-c262-35ca.ngrok.io"; // ngrok public url
 	/* QA VAS*/
 	public static final String QA_VERITY_URL = "https://vas.pqa.evernym.com/api/";
 	public static final String QA_VERITY_DOMAIN_DID = "PofY18gShVSS4wfN5pmYjB";
