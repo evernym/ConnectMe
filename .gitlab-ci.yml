@@ -162,7 +162,8 @@ build-ios-master:
     # this gets passed to the anchor
   only:
       refs:
-          - main@evernym/mobile/connectme
+#          - main@evernym/mobile/connectme
+          - update-and-fix-tests@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -202,7 +203,8 @@ build-android-master:
   extends: .build-android
   only:
       refs:
-          - main@evernym/mobile/connectme
+#          - main@evernym/mobile/connectme
+          - update-and-fix-tests@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
