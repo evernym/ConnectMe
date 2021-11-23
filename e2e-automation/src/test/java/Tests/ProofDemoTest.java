@@ -88,7 +88,6 @@ public class ProofDemoTest extends IntSetup {
         AppUtils.DoSomethingEventually(
             () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
         );
-//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header)); // option 1
         AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
         validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
