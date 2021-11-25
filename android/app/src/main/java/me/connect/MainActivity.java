@@ -16,8 +16,8 @@ import android.os.Build;
 import org.devio.rn.splashscreen.SplashScreen;
 import io.branch.rnbranch.*;
 
-import com.evernym.sdk.reactnative.rnindy.LogFileObserver;
-import com.evernym.sdk.reactnative.rnindy.RNIndyStaticData;
+import com.evernym.vcx.reactnative.rnindy.LogFileObserver;
+import com.evernym.vcx.reactnative.rnindy.RNIndyStaticData;
 
 import android.content.Intent;
 
