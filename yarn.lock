@@ -1393,8 +1393,9 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@evernym/react-native-sdk@file:../ev-vcx/vcx/wrappers/react-native":
-  version "0.12.0"
+"@evernym/react-native-sdk@https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/22365953/download":
+  version "0.12.0-494"
+  resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/22365953/download#56729f2239513a091cf2000c69f9776b80689b38"
 
 "@evernym/react-native-white-label-app@file:../react-native-evernym-sdk":
   version "1.0.0"
