@@ -163,6 +163,7 @@ build-ios-master:
   only:
       refs:
           - main@evernym/mobile/connectme
+          - use-rn-wrapper@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -203,6 +204,7 @@ build-android-master:
   only:
       refs:
           - main@evernym/mobile/connectme
+          - use-rn-wrapper@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
