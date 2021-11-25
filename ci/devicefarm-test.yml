@@ -101,7 +101,7 @@ devicefarm-test-launch-android-master:
         - if: '$CI_COMMIT_REF_SLUG == "use-rn-wrapper"'
           when: always
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
 
 devicefarm-test-launch-ios-master:
     extends: .devicefarm-test-launch-ios
@@ -111,7 +111,7 @@ devicefarm-test-launch-ios-master:
         - if: '$CI_COMMIT_REF_SLUG == "use-rn-wrapper"'
           when: always
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 main vas
 
 devicefarm-test-launch-android-merge_requests:
     extends: .devicefarm-test-launch-android
