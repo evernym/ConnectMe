@@ -1397,9 +1397,10 @@
   version "0.12.0-494"
   resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/22365953/download#56729f2239513a091cf2000c69f9776b80689b38"
 
-"@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#MSDK-422":
-  version "1.0.0"
-  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#2d56a8939894d49abf17d9bca9406194ce3fbcee"
+"@evernym/react-native-white-label-app@1.0.0-416296793":
+  version "1.0.0-416296793"
+  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-416296793.tgz#2c11b2fa63d907b30bc590e5ccd2f63644b494ae"
+  integrity sha512-iw4HVBMQDr9hWcQ/BDlnRms3OmBSz02igbmqe4C06MfLF7eh+6KueXfDlCiAHzprHy7lvGczrI7LUxJm0R3wZA==
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
