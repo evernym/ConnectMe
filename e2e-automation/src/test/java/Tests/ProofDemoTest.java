@@ -99,13 +99,13 @@ public class ProofDemoTest extends IntSetup {
     @Test(dependsOnMethods = "acceptProofRequestFromHome")
     public void validateConnectionHistory() throws Exception {
         objConnectionModules.openConnectionHistory(connectionName);
-//		// TODO: move this logic to helper
-//		try {
-        objAppUtlis.findParameterizedElement(proofName).isDisplayed(); // TODO keep this method in single helper, not in each page object
-//		} catch (Exception ex) {
-//			AppUtils.pullScreenUp(driverApp);
-//			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();
-//		}
+		// TODO: move this logic to helper
+		try {
+            objAppUtlis.findParameterizedElement(proofName).isDisplayed();
+		} catch (Exception ex) {
+			AppUtils.pullScreenUp(driverApp);
+			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();
+		}
         connectionHistoryPageNew.viewProofRequestDetailsButton.click();
 
         validateProofRequestView(headerShared, "You shared this information", proofName, requestedAttributes);
