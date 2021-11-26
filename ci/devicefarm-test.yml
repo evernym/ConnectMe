@@ -34,7 +34,7 @@ devicefarm-test-launch-android-weekly-top:
         - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
           when: always
     script:
-#        - sleep 300 # android shift
+        - sleep 300 # android shift
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
 
 devicefarm-test-launch-ios-weekly-top:
@@ -59,7 +59,7 @@ devicefarm-test-launch-android-weekly-next:
         - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
           when: always
     script:
-#        - sleep 300 # android shift
+        - sleep 300 # android shift
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
 
 devicefarm-test-launch-ios-weekly-next:
