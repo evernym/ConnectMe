@@ -104,7 +104,7 @@ public class ProofDemoTest extends IntSetup {
             objAppUtlis.findParameterizedElement(proofName).isDisplayed();
 		} catch (Exception ex) {
 			AppUtils.pullScreenUp(driverApp);
-			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();
+			objAppUtlis.findParameterizedElement(proofName).isDisplayed();
 		}
         connectionHistoryPageNew.viewProofRequestDetailsButton.click();
 
