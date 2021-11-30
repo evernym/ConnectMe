@@ -30,8 +30,7 @@ devicefarm-test-launch-android-weekly-top:
     dependencies:
         - build-android-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
@@ -42,8 +41,7 @@ devicefarm-test-launch-ios-weekly-top:
     dependencies:
         - build-ios-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - sleep 300
@@ -55,8 +53,7 @@ devicefarm-test-launch-android-weekly-next:
     dependencies:
         - build-android-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
@@ -67,8 +64,7 @@ devicefarm-test-launch-ios-weekly-next:
     dependencies:
         - build-ios-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - sleep 300
@@ -80,8 +76,7 @@ devicefarm-test-launch-android-weekly-final:
     dependencies:
         - build-android-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
@@ -92,14 +87,14 @@ devicefarm-test-launch-ios-weekly-final:
     dependencies:
         - build-ios-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "update-and-fix-tests"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - sleep 300
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
 devicefarm-test-launch-android-master:
+    allow_failure: true # CM-3158
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
