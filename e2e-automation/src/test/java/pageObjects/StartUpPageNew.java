@@ -22,7 +22,7 @@ public class StartUpPageNew {
   }
 
   @AndroidFindBy(xpath = "//*[@text=\"Set Up\"]")
-  @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Set Up\"])[21]")
+  @iOSXCUITFindBy(xpath = "(//XCUIElementTypeOther[@name=\"Set Up\"])[21]") // FIXME: 21 vs 6 on ios simulator
   public WebElement setUpButton;
 
   @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"lock-selection-or-text-touchable\"]/android.widget.ImageView")

@@ -88,7 +88,6 @@ public class ProofDemoTest extends IntSetup {
         AppUtils.DoSomethingEventually(
             () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
         );
-//    AppUtils.waitForElementNew(driverApp, proofRequestPageNew.findParameterizedElement(header)); // option 1
         AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
 
         validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
@@ -100,13 +99,13 @@ public class ProofDemoTest extends IntSetup {
     @Test(dependsOnMethods = "acceptProofRequestFromHome")
     public void validateConnectionHistory() throws Exception {
         objConnectionModules.openConnectionHistory(connectionName);
-//		// TODO: move this logic to helper
-//		try {
-        objAppUtlis.findParameterizedElement(proofName).isDisplayed(); // TODO keep this method in single helper, not in each page object
-//		} catch (Exception ex) {
-//			AppUtils.pullScreenUp(driverApp);
-//			connectionHistoryPage.sharedProofRecord(driverApp, proofName).isDisplayed();
-//		}
+		// TODO: move this logic to helper
+		try {
+            objAppUtlis.findParameterizedElement(proofName).isDisplayed();
+		} catch (Exception ex) {
+			AppUtils.pullScreenUp(driverApp);
+			objAppUtlis.findParameterizedElement(proofName).isDisplayed();
+		}
         connectionHistoryPageNew.viewProofRequestDetailsButton.click();
 
         validateProofRequestView(headerShared, "You shared this information", proofName, requestedAttributes);

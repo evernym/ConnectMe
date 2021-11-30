@@ -232,9 +232,9 @@ public class AppUtils extends IntSetup {
         Dimension dims = driver.manage().window().getSize();
         try {
             new TouchAction(driver)
-                .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
-                .waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
-                .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height - 20))
+                .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 4))
+                .waitAction(new WaitOptions().withDuration(Duration.ofMillis(200)))
+                .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height - 50))
                 .release().perform();
         } catch (Exception e) {
             System.err.println("Pull screen down to refresh FAILED with Error:\n" + e.getMessage());
@@ -246,9 +246,9 @@ public class AppUtils extends IntSetup {
         Dimension dims = driver.manage().window().getSize();
         try {
             new TouchAction(driver)
-                .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
+                .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height - 50))
                 .waitAction(new WaitOptions().withDuration(Duration.ofMillis(200)))
-                .moveTo(new PointOption().withCoordinates(dims.width / 3, 200))
+                .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 4))
                 .release().perform();
         } catch (Exception e) {
             System.err.println("Pull screen up FAILED with Error:\n" + e.getMessage());
