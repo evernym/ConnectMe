@@ -120,7 +120,7 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
-        if ((Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid"))) {
+        if ((Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid"))) { // FIXME
             Thread.sleep(5000);
         } else {
             Thread.sleep(2000);

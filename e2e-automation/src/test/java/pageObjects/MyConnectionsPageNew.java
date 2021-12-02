@@ -1,5 +1,8 @@
 package pageObjects;
 
+import org.openqa.selenium.StaleElementReferenceException;
+import test.java.appModules.AppUtils;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -44,5 +47,22 @@ public class MyConnectionsPageNew {
         finally {
             driver.manage().timeouts().implicitlyWait(test.java.utility.AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
         }
+    }
+
+    public void drillDownConnection(String name) {
+        try {
+            getConnectionByName(name).click();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) { }
+        }
+        catch (StaleElementReferenceException e) {}
+        if (!AppUtils.isElementAbsent(driver, myConnectionsHeader)) {
+            System.out.println("Failed to drill down connection, retrying");
+            try { Thread.sleep(1000); }
+            catch (InterruptedException e) {}
+            getConnectionByName(name).click();
+        }
+        System.out.println("Connection history should be visible now");
     }
 }

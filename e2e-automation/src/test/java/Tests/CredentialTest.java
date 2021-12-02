@@ -77,7 +77,7 @@ public class CredentialTest extends IntSetup {
                         AppUtils.pullScreenUp(driverApp);
                         objAppUtlis.findParameterizedElement(attribute).isDisplayed();
                         objAppUtlis.findParameterizedElement(values.getString(attribute)).isDisplayed();
-                    } catch (Exception ex) // Fix for the case when element is 'under' the screen
+                    } catch (Exception ex) // Fix for the case when element is 'under' the screen // FIXME remove this
                     {
                         AppUtils.pullScreenDown(driverApp);
                         objAppUtlis.findParameterizedElement(attribute).isDisplayed();

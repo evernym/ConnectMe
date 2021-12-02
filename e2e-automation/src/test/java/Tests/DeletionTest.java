@@ -8,12 +8,14 @@ import test.java.appModules.AppUtils;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.utility.Config;
+import test.java.funcModules.ConnectionModules;
 
 import java.util.NoSuchElementException;
 
 
 public class DeletionTest extends IntSetup {
     private AppUtils objAppUtils = new AppUtils();
+    private ConnectionModules objConnectionModules = new ConnectionModules();
     private LocalContext context = LocalContext.getInstance();
 
     private String connectionInvitation = "connection-invitation";
@@ -32,21 +34,23 @@ public class DeletionTest extends IntSetup {
 
     @Test
     public void deleteEmptyConnection() throws Exception {
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-
-        AppUtils.waitForElementNew(driverApp, myConnectionsPageNew.getConnectionByName(connectionInvitation));
-        myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
+//        homePageNew.tapOnBurgerMenu();
+//        menuPageNew.myConnectionsButton.click();
+//        AppUtils.waitForElementNew(driverApp, myConnectionsPageNew.getConnectionByName(connectionInvitation));
+//        myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
+        objConnectionModules.openConnectionHistory(connectionInvitation);
 
         AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
         connectionHistoryPageNew.threeDotsButton.click();
         connectionDetailPageNew.deleteButton.click();
+
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
             try {
                 connectionDetailPageNew.deleteButton.click();
             } catch (Exception e) { }
         }
 
+        Thread.sleep(5000); // FIXME
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
     }
 
@@ -83,11 +87,13 @@ public class DeletionTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
     public void deleteNotEmptyConnection() throws Exception {
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        myConnectionsPageNew.getConnectionByName(oobInvitation).click();
+//        homePageNew.tapOnBurgerMenu();
+//        menuPageNew.myConnectionsButton.click();
+//        myConnectionsPageNew.getConnectionByName(oobInvitation).click();
+        objConnectionModules.openConnectionHistory(oobInvitation);
+
+        AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
         connectionHistoryPageNew.threeDotsButton.click();
-        Thread.sleep(1000);
         connectionDetailPageNew.deleteButton.click();
 
         if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
@@ -97,6 +103,8 @@ public class DeletionTest extends IntSetup {
 
             }
         }
+
+        Thread.sleep(5000); // FIXME
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(oobInvitation));
     }
 

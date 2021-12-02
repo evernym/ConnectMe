@@ -8,12 +8,14 @@ import test.java.appModules.VASApi;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.utility.Helpers;
+import test.java.funcModules.ConnectionModules;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class QuestionTest extends IntSetup {
     private AppUtils objAppUtlis = new AppUtils();
+    private ConnectionModules objConnectionModules = new ConnectionModules();
     private LocalContext context = LocalContext.getInstance();
 
     private VASApi VAS;
@@ -93,10 +95,11 @@ public class QuestionTest extends IntSetup {
 
     @Test(dependsOnMethods = "answerQuestionWithThreeOptionsFromHome")
     public void validateConnectionHistory() throws Exception {
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
-        myConnectionsPageNew.getConnectionByName(connectionName).click();
+//        homePageNew.tapOnBurgerMenu();
+//        menuPageNew.myConnectionsButton.click();
+//        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
+//        myConnectionsPageNew.drillDownConnection(connectionName);
+        objConnectionModules.openConnectionHistory(connectionName);
         connectionHistoryPageNew.questionAnswerRecord.isDisplayed();
         connectionHistoryPageNew.questionAnswerRecordDescription(oneOption.get(0)).isDisplayed();
         connectionHistoryPageNew.questionAnswerRecordDescription(twoOptions.get(0)).isDisplayed();
