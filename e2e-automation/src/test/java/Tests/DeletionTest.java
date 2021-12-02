@@ -136,7 +136,7 @@ public class DeletionTest extends IntSetup {
             }
         }
 
-        Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameScheme).size(), credsCountBefore - 1);
+        Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameScheme).size(), 0);
     }
 
     @AfterClass
