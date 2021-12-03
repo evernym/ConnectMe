@@ -192,15 +192,14 @@ public class AppUtils extends IntSetup {
 
     public static void waitForElementNew(AppiumDriver driver, WebElement element) throws Exception {
         System.out.println("Wait for element to be available");
-        driver.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 1; i < 6; i++) {
+            driver.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
             try {
                 element.isDisplayed();
                 return;
             } catch (Exception e) {
                 System.out.println(e.getMessage() + " Retry #" + i);
                 pullScreenDown(driver);
-                Thread.sleep(AppDriver.SMALL_TIMEOUT);
             }
             finally {
                 driver.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);

@@ -55,7 +55,8 @@ devicefarm-test-launch-android-weekly-next:
     dependencies:
         - build-android-master
     rules:
-        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
@@ -66,7 +67,8 @@ devicefarm-test-launch-ios-weekly-next:
     dependencies:
         - build-ios-master
     rules:
-        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
           when: always
     script:
         - sleep 300
