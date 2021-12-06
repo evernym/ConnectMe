@@ -99,7 +99,7 @@ public class ProofDemoTest extends IntSetup {
     @Test(dependsOnMethods = "acceptProofRequestFromHome")
     public void validateConnectionHistory() throws Exception {
         objConnectionModules.openConnectionHistory(connectionName);
-		// TODO: move this logic to helper
+
 		try {
             objAppUtlis.findParameterizedElement(proofName).isDisplayed();
 		} catch (Exception ex) {

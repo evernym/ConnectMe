@@ -271,6 +271,13 @@ public class ConnectionModules extends IntSetup {
             try {
                 myConnectionsPageNew.getConnectionByName(connectionName).click();
             } catch (Exception e) {
+                if(!AppUtils.isElementAbsent(driverApp, myConnectionsPageNew.getConnectionByName(connectionName)))
+                {
+                    try {
+                        myConnectionsPageNew.getConnectionByName(connectionName).click();
+                    } catch (Exception e) {
+                    }
+                }
             }
         }
     }
