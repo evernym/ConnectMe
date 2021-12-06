@@ -170,7 +170,7 @@ build-ios-master:
   stage: build
   tags:
     - docker-machine
-    - large
+    - xlarge
   image: bitriseio/android-ndk-lts
   artifacts:
     paths:
