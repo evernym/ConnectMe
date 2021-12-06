@@ -275,7 +275,7 @@ public class ConnectionModules extends IntSetup {
                 {
                     try {
                         myConnectionsPageNew.getConnectionByName(connectionName).click();
-                    } catch (Exception e) {
+                    } catch (Exception ex) {
                     }
                 }
             }
