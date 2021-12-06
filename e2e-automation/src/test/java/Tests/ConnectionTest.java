@@ -67,11 +67,10 @@ public class ConnectionTest extends IntSetup {
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
-//        driverBrowser.launchApp();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
 
         try {
-            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10);
         }
         catch (Exception e)
         {
@@ -80,7 +79,7 @@ public class ConnectionTest extends IntSetup {
                 () -> driverApp.terminateApp("me.connect"),
                 () -> driverApp.launchApp(),
                 () -> new AppUtils().authForAction(),
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5)
+                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10)
             );
         }
         objConnectionModules.acceptConnectionInvitation(driverApp);

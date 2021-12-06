@@ -88,7 +88,21 @@ public class ProofDemoTest extends IntSetup {
         AppUtils.DoSomethingEventually(
             () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
         );
-        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+
+        try {
+            AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader, 10);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader, 10));
+        }
+
+//        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // old waiter
 
         validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
         objAppUtlis.shareProof();
