@@ -43,12 +43,11 @@ public class ConnectionTest extends IntSetup {
      @Test(dataProvider = "invitationTypesSource")
      public void rejectConnectionTest(String invitationType) throws Exception {
          driverBrowser = BrowserDriver.getDriver();
-//         driverBrowser.launchApp();
          objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
          objConnectionModules.acceptPushNotificationRequest(driverApp);
 
          try {
-             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10);
          }
          catch (Exception e)
          {
@@ -57,7 +56,7 @@ public class ConnectionTest extends IntSetup {
                  () -> driverApp.terminateApp("me.connect"),
                  () -> driverApp.launchApp(),
                  () -> new AppUtils().authForAction(),
-                 () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5));
+                 () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10));
          }
          objConnectionModules.rejectConnectionInvitation(driverApp);
 

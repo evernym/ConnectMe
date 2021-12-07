@@ -39,7 +39,22 @@ public class QuestionTest extends IntSetup {
         AppUtils.DoSomethingEventually(
             () -> VAS.askQuestion(DID, questionTitle, questionText, validResponses)
         );
-        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+
+        try {
+            AppUtils.waitForElementNew(driverApp, questionPageNew.header, 10);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, questionPageNew.header, 10)
+            );
+        }
+//        AppUtils.waitForElementNew(driverApp, questionPageNew.header); // old waiter
+
         validateQuestionWindow(validResponses);
     }
 
