@@ -30,8 +30,7 @@ devicefarm-test-launch-android-weekly-top:
     dependencies:
         - build-android-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid note10 main vas
@@ -42,8 +41,7 @@ devicefarm-test-launch-ios-weekly-top:
     dependencies:
         - build-ios-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - sleep 300
@@ -55,8 +53,7 @@ devicefarm-test-launch-android-weekly-next:
     dependencies:
         - build-android-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid pixel3xl main vas
@@ -67,8 +64,7 @@ devicefarm-test-launch-ios-weekly-next:
     dependencies:
         - build-ios-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - sleep 300
@@ -80,8 +76,7 @@ devicefarm-test-launch-android-weekly-final:
     dependencies:
         - build-android-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS20 main vas
@@ -92,8 +87,7 @@ devicefarm-test-launch-ios-weekly-final:
     dependencies:
         - build-ios-master
     rules:
-#        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - sleep 300
@@ -104,8 +98,7 @@ devicefarm-test-launch-android-master:
     dependencies:
         - build-android-master
     rules:
-#        - if: '$CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
@@ -115,8 +108,7 @@ devicefarm-test-launch-ios-master:
     dependencies:
         - build-ios-master
     rules:
-#        - if: '$CI_COMMIT_REF_SLUG == "main"'
-        - if: '$CI_COMMIT_REF_SLUG == "fix-flaky-android-cases"'
+        - if: '$CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 main vas
@@ -144,6 +136,7 @@ devicefarm-test-launch-ios-merge_requests:
           when: always
 
 devicefarm-test-upgrade-path-android:
+    allow_failure: true
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-android
     dependencies:
@@ -157,6 +150,7 @@ devicefarm-test-upgrade-path-android:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
+    allow_failure: true
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-ios
     dependencies:
