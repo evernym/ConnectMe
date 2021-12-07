@@ -53,7 +53,6 @@ public class QuestionTest extends IntSetup {
                 () -> AppUtils.waitForElementNew(driverApp, questionPageNew.header, 10)
             );
         }
-//        AppUtils.waitForElementNew(driverApp, questionPageNew.header); // old waiter
 
         validateQuestionWindow(validResponses);
     }
@@ -110,10 +109,6 @@ public class QuestionTest extends IntSetup {
 
     @Test(dependsOnMethods = "answerQuestionWithThreeOptionsFromHome")
     public void validateConnectionHistory() throws Exception {
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
-//        myConnectionsPageNew.drillDownConnection(connectionName);
         objConnectionModules.openConnectionHistory(connectionName);
         connectionHistoryPageNew.questionAnswerRecord.isDisplayed();
         connectionHistoryPageNew.questionAnswerRecordDescription(oneOption.get(0)).isDisplayed();

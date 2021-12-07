@@ -102,8 +102,6 @@ public class ProofDemoTest extends IntSetup {
                 () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader, 10));
         }
 
-//        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // old waiter
-
         validateProofRequestView(header, "Requested by", proofName, requestedAttributes);
         objAppUtlis.shareProof();
 

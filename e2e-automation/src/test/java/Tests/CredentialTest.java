@@ -181,7 +181,6 @@ public class CredentialTest extends IntSetup {
                 () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader, 10));
         }
 
-//        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // old waiter
         schemeName = credentialPageNew.credentialSchemeName.getText();
         context.setValue("credentialNameScheme", schemeName);
 

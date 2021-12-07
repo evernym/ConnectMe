@@ -34,10 +34,6 @@ public class DeletionTest extends IntSetup {
 
     @Test
     public void deleteEmptyConnection() throws Exception {
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//        AppUtils.waitForElementNew(driverApp, myConnectionsPageNew.getConnectionByName(connectionInvitation));
-//        myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
         objConnectionModules.openConnectionHistory(connectionInvitation);
 
         AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
@@ -87,9 +83,6 @@ public class DeletionTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
     public void deleteNotEmptyConnection() throws Exception {
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//        myConnectionsPageNew.getConnectionByName(oobInvitation).click();
         objConnectionModules.openConnectionHistory(oobInvitation);
 
         AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
