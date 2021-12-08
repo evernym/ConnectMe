@@ -8,12 +8,14 @@ import test.java.appModules.VASApi;
 import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.utility.Helpers;
+import test.java.funcModules.ConnectionModules;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class QuestionTest extends IntSetup {
     private AppUtils objAppUtlis = new AppUtils();
+    private ConnectionModules objConnectionModules = new ConnectionModules();
     private LocalContext context = LocalContext.getInstance();
 
     private VASApi VAS;
@@ -37,7 +39,21 @@ public class QuestionTest extends IntSetup {
         AppUtils.DoSomethingEventually(
             () -> VAS.askQuestion(DID, questionTitle, questionText, validResponses)
         );
-        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+
+        try {
+            AppUtils.waitForElementNew(driverApp, questionPageNew.header, 10);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, questionPageNew.header, 10)
+            );
+        }
+
         validateQuestionWindow(validResponses);
     }
 
@@ -93,10 +109,7 @@ public class QuestionTest extends IntSetup {
 
     @Test(dependsOnMethods = "answerQuestionWithThreeOptionsFromHome")
     public void validateConnectionHistory() throws Exception {
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        myConnectionsPageNew.getConnectionByName(connectionName).isDisplayed();
-        myConnectionsPageNew.getConnectionByName(connectionName).click();
+        objConnectionModules.openConnectionHistory(connectionName);
         connectionHistoryPageNew.questionAnswerRecord.isDisplayed();
         connectionHistoryPageNew.questionAnswerRecordDescription(oneOption.get(0)).isDisplayed();
         connectionHistoryPageNew.questionAnswerRecordDescription(twoOptions.get(0)).isDisplayed();

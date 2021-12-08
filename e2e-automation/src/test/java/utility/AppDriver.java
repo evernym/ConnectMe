@@ -22,8 +22,8 @@ import java.util.concurrent.TimeUnit;
 public class AppDriver {
 
     private static AppiumDriver driver;
-    public static final int EXTRA_LARGE_TIMEOUT = 120;
-    public static final int LARGE_TIMEOUT = 60;
+    public static final int EXTRA_LARGE_TIMEOUT = 120; // 60?
+    public static final int LARGE_TIMEOUT = 45; // 60
     public static final int SMALL_TIMEOUT = 15;
     public static final int SUPER_SMALL_TIMEOUT = 10;
 

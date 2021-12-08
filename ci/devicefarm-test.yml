@@ -94,7 +94,6 @@ devicefarm-test-launch-ios-weekly-final:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
 devicefarm-test-launch-android-master:
-    allow_failure: true # CM-3158
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
@@ -137,6 +136,7 @@ devicefarm-test-launch-ios-merge_requests:
           when: always
 
 devicefarm-test-upgrade-path-android:
+    allow_failure: true
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-android
     dependencies:
@@ -150,6 +150,7 @@ devicefarm-test-upgrade-path-android:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
+    allow_failure: true
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-ios
     dependencies:

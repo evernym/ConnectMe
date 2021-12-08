@@ -120,7 +120,7 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
-        if ((Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid"))) {
+        if ((Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid"))) { // FIXME
             Thread.sleep(5000);
         } else {
             Thread.sleep(2000);
@@ -271,6 +271,13 @@ public class ConnectionModules extends IntSetup {
             try {
                 myConnectionsPageNew.getConnectionByName(connectionName).click();
             } catch (Exception e) {
+                if(!AppUtils.isElementAbsent(driverApp, myConnectionsPageNew.getConnectionByName(connectionName)))
+                {
+                    try {
+                        myConnectionsPageNew.getConnectionByName(connectionName).click();
+                    } catch (Exception ex) {
+                    }
+                }
             }
         }
     }
