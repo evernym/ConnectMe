@@ -42,8 +42,14 @@ fi
 
 if [ "$against" = "vas" ]; then
     # setup VAS server
+    if [ "$device_type" = "awsiOS" ];
+    then
+        ngrok authtoken ${IOS_NGROK_AUTHTOKEN}
+    else
+        ngrok authtoken ${ANDROID_NGROK_AUTHTOKEN}
+    fi
     ngrok http 1338 >> /dev/null &
-    sleep 5
+    sleep 10
     VAS_ENDPOINT=`curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url`
     sed -ri "s|VAS_Server_Link = \".*\"|VAS_Server_Link = \"${VAS_ENDPOINT}\"|" ${TESTS_CONFIG_PATH}
     python3 appium-launcher/vas-server.py &
