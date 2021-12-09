@@ -77,7 +77,7 @@ public class CredentialTest extends IntSetup {
                         AppUtils.pullScreenUp(driverApp);
                         objAppUtlis.findParameterizedElement(attribute).isDisplayed();
                         objAppUtlis.findParameterizedElement(values.getString(attribute)).isDisplayed();
-                    } catch (Exception ex) // Fix for the case when element is 'under' the screen
+                    } catch (Exception ex) // Fix for the case when element is 'under' the screen // FIXME remove this
                     {
                         AppUtils.pullScreenDown(driverApp);
                         objAppUtlis.findParameterizedElement(attribute).isDisplayed();
@@ -168,7 +168,19 @@ public class CredentialTest extends IntSetup {
             () -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName)
         );
 
-        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
+        try {
+            AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader, 10);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            AppUtils.DoSomethingEventuallyNew(15,
+                () -> driverApp.terminateApp("me.connect"),
+                () -> driverApp.launchApp(),
+                () -> new AppUtils().authForAction(),
+                () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader, 10));
+        }
+
         schemeName = credentialPageNew.credentialSchemeName.getText();
         context.setValue("credentialNameScheme", schemeName);
 
@@ -214,10 +226,8 @@ public class CredentialTest extends IntSetup {
     public void rejectCredentialOffer() throws Exception {
         AppUtils.DoSomethingEventually(
             () -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), Constants.values, credentialName)
-//				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
         );
-//    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
-        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
+        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
 
 //		validateCredentialView("Credential Offer", "Issued by", credentialName, Constants.values);
         objAppUtlis.rejectCredential();
@@ -238,10 +248,8 @@ public class CredentialTest extends IntSetup {
 
         AppUtils.DoSomethingEventually(
             () -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdMany"), valuesMany, credentialNameMany)
-//				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
         );
-//    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
-        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
+        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
         schemeName = credentialPageNew.credentialSchemeName.getText();
         context.setValue("credentialNameManyScheme", schemeName);
         objAppUtlis.acceptCredential();
@@ -275,10 +283,8 @@ public class CredentialTest extends IntSetup {
 
         AppUtils.DoSomethingEventually(
             () -> VAS.sendCredentialOffer(DID, context.getValue("credDefIdAll"), values, credentialNameAll)
-//				() -> AppUtils.waitForElement(driverApp, () -> credentialPage.header(driverApp, header)).isDisplayed()
         );
-//    AppUtils.waitForElementNew(driverApp, credentialPageNew.findParameterizedElement(header));
-        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader); // option 2
+        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
 
         String schemeName = credentialPageNew.credentialSchemeName.getText();
         validateCredentialView("Credential Offer", "Issued by", schemeName, values);

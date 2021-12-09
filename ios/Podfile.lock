@@ -6,6 +6,9 @@ PODS:
   - boost-for-react-native (1.63.0)
   - Branch (0.37.0)
   - DoubleConversion (1.1.6)
+  - evernym-react-native-sdk (0.12.0-494):
+    - React-Core
+    - vcx
   - FBLazyVector (0.65.1)
   - FBReactNativeSpec (0.65.1):
     - RCT-Folly (= 2021.04.26.00)
@@ -331,15 +334,6 @@ PODS:
   - react-native-webview (10.1.1):
     - React-Core
   - react-native-white-label-app (1.0.0):
-    - JumioMobileSDK (~> 3.9.0)
-    - JumioMobileSDK/BAMCheckout (~> 3.9.0)
-    - JumioMobileSDK/DocumentVerification (~> 3.9.0)
-    - JumioMobileSDK/Netverify (~> 3.9.0)
-    - JumioMobileSDK/NetverifyBarcode (~> 3.9.0)
-    - JumioMobileSDK/NetverifyBase (~> 3.9.0)
-    - "JumioMobileSDK/NetverifyFace+iProov (~> 3.9.0)"
-    - "JumioMobileSDK/NetverifyFace+Zoom (~> 3.9.0)"
-    - JumioMobileSDK/NetverifyNFC (~> 3.9.0)
     - React-Core
     - vcx
   - React-perflogger (0.65.1)
@@ -442,8 +436,9 @@ PODS:
     - React-Core
   - RNReanimated (1.9.0):
     - React-Core
-  - RNScreens (2.17.1):
+  - RNScreens (3.9.0):
     - React-Core
+    - React-RCTImage
   - RNShare (3.4.0):
     - React-Core
   - RNSnackbar (2.2.3):
@@ -464,13 +459,14 @@ PODS:
   - SSZipArchive (2.2.2)
   - Starscream (4.0.4)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.216)
+  - vcx (0.0.219)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
   - apptentive-ios
   - apptentive-react-native (from `../node_modules/apptentive-react-native`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - "evernym-react-native-sdk (from `../node_modules/@evernym/react-native-sdk`)"
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -538,7 +534,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.216)
+  - vcx (= 0.0.219)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -571,6 +567,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/apptentive-react-native"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  evernym-react-native-sdk:
+    :path: "../node_modules/@evernym/react-native-sdk"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -709,7 +707,8 @@ SPEC CHECKSUMS:
   apptentive-react-native: b977aeb105b77929c47fa616f1d42277176edff4
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   Branch: 49c609eb0ac0130b8491d0923a9298714731bd0d
-  DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
+  DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  evernym-react-native-sdk: b8987e7532246ef383d860d8b1be88a2474b1e2d
   FBLazyVector: 33c82491102f20ecddb6c6a2c273696ace3191e0
   FBReactNativeSpec: df8f81d2a7541ee6755a047b398a5cb5a72acd0e
   Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
@@ -719,7 +718,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 5ad92c898e1328b66e8dd58811964d6fe4d334c3
   FirebaseMessaging: 6112b5cd04e0ff58c4a9920e5e29cf193ea88439
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-  glog: 5337263514dd6f09803962437687240c5dc39aa4
+  glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
   iProov: 229c72183e440790a58a0298ae24f1515eea1432
@@ -782,7 +781,7 @@ SPEC CHECKSUMS:
   RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
   RNPermissions: 7043bacbf928eae25808275cfe73799b8f618911
   RNReanimated: f05baf4cd76b6eab2e4d7e2b244424960b968918
-  RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
+  RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
   RNShare: e11014e7afd7802aba95b6f52946061a5a55d8cf
   RNSnackbar: ce24f8dad64f65e345e6a93b777733707379913c
   RNSVG: 59dfa0b461f9e94136e1b1f3878da58a743d4795
@@ -792,9 +791,9 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: 7a3936aa95302394ffbe8be8bb44390ed3d412f2
+  vcx: e7e3aac5f3ab62351481fcac4e7eb1da59abf45e
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
 PODFILE CHECKSUM: fc9eec9269d1d19a0fbc3f80358a4aab4761908a
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.1

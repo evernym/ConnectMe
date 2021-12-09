@@ -192,15 +192,14 @@ public class AppUtils extends IntSetup {
 
     public static void waitForElementNew(AppiumDriver driver, WebElement element) throws Exception {
         System.out.println("Wait for element to be available");
-        driver.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 1; i < 6; i++) {
+            driver.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
             try {
                 element.isDisplayed();
                 return;
             } catch (Exception e) {
                 System.out.println(e.getMessage() + " Retry #" + i);
                 pullScreenDown(driver);
-                Thread.sleep(AppDriver.SMALL_TIMEOUT);
             }
             finally {
                 driver.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
@@ -211,8 +210,8 @@ public class AppUtils extends IntSetup {
 
     public static void waitForElementNew(AppiumDriver driver, WebElement element, int timeout) throws Exception {
         System.out.println("Wait for element to be available");
-        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         for (int i = 1; i < 4; i++) {
+            driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
             try {
                 element.isDisplayed();
                 return;
@@ -232,9 +231,9 @@ public class AppUtils extends IntSetup {
         Dimension dims = driver.manage().window().getSize();
         try {
             new TouchAction(driver)
-                .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
-                .waitAction(new WaitOptions().withDuration(Duration.ofMillis(100)))
-                .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height - 20))
+                .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 4))
+                .waitAction(new WaitOptions().withDuration(Duration.ofMillis(200)))
+                .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height - 50))
                 .release().perform();
         } catch (Exception e) {
             System.err.println("Pull screen down to refresh FAILED with Error:\n" + e.getMessage());
@@ -248,7 +247,7 @@ public class AppUtils extends IntSetup {
             new TouchAction(driver)
                 .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
                 .waitAction(new WaitOptions().withDuration(Duration.ofMillis(200)))
-                .moveTo(new PointOption().withCoordinates(dims.width / 3, 200))
+                .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 6))
                 .release().perform();
         } catch (Exception e) {
             System.err.println("Pull screen up FAILED with Error:\n" + e.getMessage());
@@ -286,7 +285,7 @@ public class AppUtils extends IntSetup {
 
     public void authForAction() throws Exception {
         try {
-            driverApp.manage().timeouts().implicitlyWait(AppDriver.SUPER_SMALL_TIMEOUT, TimeUnit.SECONDS);
+            driverApp.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
             passCodePageNew.passCodeTitle.isDisplayed();
             passCodePageNew.enterPassCode();
         } catch (NoSuchElementException e) {
