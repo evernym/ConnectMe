@@ -222,7 +222,6 @@ upload-ios:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - physical-id@evernym/mobile/connectme
 
 upload-android:
   stage: upload
@@ -234,7 +233,6 @@ upload-android:
   only:
     refs:
       - main@evernym/mobile/connectme
-      - physical-id@evernym/mobile/connectme
 # Basic lint
 #yarn-test:
 #  stage: test
