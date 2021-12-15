@@ -81,6 +81,7 @@ public class VASApi {
 
 		Response response = RestAssured
 				.given()
+                .header("Bypass-Tunnel-Reminder", "any") // avoid localtunnel reminder
 				.relaxedHTTPSValidation()
 				.request(Method.GET);
 
