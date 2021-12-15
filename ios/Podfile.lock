@@ -7,16 +7,6 @@ PODS:
   - Branch (0.37.0)
   - DoubleConversion (1.1.6)
   - evernym-react-native-sdk (0.12.0):
-    - Gifu
-    - JumioMobileSDK (~> 3.9.0)
-    - JumioMobileSDK/BAMCheckout (~> 3.9.0)
-    - JumioMobileSDK/DocumentVerification (~> 3.9.0)
-    - JumioMobileSDK/Netverify (~> 3.9.0)
-    - JumioMobileSDK/NetverifyBarcode (~> 3.9.0)
-    - JumioMobileSDK/NetverifyBase (~> 3.9.0)
-    - "JumioMobileSDK/NetverifyFace+iProov (~> 3.9.0)"
-    - "JumioMobileSDK/NetverifyFace+Zoom (~> 3.9.0)"
-    - JumioMobileSDK/NetverifyNFC (~> 3.9.0)
     - React-Core
     - vcx
   - FBLazyVector (0.65.1)
@@ -345,6 +335,16 @@ PODS:
   - react-native-webview (10.1.1):
     - React-Core
   - react-native-white-label-app (1.0.0):
+    - Gifu
+    - JumioMobileSDK (~> 3.9.0)
+    - JumioMobileSDK/BAMCheckout (~> 3.9.0)
+    - JumioMobileSDK/DocumentVerification (~> 3.9.0)
+    - JumioMobileSDK/Netverify (~> 3.9.0)
+    - JumioMobileSDK/NetverifyBarcode (~> 3.9.0)
+    - JumioMobileSDK/NetverifyBase (~> 3.9.0)
+    - "JumioMobileSDK/NetverifyFace+iProov (~> 3.9.0)"
+    - "JumioMobileSDK/NetverifyFace+Zoom (~> 3.9.0)"
+    - JumioMobileSDK/NetverifyNFC (~> 3.9.0)
     - React-Core
     - vcx
   - React-perflogger (0.65.1)
@@ -720,7 +720,7 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   Branch: 49c609eb0ac0130b8491d0923a9298714731bd0d
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
-  evernym-react-native-sdk: f27678f0a6f2d3ddc404d07838d32ba267b98c14
+  evernym-react-native-sdk: 55ed4c1b5832a0572a428ad3c4f0159470187bf7
   FBLazyVector: 33c82491102f20ecddb6c6a2c273696ace3191e0
   FBReactNativeSpec: df8f81d2a7541ee6755a047b398a5cb5a72acd0e
   Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
@@ -768,7 +768,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: c7ce0ee8998b349fbe58fef6c2b729ffb8de0a5f
+  react-native-white-label-app: 647585544d13cd1cd1527bf151636c0141146213
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
