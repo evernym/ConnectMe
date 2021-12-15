@@ -1393,14 +1393,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#add-jumio-id-verification":
-  version "1.0.0"
-  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#a306b8380ce912931ebdfff8787dd5fc49a54446"
+"@evernym/react-native-sdk@https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/24132115/download":
+  version "0.12.0-584"
+  resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/24132115/download#d156dffcf627a80a94774579d72087407a129529"
 
-"@evernym/react-native-white-label-app@1.0.0-416296793":
-  version "1.0.0-416296793"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.0.0-416296793.tgz#2c11b2fa63d907b30bc590e5ccd2f63644b494ae"
-  integrity sha512-iw4HVBMQDr9hWcQ/BDlnRms3OmBSz02igbmqe4C06MfLF7eh+6KueXfDlCiAHzprHy7lvGczrI7LUxJm0R3wZA==
+"@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#fix-swipe":
+  version "1.0.0"
+  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#7bf8fe06e6fef35ec1e95169c557c7e42ccc630c"
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
