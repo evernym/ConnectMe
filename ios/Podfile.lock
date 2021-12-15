@@ -443,8 +443,35 @@ PODS:
     - TOCropViewController
   - RNPermissions (3.0.5):
     - React-Core
-  - RNReanimated (1.9.0):
+  - RNReanimated (2.2.3):
+    - DoubleConversion
+    - FBLazyVector
+    - FBReactNativeSpec
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-callinvoker
     - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - React-RCTVibration
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNScreens (3.9.0):
     - React-Core
     - React-RCTImage
@@ -468,7 +495,7 @@ PODS:
   - SSZipArchive (2.2.2)
   - Starscream (4.0.4)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.221)
+  - vcx (0.0.222)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -543,7 +570,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.221)
+  - vcx (= 0.0.222)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -789,7 +816,7 @@ SPEC CHECKSUMS:
   RNImageColors: f6b4dc737d15bf01bf379369655467e03b361861
   RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
   RNPermissions: 7043bacbf928eae25808275cfe73799b8f618911
-  RNReanimated: f05baf4cd76b6eab2e4d7e2b244424960b968918
+  RNReanimated: aaf2cf65595b293daae808015761a6014a97b284
   RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
   RNShare: e11014e7afd7802aba95b6f52946061a5a55d8cf
   RNSnackbar: ce24f8dad64f65e345e6a93b777733707379913c
@@ -800,9 +827,9 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: d9cf636921bcd0b9af163a7b48c3c76badf1f445
+  vcx: d53641a980a42cb78dd7103f220866eae5199c9c
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
-PODFILE CHECKSUM: 428d2587fc9c2617985ece2998bf380062da15c9
+PODFILE CHECKSUM: 1fa3beb4dc581a04e34feccd8adc79cea142eaee
 
 COCOAPODS: 1.10.2
