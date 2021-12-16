@@ -43,6 +43,9 @@ allprojects {
             url 'https://evernym.mycloudrepo.io/public/repositories/libvcx-android'
         }
         maven {
+            url 'https://evernym.mycloudrepo.io/public/repositories/evernym'
+        }
+        maven {
             url "https://maven.google.com"
             name 'Google'
         }
