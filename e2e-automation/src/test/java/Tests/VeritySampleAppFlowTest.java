@@ -110,12 +110,40 @@ public class VeritySampleAppFlowTest extends IntSetup {
 //    };
         for (String[] entry: creds_and_proofs) {
             // accept credential
-            AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
+//            AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
+
+            try {
+                AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader, 10);
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                AppUtils.DoSomethingEventuallyNew(15,
+                    () -> driverApp.terminateApp("me.connect"),
+                    () -> driverApp.launchApp(),
+                    () -> new AppUtils().authForAction(),
+                    () -> AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader, 10));
+            }
+
             AppUtilsInstance.acceptCredential();
             Thread.sleep(step_wait);
 
             // share proof
-            AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+//            AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader);
+
+            try {
+                AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader, 10);
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+                AppUtils.DoSomethingEventuallyNew(15,
+                    () -> driverApp.terminateApp("me.connect"),
+                    () -> driverApp.launchApp(),
+                    () -> new AppUtils().authForAction(),
+                    () -> AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader, 10));
+            }
+
             AppUtilsInstance.shareProof();
             Thread.sleep(step_wait);
         }
