@@ -26,8 +26,8 @@
     ]
   },
   "dependencies": {
-    "@evernym/react-native-white-label-app": "1.0.0-431039256",
-    "@evernym/react-native-sdk": "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/24132115/download",
+    "@evernym/react-native-white-label-app": "1.0.0-431899213",
+    "@evernym/react-native-sdk": "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/24390255/download",
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.10",
@@ -87,8 +87,8 @@
     "react-native-permissions": "^3.0.5",
     "react-native-qrcode-svg": "^6.1.1",
     "react-native-randombytes": "3.5.3",
-    "react-native-reanimated": "1.9.0",
-    "react-native-redash": "^15.7.3",
+    "react-native-reanimated": "2.2.3",
+    "react-native-redash": "^16.2.2",
     "react-native-safe-area-context": "3.0.5",
     "react-native-screens": "3.9.0",
     "react-native-sensitive-info": "5.5.5",
