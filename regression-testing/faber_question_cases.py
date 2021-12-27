@@ -7,7 +7,7 @@ import string
 import time
 from time import sleep
 
-from demo.demo_utils import download_message, update_message_as_read
+from utils import download_message, update_message_as_read
 from vcx.error import VcxError
 
 from vcx.api.connection import Connection

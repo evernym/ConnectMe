@@ -128,6 +128,7 @@ async def issue_credential(connection_to_alice, schema_attributes, credential_va
     print("#4 Create a new credential definition on the ledger")
     cred_def = await CredentialDef.create('credef_uuid', 'degree', schema_id, 0, "tag")
     cred_def_handle = cred_def.handle
+    cred_def_id = await cred_def.get_cred_def_id()
 
     print("#12 Create an IssuerCredential object using the schema and credential definition")
     credential = await IssuerCredential.create('alice_degree', credential_values, cred_def_handle, credential_name, '0')
@@ -167,6 +168,8 @@ async def issue_credential(connection_to_alice, schema_attributes, credential_va
         problem_report = await credential.get_problem_report()
         print("Credential has been rejected")
         print(problem_report)
+    return schema_id, cred_def_id
+
 
 
 def proof_attrs(institution_did):

@@ -11,15 +11,9 @@ RUN apt-get update -y && \
     unzip \
     wget
 
-# install certificates for sovrin
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CE7709D068DB5E88
-RUN add-apt-repository "deb https://repo.sovrin.org/sdk/deb bionic stable"
-
-# install certificates for evernym
-RUN mkdir -p /usr/local/share/ca-certificates
-RUN curl -k https://repo.corp.evernym.com/ca.crt | tee /usr/local/share/ca-certificates/Evernym_Root_CA.crt
-RUN update-ca-certificates
-
+COPY ./installCert.sh /tmp
+RUN /tmp/installCert.sh
+RUN add-apt-repository "deb https://repo.corp.evernym.com/deb evernym-agency-dev-ubuntu main"
 # install libraries and libindy
 RUN apt-get update && apt-get install -y \
     python3 \
@@ -32,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     automake \
     uuid-dev \
     wget \
-    libindy
+    libvdrtools=0.8.2-bionic
 
 # install NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
