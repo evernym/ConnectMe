@@ -237,7 +237,7 @@ def proof_data_with_missing_attribute():
     return {
         'name': 'Proof with missing attributes',
         'attributes': [
-            {'name': 'Name', 'restrictions': {'issuer_did': rand_string()}},
+            {'name': 'FirstName', 'restrictions': {'issuer_did': rand_string()}},
             {'name': 'Gender', 'restrictions': {'issuer_did': rand_string()}}
         ],
         'predicates': [
@@ -249,7 +249,8 @@ def proof_data_with_missing_group_of_attributes():
     return {
         'name': 'Proof with missing group of attributes',
         'attributes': [
-            {'names': ['FirstName', 'Gender']},
+            {'names': ['FirstName', 'Age'], 'restrictions': {'issuer_did': rand_string()}},
+            {'names': ['Lastname', 'Gender']},
         ],
         'predicates': [
         ]
@@ -276,8 +277,8 @@ def proof_data_with_missing_predicates():
             {'name': 'FirstName'},
         ],
         'predicates': [
-            {'name': 'Age', 'p_type': '<=', 'p_value': 3},
-            {'name': 'Salary', 'p_type': '>=', 'p_value': 800},
+            {'name': 'Age', 'p_type': '<=', 'p_value': 30, 'restrictions': {'issuer_did': rand_string()}},
+            {'name': 'Salary', 'p_type': '>=', 'p_value': 80000},
         ]
     }
 
