@@ -1121,8 +1121,8 @@
 				"${BUILT_PRODUCTS_DIR}/rn-fetch-blob/rn_fetch_blob.framework",
 				"${PODS_ROOT}/vcx/vcx/vcx.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/iProov/iProov.framework/iProov",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/MIDSAssistSDK/MIDSAssistSDK.framework/MIDSAssistSDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/MIDSVerificationSDK/MIDSVerificationSDK.framework/MIDSVerificationSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-white-label-app/MIDSAssistSDK.framework/MIDSAssistSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-white-label-app/MIDSVerificationSDK.framework/MIDSVerificationSDK",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
