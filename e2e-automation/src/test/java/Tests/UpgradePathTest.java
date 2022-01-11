@@ -33,8 +33,8 @@ public class UpgradePathTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         reloadDriversAndPos();
-        DID = context.getValue("DID");
-        connectionName = context.getValue("connectionName");
+//        DID = context.getValue("DID");
+//        connectionName = context.getValue("connectionName");
 
         VAS = VASApi.getInstance();
         objAppUtlis = new AppUtils();
