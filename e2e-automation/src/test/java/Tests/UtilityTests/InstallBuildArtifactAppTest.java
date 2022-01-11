@@ -14,6 +14,7 @@ public class InstallBuildArtifactAppTest extends IntSetup {
     public void installBuildArtifact() throws Exception {
         try {
             String appPath = AppCenterAPI.getLatestAppDownloadUrl(Config.Device_Type);
+            System.out.println("APP PATH >>> " + appPath);
 
             if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
                 driverApp.installApp(appPath);

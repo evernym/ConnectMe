@@ -18,6 +18,7 @@ public class InstallAppFromAppCenterTest extends IntSetup {
 
         try {
             String appPath = AppCenterAPI.getReleaseCandidateAppDownloadUrl(Config.Device_Type);
+            System.out.println("APP PATH >>> " + appPath);
 
             if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
                 driverApp.installApp(appPath);
