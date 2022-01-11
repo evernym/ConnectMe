@@ -20,6 +20,9 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs
 RUN npm install -g localtunnel
 
+# Reinstall pip3 to fix issue with Pillow package
+RUN python3 -m pip3 install -U --force-reinstall pip3
+
 # Install Aca-Py
 RUN pip3 install python3-indy aries-cloudagent
 
