@@ -143,10 +143,10 @@ devicefarm-test-upgrade-path-android:
         - build-android-master
         - upload-android
     rules:
-        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+        # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "upgrade-path-test-run"'
           when: always
     script:
-        - sleep 300 # android shift
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
@@ -157,7 +157,8 @@ devicefarm-test-upgrade-path-ios:
         - build-ios-master
         - upload-ios
     rules:
-        - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+        # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
+        - if: '$CI_COMMIT_REF_SLUG == "upgrade-path-test-run"'
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
