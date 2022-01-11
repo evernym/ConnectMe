@@ -136,77 +136,77 @@ public class UpgradePathPreconditionTest extends IntSetup {
         aboutPageNew.backArrow.click();
     }
 
-    @Test(dataProvider = "invitationTypesSource", dependsOnMethods = "checkSettings")
-    public void setUpConnectionTest(String invitationType) throws Exception {
+//    @Test(dataProvider = "invitationTypesSource", dependsOnMethods = "checkSettings")
+//    public void setUpConnectionTest(String invitationType) throws Exception {
 //        AppDriver.quit();
 //        BrowserDriver.quit();
 //        reloadDriversAndPos();
-        objConnectionModules = new ConnectionModules();
-        connectionName = invitationType;
-        driverBrowser.launchApp();
-        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
-
-        try {
-            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            AppUtils.DoSomethingEventuallyNew(15,
-                () -> driverApp.terminateApp("me.connect"),
-                () -> driverApp.launchApp(),
-                () -> new AppUtils().authForAction(),
-                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5)
-            );
-        }
-        objConnectionModules.acceptConnectionInvitation(driverApp);
-
-
-        try {
-            switch (connectionName) {
-                case connectionInvitation:
-                    AppUtils.waitForElementNew(driverApp, homePageNew.commonConnectedEvent);
-                    break;
-                case oobInvitation:
-                    AppUtils.waitForElementNew(driverApp, homePageNew.oobConnectedEvent);
-                    break;
-            }
-        } catch (Exception e) {
-            System.exit(1); // don't run other tests if this fails
-        }
-
-        if(test.java.utility.Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
-    }
-
-    @Test(dependsOnMethods = "setUpConnectionTest")
-    public void validateMyConnectionRecordAppeared() throws Exception {
-        passCodePageNew.openApp();
-
-        homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        Thread.sleep(1000);
-        myConnectionsPageNew.getConnectionByName(connectionName).click();
-    }
-
-    @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
-    public void validateConnectionHistory() throws Exception {
-        connectionHistoryPageNew.connectionLogo.isDisplayed();
-        connectionHistoryPageNew.oobConnectionName.isDisplayed();
-        connectionHistoryPageNew.connectedRecord.isDisplayed();
-        connectionHistoryPageNew.oobConnectedRecordDescription.isDisplayed();
-    }
-
-    @Test(dependsOnMethods = "validateConnectionHistory")
-    public void validateConnectionDetails() throws Exception {
-        connectionHistoryPageNew.threeDotsButton.isDisplayed();
-        connectionHistoryPageNew.threeDotsButton.click();
-
-        connectionDetailPageNew.closeButton.isDisplayed();
-        connectionDetailPageNew.deleteButton.isDisplayed();
-
-        connectionDetailPageNew.closeButton.click();
-        connectionHistoryPageNew.backButton.click();
-    }
+//        objConnectionModules = new ConnectionModules();
+//        connectionName = invitationType;
+//        driverBrowser.launchApp();
+//        objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
+//
+//        try {
+//            AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5);
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println(e.getMessage());
+//            AppUtils.DoSomethingEventuallyNew(15,
+//                () -> driverApp.terminateApp("me.connect"),
+//                () -> driverApp.launchApp(),
+//                () -> new AppUtils().authForAction(),
+//                () -> AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 5)
+//            );
+//        }
+//        objConnectionModules.acceptConnectionInvitation(driverApp);
+//
+//
+//        try {
+//            switch (connectionName) {
+//                case connectionInvitation:
+//                    AppUtils.waitForElementNew(driverApp, homePageNew.commonConnectedEvent);
+//                    break;
+//                case oobInvitation:
+//                    AppUtils.waitForElementNew(driverApp, homePageNew.oobConnectedEvent);
+//                    break;
+//            }
+//        } catch (Exception e) {
+//            System.exit(1); // don't run other tests if this fails
+//        }
+//
+//        if(test.java.utility.Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
+//    }
+//
+//    @Test(dependsOnMethods = "setUpConnectionTest")
+//    public void validateMyConnectionRecordAppeared() throws Exception {
+//        passCodePageNew.openApp();
+//
+//        homePageNew.tapOnBurgerMenu();
+//        menuPageNew.myConnectionsButton.click();
+//        Thread.sleep(1000);
+//        myConnectionsPageNew.getConnectionByName(connectionName).click();
+//    }
+//
+//    @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
+//    public void validateConnectionHistory() throws Exception {
+//        connectionHistoryPageNew.connectionLogo.isDisplayed();
+//        connectionHistoryPageNew.oobConnectionName.isDisplayed();
+//        connectionHistoryPageNew.connectedRecord.isDisplayed();
+//        connectionHistoryPageNew.oobConnectedRecordDescription.isDisplayed();
+//    }
+//
+//    @Test(dependsOnMethods = "validateConnectionHistory")
+//    public void validateConnectionDetails() throws Exception {
+//        connectionHistoryPageNew.threeDotsButton.isDisplayed();
+//        connectionHistoryPageNew.threeDotsButton.click();
+//
+//        connectionDetailPageNew.closeButton.isDisplayed();
+//        connectionDetailPageNew.deleteButton.isDisplayed();
+//
+//        connectionDetailPageNew.closeButton.click();
+//        connectionHistoryPageNew.backButton.click();
+//    }
 
     @AfterClass
     public void AfterClass() {
