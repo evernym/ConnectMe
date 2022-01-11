@@ -7,7 +7,7 @@ RUN apt-get update \
    && apt-get update \
    && apt-get install -y libindy libnullpay \
    python3 \
-   python3-pip==19.3.1
+   python3-pip=19.3.1
 
 # Install Java
 RUN apt-get update && apt-get install -y \
