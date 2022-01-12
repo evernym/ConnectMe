@@ -160,9 +160,6 @@ build-ios-master:
     BUILD_TYPE: 'QA ConnectMe Build'
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
     # this gets passed to the anchor
-  only:
-      refs:
-          - main@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -200,9 +197,6 @@ build-android-merge-request:
 
 build-android-master:
   extends: .build-android
-  only:
-      refs:
-          - main@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
@@ -219,9 +213,6 @@ upload-ios:
     - gem install fastlane
     - bundle install
     - bundle exec fastlane upload
-  only:
-    refs:
-      - main@evernym/mobile/connectme
 
 upload-android:
   stage: upload
@@ -230,9 +221,6 @@ upload-android:
     - gem install fastlane
     - bundle install
     - bundle exec fastlane upload
-  only:
-    refs:
-      - main@evernym/mobile/connectme
 # Basic lint
 #yarn-test:
 #  stage: test
