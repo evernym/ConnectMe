@@ -141,7 +141,7 @@ devicefarm-test-upgrade-path-android:
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
-        # - upload-android
+        - upload-android
     rules:
         # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
         - if: '$CI_COMMIT_REF_SLUG == "upgrade-path-test-run"'
@@ -155,7 +155,7 @@ devicefarm-test-upgrade-path-ios:
     extends: .devicefarm-test-launch-ios
     dependencies:
         - build-ios-master
-        # - upload-ios
+        - upload-ios
     rules:
         # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
         - if: '$CI_COMMIT_REF_SLUG == "upgrade-path-test-run"'

@@ -221,7 +221,7 @@ upload-ios:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - upgrade-path-test-run@evernym/mobile/connectme
 
 upload-android:
   stage: upload
@@ -232,7 +232,7 @@ upload-android:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - upgrade-path-test-run@evernym/mobile/connectme
 # Basic lint
 #yarn-test:
 #  stage: test
