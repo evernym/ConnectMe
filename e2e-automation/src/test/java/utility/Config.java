@@ -37,7 +37,7 @@ public class Config {
 
 
     public static final String ACtoken = "";
-    public static final String RCVersion = "1.7.0";
+    public static final String RCVersion = "1.6.2";
 	/*
 	* VAS settings
 	* */
