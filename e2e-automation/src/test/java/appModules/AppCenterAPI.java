@@ -103,7 +103,8 @@ public class AppCenterAPI {
             JSONObject bodyJson = new JSONObject(response.getBody().asString());
             String downloadUrl = bodyJson.getString("download_url");
             System.out.println("Download link: " + downloadUrl);
-            if (downloadUrl.contains("appstore")) {
+//            if (downloadUrl.contains("appstore")) {
+            if (downloadUrl.contains("ConnectMe.ipa")) {
                 System.out.println("Download link is valid");
                 return downloadUrl;
             }
