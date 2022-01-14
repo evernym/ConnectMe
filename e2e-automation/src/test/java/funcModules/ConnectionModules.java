@@ -211,15 +211,13 @@ public class ConnectionModules extends IntSetup {
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
 //            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
-            try
-            {
+//            {
                 pushNotificationsPageNew.allowButton.click();
                 pushNotificationsPageNew.okButton.click();
-            }
+//            }
 //            else {
-            catch (Exception ex) {
-                System.out.println("Permissions already have been granted!");
-            }
+//                System.out.println("Permissions already have been granted!");
+//            }
         }
     }
 
