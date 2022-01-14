@@ -120,11 +120,8 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
-        if ((Config.Device_Type.equals("android") || Config.Device_Type.equals("awsAndroid"))) { // FIXME
-            Thread.sleep(5000);
-        } else {
-            Thread.sleep(2000);
-        }
+        Thread.sleep(5000);
+
         new AppUtils().authForAction();
     }
 
@@ -210,14 +207,14 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
-//            {
+            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
+            {
                 pushNotificationsPageNew.allowButton.click();
                 pushNotificationsPageNew.okButton.click();
-//            }
-//            else {
-//                System.out.println("Permissions already have been granted!");
-//            }
+            }
+            else {
+                System.out.println("Permissions already have been granted!");
+            }
         }
     }
 

@@ -21,6 +21,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
+        driverApp.launchApp();
     }
 
     @DataProvider(name = "invitationTypesSource")
@@ -40,8 +41,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
     @Test
     public void setUpWizardTest() {
         try {
-            driverApp.launchApp();
-            reloadDriversAndPos();
+//            reloadDriversAndPos();
             startUpPageNew.setUpButton.click();
             passCodePageNew.enterPassCode();
             Thread.sleep(2000);
@@ -140,7 +140,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
     @Test(dependsOnMethods = "checkSettings")
     public void reloadApp() throws Exception {
         driverApp.closeApp();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         driverApp.launchApp();
     }
 
