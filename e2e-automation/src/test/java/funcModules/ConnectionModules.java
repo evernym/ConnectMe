@@ -1,7 +1,10 @@
 package test.java.funcModules;
 
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.appmanagement.ApplicationState;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -13,6 +16,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import org.openqa.selenium.Dimension;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
 import test.java.appModules.AcaPyApi;
@@ -21,6 +25,7 @@ import test.java.utility.AppDriver;
 import test.java.utility.LocalContext;
 import test.java.appModules.AppUtils;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -209,8 +214,18 @@ public class ConnectionModules extends IntSetup {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
 //            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
 //            {
+            try {
                 pushNotificationsPageNew.allowButton.click();
                 pushNotificationsPageNew.okButton.click();
+            } catch (Exception e) {
+                System.out.println(">>> Allow push notifications button was not found!");
+                Dimension dims = driverApp.manage().window().getSize();
+                new TouchAction(driverApp)
+                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100))
+                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+                    .release().perform();
+                pushNotificationsPageNew.okButton.click();
+            }
 //            }
 //            else {
 //                System.out.println("Permissions already have been granted!");
