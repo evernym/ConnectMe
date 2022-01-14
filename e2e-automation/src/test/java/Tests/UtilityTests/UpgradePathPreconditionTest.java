@@ -41,7 +41,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
     @Test
     public void setUpWizardTest() {
         try {
-//            reloadDriversAndPos();
+            reloadDriversAndPos();
             startUpPageNew.setUpButton.click();
             passCodePageNew.enterPassCode();
             Thread.sleep(2000);
