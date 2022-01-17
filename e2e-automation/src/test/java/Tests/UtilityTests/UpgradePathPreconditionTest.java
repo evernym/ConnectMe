@@ -146,10 +146,10 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource", dependsOnMethods = "reloadApp")
     public void setUpConnectionTest(String invitationType) throws Exception {
-        reloadDriversAndPos();
         connectionName = invitationType;
         driverBrowser = BrowserDriver.getDriver();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
+        reloadDriversAndPos();
         objConnectionModules.acceptPushNotificationRequest(driverApp);
 
         try {
