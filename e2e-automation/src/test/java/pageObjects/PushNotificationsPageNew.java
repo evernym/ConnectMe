@@ -13,9 +13,9 @@ public class PushNotificationsPageNew {
     this.driver = driver;
   }
 
-  @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
-  @iOSXCUITFindBy(accessibility = "allow-notifications-button") // id?
-  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Allow Push Notifications\"]") // debug
+//  @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
+//  @iOSXCUITFindBy(accessibility = "allow-notifications-button") // id?
+//  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Allow Push Notifications\"]") // debug
   @iOSXCUITFindBy(xpath = "//*[@text=\"Allow Push Notifications\"]") // debug
   public WebElement allowButton;
 
