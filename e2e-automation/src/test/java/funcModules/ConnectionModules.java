@@ -212,6 +212,7 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
+            driverApp.context("NATIVE_APP"); // keep CM in foreground
 //            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
 //            {
             try {
@@ -222,16 +223,10 @@ public class ConnectionModules extends IntSetup {
                 // FIXME
                 Dimension dims = driverApp.manage().window().getSize();
                 new TouchAction(driverApp)
-                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 150))
+                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100))
                     .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                     .release().perform();
-                System.out.println(">>> 150! >>>");
-                new TouchAction(driverApp)
-                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 300))
-                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
-                    .release().perform();
-                System.out.println(">>> 300! >>>");
-                pushNotificationsPageNew.okButton.click();
+//                pushNotificationsPageNew.okButton.click();
             }
 //            }
 //            else {
