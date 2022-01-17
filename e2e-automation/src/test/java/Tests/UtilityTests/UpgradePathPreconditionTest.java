@@ -22,6 +22,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Upgrade Path Precondition Test Suite has been started!");
+        reloadDriversAndPos();
         driverApp.launchApp();
     }
 
@@ -42,7 +43,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
 //    @Test
 //    public void setUpWizardTest() {
 //        try {
-//            reloadDriversAndPos();
 //            startUpPageNew.setUpButton.click();
 //            passCodePageNew.enterPassCode();
 //            Thread.sleep(2000);
@@ -147,10 +147,13 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
+        System.out.print("Contexts 1 >>> " + driverApp.getContextHandles());
         connectionName = invitationType;
         driverBrowser = BrowserDriver.getDriver();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
+        System.out.print("Contexts 2 >>> " + driverApp.getContextHandles());
         objConnectionModules.acceptPushNotificationRequest(driverApp);
+        System.out.print("Contexts 3 >>> " + driverApp.getContextHandles());
 
         try {
             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10);
@@ -218,6 +221,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
         context.setValue("connectionName", connectionName);
         System.out.println("Connection name in context: " + connectionName);
         driverApp.closeApp();
-        System.out.println("Upgrade Path Precondition Test Suite has been started!");
+        System.out.println("Upgrade Path Precondition Test Suite has been finished!");
     }
 }

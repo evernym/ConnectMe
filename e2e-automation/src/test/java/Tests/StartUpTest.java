@@ -9,12 +9,14 @@ public class StartUpTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
+        System.out.println("Start Up Test Suite has been started!");
         reloadDriversAndPos();
         driverApp.launchApp();
     }
 
     @Test
     public void setUpWizardTest() throws Exception {
+        System.out.print("Contexts >>> " + driverApp.getContextHandles());
         try {
             startUpPageNew.setUpButton.click();
             for (int i = 0; i < 2; i++) {
@@ -30,6 +32,7 @@ public class StartUpTest extends IntSetup {
     @AfterClass
     public void AfterClass() {
         driverApp.closeApp();
+        System.out.println("Start Up Test Suite has been finished!");
     }
 
 }
