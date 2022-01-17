@@ -212,26 +212,26 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            driverApp.context("NATIVE_APP"); // keep CM in foreground
-//            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
-//            {
-            try {
+//            driverApp.context("NATIVE_APP"); // keep CM in foreground
+            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
+            {
+//            try {
                 pushNotificationsPageNew.allowButton.click();
                 pushNotificationsPageNew.okButton.click();
-            } catch (Exception e) {
-                System.out.println(">>> Allow push notifications button was not found!");
-                // FIXME
-                Dimension dims = driverApp.manage().window().getSize();
-                new TouchAction(driverApp)
-                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100))
-                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
-                    .release().perform();
-//                pushNotificationsPageNew.okButton.click();
+//            } catch (Exception e) {
+//                System.out.println(">>> Allow push notifications button was not found!");
+//                // FIXME
+//                Dimension dims = driverApp.manage().window().getSize();
+//                new TouchAction(driverApp)
+//                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100))
+//                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+//                    .release().perform();
+////                pushNotificationsPageNew.okButton.click();
+//            }
             }
-//            }
-//            else {
-//                System.out.println("Permissions already have been granted!");
-//            }
+            else {
+                System.out.println("Permissions already have been granted!");
+            }
         }
     }
 
