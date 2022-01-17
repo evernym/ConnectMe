@@ -219,9 +219,10 @@ public class ConnectionModules extends IntSetup {
                 pushNotificationsPageNew.okButton.click();
             } catch (Exception e) {
                 System.out.println(">>> Allow push notifications button was not found!");
+                // FIXME
                 Dimension dims = driverApp.manage().window().getSize();
                 new TouchAction(driverApp)
-                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100))
+                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 200))
                     .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                     .release().perform();
                 pushNotificationsPageNew.okButton.click();
