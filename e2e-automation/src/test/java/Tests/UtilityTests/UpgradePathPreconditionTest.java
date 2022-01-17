@@ -16,6 +16,9 @@ import test.java.appModules.AppUtils;
 import test.java.utility.BrowserDriver;
 import test.java.utility.AppDriver;
 import test.java.funcModules.ConnectionModules;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class UpgradePathPreconditionTest extends IntSetup {
 
@@ -147,11 +150,13 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
-        System.out.print("Contexts 1 >>> " + driverApp.getContextHandles());
+        System.out.print("Contexts 1 >>> " + driverApp.getContextHandles()); // DEBUG
         connectionName = invitationType;
         driverBrowser = BrowserDriver.getDriver();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
-        System.out.print("Contexts 2 >>> " + driverApp.getContextHandles());
+        System.out.print("Contexts 2 >>> " + driverApp.getContextHandles()); // DEBUG
+        List<WebElement> elementsList = driverApp.findElementsByXPath("//*");
+        System.out.print(elementsList); // DEBUG
         objConnectionModules.acceptPushNotificationRequest(driverApp);
         System.out.print("Contexts 3 >>> " + driverApp.getContextHandles());
 
