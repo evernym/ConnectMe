@@ -9,13 +9,13 @@ public class StartUpTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
+        reloadDriversAndPos();
         driverApp.launchApp();
     }
 
     @Test
     public void setUpWizardTest() throws Exception {
         try {
-            reloadDriversAndPos();
             startUpPageNew.setUpButton.click();
             for (int i = 0; i < 2; i++) {
               passCodePageNew.enterPassCode();
