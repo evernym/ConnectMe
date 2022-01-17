@@ -21,6 +21,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
+        System.out.println("Upgrade Path Precondition Test Suite has been started!");
         driverApp.launchApp();
     }
 
@@ -38,24 +39,24 @@ public class UpgradePathPreconditionTest extends IntSetup {
     private final String connectionInvitation = "connection-invitation";
     private final String oobInvitation = "out-of-band-invitation";
 
-    @Test
-    public void setUpWizardTest() {
-        try {
-            reloadDriversAndPos();
-            startUpPageNew.setUpButton.click();
-            passCodePageNew.enterPassCode();
-            Thread.sleep(2000);
-            passCodePageNew.enterPassCode();
-            startUpPageNew.switchEnv();
-        } catch (Exception e) {
-            System.exit(1);
-        }
-    }
-
-    @Test(dependsOnMethods = "setUpWizardTest")
-    public void checkHome() {
-        homePageNew.checkHome();
-    }
+//    @Test
+//    public void setUpWizardTest() {
+//        try {
+//            reloadDriversAndPos();
+//            startUpPageNew.setUpButton.click();
+//            passCodePageNew.enterPassCode();
+//            Thread.sleep(2000);
+//            passCodePageNew.enterPassCode();
+//            startUpPageNew.switchEnv();
+//        } catch (Exception e) {
+//            System.exit(1);
+//        }
+//    }
+//
+//    @Test(dependsOnMethods = "setUpWizardTest")
+//    public void checkHome() {
+//        homePageNew.checkHome();
+//    }
 
 //    @Test(dependsOnMethods = "checkHome")
 //    public void checkMenu() throws InterruptedException {
@@ -136,20 +137,19 @@ public class UpgradePathPreconditionTest extends IntSetup {
 //        aboutPageNew.backArrow.click();
 //    }
 
-    // FIXME
-    @Test(dependsOnMethods = "checkHome")
-    public void reloadApp() throws Exception {
-        driverApp.closeApp();
-        Thread.sleep(5000);
-        driverApp.launchApp();
-    }
+//    // FIXME
+//    @Test(dependsOnMethods = "checkHome")
+//    public void reloadApp() throws Exception {
+//        driverApp.closeApp();
+//        Thread.sleep(5000);
+//        driverApp.launchApp();
+//    }
 
-    @Test(dataProvider = "invitationTypesSource", dependsOnMethods = "reloadApp")
+    @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
         driverBrowser = BrowserDriver.getDriver();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
-        reloadDriversAndPos();
         objConnectionModules.acceptPushNotificationRequest(driverApp);
 
         try {
@@ -218,5 +218,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
         context.setValue("connectionName", connectionName);
         System.out.println("Connection name in context: " + connectionName);
         driverApp.closeApp();
+        System.out.println("Upgrade Path Precondition Test Suite has been started!");
     }
 }
