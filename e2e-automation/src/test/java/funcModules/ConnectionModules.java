@@ -212,7 +212,6 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//            driverApp.context("NATIVE_APP"); // keep CM in foreground
             if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
             {
 //            try {
