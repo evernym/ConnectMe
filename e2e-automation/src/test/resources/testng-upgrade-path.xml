@@ -5,7 +5,8 @@
         <classes>
             <class name="test.java.Tests.UtilityTests.InstallAppFromAppCenterTest"/>
             <class name="test.java.Tests.StartUpTest"/>
-            <class name="test.java.Tests.UtilityTests.UpgradePathPreconditionTest"/>
+            <class name="test.java.Tests.ConnectionTest"/>
+<!--            <class name="test.java.Tests.UtilityTests.UpgradePathPreconditionTest"/>-->
             <class name="test.java.Tests.UtilityTests.InstallBuildArtifactAppTest"/>
 <!--            <class name="test.java.Tests.UpgradePathTest"/>-->
         </classes>
