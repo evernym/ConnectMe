@@ -222,7 +222,7 @@ public class ConnectionModules extends IntSetup {
                 // FIXME
                 Dimension dims = driverApp.manage().window().getSize();
                 new TouchAction(driverApp)
-                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 200))
+                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 250))
                     .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                     .release().perform();
                 pushNotificationsPageNew.okButton.click();
