@@ -222,9 +222,15 @@ public class ConnectionModules extends IntSetup {
                 // FIXME
                 Dimension dims = driverApp.manage().window().getSize();
                 new TouchAction(driverApp)
-                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 250))
+                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 150))
                     .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                     .release().perform();
+                System.out.println(">>> 150! >>>");
+                new TouchAction(driverApp)
+                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 300))
+                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+                    .release().perform();
+                System.out.println(">>> 300! >>>");
                 pushNotificationsPageNew.okButton.click();
             }
 //            }
