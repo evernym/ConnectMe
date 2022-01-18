@@ -42,9 +42,14 @@ public class ConnectionTest extends IntSetup {
 
      @Test(dataProvider = "invitationTypesSource")
      public void rejectConnectionTest(String invitationType) throws Exception {
+         System.out.println("Contexts 1 >>> " + driverApp.getContextHandles()); // DEBUG
          driverBrowser = BrowserDriver.getDriver();
          objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, Helpers.randomString(), invitationType);
+         System.out.println("Contexts 3 >>> " + driverApp.getContextHandles()); // DEBUG
+         System.out.println("---------------------------------");
+         System.out.println(driverApp.getPageSource()); // DEBUG
          objConnectionModules.acceptPushNotificationRequest(driverApp);
+         System.out.print("Contexts 4 >>> " + driverApp.getContextHandles());
 
          try {
              AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10);
