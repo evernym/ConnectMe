@@ -1405,13 +1405,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@evernym/react-native-sdk@https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/25057901/download":
-  version "0.13.0"
-  resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/25057901/download#17334f03b991d3407f60de0c36de9b8fcfbeeb0c"
+"@evernym/react-native-sdk@https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/26499422/download":
+  version "0.13.0-688"
+  resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/26499422/download#8784470a105ab2130453796a41a1bbf08fbc8bfd"
 
-"@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#fix-upgrade":
+"@evernym/react-native-white-label-app@https://gitlab.com/evernym/mobile/react-native-white-label-app.git#fix-gradle-version":
   version "1.1.0"
-  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#0b4b7e89fd10f1d97f9823dbedae5897b151066d"
+  resolved "https://gitlab.com/evernym/mobile/react-native-white-label-app.git#4215ac1ace5b4eb653313b4a9ed064ac519cc14b"
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
