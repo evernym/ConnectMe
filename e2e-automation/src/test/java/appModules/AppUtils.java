@@ -160,9 +160,11 @@ public class AppUtils extends IntSetup {
 
     public static boolean isElementAbsent(AppiumDriver driver, WebElement el) {
         try {
+            System.out.print("Contexts 5 >>> " + driverApp.getContextHandles());
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             el.isDisplayed();
         } catch (Exception ex) {
+            System.out.print("Contexts 6 >>> " + driverApp.getContextHandles());
             return true;
         } finally {
             driver.manage().timeouts().implicitlyWait(AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
