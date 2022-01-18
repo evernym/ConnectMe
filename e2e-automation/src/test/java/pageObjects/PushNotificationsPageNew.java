@@ -16,8 +16,8 @@ public class PushNotificationsPageNew {
 //  @HowToUseLocators(iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
 //  @iOSXCUITFindBy(accessibility = "allow-notifications-button") // label
 //  @iOSXCUITFindBy(id = "allow-notifications-button") // id
-  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"allow-notifications-button\"]") // name
-//  @iOSXCUITFindBy(xpath = "//*[@text=\"Allow Push Notifications\"]") // text
+//  @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"allow-notifications-button\"]") // debug
+  @iOSXCUITFindBy(xpath = "//*[@text=\"Allow Push Notifications\"]") // debug
   public WebElement allowButton;
 
   @iOSXCUITFindBy(accessibility = "not-now-notifications-button") // id?
