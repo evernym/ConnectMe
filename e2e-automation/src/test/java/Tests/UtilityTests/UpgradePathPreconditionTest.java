@@ -21,11 +21,17 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class UpgradePathPreconditionTest extends IntSetup {
+    private ConnectionModules objConnectionModules = new ConnectionModules();
+    private LocalContext context = LocalContext.getInstance();
+
+    private String connectionName;
+    private final String connectionInvitation = "connection-invitation";
+    private final String oobInvitation = "out-of-band-invitation";
 
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Upgrade Path Precondition Test Suite has been started!");
-        reloadDriversAndPos();
+//        reloadDriversAndPos();
         driverApp.launchApp();
     }
 
@@ -36,12 +42,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
             {oobInvitation},
         };
     }
-
-    private ConnectionModules objConnectionModules = new ConnectionModules();
-    private LocalContext context = LocalContext.getInstance();
-    private String connectionName;
-    private final String connectionInvitation = "connection-invitation";
-    private final String oobInvitation = "out-of-band-invitation";
 
 //    @Test
 //    public void setUpWizardTest() {
@@ -155,7 +155,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
         driverBrowser = BrowserDriver.getDriver();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
         System.out.println("Contexts 3 >>> " + driverApp.getContextHandles()); // DEBUG
-        driverApp.context("NATIVE_APP"); // keep CM in foreground
+//        driverApp.context("NATIVE_APP"); // keep CM in foreground
 //        System.out.println(driverApp.findElementsByXPath("//*")); // DEBUG
         System.out.println("---------------------------------");
         System.out.println(driverApp.getPageSource()); // DEBUG
