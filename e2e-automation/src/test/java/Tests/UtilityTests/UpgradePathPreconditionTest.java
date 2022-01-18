@@ -159,6 +159,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
 //        System.out.println(driverApp.findElementsByXPath("//*")); // DEBUG
         System.out.println("---------------------------------");
         System.out.println(driverApp.getPageSource()); // DEBUG
+        reloadDriversAndPos(); // DEBUG
         objConnectionModules.acceptPushNotificationRequest(driverApp);
         System.out.print("Contexts 3 >>> " + driverApp.getContextHandles());
 
