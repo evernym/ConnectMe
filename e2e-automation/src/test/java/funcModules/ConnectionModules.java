@@ -128,8 +128,10 @@ public class ConnectionModules extends IntSetup {
         Thread.sleep(2000); // DEBUG IOS
 
         System.out.println("Contexts 2 >>> " + driverApp.getContextHandles()); // DEBUG
+        System.out.println("Contexts 2 >>> " + driverApp.getContext()); // DEBUG
         new AppUtils().authForAction();
         System.out.println("Contexts 3 >>> " + driverApp.getContextHandles()); // DEBUG
+        System.out.println("Contexts 3 >>> " + driverApp.getContext()); // DEBUG
     }
 
     public void getConnectionInvitation(AppiumDriver driverBrowser, AppiumDriver driverApp, String label, String invitationType) throws Exception {
@@ -214,11 +216,13 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            System.out.print("Contexts 4 >>> " + driverApp.getContextHandles());
+            System.out.println("Contexts 4 >>> " + driverApp.getContextHandles()); // DEBUG
+            System.out.println("Contexts 4 >>> " + driverApp.getContext()); // DEBUG
             if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
             {
 //            try {
-                System.out.print("Contexts 7 >>> " + driverApp.getContextHandles());
+                System.out.println("Contexts 7 >>> " + driverApp.getContextHandles());
+                System.out.println("Contexts 7 >>> " + driverApp.getContext()); // DEBUG
                 pushNotificationsPageNew.allowButton.click();
                 pushNotificationsPageNew.okButton.click();
 //            } catch (Exception e) {
