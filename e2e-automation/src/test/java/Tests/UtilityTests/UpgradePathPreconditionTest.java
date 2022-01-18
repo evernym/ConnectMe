@@ -155,8 +155,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
         driverBrowser = BrowserDriver.getDriver();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
         System.out.println("Contexts 3 >>> " + driverApp.getContextHandles()); // DEBUG
-        System.out.println("---------------------------------");
-        System.out.println(driverApp.getPageSource()); // DEBUG
         objConnectionModules.acceptPushNotificationRequest(driverApp);
         System.out.print("Contexts 4 >>> " + driverApp.getContextHandles());
 

@@ -125,11 +125,9 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
-        Thread.sleep(5000);
+        Thread.sleep(2000); // DEBUG IOS
 
         System.out.println("Contexts 2 >>> " + driverApp.getContextHandles()); // DEBUG
-        System.out.println("---------------------------------");
-        System.out.println(driverApp.getPageSource()); // DEBUG
         new AppUtils().authForAction();
     }
 
