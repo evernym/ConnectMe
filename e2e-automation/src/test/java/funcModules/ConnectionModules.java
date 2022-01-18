@@ -127,6 +127,7 @@ public class ConnectionModules extends IntSetup {
 
         Thread.sleep(5000);
 
+        System.out.println("Contexts 2 >>> " + driverApp.getContextHandles()); // DEBUG
         System.out.println("---------------------------------");
         System.out.println(driverApp.getPageSource()); // DEBUG
         new AppUtils().authForAction();
