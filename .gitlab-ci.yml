@@ -197,6 +197,8 @@ build-android-merge-request:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
       when: always
+    - if: '$CI_COMMIT_REF_NAME == "fix-connection-upgrade-undefined"'
+      when: always
 
 build-android-master:
   extends: .build-android
