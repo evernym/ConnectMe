@@ -21,7 +21,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 RUN npm install -g localtunnel
 
 # Install Aca-Py
-RUN pip3 install python3-indy aries-cloudagent
+# RUN pip3 install python3-indy aries-cloudagent
 
 ADD e2e-automation/appium-launcher/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
