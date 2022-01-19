@@ -102,15 +102,15 @@ public class ConnectionModules extends IntSetup {
         if ((Config.Device_Type.equals("iOS") || Config.Device_Type.equals("awsiOS"))) {
             driverApp.manage().timeouts().implicitlyWait(AppDriver.SMALL_TIMEOUT, TimeUnit.SECONDS);
 
-//            ApplicationState appState = driverBrowser.queryAppState("com.apple.mobilesafari"); // DEBUG
-            ApplicationState appState = driverApp.queryAppState("com.apple.mobilesafari");
+            ApplicationState appState = driverBrowser.queryAppState("com.apple.mobilesafari"); // DEBUG
+//            ApplicationState appState = driverApp.queryAppState("com.apple.mobilesafari");
             System.out.println("Safari app state: " + appState);
             if(appState.equals(ApplicationState.RUNNING_IN_BACKGROUND) || appState.equals(ApplicationState.RUNNING_IN_FOREGROUND)
                 || appState.equals(ApplicationState.RUNNING_IN_BACKGROUND_SUSPENDED))
             {
                 // Call to kill safari only when it's already running, otherwise it'll terminate tcp connection to the device
-//                driverBrowser.executeScript("mobile: terminateApp", ImmutableMap.of("bundleId", "com.apple.mobilesafari")); // DEBUG
-                driverApp.executeScript("mobile: terminateApp", ImmutableMap.of("bundleId", "com.apple.mobilesafari"));
+                driverBrowser.executeScript("mobile: terminateApp", ImmutableMap.of("bundleId", "com.apple.mobilesafari")); // DEBUG
+//                driverApp.executeScript("mobile: terminateApp", ImmutableMap.of("bundleId", "com.apple.mobilesafari"));
             }
 
             List args = new ArrayList();
@@ -121,8 +121,8 @@ public class ConnectionModules extends IntSetup {
             params.put("bundleId", "com.apple.mobilesafari");
             params.put("arguments", args);
 
-//            driverBrowser.executeScript("mobile: launchApp", params); // DEBUG
-            driverApp.executeScript("mobile: launchApp", params);
+            driverBrowser.executeScript("mobile: launchApp", params); // DEBUG
+//            driverApp.executeScript("mobile: launchApp", params);
             driverApp.launchApp();
         } else {
             driverBrowser.get(link);

@@ -224,6 +224,10 @@ public class UpgradePathPreconditionTest extends IntSetup {
     public void AfterClass() {
         context.setValue("connectionName", connectionName);
         System.out.println("Connection name in context: " + connectionName);
+
+        System.out.println(driverBrowser.getContextHandles());
+        System.out.println(driverBrowser.getStatus());
+
         driverApp.closeApp();
         System.out.println("Upgrade Path Precondition Test Suite has been finished!");
     }
