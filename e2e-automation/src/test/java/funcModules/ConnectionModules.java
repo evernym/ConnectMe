@@ -237,7 +237,7 @@ public class ConnectionModules extends IntSetup {
 //            }
             }
             else {
-                System.out.print("Contexts 6 >>> " + driverApp.getContextHandles());
+                System.out.println("Contexts 8 >>> " + driverApp.getContextHandles());
                 System.out.println("Permissions already have been granted!");
             }
         }
