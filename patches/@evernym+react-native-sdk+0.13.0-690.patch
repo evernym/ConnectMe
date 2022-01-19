@@ -1,0 +1,13 @@
+diff --git a/node_modules/@evernym/react-native-sdk/android/build.gradle b/node_modules/@evernym/react-native-sdk/android/build.gradle
+index b583f6a..a243275 100644
+--- a/node_modules/@evernym/react-native-sdk/android/build.gradle
++++ b/node_modules/@evernym/react-native-sdk/android/build.gradle
+@@ -55,7 +55,7 @@ dependencies {
+     implementation 'net.java.dev.jna:jna:4.5.0@aar'
+     implementation 'net.sourceforge.streamsupport:android-retrofuture:1.6.2'
+     // the VCX version is replaced during CD pipeline
+-    implementation 'com.evernym:vcx:0.13.0-a788f463@aar' // FIXME: Find a way NOT TO FIX VCX version here. `+` returns not a desired one.
++    implementation 'com.evernym:vcx:0.13.0-a788f46@aar' // FIXME: Find a way NOT TO FIX VCX version here. `+` returns not a desired one.
+     implementation('com.github.bright:slf4android:0.1.6') {
+         transitive = true
+     }
