@@ -220,10 +220,21 @@ public class ConnectionModules extends IntSetup {
 //            System.out.println("Contexts 4 >>> " + driverApp.getContext()); // DEBUG
 //            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
 //            {
-                System.out.println("Contexts 7 >>> " + driverApp.getContextHandles());
-                System.out.println("Contexts 7 >>> " + driverApp.getContext()); // DEBUG
-                pushNotificationsPageNew.allowButton.click();
-                pushNotificationsPageNew.okButton.click();
+                try {
+                    System.out.println("Contexts 7 >>> " + driverApp.getContextHandles());
+                    System.out.println("Contexts 7 >>> " + driverApp.getContext()); // DEBUG
+                    pushNotificationsPageNew.allowButton.click();
+                    pushNotificationsPageNew.okButton.click();
+                } catch (Exception e) {
+                    System.out.println("Contexts 8 >>> " + driverApp.getContextHandles());
+                    System.out.println("Contexts 8 >>> " + driverApp.getContext()); // DEBUG
+                    driverBrowser.executeScript("mobile: launchApp", ImmutableMap.of("bundleId", "com.apple.mobilesafari"));
+                    System.out.println("Contexts 9 >>> " + driverApp.getContextHandles());
+                    System.out.println("Contexts 9 >>> " + driverApp.getContext()); // DEBUG
+                    driverApp.context("NATIVE_APP");
+                    pushNotificationsPageNew.allowButton.click();
+                    pushNotificationsPageNew.okButton.click();
+                }
 //            }
 //            else {
 //                System.out.println("Contexts 8 >>> " + driverApp.getContextHandles());
