@@ -51,7 +51,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
         // iOS workaround
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            Thread.sleep(30000);
+            Thread.sleep(15000);
             return;
         }
 
@@ -85,16 +85,16 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
         if(test.java.utility.Helpers.getPlatformType().equals(Platform.ANDROID)) driverBrowser.closeApp();
     }
-//
-//    @Test(dependsOnMethods = "setUpConnectionTest")
-//    public void validateMyConnectionRecordAppeared() throws Exception {
-//        passCodePageNew.openApp();
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//        Thread.sleep(1000);
-//        myConnectionsPageNew.getConnectionByName(connectionName).click();
-//    }
+
+    @Test(dependsOnMethods = "setUpConnectionTest")
+    public void validateMyConnectionRecordAppeared() throws Exception {
+        passCodePageNew.openApp();
+
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.myConnectionsButton.click();
+        Thread.sleep(1000);
+        myConnectionsPageNew.getConnectionByName(connectionName).click();
+    }
 //
 //    @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
 //    public void validateConnectionHistory() throws Exception {
@@ -120,9 +120,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
     public void AfterClass() {
         context.setValue("connectionName", connectionName);
         System.out.println("Connection name in context: " + connectionName);
-
-        System.out.println(driverBrowser.getContextHandles());
-        System.out.println(driverBrowser.getStatus());
 
         driverApp.closeApp();
         System.out.println("Upgrade Path Precondition Test Suite has been finished!");

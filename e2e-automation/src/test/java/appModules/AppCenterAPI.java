@@ -58,6 +58,8 @@ public class AppCenterAPI {
             for (Object o : bodyArray) {
                 JSONObject jsonObject = (JSONObject) o;
                 if (jsonObject.getString("short_version").equals(rcVersion))
+                    System.out.println("SHORT VERSION >>> " + jsonObject.getString("short_version"));
+                    System.out.println("ID >>> " + String.valueOf(jsonObject.getInt("id")));
                     releaseIds.add(String.valueOf(jsonObject.getInt("id")));
             }
         }
@@ -137,6 +139,7 @@ public class AppCenterAPI {
         else if (device_Type.toLowerCase(Locale.ROOT).contains("android"))
             normalizedPlatformName = PlatformName.Android;
         List<String> releases = getReleaseIds(LatestVersion, normalizedPlatformName);
+        System.out.println("RELEASES >>> " + releases);
         String appDownloadUrl = "";
         switch (normalizedPlatformName) {
             case iOS:
