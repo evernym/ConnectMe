@@ -219,25 +219,20 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//            System.out.println("Contexts 4 >>> " + driverApp.getContextHandles()); // DEBUG
-//            System.out.println("Contexts 4 >>> " + driverApp.getContext()); // DEBUG
-//            if(!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton))
-//            {
-                try {
-                    System.out.println("Contexts 7 >>> " + driverApp.getContextHandles());
-                    System.out.println("Contexts 7 >>> " + driverApp.getContext()); // DEBUG
+            try {
+                if (!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton)) {
                     pushNotificationsPageNew.allowButton.click();
                     pushNotificationsPageNew.okButton.click();
-                } catch (Exception e) {
-                    System.out.println("Contexts 8 >>> " + driverApp.getContextHandles());
-                    System.out.println("Contexts 8 >>> " + driverApp.getContext()); // DEBUG
+                } else {
+                    System.out.println("Permissions already have been granted!");
                 }
-//            }
-//            else {
-//                System.out.println("Contexts 8 >>> " + driverApp.getContextHandles());
-//                System.out.println("Contexts 8 >>> " + driverApp.getContext()); // DEBUG
-//                System.out.println("Permissions already have been granted!");
-//            }
+            } catch (Exception e) {
+                Dimension dims = driverApp.manage().window().getSize();
+                new TouchAction(driverApp)
+                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100)) // not now
+                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+                    .release().perform();
+            }
         }
     }
 
