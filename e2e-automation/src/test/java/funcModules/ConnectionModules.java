@@ -213,7 +213,7 @@ public class ConnectionModules extends IntSetup {
         }
     }
 
-    public void acceptPushNotificationRequest(AppiumDriver driverApp) {
+    public void acceptPushNotificationRequest(AppiumDriver driverApp) throws Exception {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
             if (!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton)) {
                 pushNotificationsPageNew.allowButton.click();
@@ -225,6 +225,11 @@ public class ConnectionModules extends IntSetup {
                     Dimension dims = driverApp.manage().window().getSize();
                     new TouchAction(driverApp)
                         .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100)) // not now
+                        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+                        .release().perform();
+                    Thread.sleep(5000);
+                    new TouchAction(driverApp)
+                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 250)) // accept
                         .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                         .release().perform();
                 }
