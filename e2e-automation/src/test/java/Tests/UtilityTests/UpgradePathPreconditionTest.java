@@ -155,10 +155,11 @@ public class UpgradePathPreconditionTest extends IntSetup {
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
         objConnectionModules.acceptPushNotificationRequest(driverApp);
 
+        // iOS workaround
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
             Thread.sleep(15000);
             return;
-        } // iOS workaround
+        }
 
         try {
             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10);
