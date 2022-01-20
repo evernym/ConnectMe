@@ -33,8 +33,8 @@ public class UpgradePathTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() throws Exception {
         reloadDriversAndPos();
-//        DID = context.getValue("DID");
-//        connectionName = context.getValue("connectionName");
+        DID = context.getValue("DID");
+        connectionName = context.getValue("connectionName");
 
         VAS = VASApi.getInstance();
         objAppUtlis = new AppUtils();
@@ -47,33 +47,33 @@ public class UpgradePathTest extends IntSetup {
         homePageNew.checkHome();
     }
 
-//    @Test(dependsOnMethods = "checkHome")
-//    public void acceptCredentialFromHome() throws Exception {
-//        String credentialName = Helpers.randomString();
-//        if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//            context.setValue("credDefId", "WPz8oRna9NGVyhK29fTbKa:3:CL:201655:tag");
-//        } else {
-//            context.setValue("credDefId", "PMzJsfuq4YYPAKHLSrdP4Q:3:CL:201654:tag");
-//        }
-//
-//        System.out.println("Credential name: " + credentialName);
-//        context.setValue("credentialName", credentialName);
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.homeButton.isDisplayed();
-//        menuPageNew.homeButton.click();
-//
-//        AppUtils.DoSomethingEventually(
-//            () -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), test.java.utility.Constants.values, credentialName)
-//        );
-//
-//        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
-//        String schemeName = credentialPageNew.credentialSchemeName.getText();
-//        context.setValue("credentialNameScheme", schemeName);
-//        objAppUtlis.acceptCredential();
-//        homePageNew.recentEventsSection.isDisplayed();
-//        AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
-//    }
+    @Test(dependsOnMethods = "checkHome")
+    public void acceptCredentialFromHome() throws Exception {
+        String credentialName = Helpers.randomString();
+        if (Config.iOS_Devices.contains(Config.Device_Type)) {
+            context.setValue("credDefId", "WPz8oRna9NGVyhK29fTbKa:3:CL:201655:tag");
+        } else {
+            context.setValue("credDefId", "PMzJsfuq4YYPAKHLSrdP4Q:3:CL:201654:tag");
+        }
+
+        System.out.println("Credential name: " + credentialName);
+        context.setValue("credentialName", credentialName);
+
+        homePageNew.tapOnBurgerMenu();
+        menuPageNew.homeButton.isDisplayed();
+        menuPageNew.homeButton.click();
+
+        AppUtils.DoSomethingEventually(
+            () -> VAS.sendCredentialOffer(DID, context.getValue("credDefId"), test.java.utility.Constants.values, credentialName)
+        );
+
+        AppUtils.waitForElementNew(driverApp, credentialPageNew.credentialOfferHeader);
+        String schemeName = credentialPageNew.credentialSchemeName.getText();
+        context.setValue("credentialNameScheme", schemeName);
+        objAppUtlis.acceptCredential();
+        homePageNew.recentEventsSection.isDisplayed();
+        AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
+    }
 //
 //    @Test(dependsOnMethods = "acceptCredentialFromHome")
 //    public void shareProofRequestContainingGroupedAttributes() throws Exception {

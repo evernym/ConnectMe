@@ -150,14 +150,10 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
-        System.out.println("Contexts 1 >>> " + driverApp.getContextHandles()); // DEBUG
-        System.out.println("Contexts 1 >>> " + driverApp.getContext()); // DEBUG
         connectionName = invitationType;
         driverBrowser = BrowserDriver.getDriver();
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
         objConnectionModules.acceptPushNotificationRequest(driverApp);
-        System.out.println("Contexts 10 >>> " + driverApp.getContextHandles());
-        System.out.println("Contexts 10 >>> " + driverApp.getContext()); // DEBUG
 
         try {
             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10);

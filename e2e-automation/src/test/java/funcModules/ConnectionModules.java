@@ -128,13 +128,9 @@ public class ConnectionModules extends IntSetup {
             driverBrowser.get(link);
         }
 
-        Thread.sleep(2000); // DEBUG IOS
+        Thread.sleep(3000);
 
-        System.out.println("Contexts 2 >>> " + driverApp.getContextHandles()); // DEBUG
-        System.out.println("Contexts 2 >>> " + driverApp.getContext()); // DEBUG
         new AppUtils().authForAction();
-        System.out.println("Contexts 3 >>> " + driverApp.getContextHandles()); // DEBUG
-        System.out.println("Contexts 3 >>> " + driverApp.getContext()); // DEBUG
     }
 
     public void getConnectionInvitation(AppiumDriver driverBrowser, AppiumDriver driverApp, String label, String invitationType) throws Exception {
@@ -219,19 +215,19 @@ public class ConnectionModules extends IntSetup {
 
     public void acceptPushNotificationRequest(AppiumDriver driverApp) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            try {
-                if (!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton)) {
-                    pushNotificationsPageNew.allowButton.click();
-                    pushNotificationsPageNew.okButton.click();
-                } else {
-                    System.out.println("Permissions already have been granted!");
+            if (!AppUtils.isElementAbsent(driverApp, pushNotificationsPageNew.allowButton)) {
+                pushNotificationsPageNew.allowButton.click();
+                pushNotificationsPageNew.okButton.click();
+            } else {
+                System.out.println("Permissions already have been granted!");
+                if (driverApp.getContextHandles().size() == 1) {
+                    System.out.println("Upgrade path test workaround...");
+                    Dimension dims = driverApp.manage().window().getSize();
+                    new TouchAction(driverApp)
+                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100)) // not now
+                        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+                        .release().perform();
                 }
-            } catch (Exception e) {
-                Dimension dims = driverApp.manage().window().getSize();
-                new TouchAction(driverApp)
-                    .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100)) // not now
-                    .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
-                    .release().perform();
             }
         }
     }
