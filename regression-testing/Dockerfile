@@ -12,6 +12,7 @@ RUN apt-get update -y && \
     wget
 
 COPY ./installCert.sh /tmp
+RUN chmod +x /tmp/installCert.sh
 RUN /tmp/installCert.sh
 RUN add-apt-repository "deb https://repo.corp.evernym.com/deb evernym-agency-dev-ubuntu main"
 # install libraries and libindy

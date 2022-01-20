@@ -9,14 +9,14 @@ const VASconfig = {
 }
 
 const testCase = {
-    relationship: 'qr',
-    connection: 'connection',
+    relationship: 'sms',
+    connection: 'smsConnection',
 }
 
-const ngrokEndpoint = 'http://42902985ccda.ngrok.io'
+const ngrokEndpoint = 'https://44df-83-139-129-201.ngrok.io'
 const label = 'Alex'
 const logoUrl = 'http://robohash.org/235'
-const phoneNumber = '+......'
+const phoneNumber = '+79518730647'
 
 
 const relationshipData = {
@@ -37,6 +37,7 @@ const connectionData = {
     },
     smsConnection: {
         '@type': 'did:sov:123456789abcdefghi1234;spec/relationship/1.0/sms-connection-invitation',
+        'phoneNumber': phoneNumber,
     },
     outOfBand: {
         '@type': 'did:sov:123456789abcdefghi1234;spec/relationship/1.0/out-of-band-invitation',
@@ -47,6 +48,7 @@ const connectionData = {
         '@type': 'did:sov:123456789abcdefghi1234;spec/relationship/1.0/sms-out-of-band-invitation',
         'goalCode': 'test',
         'goal': 'connection',
+        'phoneNumber': phoneNumber,
     },
 }
 
