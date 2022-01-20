@@ -229,7 +229,7 @@ public class ConnectionModules extends IntSetup {
                         .release().perform();
                     Thread.sleep(5000);
                     new TouchAction(driverApp)
-                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 250)) // accept
+                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 150)) // accept
                         .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                         .release().perform();
                 }
