@@ -31,7 +31,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Upgrade Path Precondition Test Suite has been started!");
-//        reloadDriversAndPos();
         driverApp.launchApp();
     }
 
@@ -43,111 +42,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
         };
     }
 
-//    @Test
-//    public void setUpWizardTest() {
-//        try {
-//            startUpPageNew.setUpButton.click();
-//            passCodePageNew.enterPassCode();
-//            Thread.sleep(2000);
-//            passCodePageNew.enterPassCode();
-//            startUpPageNew.switchEnv();
-//        } catch (Exception e) {
-//            System.exit(1);
-//        }
-//    }
-//
-//    @Test(dependsOnMethods = "setUpWizardTest")
-//    public void checkHome() {
-//        homePageNew.checkHome();
-//    }
-
-//    @Test(dependsOnMethods = "checkHome")
-//    public void checkMenu() throws InterruptedException {
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.menuContainer.isDisplayed();
-//        menuPageNew.banner.isDisplayed();
-//        menuPageNew.logo.isDisplayed();
-//        menuPageNew.builtByFooter.isDisplayed();
-//        menuPageNew.versionFooter.isDisplayed();
-//
-//        menuPageNew.userAvatar.click();
-//        menuPageNew.getGalleryPermissions();
-//
-//        Thread.sleep(1000);
-//        if((Config.Device_Type.equals("android")|| Config.Device_Type.equals("awsAndroid"))) {
-//            ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
-//        } else {
-//            menuPageNew.cancelButton.click();
-//        }
-//
-//        menuPageNew.homeButton.click();
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//        myConnectionsPageNew.myConnectionsHeader.isDisplayed();
-//        homePageNew.scanButton.isDisplayed();
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myCredentialsButton.click();
-//        myCredentialsPageNew.myCredentialsHeader.isDisplayed();
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.homeButton.click();
-//
-//        homePageNew.scanButton.isDisplayed();
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.settingsButton.click();
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.homeButton.click();
-//        homePageNew.homeHeader.isDisplayed();
-//    }
-//
-//    @Test(dependsOnMethods = "checkMenu")
-//    public void checkQrScanner() throws Exception {
-//        homePageNew.scanButton.isDisplayed();
-//        homePageNew.scanButton.click();
-//        qrScannerPageNew.getCameraPermissions();
-//        Thread.sleep(1000);
-//        qrScannerPageNew.scannerCloseButton.click();
-//        Thread.sleep(1000);
-//    }
-//
-//    @Test(dependsOnMethods = "checkQrScanner")
-//    public void checkSettings() throws Exception {
-//        homePageNew.tapOnBurgerMenu(); // go to Menu
-//        menuPageNew.settingsButton.click(); // go to Settings
-//
-//        settingsPageNew.settingsContainer.isDisplayed();
-//        settingsPageNew.settingsHeader.isDisplayed();
-//        settingsPageNew.biometricsButton.click();
-//        settingsPageNew.passCodeButton.click();
-//        passCodePageNew.backArrow.click();
-//        settingsPageNew.chatButton.click();
-//        Thread.sleep(1000);
-//        try {
-//            chatPageNew.backArrow.click();
-//        } catch (Exception e) {
-//            if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//                chatPageNew.backArrowAlt.click();
-//            }
-//            else {
-//                ((AndroidDriver) driverApp).pressKey(new KeyEvent(AndroidKey.BACK));
-//            }
-//        }
-//
-//        settingsPageNew.aboutButton.click();
-//        aboutPageNew.backArrow.click();
-//    }
-
-//    // FIXME
-//    @Test(dependsOnMethods = "checkHome")
-//    public void reloadApp() throws Exception {
-//        driverApp.closeApp();
-//        Thread.sleep(5000);
-//        driverApp.launchApp();
-//    }
-
     @Test(dataProvider = "invitationTypesSource")
     public void setUpConnectionTest(String invitationType) throws Exception {
         connectionName = invitationType;
@@ -157,7 +51,7 @@ public class UpgradePathPreconditionTest extends IntSetup {
 
         // iOS workaround
         if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            Thread.sleep(15000);
+            Thread.sleep(30000);
             return;
         }
 

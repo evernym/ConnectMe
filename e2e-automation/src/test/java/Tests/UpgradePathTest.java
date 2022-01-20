@@ -74,27 +74,27 @@ public class UpgradePathTest extends IntSetup {
         homePageNew.recentEventsSection.isDisplayed();
         AppUtils.waitForElementNew(driverApp, homePageNew.credentialIssuedEvent(schemeName));
     }
-//
-//    @Test(dependsOnMethods = "acceptCredentialFromHome")
-//    public void shareProofRequestContainingGroupedAttributes() throws Exception {
-//        String attribute1 = "FirstName";
-//        String attribute2 = "LastName";
-//
-//        List<JSONObject> requestedAttributes = Arrays.asList(
-//            new JSONObject().put("names", Arrays.asList(attribute1, attribute2))
-//        );
-//
-//        String proofName = Helpers.randomString();
-//        AppUtils.DoSomethingEventually(
-//            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
-//        );
-//
-//        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
-//        objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
-//        objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
-//        objAppUtlis.shareProof();
-//        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
-//    }
+
+    @Test(dependsOnMethods = "acceptCredentialFromHome")
+    public void shareProofRequestContainingGroupedAttributes() throws Exception {
+        String attribute1 = "FirstName";
+        String attribute2 = "LastName";
+
+        List<JSONObject> requestedAttributes = Arrays.asList(
+            new JSONObject().put("names", Arrays.asList(attribute1, attribute2))
+        );
+
+        String proofName = Helpers.randomString();
+        AppUtils.DoSomethingEventually(
+            () -> VAS.requestProof(DID, proofName, requestedAttributes, null)
+        );
+
+        AppUtils.waitForElementNew(driverApp, proofRequestPageNew.proofRequestHeader); // option 2
+        objAppUtlis.findParameterizedElement(attribute1).isDisplayed();
+        objAppUtlis.findParameterizedElement(attribute2).isDisplayed();
+        objAppUtlis.shareProof();
+        AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
+    }
 //
 //    @Test(dependsOnMethods = "shareProofRequestContainingGroupedAttributes")
 //    public void deleteCredentialFromExistingConnection() {
