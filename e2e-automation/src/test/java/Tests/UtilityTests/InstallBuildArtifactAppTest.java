@@ -14,6 +14,7 @@ import test.java.utility.Helpers;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Arrays;
 
 public class InstallBuildArtifactAppTest extends IntSetup {
     @Test
@@ -42,7 +43,8 @@ public class InstallBuildArtifactAppTest extends IntSetup {
         }
         catch (Exception e)
         {
-            Assert.fail(String.valueOf(e.getStackTrace()));
+            System.out.println(Arrays.toString(e.getStackTrace()));
+            Assert.fail(e.getMessage());
         }
     }
 }
