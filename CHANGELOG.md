@@ -18,7 +18,7 @@
 * [CM-3019] - Add support for fully qualified DID resolution
 * [CM-3135] - Enhance my credentials view animation
 * [CM-3060] - Enhance speed and lower resource usage
-* [CM-3155] - Enhance polling messages logic after taking an action
+* [CM-3155] - Check for new messages more aggressively apart from push notifications
 * [CM-3055] - Added MIME type in HTTP request headers
 * [CM-2010] - Show correct errors while trying to accepted credentials or paid credentials when not connected to internet
 * [CM-3164] - App can upgrade legacy connections
