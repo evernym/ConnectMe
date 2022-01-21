@@ -10,7 +10,7 @@ public class StartUpTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Start Up Test Suite has been started!");
-        reloadDriversAndPos(); // for upgrade path test
+//        reloadDriversAndPos(); // for upgrade path test
         driverApp.launchApp();
     }
 
