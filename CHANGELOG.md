@@ -1,6 +1,6 @@
 # Changelog
 
-# Release notes - 
+# Release notes - ConnectMe 1.7.0
 
 ## Bugs
 * [CM-2949] - Text is too faint when hiding empty attributes
