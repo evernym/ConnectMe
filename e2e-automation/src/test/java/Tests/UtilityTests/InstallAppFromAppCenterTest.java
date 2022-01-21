@@ -14,7 +14,11 @@ public class InstallAppFromAppCenterTest extends IntSetup {
     @Test
     public void installRcFromAppCenter() throws Exception {
         driverApp.launchApp();
-        driverApp.removeApp("me.connect");
+        if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
+            driverApp.removeApp("me.connect");
+        } else {
+            driverApp.removeApp("com.evernym.connectme.callcenter");
+        }
 
         try {
             String appPath = AppCenterAPI.getReleaseCandidateAppDownloadUrl(Config.Device_Type);
