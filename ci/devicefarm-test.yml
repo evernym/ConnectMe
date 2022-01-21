@@ -147,7 +147,7 @@ devicefarm-test-upgrade-path-android:
         - if: '$CI_COMMIT_REF_SLUG == "upgrade-path-test-run"'
           when: always
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 upgradePath vas
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ./e2e-automation/releases/app-arm64-v8a-release.apk awsAndroid galaxyS10 upgradePath vas
 
 devicefarm-test-upgrade-path-ios:
     allow_failure: true
@@ -161,7 +161,7 @@ devicefarm-test-upgrade-path-ios:
         - if: '$CI_COMMIT_REF_SLUG == "upgrade-path-test-run"'
           when: always
     script:
-        - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 upgradePath vas
+        - ./e2e-automation/appium-launcher/run-appium-tests.sh ./e2e-automation/releases/ConnectMe.ipa awsiOS iphone11 upgradePath vas
 
 devicefarm-test-launch-android-aca-py:
     stage: devicefarm-test-acapy
