@@ -140,7 +140,8 @@ devicefarm-test-upgrade-path-android:
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-android
     dependencies:
-        - build-android-master
+        - license-data-check
+        # - build-android-master
         # - upload-android
     rules:
         # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
@@ -154,7 +155,8 @@ devicefarm-test-upgrade-path-ios:
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-ios
     dependencies:
-        - build-ios-master
+        - license-data-check
+        # - build-ios-master
         # - upload-ios
     rules:
         # - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
