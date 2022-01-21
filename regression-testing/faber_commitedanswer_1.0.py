@@ -2,7 +2,7 @@
 
 from time import sleep
 
-from demo.faber import connect, provisionConfig
+from faber import connect, provisionConfig
 from vcx.api.vcx_init import vcx_init_with_config
 from vcx.api.utils import vcx_agent_provision, vcx_messages_download
 from vcx.error import VcxError
@@ -41,7 +41,6 @@ async def main():
             'question_detail': 'This is optional fine-print giving context to the question and its various answers.',
             'valid_responses': [
                 {'text': 'Yes, it is me', 'nonce': '<unique_identifier_a+2018-12-13T17:00:00+0000>'},
-                {'text': 'No, that is not me!', 'nonce': '<unique_identifier_b+2018-12-13T17:00:00+0000'},
                 {'text': 'Hi!', 'nonce': '<unique_identifier_c+2018-12-13T17:00:00+0000'}],
             '@timing': {
                 'expires_time': future

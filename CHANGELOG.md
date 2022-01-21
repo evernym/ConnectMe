@@ -1,5 +1,31 @@
 # Changelog
 
+# Release notes - 
+
+## Bugs
+* [CM-2949] - Text is too faint when hiding empty attributes
+* [CM-3166] - Fix "No Thanks"`" gray rectangle on press
+* [CM-3154] - Fix crash on iOS devices after opening a deep link
+* [CM-3069] - Fix credential cards overlap with header
+* [CM-3062] - Fix credential disappearance from the "My Credentials" view
+* [CM-3155] - Show "Cancel" button when open deep link containing Out-Of-Band invitation
+* [CM-3120] - Not show recent card separator when connection list is empty
+* [CM-3089] - Fix connectivity in China
+
+## Tasks
+* [CM-3133] - Upgrade app to use React Native 0.65.1.
+* [CM-2957] - Added ability to scan physical documents and receive their verifiable credential representation. See [document](./docs/Customization.md#physical-document-verification) to get more information.
+* [CM-3019] - Add support for fully qualified DID resolution
+* [CM-3135] - Enhance my credentials view animation
+* [CM-3060] - Enhance speed and lower resource usage
+* [CM-3155] - Enhance polling messages logic after taking an action
+* [CM-3055] - Added MIME type in HTTP request headers
+* [CM-2010] - Show correct errors while trying to accepted credentials or paid credentials when not connected to internet
+* [CM-3164] - App can upgrade legacy connections
+* [CM-2978] - Android: Addressed all the warnings in Google Play store for the Android app
+* [CM-3129] - Android: open deep link starting from `vty.im`
+* [CM-3021] - Enforce character limit in the UI
+
 # Release notes - ConnectMe 1.6.2 Aug 24 2021
 
 ## Bugs
