@@ -2,6 +2,7 @@ package test.java.Tests.UtilityTests;
 
 import appModules.AppCenterAPI;
 import io.appium.java_client.android.Activity;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.Platform;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -37,7 +38,8 @@ public class InstallAppFromAppCenterTest extends IntSetup {
                 driverApp.installApp(appPath);
                 // +
                 Activity activity = new Activity(APP_PKG, APP_ACT);
-                driverApp.startActivity(activity);
+                AndroidDriver driver = (AndroidDriver)driverApp;
+                driver.startActivity(activity);
             }
             else
             {
@@ -54,14 +56,13 @@ public class InstallAppFromAppCenterTest extends IntSetup {
 
                 driverApp.executeScript("mobile: launchApp", bundleArgs);
             }
+
+            Thread.sleep(5000);
+            driverApp.closeApp();
         }
         catch (Exception e)
         {
             Assert.fail(e.getMessage());
-        }
-        finally {
-            Thread.sleep(5000);
-            driverApp.closeApp();
         }
     }
 }
