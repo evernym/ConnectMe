@@ -1,6 +1,8 @@
 package test.java.Tests.UtilityTests;
 
 import appModules.AppCenterAPI;
+import io.appium.java_client.android.Activity;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.Platform;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -18,6 +20,10 @@ public class InstallBuildArtifactAppTest extends IntSetup {
 
             if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
                 driverApp.installApp(appPath);
+                // +
+                Activity activity = new Activity(APP_PKG, APP_ACT);
+                AndroidDriver driver = (AndroidDriver)driverApp;
+                driver.startActivity(activity);
             }
             else
             {

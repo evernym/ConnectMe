@@ -15,10 +15,6 @@ import java.util.HashMap;
 
 public class InstallAppFromAppCenterTest extends IntSetup {
 
-    private static final String APP_PKG = "me.connect";
-    private static final String APP_ACT = ".MainActivity";
-    private static final String BUNDLE_ID = "com.evernym.connectme.callcenter";
-
     @Test
     public void installRcFromAppCenter() throws Exception {
         driverApp.launchApp();
