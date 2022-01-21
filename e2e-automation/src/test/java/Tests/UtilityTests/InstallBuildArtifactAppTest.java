@@ -23,14 +23,12 @@ public class InstallBuildArtifactAppTest extends IntSetup {
             System.out.println("APP PATH >>> " + appPath);
 
             if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
-                System.out.println(driverApp.getStatus());
-
-                String artifactsDir = System.getenv("DEVICEFARM_LOG_DIR");
-                FileUtils.copyURLToFile(new URL(appPath), new File("cm.apk")); //download file
-                File appDir = new File(artifactsDir, "cm.apk"); //set file
-                driverApp.installApp(appDir.getAbsolutePath());
+//                String artifactsDir = System.getenv("DEVICEFARM_LOG_DIR");
+//                FileUtils.copyURLToFile(new URL(appPath), new File("cm.apk")); //download file
+//                File appDir = new File(artifactsDir, "cm.apk"); //set file
+//                driverApp.installApp(appDir.getAbsolutePath());
                 // -----------------------------------------------
-//                driverApp.installApp(appPath);
+                driverApp.installApp(appPath);
                 // +
 //                Activity activity = new Activity(APP_PKG, APP_ACT);
 //                AndroidDriver driver = (AndroidDriver)driverApp;
@@ -44,8 +42,7 @@ public class InstallBuildArtifactAppTest extends IntSetup {
         }
         catch (Exception e)
         {
-            System.out.println(driverApp.getStatus());
-            Assert.fail(e.getMessage());
+            Assert.fail(String.valueOf(e.getStackTrace()));
         }
     }
 }
