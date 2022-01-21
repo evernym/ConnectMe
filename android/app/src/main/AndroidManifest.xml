@@ -4,6 +4,13 @@
     android:versionCode="90810"
     android:versionName="1.0.19">
 
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.SEND" />
+        <data android:mimeType="*/*" />
+      </intent>
+    </queries>
+
     <!-- An APK that requires a higher API level must have a higher android:versionCode.
          Our versionCode format is the BUILD_NUMBER followed by the ABI_NUMBER - [BUILD_NUMBER][ABI_NUMBER]
          [BUILD_NUMBER] is 908 - a sequential number starting at 1 and going as high as is needed
