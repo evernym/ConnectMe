@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class InstallBuildArtifactAppTest extends IntSetup {
     @Test
     public void installBuildArtifact() throws Exception {
-        try {
+//        try {
             String appPath = AppCenterAPI.getLatestAppDownloadUrl(Config.Device_Type);
             System.out.println("APP PATH >>> " + appPath);
 
@@ -40,11 +40,11 @@ public class InstallBuildArtifactAppTest extends IntSetup {
                 // iOS-specific: cannot install app directly
                 driverApp = AppDriver.getIosDriverWithProvidedBundle(appPath);
             }
-        }
-        catch (Exception e)
-        {
-            System.out.println(Arrays.toString(e.getStackTrace()));
-            Assert.fail(e.getMessage());
-        }
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println(Arrays.toString(e.getStackTrace()));
+//            Assert.fail(e.getMessage());
+//        }
     }
 }
