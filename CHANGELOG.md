@@ -15,7 +15,7 @@
 
 ## Tasks
 * [CM-3133] - Upgrade app to use React Native 0.65.1.
-* [CM-2957] - Added ability to scan physical documents and receive their verifiable credential representation. See [document](./docs/Customization.md#physical-document-verification) to get more information.
+* [CM-2957] - Added ability to scan physical documents and receive their verifiable credential representation. See [document](https://gitlab.com/evernym/mobile/react-native-white-label-app/-/blob/main/docs/Customization.md#physical-document-verification) to get more information.
 * [CM-3019] - Add support for fully qualified DID resolution
 * [CM-3135] - Enhance my credentials view animation
 * [CM-3060] - Enhance speed and lower resource usage
