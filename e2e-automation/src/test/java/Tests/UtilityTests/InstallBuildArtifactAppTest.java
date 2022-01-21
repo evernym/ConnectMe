@@ -3,6 +3,7 @@ package test.java.Tests.UtilityTests;
 import appModules.AppCenterAPI;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Platform;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,6 +11,9 @@ import test.java.utility.Config;
 import test.java.utility.IntSetup;
 import test.java.utility.AppDriver;
 import test.java.utility.Helpers;
+
+import java.io.File;
+import java.net.URL;
 
 public class InstallBuildArtifactAppTest extends IntSetup {
     @Test
@@ -19,11 +23,18 @@ public class InstallBuildArtifactAppTest extends IntSetup {
             System.out.println("APP PATH >>> " + appPath);
 
             if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
-                driverApp.installApp(appPath);
+                System.out.println(driverApp.getStatus());
+
+                String artifactsDir = System.getenv("DEVICEFARM_LOG_DIR");
+                FileUtils.copyURLToFile(new URL(appPath), new File("cm.apk")); //download file
+                File appDir = new File(artifactsDir, "cm.apk"); //set file
+                driverApp.installApp(appDir.getAbsolutePath());
+                // -----------------------------------------------
+//                driverApp.installApp(appPath);
                 // +
-                Activity activity = new Activity(APP_PKG, APP_ACT);
-                AndroidDriver driver = (AndroidDriver)driverApp;
-                driver.startActivity(activity);
+//                Activity activity = new Activity(APP_PKG, APP_ACT);
+//                AndroidDriver driver = (AndroidDriver)driverApp;
+//                driver.startActivity(activity);
             }
             else
             {
@@ -33,6 +44,7 @@ public class InstallBuildArtifactAppTest extends IntSetup {
         }
         catch (Exception e)
         {
+            System.out.println(driverApp.getStatus());
             Assert.fail(e.getMessage());
         }
     }
