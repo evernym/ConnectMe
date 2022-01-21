@@ -1,8 +1,9 @@
 # Changelog
 
-# Release notes - ConnectMe 1.7.0
+# Release notes - ConnectMe 1.7.0 TBD
 
 ## Bugs
+* [CN-3167] - Correctly show credential name
 * [CM-2949] - Text is too faint when hiding empty attributes
 * [CM-3166] - Fix "No Thanks"`" gray rectangle on press
 * [CM-3154] - Fix crash on iOS devices after opening a deep link
