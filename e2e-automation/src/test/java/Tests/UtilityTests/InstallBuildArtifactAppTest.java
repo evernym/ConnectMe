@@ -29,7 +29,9 @@ public class InstallBuildArtifactAppTest extends IntSetup {
 //                File appDir = new File(artifactsDir, "cm.apk"); //set file
 //                driverApp.installApp(appDir.getAbsolutePath());
                 // -----------------------------------------------
+                driverApp.launchApp();
                 driverApp.installApp(appPath);
+                driverApp.closeApp();
                 // +
 //                Activity activity = new Activity(APP_PKG, APP_ACT);
 //                AndroidDriver driver = (AndroidDriver)driverApp;

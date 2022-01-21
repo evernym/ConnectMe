@@ -16,7 +16,6 @@ public class StartUpTest extends IntSetup {
 
     @Test
     public void setUpWizardTest() throws Exception {
-        System.out.print("Contexts >>> " + driverApp.getContextHandles());
         try {
             startUpPageNew.setUpButton.click();
             for (int i = 0; i < 2; i++) {
