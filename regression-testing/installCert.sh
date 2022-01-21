@@ -2,8 +2,7 @@
 
 ##First, trust our internal Certificate Authority
 mkdir -p /usr/local/share/ca-certificates
-
-cat <<EOF | tee Evernym_Root_CA.crt
+cat <<EOF | tee /usr/local/share/ca-certificates/Evernym_Root_CA.crt
 -----BEGIN CERTIFICATE-----
 MIIFJTCCAw2gAwIBAgIUMI0Z8YSLeRq8pZks40O3Dq2m8TIwDQYJKoZIhvcNAQEL
 BQAwGjEYMBYGA1UEAxMPRXZlcm55bSBSb290IENBMB4XDTE3MTAxMTIwMTAxMFoX
