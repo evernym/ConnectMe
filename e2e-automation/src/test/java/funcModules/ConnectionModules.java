@@ -220,19 +220,19 @@ public class ConnectionModules extends IntSetup {
                 pushNotificationsPageNew.okButton.click();
             } else {
                 System.out.println("Permissions already have been granted!");
-                if (driverApp.getContextHandles().size() == 1) {
-                    System.out.println("Upgrade path test workaround...");
-                    Dimension dims = driverApp.manage().window().getSize();
-                    new TouchAction(driverApp)
-                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100)) // not now
-                        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
-                        .release().perform();
-                    Thread.sleep(5000);
-                    new TouchAction(driverApp)
-                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 150)) // accept
-                        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
-                        .release().perform();
-                }
+//                if (driverApp.getContextHandles().size() == 1) {
+//                    System.out.println("Upgrade path test workaround...");
+//                    Dimension dims = driverApp.manage().window().getSize();
+//                    new TouchAction(driverApp)
+//                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 100)) // not now
+//                        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+//                        .release().perform();
+//                    Thread.sleep(5000);
+//                    new TouchAction(driverApp)
+//                        .press(new PointOption().withCoordinates(dims.width / 2, dims.height - 150)) // accept
+//                        .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
+//                        .release().perform();
+//                }
             }
         }
     }
