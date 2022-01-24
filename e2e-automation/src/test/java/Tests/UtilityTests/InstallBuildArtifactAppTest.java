@@ -15,6 +15,7 @@ import test.java.utility.Helpers;
 import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class InstallBuildArtifactAppTest extends IntSetup {
     @Test
@@ -40,8 +41,19 @@ public class InstallBuildArtifactAppTest extends IntSetup {
             }
             else
             {
-                // iOS-specific: cannot install app directly
-                driverApp = AppDriver.getIosDriverWithProvidedBundle(appPath);
+//                // iOS-specific: cannot install app directly
+//                driverApp = AppDriver.getIosDriverWithProvidedBundle(appPath);
+
+                // official docs steps
+                HashMap<String, String> bundleArgs = new HashMap<>();
+                bundleArgs.put("bundleId", BUNDLE_ID);
+                driverApp.executeScript("mobile: terminateApp", bundleArgs);
+
+                HashMap<String, String> installArgs = new HashMap<>();
+                installArgs.put("app", appPath);
+                driverApp.executeScript("mobile: installApp", installArgs);
+
+                driverApp.executeScript("mobile: launchApp", bundleArgs);
             }
 //        }
 //        catch (Exception e)
