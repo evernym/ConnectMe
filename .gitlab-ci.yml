@@ -22,7 +22,7 @@ stages:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
-    - if [ "$CI_COMMIT_REF_SLUG" == 'main' ]; then KANIKO_ARGS="--destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:latest $KANIKO_ARGS"; fi
+    - if [ "$CI_COMMIT_REF_SLUG" == '1.6.2-build' ]; then KANIKO_ARGS="--destination $CI_REGISTRY_IMAGE/${DOCKER_IMAGE_NAME}:latest $KANIKO_ARGS"; fi
     - echo "${KANIKO_ARGS}"
     - |
       echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" \
@@ -171,7 +171,7 @@ build-ios-master:
     # this gets passed to the anchor
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - 1.6.2-build@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -230,7 +230,7 @@ build-android-master:
   extends: .build-android
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - 1.6.2-build@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
@@ -249,7 +249,7 @@ upload-ios:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - 1.6.2-build@evernym/mobile/connectme
 
 upload-android:
   stage: upload
@@ -260,7 +260,7 @@ upload-android:
     - bundle exec fastlane upload
   only:
     refs:
-      - main@evernym/mobile/connectme
+      - 1.6.2-build@evernym/mobile/connectme
 
 
 # Basic lint
@@ -291,5 +291,5 @@ react-native-white-label-app-check:
       - white-label-app-e2e-testing
 
 ### - Devicefarm-test - ###
-include:
-  local: "/ci/devicefarm-test.yml"
+#include:
+#  local: "/ci/devicefarm-test.yml"
