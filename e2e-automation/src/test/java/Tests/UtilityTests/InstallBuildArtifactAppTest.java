@@ -45,6 +45,8 @@ public class InstallBuildArtifactAppTest extends IntSetup {
 //                driverApp = AppDriver.getIosDriverWithProvidedBundle(appPath);
 
                 // official docs steps
+                driverApp.launchApp();
+
                 HashMap<String, String> bundleArgs = new HashMap<>();
                 bundleArgs.put("bundleId", BUNDLE_ID);
                 driverApp.executeScript("mobile: terminateApp", bundleArgs);
