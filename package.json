@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "@evernym/react-native-white-label-app": "1.1.0-452171410",
+    "@evernym/react-native-white-label-app": "1.1.1-455976354",
     "@evernym/react-native-sdk": "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/26633365/download",
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/blur": "^3.6.0",
