@@ -8,12 +8,8 @@ This release adds an important new feature: You can now scan your driver’s lic
 * [CM-2957] - Added ability to scan physical documents and receive their verifiable credential representation. See [document](https://gitlab.com/evernym/mobile/react-native-white-label-app/-/blob/main/docs/Customization.md#physical-document-verification) to get more information.
 * [CM-3135] - Enhance my credentials view animation
 * [CM-3055] - Added MIME type in HTTP request headers
-* [CM-3045] - iOS: swiping down on the scan view should exit the process
 
 ## Bugs
-* [CM-3156] - Fixed a bug where the app crashed when the user typed in an attribute value manually
-* [CM-3144] - Fixed crash after accepting EULA on Android
-* [CM-3141] - Fixed problem with push notification during the first application run on Android
 * [CM-3167] - Correctly show credential name
 * [CM-2949] - Text is too faint when hiding empty attributes
 * [CM-3166] - Fix "No Thanks"`" gray rectangle on press
