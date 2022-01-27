@@ -141,7 +141,6 @@ devicefarm-test-launch-ios-merge_requests:
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-android
     dependencies:
-        - license-data-check
         - build-android-master
         - upload-android
     rules:
@@ -156,7 +155,6 @@ devicefarm-test-launch-ios-merge_requests:
     stage: devicefarm-test-upgrade-path
     extends: .devicefarm-test-launch-ios
     dependencies:
-        - license-data-check
         - build-ios-master
         - upload-ios
     rules:
