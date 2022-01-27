@@ -57,7 +57,7 @@ public class AppDriver {
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, Config.Device_Name);
         caps.setCapability(MobileCapabilityType.UDID, Config.Device_UDID);
         caps.setCapability(IOSMobileCapabilityType.SHOW_XCODE_LOG, true);
-        caps.setCapability(IOSMobileCapabilityType.USE_NEW_WDA, true);
+        caps.setCapability(IOSMobileCapabilityType.USE_NEW_WDA, true); // true
         return caps;
     }
 
