@@ -18,16 +18,16 @@ public class Config {
 	* */
 	public static final List<String> iOS_Devices = Arrays.asList("iOS", "iOSSimulator", "awsiOS");
 
-	public static final String Device_Type = "android";
-	public static final String Device_Name = "pixel_3_api_29"; // android emulator name
+//	public static final String Device_Type = "android";
+//	public static final String Device_Name = "pixel_3_api_29"; // android emulator name
 
-//      public static final String Device_Type = "iOS";
-//      public static final String Device_Name = "iPhone"; // real iphone name
-//      public static final String Device_UDID = "00008020-001105121E22402E"; // real iphone UDID
+      public static final String Device_Type = "iOS";
+      public static final String Device_Name = "iPhone"; // real iphone name
+      public static final String Device_UDID = "00008020-001105121E22402E"; // real iphone UDID
 
 //    public static final String Device_Type = "iOSSimulator";
 //    public static final String Device_Name = "iPhone 12"; // iphone 12 simulator name
-	  public static final String Device_UDID = "D79092AD-FCE2-4FEA-85EE-D7D313F9D308"; // iphone 12 simulator UDID
+//    public static final String Device_UDID = "D79092AD-FCE2-4FEA-85EE-D7D313F9D308"; // iphone 12 simulator UDID
 
     public static final String VERITY_ENV = "demo"; // dev-rc | team1 // for verity-release acceptance test
 	public static final EnvType Env_Type = EnvType.Demo;
@@ -36,12 +36,12 @@ public class Config {
 	public static final String ConnectMe_App_Link = "https://connectme.app.link/?t=";
 
 
-    public static final String ACtoken = "";
-    public static final String RCVersion = "1.7.0";
+    public static final String ACtoken = "f803968d0ad68c2d00b5ed76d38cb24f04e72ee6";
+    public static final String RCVersion = "1.6.2";
 	/*
 	* VAS settings
 	* */
-	public static final String VAS_Server_Link = "http://8327-2a03-ed80-1-0-b857-2e78-67da-b0b9.ngrok.io"; // ngrok public url
+	public static final String VAS_Server_Link = "http://f2e7-83-139-147-26.ngrok.io"; // ngrok public url
 	/* QA VAS*/
 	public static final String QA_VERITY_URL = "https://vas.pqa.evernym.com/api/";
 	public static final String QA_VERITY_DOMAIN_DID = "PofY18gShVSS4wfN5pmYjB";

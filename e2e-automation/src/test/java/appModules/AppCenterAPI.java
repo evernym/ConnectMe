@@ -57,8 +57,11 @@ public class AppCenterAPI {
         } else {
             for (Object o : bodyArray) {
                 JSONObject jsonObject = (JSONObject) o;
-                if (jsonObject.getString("short_version").equals(rcVersion))
+                if (jsonObject.getString("short_version").equals(rcVersion)) {
+                    System.out.println("SHORT VERSION >>> " + jsonObject.getString("short_version"));
+                    System.out.println("ID >>> " + String.valueOf(jsonObject.getInt("id")));
                     releaseIds.add(String.valueOf(jsonObject.getInt("id")));
+                }
             }
         }
         return releaseIds;
@@ -77,9 +80,9 @@ public class AppCenterAPI {
 
             JSONObject bodyJson = new JSONObject(response.getBody().asString());
             String downloadUrl = bodyJson.getString("download_url");
-            System.out.println("Download link: " + downloadUrl);
             if (downloadUrl.contains("app-arm64-v8a-release.apk")) {
                 // if (downloadUrl.contains("app-armeabi-v7a-release")) {
+                System.out.println("Download link: " + downloadUrl);
                 System.out.println("Download link is valid");
                 return downloadUrl;
             }
@@ -102,8 +105,9 @@ public class AppCenterAPI {
 
             JSONObject bodyJson = new JSONObject(response.getBody().asString());
             String downloadUrl = bodyJson.getString("download_url");
-            System.out.println("Download link: " + downloadUrl);
-            if (downloadUrl.contains("appstore")) {
+//            if (downloadUrl.contains("appstore")) {
+            if (downloadUrl.contains("ConnectMe.ipa")) {
+                System.out.println("Download link: " + downloadUrl);
                 System.out.println("Download link is valid");
                 return downloadUrl;
             }
@@ -118,6 +122,7 @@ public class AppCenterAPI {
         else if (device_Type.toLowerCase(Locale.ROOT).contains("android"))
             normalizedPlatformName = PlatformName.Android;
         List<String> releases = getReleaseIds(rcVersion, normalizedPlatformName);
+        System.out.println("RC RELEASES >>> " + releases);
         String appDownloadUrl = "";
         switch (normalizedPlatformName) {
             case iOS:
@@ -136,6 +141,7 @@ public class AppCenterAPI {
         else if (device_Type.toLowerCase(Locale.ROOT).contains("android"))
             normalizedPlatformName = PlatformName.Android;
         List<String> releases = getReleaseIds(LatestVersion, normalizedPlatformName);
+        System.out.println("LATEST RELEASES >>> " + releases);
         String appDownloadUrl = "";
         switch (normalizedPlatformName) {
             case iOS:

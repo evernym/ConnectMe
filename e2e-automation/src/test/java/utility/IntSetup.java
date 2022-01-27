@@ -21,6 +21,10 @@ public class IntSetup {
     public Context ctx = Context.getInstance();
     public static String tokenAddress;
 
+    protected static final String APP_PKG = "me.connect";
+    protected static final String APP_ACT = ".MainActivity";
+    protected static final String BUNDLE_ID = "com.evernym.connectme.callcenter";
+
     public StartUpPageNew startUpPageNew = new StartUpPageNew(driverApp);
     public PassCodePageNew passCodePageNew = new PassCodePageNew(driverApp);
     public HomePageNew homePageNew = new HomePageNew(driverApp);
