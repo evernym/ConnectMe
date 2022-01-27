@@ -11221,9 +11221,9 @@ react-native-modal@11.5.6:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
-"react-native-pbkdf2@git://github.com/evernym/react-native-pbkdf2.git#v0.1.5":
+"react-native-pbkdf2@https://github.com/evernym/react-native-pbkdf2.git#v0.1.5":
   version "0.1.3"
-  resolved "git://github.com/evernym/react-native-pbkdf2.git#030f87c2df4f9e71b7ca5378cb0e88bad8cdd40f"
+  resolved "https://github.com/evernym/react-native-pbkdf2.git#030f87c2df4f9e71b7ca5378cb0e88bad8cdd40f"
 
 react-native-permissions@^3.0.5:
   version "3.0.5"

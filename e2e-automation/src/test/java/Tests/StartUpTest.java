@@ -9,6 +9,8 @@ public class StartUpTest extends IntSetup {
 
     @BeforeClass
     public void BeforeClassSetup() {
+        System.out.println("Start Up Test Suite has been started!");
+//        reloadDriversAndPos(); // for upgrade path test
         driverApp.launchApp();
     }
 
@@ -29,6 +31,7 @@ public class StartUpTest extends IntSetup {
     @AfterClass
     public void AfterClass() {
         driverApp.closeApp();
+        System.out.println("Start Up Test Suite has been finished!");
     }
 
 }

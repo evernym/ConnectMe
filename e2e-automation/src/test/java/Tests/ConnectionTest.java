@@ -24,7 +24,6 @@ public class ConnectionTest extends IntSetup {
     private String connectionName;
     private final String connectionInvitation = "connection-invitation";
     private final String oobInvitation = "out-of-band-invitation";
-    private boolean isDisplayed = false;
 
     @BeforeClass
     public void BeforeClassSetup() {
