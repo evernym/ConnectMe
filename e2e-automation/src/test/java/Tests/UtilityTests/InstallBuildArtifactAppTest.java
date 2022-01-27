@@ -20,30 +20,20 @@ import java.util.HashMap;
 public class InstallBuildArtifactAppTest extends IntSetup {
     @Test
     public void installBuildArtifact() throws Exception {
-//        try {
+       try {
             String appPath = AppCenterAPI.getLatestAppDownloadUrl(Config.Device_Type);
             System.out.println("APP PATH >>> " + appPath);
 
             if(Helpers.getPlatformType().equals(Platform.ANDROID)) {
-//                String artifactsDir = System.getenv("DEVICEFARM_LOG_DIR");
-//                FileUtils.copyURLToFile(new URL(appPath), new File("cm.apk")); //download file
-//                File appDir = new File(artifactsDir, "cm.apk"); //set file
-//                driverApp.installApp(appDir.getAbsolutePath());
-                // -----------------------------------------------
                 driverApp.launchApp();
-//                driverApp.terminateApp(APP_PKG);
                 driverApp.installApp(appPath);
-//                driverApp.closeApp();
-                // +
+                // + official docs steps
                 Activity activity = new Activity(APP_PKG, APP_ACT);
                 AndroidDriver driver = (AndroidDriver)driverApp;
                 driver.startActivity(activity);
             }
             else
             {
-//                // iOS-specific: cannot install app directly
-//                driverApp = AppDriver.getIosDriverWithProvidedBundle(appPath);
-
                 // official docs steps
                 driverApp.launchApp();
 
@@ -57,11 +47,11 @@ public class InstallBuildArtifactAppTest extends IntSetup {
 
                 driverApp.executeScript("mobile: launchApp", bundleArgs);
             }
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println(Arrays.toString(e.getStackTrace()));
-//            Assert.fail(e.getMessage());
-//        }
+       }
+       catch (Exception e)
+       {
+           System.out.println(Arrays.toString(e.getStackTrace()));
+           Assert.fail(e.getMessage());
+       }
     }
 }
