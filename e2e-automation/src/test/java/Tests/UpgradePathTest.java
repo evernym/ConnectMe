@@ -95,77 +95,77 @@ public class UpgradePathTest extends IntSetup {
         objAppUtlis.shareProof();
         AppUtils.waitForElementNew(driverApp, homePageNew.proofSharedEvent(proofName));
     }
-//
-//    @Test(dependsOnMethods = "shareProofRequestContainingGroupedAttributes")
-//    public void deleteCredentialFromExistingConnection() {
-//        String schemeName = context.getValue("credentialNameScheme");
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myCredentialsButton.click();
-//
-//        int credsCountBefore = 0;
-//        try {
-//            credsCountBefore = 1;
-//            objAppUtlis.findParameterizedElementAlt(schemeName).click();
-//            Thread.sleep(1000);
-//            if (AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton))
-//                throw new NoSuchElementException();
-//        } catch (Exception ex) {
-//            AppUtils.pullScreenUp(driverApp);
-//            credsCountBefore = myCredentialsPageNew.getConnectionsBySchemeName(schemeName).size();
-//            objAppUtlis.findParameterizedElementAlt(schemeName).click();
-//        }
-//
-//        connectionHistoryPageNew.threeDotsButton.click();
-//        credentialPageNew.deleteButton.isDisplayed();
-//        credentialPageNew.deleteButton.click();
-//        Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(schemeName).size(), credsCountBefore - 1);
-//    }
-//
-//    @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
-//    public void answerQuestionWithOneOptionFromHome() throws Exception {
-//        List<String> oneOption = Arrays.asList(Helpers.randomString());
-//        String text = "How much?";
-//        String detail = "How much do you want";
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.homeButton.isDisplayed();
-//        menuPageNew.homeButton.click();
-//
-//        AppUtils.DoSomethingEventually(() -> VAS.askQuestion(DID, text, detail, oneOption));
-//        AppUtils.waitForElementNew(driverApp, questionPageNew.header);
-//        objAppUtlis.findParameterizedElement(oobConnection).isDisplayed();
-//        objAppUtlis.findParameterizedElement(detail).isDisplayed();
-//
-//        for (String validResponse : oneOption) {
-//            objAppUtlis.findParameterizedElement(validResponse).isDisplayed();
-//        }
-//
-//        String answer = oneOption.get(0);
-//        objAppUtlis.findParameterizedElement(answer).click();
-//        homePageNew.questionRespondedEvent(answer).isDisplayed();
-//    }
-//
-//    @Test(dependsOnMethods = "answerQuestionWithOneOptionFromHome")
-//    public void deleteConnectionTest() throws Exception {
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//        Thread.sleep(1000);
-//        myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
-//        myConnectionsPageNew.getConnectionByName(oobConnection).isDisplayed();
-//
-//        homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//
-//        myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
-//        myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
-//
-//        AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
-//        connectionHistoryPageNew.threeDotsButton.click();
-//        connectionDetailPageNew.deleteButton.isDisplayed();
-//        connectionDetailPageNew.deleteButton.click();
-//        Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
-//    }
+
+   @Test(dependsOnMethods = "shareProofRequestContainingGroupedAttributes")
+   public void deleteCredentialFromExistingConnection() {
+       String schemeName = context.getValue("credentialNameScheme");
+
+       homePageNew.tapOnBurgerMenu();
+       menuPageNew.myCredentialsButton.click();
+
+       int credsCountBefore = 0;
+       try {
+           credsCountBefore = 1;
+           objAppUtlis.findParameterizedElementAlt(schemeName).click();
+           Thread.sleep(1000);
+           if (AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton))
+               throw new NoSuchElementException();
+       } catch (Exception ex) {
+           AppUtils.pullScreenUp(driverApp);
+           credsCountBefore = myCredentialsPageNew.getConnectionsBySchemeName(schemeName).size();
+           objAppUtlis.findParameterizedElementAlt(schemeName).click();
+       }
+
+       connectionHistoryPageNew.threeDotsButton.click();
+       credentialPageNew.deleteButton.isDisplayed();
+       credentialPageNew.deleteButton.click();
+       Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(schemeName).size(), credsCountBefore - 1);
+   }
+
+   @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
+   public void answerQuestionWithOneOptionFromHome() throws Exception {
+       List<String> oneOption = Arrays.asList(Helpers.randomString());
+       String text = "How much?";
+       String detail = "How much do you want";
+
+       homePageNew.tapOnBurgerMenu();
+       menuPageNew.homeButton.isDisplayed();
+       menuPageNew.homeButton.click();
+
+       AppUtils.DoSomethingEventually(() -> VAS.askQuestion(DID, text, detail, oneOption));
+       AppUtils.waitForElementNew(driverApp, questionPageNew.header);
+       objAppUtlis.findParameterizedElement(oobConnection).isDisplayed();
+       objAppUtlis.findParameterizedElement(detail).isDisplayed();
+
+       for (String validResponse : oneOption) {
+           objAppUtlis.findParameterizedElement(validResponse).isDisplayed();
+       }
+
+       String answer = oneOption.get(0);
+       objAppUtlis.findParameterizedElement(answer).click();
+       homePageNew.questionRespondedEvent(answer).isDisplayed();
+   }
+
+   @Test(dependsOnMethods = "answerQuestionWithOneOptionFromHome")
+   public void deleteConnectionTest() throws Exception {
+       homePageNew.tapOnBurgerMenu();
+       menuPageNew.myConnectionsButton.click();
+       Thread.sleep(1000);
+       myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
+       myConnectionsPageNew.getConnectionByName(oobConnection).isDisplayed();
+
+       homePageNew.tapOnBurgerMenu();
+       menuPageNew.myConnectionsButton.click();
+
+       myConnectionsPageNew.getConnectionByName(connectionInvitation).isDisplayed();
+       myConnectionsPageNew.getConnectionByName(connectionInvitation).click();
+
+       AppUtils.waitForElementNew(driverApp, connectionHistoryPageNew.threeDotsButton);
+       connectionHistoryPageNew.threeDotsButton.click();
+       connectionDetailPageNew.deleteButton.isDisplayed();
+       connectionDetailPageNew.deleteButton.click();
+       Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
+   }
 
     /*
     TODO: investingate why these tests fail only in deivcefarm

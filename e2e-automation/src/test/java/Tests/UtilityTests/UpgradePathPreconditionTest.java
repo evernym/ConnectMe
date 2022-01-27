@@ -49,12 +49,6 @@ public class UpgradePathPreconditionTest extends IntSetup {
         objConnectionModules.getConnectionInvitation(driverBrowser, driverApp, connectionName, invitationType);
         objConnectionModules.acceptPushNotificationRequest(driverApp);
 
-//        // iOS workaround
-//        if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//            Thread.sleep(15000);
-//            return;
-//        }
-
         try {
             AppUtils.waitForElementNew(driverApp, invitationPageNew.title, 10);
         }
@@ -95,26 +89,26 @@ public class UpgradePathPreconditionTest extends IntSetup {
         Thread.sleep(1000);
         myConnectionsPageNew.getConnectionByName(connectionName).click();
     }
-//
-//    @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
-//    public void validateConnectionHistory() throws Exception {
-//        connectionHistoryPageNew.connectionLogo.isDisplayed();
-//        connectionHistoryPageNew.oobConnectionName.isDisplayed();
-//        connectionHistoryPageNew.connectedRecord.isDisplayed();
-//        connectionHistoryPageNew.oobConnectedRecordDescription.isDisplayed();
-//    }
-//
-//    @Test(dependsOnMethods = "validateConnectionHistory")
-//    public void validateConnectionDetails() throws Exception {
-//        connectionHistoryPageNew.threeDotsButton.isDisplayed();
-//        connectionHistoryPageNew.threeDotsButton.click();
-//
-//        connectionDetailPageNew.closeButton.isDisplayed();
-//        connectionDetailPageNew.deleteButton.isDisplayed();
-//
-//        connectionDetailPageNew.closeButton.click();
-//        connectionHistoryPageNew.backButton.click();
-//    }
+
+   @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
+   public void validateConnectionHistory() throws Exception {
+       connectionHistoryPageNew.connectionLogo.isDisplayed();
+       connectionHistoryPageNew.oobConnectionName.isDisplayed();
+       connectionHistoryPageNew.connectedRecord.isDisplayed();
+       connectionHistoryPageNew.oobConnectedRecordDescription.isDisplayed();
+   }
+
+   @Test(dependsOnMethods = "validateConnectionHistory")
+   public void validateConnectionDetails() throws Exception {
+       connectionHistoryPageNew.threeDotsButton.isDisplayed();
+       connectionHistoryPageNew.threeDotsButton.click();
+
+       connectionDetailPageNew.closeButton.isDisplayed();
+       connectionDetailPageNew.deleteButton.isDisplayed();
+
+       connectionDetailPageNew.closeButton.click();
+       connectionHistoryPageNew.backButton.click();
+   }
 
     @AfterClass
     public void AfterClass() {
