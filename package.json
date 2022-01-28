@@ -16,7 +16,7 @@
     "reset:androidstudio": "rm -f android/.idea/modules.xml && cd android/ && ./gradlew clean && cd -",
     "e2e": "e2e/e2e-cli.js",
     "circular": "madge --circular --extensions js app/",
-    "postinstall": "jetify && patch-package",
+    "postinstall": "jetify && patch-package --patch-dir ./node_modules/@evernym/react-native-white-label-app/files/patches",
     "evernym-sdk:configure": "yarn --cwd node_modules/@evernym/react-native-white-label-app run configure"
   },
   "lint-staged": {
