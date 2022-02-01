@@ -40,10 +40,8 @@ platform :android do
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86-release.apk")
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
 
-    prefix = "80"
-    versionCode = ci_pipeline_id
-    newVersionName = "\"1.7.0\""
-    versionName = newVersionName + '.' + versionCode
+    versionCode = "80" + ENV["CI_PIPELINE_IID"]
+    versionName = "1.7.0." + versionCode
 
     supply(
       version_name: versionName,
