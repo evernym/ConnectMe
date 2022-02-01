@@ -1,6 +1,7 @@
 ---
 stages:
     - prebuild
+    - check
     - test
     - build
     - devicefarm-test
