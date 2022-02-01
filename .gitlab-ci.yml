@@ -102,7 +102,6 @@ license-data-check:
     - docker-machine
   except:
     - white-label-app-e2e-testing
-    - fix-upload-version
 
 ### - Test - ###
 
