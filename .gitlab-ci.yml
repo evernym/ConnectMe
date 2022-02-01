@@ -2,15 +2,8 @@
 stages:
   - prebuild
   - check
-  - test
   - build
-  - devicefarm-test
-  - devicefarm-test-top
-  - devicefarm-test-next
-  - devicefarm-test-final
   - upload
-  - devicefarm-test-upgrade-path
-  - devicefarm-test-acapy
 
 ### - Pre-build - ###
 # Helpers / Anchors
@@ -200,9 +193,7 @@ build-android-merge-request:
 
 build-android-master:
   extends: .build-android
-  only:
-      refs:
-          - main@evernym/mobile/connectme
+
 
 # Upload jobs
 upload-ios:
@@ -230,9 +221,6 @@ upload-android:
     - gem install fastlane
     - bundle install
     - bundle exec fastlane upload
-  only:
-    refs:
-      - main@evernym/mobile/connectme
 
 # Basic lint
 #yarn-test:
