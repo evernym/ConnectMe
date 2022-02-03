@@ -95,7 +95,7 @@ target 'ConnectMe' do
 	pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
 	pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
 	pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
-	FileUtils.cp('../patches/iOS14.patch.RCTUIImageViewAnimated.m','../node_modules/react-native/Libraries/Image/RCTUIImageViewAnimated.m')
+	FileUtils.cp('../node_modules/@evernym/react-native-white-label-app/files/patches/iOS14.patch.RCTUIImageViewAnimated.m','../node_modules/react-native/Libraries/Image/RCTUIImageViewAnimated.m')
 	pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
 	pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
 	pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
