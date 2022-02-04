@@ -1,6 +1,13 @@
 # Changelog
 
-# Release notes - Connect.Me 1.7.0 release TBD
+
+# Release notes - Connect.Me 1.7.1 release TBD
+
+## Bugs
+* [CM-3177] -Loading spinner should not be shown when the app is automatically polling
+* [CM-3178] -Blank screen after pressing 'Accept Credential'
+
+# Release notes - Connect.Me 1.7.0.801685 released 01 February 2022
 
 This release adds an important new feature: You can now scan your driver’s license, state-issued ID or passport and receive a verifiable credential issued by Evernym. The software used to validate your documents and take your selfie comes from MasterCard, as part of our partnership with them. Your personal information is deleted from our system after it is processed.
 
