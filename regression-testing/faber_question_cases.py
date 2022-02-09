@@ -14,29 +14,7 @@ from vcx.api.connection import Connection
 from vcx.api.utils import vcx_agent_provision
 from vcx.api.vcx_init import vcx_init_with_config
 from vcx.state import State
-
-provisionConfig = {
-    'agency_url': 'https://eas01.pps.evernym.com',
-    'agency_did': 'UNM2cmvMVoWpk6r3pG5FAq',
-    'agency_verkey': 'FvA7e4DuD2f9kYHq6B3n7hE7NQvmpgeFRrox3ELKv9vX',
-    'wallet_name': 'faber_wallet',
-    'wallet_key': '123',
-    'enterprise_seed': '000000000000000000000000Trustee2',
-    'protocol_type': '3.0',
-    'name': 'Faber Questioner',
-    'logo': 'https://s3.us-east-2.amazonaws.com/public-demo-artifacts/demo-icons/cbFaber.png',
-    'indy_pool_networks': [
-        {
-            'genesis_path': 'genesis_staging.txn',
-            'namespace_list': ["staging"],
-            'taa_config': {
-                'taa_digest': '8cee5d7a573e4893b08ff53a0761a22a1607df3b3fcd7e75b98696c92879641f',
-                'acc_mech_type': 'at_submission',
-                'time': int(time.time())
-            }
-        }
-    ]
-}
+from faber import provisionConfig
 
 
 async def main():
