@@ -97,21 +97,27 @@ devicefarm-test-launch-android-master:
     extends: .devicefarm-test-launch-android
     dependencies:
         - build-android-master
-    rules:
-        - if: '$CI_COMMIT_REF_SLUG == "CM-3186/change-cred-offer-notification-txt"'
-          when: always
+    # rules:
+    #     - if: '$CI_COMMIT_REF_SLUG == "CM-3186/change-cred-offer-notification-txt"'
+    #       when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
+    only:
+      refs:
+          - CM-3186/change-cred-offer-notification-txt@evernym/mobile/connectme
 
 devicefarm-test-launch-ios-master:
     extends: .devicefarm-test-launch-ios
     dependencies:
         - build-ios-master
-    rules:
-        - if: '$CI_COMMIT_REF_SLUG == "CM-3186/change-cred-offer-notification-txt"'
-          when: always
+    # rules:
+    #     - if: '$CI_COMMIT_REF_SLUG == "CM-3186/change-cred-offer-notification-txt"'
+    #       when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 main vas
+    only:
+      refs:
+          - CM-3186/change-cred-offer-notification-txt@evernym/mobile/connectme
 
 devicefarm-test-launch-android-merge_requests:
     extends: .devicefarm-test-launch-android
