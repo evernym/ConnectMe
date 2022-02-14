@@ -49,7 +49,7 @@ public class HomePageNew {
     public WebElement pushConnectedEvent;
 
     @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Credential Offer\"]")
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"Remote connection sent you a Credential Offer\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"connection-invitation sent you a Credential Offer\"]")
     public WebElement credentialOfferNotification;
 
     @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Proof Request\"]")
