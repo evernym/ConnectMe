@@ -48,16 +48,16 @@ public class HomePageNew {
     @iOSXCUITFindBy(accessibility = "You connected with \"push-connection-invitation\".") // id?
     public WebElement pushConnectedEvent;
 
-    @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Credential Offer\"]")
+    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a Credential Offer\"]")
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"connection-invitation sent you a Credential Offer\"]")
     public WebElement credentialOfferNotification;
 
-    @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Proof Request\"]")
-    @iOSXCUITFindBy(xpath = "//*[@text=\"Remote connection sent you a Proof Request\"]")
+    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a Proof Request\"]")
+    @iOSXCUITFindBy(xpath = "//*[@text=\"connection-invitation sent you a Proof Request\"]")
     public WebElement proofRequestNotification;
 
-    @AndroidFindBy(xpath = "//*[@text=\"Remote connection sent you a Question\"]")
-    @iOSXCUITFindBy(xpath = "//*[@text=\"Remote connection sent you a Question\"]")
+    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a Question\"]")
+    @iOSXCUITFindBy(xpath = "//*[@text=\"connection-invitation sent you a Question\"]")
     public WebElement questionNotification;
 
     @AndroidFindBy(xpath = "//*[@text=\"NEW MESSAGE - TAP TO OPEN\"]")
