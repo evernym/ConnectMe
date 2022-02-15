@@ -45,9 +45,10 @@ public class RedirectionTest extends IntSetup {
 
     @Test(dataProvider = "invitationLinksAndAppStates")
     public void redirectConnection(String link, String appState) throws Exception {
-        if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            return;
-        }
+        // DEBUG
+        // if (Config.iOS_Devices.contains(Config.Device_Type)) {
+        //     return;
+        // }
 
         driverBrowser = BrowserDriver.getDriver();
 //        driverApp.close(); // test ios
