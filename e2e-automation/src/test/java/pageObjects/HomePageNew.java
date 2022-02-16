@@ -36,6 +36,10 @@ public class HomePageNew {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Recent\"]")
     public WebElement recentEventsSection;
 
+    @AndroidFindBy(xpath = "//*[@text='Making secure connection...']")
+    @iOSXCUITFindBy(accessibility = "Making secure connection...")
+    public WebElement makingConnectionEvent;
+
     @AndroidFindBy(xpath = "//*[@text='You connected with \"connection-invitation\".']")
     @iOSXCUITFindBy(accessibility = "You connected with \"connection-invitation\".") // id?
     public WebElement commonConnectedEvent;
@@ -63,6 +67,7 @@ public class HomePageNew {
     @AndroidFindBy(xpath = "//*[@text=\"NEW MESSAGE - TAP TO OPEN\"]")
     @iOSXCUITFindBy(accessibility = "new-message")
     public WebElement newMessage;
+
 
     public WebElement credentialIssuedEvent(String credentialName) {
         if (Config.iOS_Devices.contains(Config.Device_Type)) {

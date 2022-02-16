@@ -239,13 +239,13 @@ public class ConnectionModules extends IntSetup {
 
         invitationPageNew.title.isDisplayed();
         invitationPageNew.inviteeAvatar.isDisplayed();
-        invitationPageNew.inviteeAvatar.isDisplayed();
+//        invitationPageNew.inviteeAvatar.isDisplayed(); // why?
         invitationPageNew.denyButton.isDisplayed();
         invitationPageNew.connectButton.isDisplayed();
 
         invitationPageNew.connectButton.click();
         homePageNew.recentEventsSection.isDisplayed();
-//		homePage.makingConnectionEvent(driverApp).isDisplayed(); FIXME: intermittent failure
+        homePageNew.makingConnectionEvent.isDisplayed();
     }
 
     public void rejectConnectionInvitation(AppiumDriver driverApp) throws Exception {
