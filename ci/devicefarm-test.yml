@@ -102,6 +102,10 @@ devicefarm-test-launch-android-master:
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
+    only:
+        refs:
+            - CM-2897/making-connection-event@evernym/mobile/connectme
+
 
 devicefarm-test-launch-ios-master:
     extends: .devicefarm-test-launch-ios
@@ -112,6 +116,10 @@ devicefarm-test-launch-ios-master:
           when: always
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 main vas
+    only:
+        refs:
+            - CM-2897/making-connection-event@evernym/mobile/connectme
+
 
 devicefarm-test-launch-android-merge_requests:
     extends: .devicefarm-test-launch-android
