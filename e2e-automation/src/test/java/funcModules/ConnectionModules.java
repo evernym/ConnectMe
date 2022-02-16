@@ -17,6 +17,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
 import test.java.appModules.AcaPyApi;
@@ -245,7 +248,8 @@ public class ConnectionModules extends IntSetup {
 
         invitationPageNew.connectButton.click();
         homePageNew.recentEventsSection.isDisplayed();
-        homePageNew.makingConnectionEvent.isDisplayed();
+        new WebDriverWait(driverApp, 5, 50)
+            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).isDisplayed();
     }
 
     public void rejectConnectionInvitation(AppiumDriver driverApp) throws Exception {
