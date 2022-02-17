@@ -29,10 +29,7 @@ import test.java.utility.LocalContext;
 import test.java.appModules.AppUtils;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -248,7 +245,7 @@ public class ConnectionModules extends IntSetup {
 
         invitationPageNew.connectButton.click();
         homePageNew.recentEventsSection.isDisplayed();
-        new WebDriverWait(driverApp, 5, 5)
+        new WebDriverWait(driverApp, 10, 1)
             .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).isDisplayed();
     }
 
