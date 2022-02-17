@@ -161,8 +161,8 @@ build-ios-master:
     DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
     # this gets passed to the anchor
   only:
-      refs:
-          - CM-2897/minor-fixes@evernym/mobile/connectme
+    refs:
+      - CM-2897/minor-fixes@evernym/mobile/connectme
 
 ### - Android - ###
 .build-android:
@@ -202,7 +202,7 @@ build-android-master:
   extends: .build-android
   only:
       refs:
-          - CM-2897/minor-fixes@evernym/mobile/connectme
+        - CM-2897/minor-fixes@evernym/mobile/connectme
 
 # Upload jobs
 upload-ios:
