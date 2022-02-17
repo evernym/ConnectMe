@@ -36,7 +36,7 @@ public class HomePageNew {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Recent\"]")
     public WebElement recentEventsSection;
 
-    @AndroidFindBy(xpath = "//*[@text='Making secure connection...']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Making secure connection...']")
     @iOSXCUITFindBy(accessibility = "Making secure connection...")
     public WebElement makingConnectionEvent;
 
