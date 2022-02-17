@@ -25,6 +25,7 @@ public class RedirectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Redirection Test Suite has been started!");
+        driverApp.launchApp(); // DEBUG: open app the same way as in connection test
         connectionInvitationLink = context.getValue("connection-invitation");
         oobInvitationLink = context.getValue("out-of-band-invitation");
     }
@@ -56,7 +57,7 @@ public class RedirectionTest extends IntSetup {
         // close app or put it to background
         switch(appState) {
             case appClosed:
-//                driverApp.close(); // 404 error android - it is closed
+                driverApp.close(); // 404 error android - it is closed // DEBUG: close app since it was open in test setup
 //                driverBrowser.close(); // ?
                 break;
             case appBackground:
