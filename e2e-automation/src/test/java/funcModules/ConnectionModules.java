@@ -248,7 +248,7 @@ public class ConnectionModules extends IntSetup {
 
         invitationPageNew.connectButton.click();
         homePageNew.recentEventsSection.isDisplayed();
-        new WebDriverWait(driverApp, 5, 10)
+        new WebDriverWait(driverApp, 5, 1)
             .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).isDisplayed();
     }
 
