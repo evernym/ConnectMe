@@ -25,9 +25,6 @@ public class RedirectionTest extends IntSetup {
     @BeforeClass
     public void BeforeClassSetup() {
         System.out.println("Redirection Test Suite has been started!");
-        if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            driverApp.launchApp(); // IOS DEBUG: open app the same way as in connection test
-        }
         connectionInvitationLink = context.getValue("connection-invitation");
         oobInvitationLink = context.getValue("out-of-band-invitation");
     }
@@ -48,10 +45,9 @@ public class RedirectionTest extends IntSetup {
 
     @Test(dataProvider = "invitationLinksAndAppStates")
     public void redirectConnection(String link, String appState) throws Exception {
-        // DEBUG
-        // if (Config.iOS_Devices.contains(Config.Device_Type)) {
-        //     return;
-        // }
+         if (Config.iOS_Devices.contains(Config.Device_Type)) {
+             driverApp.launchApp(); // IOS DEBUG: open app the same way as in connection test
+         }
 
         driverBrowser = BrowserDriver.getDriver();
 
