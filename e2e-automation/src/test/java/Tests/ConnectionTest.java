@@ -1,7 +1,6 @@
 package test.java.Tests;
 
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -14,7 +13,7 @@ import test.java.funcModules.ConnectionModules;
 import test.java.utility.Helpers;
 import test.java.utility.LocalContext;
 import test.java.utility.BrowserDriver;
-import test.java.utility.AppDriver;
+
 
 /**
  * The ConnectionTest class is a Test class which holds test method related to
@@ -109,8 +108,6 @@ public class ConnectionTest extends IntSetup {
         passCodePageNew.openApp();
 
         homePageNew.tapOnBurgerMenu();
-//        menuPageNew.myConnectionsButton.click();
-//        Thread.sleep(1000); // FIXME MSDK workaround: it goes to Settings without sleep
         new WebDriverWait(driverApp, 5,1000).until(ExpectedConditions.elementToBeClickable(menuPageNew.myConnectionsButton)).click();
         myConnectionsPageNew.getConnectionByName(connectionName).click();
     }
