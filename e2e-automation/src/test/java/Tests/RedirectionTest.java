@@ -47,8 +47,7 @@ public class RedirectionTest extends IntSetup {
     @Test(dataProvider = "invitationLinksAndAppStates")
     public void redirectConnection(String link, String appState) throws Exception {
          if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//             driverApp.launchApp(); // IOS DEBUG: open app the same way as in connection test
-             driverApp = AppDriver.getDriver(); // IOS DEBUG: get driver instead of app launching
+             driverApp.launchApp();
          }
 
         driverBrowser = BrowserDriver.getDriver();
@@ -56,9 +55,6 @@ public class RedirectionTest extends IntSetup {
         // close app or put it to background
         switch(appState) {
             case appClosed:
-                if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//                    driverApp.closeApp(); // IOS DEBUG: close app since it was opened for iOS in test setup - session doesn't exist error!
-                }
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
