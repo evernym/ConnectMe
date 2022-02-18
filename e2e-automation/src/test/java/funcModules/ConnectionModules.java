@@ -17,9 +17,11 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import test.java.utility.IntSetup;
 import test.java.appModules.VASApi;
 import test.java.appModules.AcaPyApi;
@@ -244,9 +246,18 @@ public class ConnectionModules extends IntSetup {
         invitationPageNew.connectButton.isDisplayed();
 
         invitationPageNew.connectButton.click();
-        new WebDriverWait(driverApp, 10, 1)
-            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).isDisplayed();
+
         homePageNew.recentEventsSection.isDisplayed();
+
+        System.out.println("=============================");
+        System.out.println("The text you are looking for");
+        WebElement makingConnectionEventMessage = new WebDriverWait(driverApp, 10, 1)
+            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
+        System.out.println(makingConnectionEventMessage.getText());
+        Assert.assertEquals(makingConnectionEventMessage.getText(), "Making secure connection...");
+        System.out.println("=============================");
+
+
 
     }
 

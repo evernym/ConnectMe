@@ -36,22 +36,26 @@ public class HomePageNew {
 
     @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE, iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//*[@text=\"Making secure connection...\"]")
-    @AndroidFindBy(xpath = "//*[@text=\'Making secure connection...\']")
+//    @AndroidFindBy(xpath = "//*[@text=\'Making secure connection...\']")
 
-    @AndroidFindBy(xpath = "//*[@text='Making secure connection...']")
-    @AndroidFindBy(xpath = "//*[@text=Making secure connection...]")
+//    @AndroidFindBy(xpath = "//*[@text='Making secure connection...']")
+//    @AndroidFindBy(xpath = "//*[@text=Making secure connection...]")
 
-    @AndroidFindBy(xpath = "//*[@text=\"Making secure connection...]")
-    @AndroidFindBy(xpath = "//*[@text=Making secure connection...\"]")
+//    @AndroidFindBy(xpath = "//*[@text=\"Making secure connection...]")
+//    @AndroidFindBy(xpath = "//*[@text=Making secure connection...\"]")
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Making secure connection...\"]")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\'Making secure connection...\']")
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text=Making secure connection..]")
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Making secure connection...\"]")
+
+
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\'Making secure connection...\']")
+//    @AndroidFindBy(xpath = "//android.widget.TextView[@text=Making secure connection..]")
 
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), \"Making secure connection\")]")
-    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Making secure connection')]")
+//    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Making secure connection')]")
 
+    //@AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"home-container\"]//android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]")
+    //AndroidFindBy(x[ath = android.view.ViewGroup[@content-desc="home-container"]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.TextView[1]);
     @iOSXCUITFindBy(accessibility = "Making secure connection...")
     //@iOSXCUITFindBy(xpath = "//*[@text=Making secure connection...]")
     public WebElement makingConnectionEvent;
