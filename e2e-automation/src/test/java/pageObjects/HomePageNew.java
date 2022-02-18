@@ -51,6 +51,8 @@ public class HomePageNew {
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\'Making secure connection...\']")
 //    @AndroidFindBy(xpath = "//android.widget.TextView[@text=Making secure connection..]")
 
+    //""Making secure connection..." Other"
+
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), \"Making secure connection\")]")
 //    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Making secure connection')]")
 
