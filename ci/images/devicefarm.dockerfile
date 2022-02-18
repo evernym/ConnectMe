@@ -1,5 +1,6 @@
 FROM ubuntu:bionic
 
+
 RUN apt-get update \
    && apt-get install -y git gnupg2 software-properties-common curl \
    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CE7709D068DB5E88 \
