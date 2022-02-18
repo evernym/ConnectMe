@@ -1,6 +1,9 @@
 package test.java.Tests;
 
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -100,13 +103,15 @@ public class ConnectionTest extends IntSetup {
         context.setValue(invitationType + "_DID", context.getValue("DID"));
     }
 
+
     @Test(dependsOnMethods = "setUpConnectionTest")
     public void validateMyConnectionRecordAppeared() throws Exception {
         passCodePageNew.openApp();
 
         homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        Thread.sleep(1000); // FIXME MSDK workaround: it goes to Settings without sleep
+//        menuPageNew.myConnectionsButton.click();
+//        Thread.sleep(1000); // FIXME MSDK workaround: it goes to Settings without sleep
+        new WebDriverWait(driverApp, 5,1000).until(ExpectedConditions.elementToBeClickable(menuPageNew.myConnectionsButton)).click();
         myConnectionsPageNew.getConnectionByName(connectionName).click();
     }
 
