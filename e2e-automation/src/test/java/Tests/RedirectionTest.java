@@ -4,6 +4,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
+import test.java.utility.AppDriver;
 import test.java.utility.IntSetup;
 import test.java.funcModules.ConnectionModules;
 import test.java.utility.LocalContext;
@@ -46,7 +47,8 @@ public class RedirectionTest extends IntSetup {
     @Test(dataProvider = "invitationLinksAndAppStates")
     public void redirectConnection(String link, String appState) throws Exception {
          if (Config.iOS_Devices.contains(Config.Device_Type)) {
-             driverApp.launchApp(); // IOS DEBUG: open app the same way as in connection test
+//             driverApp.launchApp(); // IOS DEBUG: open app the same way as in connection test
+             driverApp = AppDriver.getDriver(); // IOS DEBUG: get driver instead of app launching
          }
 
         driverBrowser = BrowserDriver.getDriver();
