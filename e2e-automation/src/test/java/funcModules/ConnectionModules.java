@@ -244,9 +244,10 @@ public class ConnectionModules extends IntSetup {
         invitationPageNew.connectButton.isDisplayed();
 
         invitationPageNew.connectButton.click();
-        homePageNew.recentEventsSection.isDisplayed();
         new WebDriverWait(driverApp, 10, 1)
             .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).isDisplayed();
+        homePageNew.recentEventsSection.isDisplayed();
+
     }
 
     public void rejectConnectionInvitation(AppiumDriver driverApp) throws Exception {
