@@ -101,7 +101,7 @@ devicefarm-test-launch-android-master:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 main vas
     only:
         refs:
-            - debug-redirection-test@evernym/mobile/connectme
+            - main@evernym/mobile/connectme
 
 devicefarm-test-launch-ios-master:
     extends: .devicefarm-test-launch-ios
@@ -111,7 +111,7 @@ devicefarm-test-launch-ios-master:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 main vas
     only:
         refs:
-            - debug-redirection-test@evernym/mobile/connectme
+            - main@evernym/mobile/connectme
 
 devicefarm-test-launch-android-merge_requests:
     extends: .devicefarm-test-launch-android

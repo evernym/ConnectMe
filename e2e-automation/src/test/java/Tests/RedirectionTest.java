@@ -4,7 +4,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-import test.java.utility.AppDriver;
 import test.java.utility.IntSetup;
 import test.java.funcModules.ConnectionModules;
 import test.java.utility.LocalContext;
