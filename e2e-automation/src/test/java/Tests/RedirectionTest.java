@@ -55,7 +55,7 @@ public class RedirectionTest extends IntSetup {
         switch(appState) {
             case appClosed:
                 if (Config.iOS_Devices.contains(Config.Device_Type)) {
-//                    driverApp.closeApp(); // IOS DEBUG: close app since it was opened for iOS in test setup - session doesn't exist error!
+                    driverApp.closeApp(); // IOS DEBUG: close app since it was opened for iOS in test setup - session doesn't exist error!
                 }
                 break;
             case appBackground:
