@@ -18,11 +18,12 @@ public class Config {
 	* */
 	public static final List<String> iOS_Devices = Arrays.asList("iOS", "iOSSimulator", "awsiOS");
 
-//	public static final String Device_Type = "android";
+	public static final String Device_Type = "android";
 //	public static final String Device_Name = "pixel_3_api_29"; // android emulator name
+    public static final String Device_Name = "connectme2"; // android emulator name
 
-      public static final String Device_Type = "iOS";
-      public static final String Device_Name = "iPhone"; // real iphone name
+//      public static final String Device_Type = "iOS";
+//      public static final String Device_Name = "iPhone"; // real iphone name
       public static final String Device_UDID = "00008020-001105121E22402E"; // real iphone UDID
 
 //    public static final String Device_Type = "iOSSimulator";

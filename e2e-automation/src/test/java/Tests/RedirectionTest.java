@@ -31,7 +31,6 @@ public class RedirectionTest extends IntSetup {
 
     // connection-invitation | oob-invitation
     // app is closed | app is running in background
-    // same invitation | different invitation with the same public DID - how can I change it?
 
     @DataProvider(name = "invitationLinksAndAppStates")
     public Object[][] getInvitationLinksAndAppStates() {
@@ -45,18 +44,15 @@ public class RedirectionTest extends IntSetup {
 
     @Test(dataProvider = "invitationLinksAndAppStates")
     public void redirectConnection(String link, String appState) throws Exception {
-        if (Config.iOS_Devices.contains(Config.Device_Type)) {
-            return;
-        }
+         if (Config.iOS_Devices.contains(Config.Device_Type)) {
+             driverApp.launchApp();
+         }
 
         driverBrowser = BrowserDriver.getDriver();
-//        driverApp.close(); // test ios
 
         // close app or put it to background
         switch(appState) {
-            case appClosed:
-//                driverApp.close(); // 404 error android - it is closed
-//                driverBrowser.close(); // ?
+            case appClosed: // it is closed for Android and opened for iOS (no session iOS error)
                 break;
             case appBackground:
                 driverApp.runAppInBackground(Duration.ofSeconds(-1));
