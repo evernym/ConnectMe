@@ -1,12 +1,10 @@
 package pageObjects;
 
+import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.StaleElementReferenceException;
 import test.java.appModules.AppUtils;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -36,8 +34,26 @@ public class HomePageNew {
     @iOSXCUITFindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Recent\"]")
     public WebElement recentEventsSection;
 
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE, iOSXCUITAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//*[@text=\"Making secure connection...\"]")
+    @AndroidFindBy(xpath = "//*[@text=\'Making secure connection...\']")
+
+    @AndroidFindBy(xpath = "//*[@text='Making secure connection...']")
+    @AndroidFindBy(xpath = "//*[@text=Making secure connection...]")
+
+    @AndroidFindBy(xpath = "//*[@text=\"Making secure connection...]")
+    @AndroidFindBy(xpath = "//*[@text=Making secure connection...\"]")
+
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Making secure connection...\"]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\'Making secure connection...\']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=Making secure connection..]")
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), \"Making secure connection\")]")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(text(), 'Making secure connection')]")
+
     @iOSXCUITFindBy(accessibility = "Making secure connection...")
+    //@iOSXCUITFindBy(xpath = "//*[@text=Making secure connection...]")
     public WebElement makingConnectionEvent;
 
     @AndroidFindBy(xpath = "//*[@text='You connected with \"connection-invitation\".']")
