@@ -251,10 +251,12 @@ public class ConnectionModules extends IntSetup {
 
         System.out.println("=============================");
         System.out.println("The text you are looking for");
-        WebElement makingConnectionEventMessage = new WebDriverWait(driverApp, 7, 1)
-            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
-        System.out.println(makingConnectionEventMessage.getText());
-        Assert.assertEquals(makingConnectionEventMessage.getText(), "Making secure connection...");
+//        WebElement makingConnectionEventMessage = new WebDriverWait(driverApp, 10, 1)
+//            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
+        String makingConnectionEventMessage = new WebDriverWait(driverApp, 10, 1)
+            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).getText();
+        System.out.println(makingConnectionEventMessage);
+        Assert.assertEquals(makingConnectionEventMessage, "Making secure connection...");
         System.out.println("=============================");
 
 
