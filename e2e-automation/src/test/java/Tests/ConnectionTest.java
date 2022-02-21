@@ -1,6 +1,8 @@
 package test.java.Tests;
 
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -108,8 +110,17 @@ public class ConnectionTest extends IntSetup {
         passCodePageNew.openApp();
 
         homePageNew.tapOnBurgerMenu();
-        new WebDriverWait(driverApp, 5,1000).until(ExpectedConditions.elementToBeClickable(menuPageNew.myConnectionsButton)).click();
+
+
+//        new WebDriverWait(driverApp, 3,1300)
+//            .until(ExpectedConditions.elementToBeClickable(menuPageNew.myConnectionsButton)).click();
+
+        WebElement myConnectionsButton = new WebDriverWait(driverApp, 3,1000)
+            .until(ExpectedConditions.elementToBeClickable(menuPageNew.myConnectionsButton));
+        myConnectionsButton.click();
+
         myConnectionsPageNew.getConnectionByName(connectionName).click();
+
     }
 
     @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
