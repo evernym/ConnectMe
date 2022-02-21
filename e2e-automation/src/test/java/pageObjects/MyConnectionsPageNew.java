@@ -38,11 +38,13 @@ public class MyConnectionsPageNew {
             if (Config.iOS_Devices.contains(Config.Device_Type)) {
                 return driver.findElementByAccessibilityId(name + "-title");
             } else {
-                return driver.findElement(By.xpath("//*[@text='" + name + "']"));
+//                return driver.findElement(By.xpath("//*[@text='" + name + "']"));
+                return driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"" + name + "-title\"]"));
             }
         } catch (NoSuchElementException e) {
             System.out.println("There is no connection with the name: " + name);
-            return null;
+            throw new NoSuchElementException("Connection record has not been found");
+//            return null;
         }
         finally {
             driver.manage().timeouts().implicitlyWait(test.java.utility.AppDriver.LARGE_TIMEOUT, TimeUnit.SECONDS);
