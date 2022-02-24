@@ -145,13 +145,21 @@ license-data-check:
         - cat ./ios/react-native-xcode.sh.log
 
 build-ios-merge-request:
-    extends: .build-ios
+  extends: .build-ios
+  variables:
+    BUILD_TYPE: 'ConnectMe Dev Build'
+    DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
+  # rules:
+  #   - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+  #     when: always
+  # # run this for any branch except main
+  only:
+    refs:
+      - branches
     variables:
-        BUILD_TYPE: 'ConnectMe Dev Build'
-        DEVELOPER_DIR: '/Applications/Xcode.app/Contents/Developer/'
-    rules:
-        - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-          when: always
+      - $CI_COMMIT_REF_PROTECTED == "true"
+  except:
+    - main@evernym/mobile/connectme
 
 build-ios-master:
     extends: .build-ios
@@ -189,14 +197,22 @@ build-ios-master:
         - bundle exec fastlane build
 
 build-android-merge-request:
-    extends: .build-android
-    artifacts:
-        paths:
-            - android/app/build/outputs/apk/release/*.apk
-        expire_in: 1 week
-    rules:
-        - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-          when: always
+  extends: .build-android
+  artifacts:
+    paths:
+      - android/app/build/outputs/apk/release/*.apk
+    expire_in: 1 week
+  # rules:
+  #   - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+  #     when: always
+  # # run this for any branch except main
+  only:
+    refs:
+      - branches
+    variables:
+      - $CI_COMMIT_REF_PROTECTED == "true"
+  except:
+    - main@evernym/mobile/connectme
 
 build-android-master:
     extends: .build-android
