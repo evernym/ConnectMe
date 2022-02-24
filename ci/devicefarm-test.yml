@@ -121,9 +121,14 @@ devicefarm-test-launch-android-merge_requests:
         ANDROID_APK_PATH: 'android/app/build/outputs/apk/release/app-arm64-v8a-release.apk'
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${ANDROID_APK_PATH} awsAndroid galaxyS10 mr vas
-    rules:
-        - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-          when: always
+    # rules:
+    #     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+    #       when: always
+    # # run this for any branch except main
+    only:
+        - branches@evernym/mobile/connectme
+    except:
+        - main@evernym/mobile/connectme
 
 devicefarm-test-launch-ios-merge_requests:
     extends: .devicefarm-test-launch-ios
@@ -131,9 +136,14 @@ devicefarm-test-launch-ios-merge_requests:
         - build-ios-merge-request
     script:
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone11 mr vas
-    rules:
-        - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
-          when: always
+    # rules:
+    #     - if: '$CI_COMMIT_REF_NAME == "white-label-app-e2e-testing"'
+    #       when: always
+    # # run this for any branch except main
+    only:
+        - branches@evernym/mobile/connectme
+    except:
+        - main@evernym/mobile/connectme
 
 # it works locally but fails against AWS
 .devicefarm-test-upgrade-path-android:
