@@ -155,6 +155,8 @@ build-ios-merge-request:
   # # run this for any branch except main
   only:
     - branches@evernym/mobile/connectme
+    variables:
+      - $CI_COMMIT_REF_PROTECTED
   except:
     - main@evernym/mobile/connectme
 
@@ -205,6 +207,8 @@ build-android-merge-request:
   # # run this for any branch except main
   only:
     - branches@evernym/mobile/connectme
+    variables:
+      - $CI_COMMIT_REF_PROTECTED
   except:
     - main@evernym/mobile/connectme
 
