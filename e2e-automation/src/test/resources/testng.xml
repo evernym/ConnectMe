@@ -4,7 +4,7 @@
     <test name="test" preserve-order="true" parallel="false">
         <classes>
             <class name="test.java.Tests.StartUpTest"/>
-<!--            <class name="test.java.Tests.AppElementsTest"/>-->
+            <class name="test.java.Tests.AppElementsTest"/>
             <class name="test.java.Tests.ConnectionTest"/>
             <class name="test.java.Tests.RedirectionTest"/>
             <class name="test.java.Tests.PushNotificationTest"/>
