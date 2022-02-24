@@ -126,7 +126,10 @@ devicefarm-test-launch-android-merge_requests:
     #       when: always
     # # run this for any branch except main
     only:
-        - branches@evernym/mobile/connectme
+        refs:
+            - branches
+        variables:
+            - $CI_COMMIT_REF_PROTECTED == "true"
     except:
         - main@evernym/mobile/connectme
 
@@ -141,7 +144,10 @@ devicefarm-test-launch-ios-merge_requests:
     #       when: always
     # # run this for any branch except main
     only:
-        - branches@evernym/mobile/connectme
+        refs:
+            - branches
+        variables:
+            - $CI_COMMIT_REF_PROTECTED == "true"
     except:
         - main@evernym/mobile/connectme
 
