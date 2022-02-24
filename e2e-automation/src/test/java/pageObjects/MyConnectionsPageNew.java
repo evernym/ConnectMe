@@ -33,12 +33,11 @@ public class MyConnectionsPageNew {
 
     public WebElement getConnectionByName(String name) {
         try {
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             if (Config.iOS_Devices.contains(Config.Device_Type)) {
                 return driver.findElementByAccessibilityId(name + "-title");
             } else {
-                return driver.findElement(By.xpath("//*[@text='" + name + "']"));
+                return driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"" + name + "-title\"]"));
             }
         } catch (NoSuchElementException e) {
             System.out.println("There is no connection with the name: " + name);
