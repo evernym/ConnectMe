@@ -66,7 +66,7 @@ public class AppElementsTest extends IntSetup {
         // Settings
         homePageNew.tapOnBurgerMenu();
         menuPageNew.settingsButton.click();
-        // TODO check Settings header
+        settingsPageNew.settingsHeader.isDisplayed();
 
         // Go Back Home
         homePageNew.tapOnBurgerMenu();

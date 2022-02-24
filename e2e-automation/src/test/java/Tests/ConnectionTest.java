@@ -1,6 +1,10 @@
 package test.java.Tests;
 
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,7 +15,7 @@ import test.java.funcModules.ConnectionModules;
 import test.java.utility.Helpers;
 import test.java.utility.LocalContext;
 import test.java.utility.BrowserDriver;
-import test.java.utility.AppDriver;
+
 
 /**
  * The ConnectionTest class is a Test class which holds test method related to
@@ -100,14 +104,23 @@ public class ConnectionTest extends IntSetup {
         context.setValue(invitationType + "_DID", context.getValue("DID"));
     }
 
+
     @Test(dependsOnMethods = "setUpConnectionTest")
     public void validateMyConnectionRecordAppeared() throws Exception {
         passCodePageNew.openApp();
 
         homePageNew.tapOnBurgerMenu();
-        menuPageNew.myConnectionsButton.click();
-        Thread.sleep(1000); // FIXME MSDK workaround: it goes to Settings without sleep
+
+
+//        new WebDriverWait(driverApp, 3,1300)
+//            .until(ExpectedConditions.elementToBeClickable(menuPageNew.myConnectionsButton)).click();
+
+        WebElement myConnectionsButton = new WebDriverWait(driverApp, 3,1000)
+            .until(ExpectedConditions.elementToBeClickable(menuPageNew.myConnectionsButton));
+        myConnectionsButton.click();
+
         myConnectionsPageNew.getConnectionByName(connectionName).click();
+
     }
 
     @Test(dependsOnMethods = "validateMyConnectionRecordAppeared")
