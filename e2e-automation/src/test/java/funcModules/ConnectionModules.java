@@ -255,7 +255,7 @@ public class ConnectionModules extends IntSetup {
 //        WebElement makingConnectionEventMessage = new WebDriverWait(driverApp, 10, 1)
 //            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
 
-        String makingConnectionEventText = new WebDriverWait(driverApp, 3, 10)
+        String makingConnectionEventText = new WebDriverWait(driverApp, 5, 1)
             .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).getText();
 //        System.out.println(makingConnectionEventText);
         Assert.assertEquals(makingConnectionEventText, "Making secure connection...");
