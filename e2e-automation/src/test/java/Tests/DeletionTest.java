@@ -1,5 +1,7 @@
 package test.java.Tests;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -97,7 +99,11 @@ public class DeletionTest extends IntSetup {
             }
         }
 
-        Thread.sleep(5000); // FIXME
+//        Thread.sleep(5000); // FIXME
+
+        new WebDriverWait(driverApp, 5, 500)
+            .until(ExpectedConditions.visibilityOf(myConnectionsPageNew.myConnectionsHeader));
+
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(oobInvitation));
     }
 
