@@ -19,8 +19,8 @@ public class Config {
 	public static final List<String> iOS_Devices = Arrays.asList("iOS", "iOSSimulator", "awsiOS");
 
 	public static final String Device_Type = "android";
-//	public static final String Device_Name = "pixel_3_api_29"; // android emulator name
-    public static final String Device_Name = "connectme2"; // android emulator name
+	public static final String Device_Name = "Pixel 3 API 29 device 2"; // android emulator name
+//    public static final String Device_Name = "connectme2"; // android emulator name
 
 //      public static final String Device_Type = "iOS";
 //      public static final String Device_Name = "iPhone"; // real iphone name
@@ -42,7 +42,7 @@ public class Config {
 	/*
 	* VAS settings
 	* */
-	public static final String VAS_Server_Link = "http://871b-95-32-137-242.ngrok.io"; // ngrok public url
+	public static final String VAS_Server_Link = "http://fff5-95-32-151-87.ngrok.io"; // ngrok public url
 	/* QA VAS*/
 	public static final String QA_VERITY_URL = "https://vas.pqa.evernym.com/api/";
 	public static final String QA_VERITY_DOMAIN_DID = "PofY18gShVSS4wfN5pmYjB";

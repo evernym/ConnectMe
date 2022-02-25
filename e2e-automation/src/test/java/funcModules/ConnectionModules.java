@@ -255,13 +255,13 @@ public class ConnectionModules extends IntSetup {
 //        WebElement makingConnectionEventMessage = new WebDriverWait(driverApp, 10, 1)
 //            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
 
-//        String makingConnectionEventMessage = new WebDriverWait(driverApp, 5, 1)
-//            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).getText();
-//        System.out.println(makingConnectionEventMessage);
-//        Assert.assertEquals(makingConnectionEventMessage, "Making secure connection...");
+        String makingConnectionEventText = new WebDriverWait(driverApp, 3, 10)
+            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).getText();
+//        System.out.println(makingConnectionEventText);
+        Assert.assertEquals(makingConnectionEventText, "Making secure connection...");
 
-        new WebDriverWait(driverApp, 3, 10)
-            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
+//        new WebDriverWait(driverApp, 3, 10)
+//            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
 
 
 //        WebElement makingConnectionEventMessage = new WebDriverWait(5, 1)
