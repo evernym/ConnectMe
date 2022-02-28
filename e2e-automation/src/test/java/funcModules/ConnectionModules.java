@@ -1,6 +1,7 @@
 package test.java.funcModules;
 
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.appmanagement.ApplicationState;
 import io.appium.java_client.touch.WaitOptions;
@@ -255,8 +256,10 @@ public class ConnectionModules extends IntSetup {
 //        WebElement makingConnectionEventMessage = new WebDriverWait(driverApp, 10, 1)
 //            .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent));
 
-        String makingConnectionEventText = new WebDriverWait(driverApp, 20, 1)
+        String makingConnectionEventText = new WebDriverWait(driverApp, 10, 100)
             .until(ExpectedConditions.visibilityOf(homePageNew.makingConnectionEvent)).getText();
+//        String makingConnectionEventText = new WebDriverWait(driverApp, 10, 100)
+//            .until(ExpectedConditions.presenceOfElementLocated(MobileBy.)).getText();
 //        System.out.println(makingConnectionEventText);
         Assert.assertEquals(makingConnectionEventText, "Making secure connection...");
 
