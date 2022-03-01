@@ -48,16 +48,16 @@ public class HomePageNew {
     @iOSXCUITFindBy(accessibility = "You connected with \"push-connection-invitation\".") // id?
     public WebElement pushConnectedEvent;
 
-    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a Credential Offer\"]")
-    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"connection-invitation sent you a Credential Offer\"]")
+    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a credential offer\"]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeOther[@name=\"connection-invitation sent you a credential offer\"]")
     public WebElement credentialOfferNotification;
 
-    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a Proof Request\"]")
-    @iOSXCUITFindBy(xpath = "//*[@text=\"connection-invitation sent you a Proof Request\"]")
+    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a proof request\"]")
+    @iOSXCUITFindBy(xpath = "//*[@text=\"connection-invitation sent you a proof request\"]")
     public WebElement proofRequestNotification;
 
-    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a Question\"]")
-    @iOSXCUITFindBy(xpath = "//*[@text=\"connection-invitation sent you a Question\"]")
+    @AndroidFindBy(xpath = "//*[@text=\"connection-invitation sent you a question\"]")
+    @iOSXCUITFindBy(xpath = "//*[@text=\"connection-invitation sent you a question\"]")
     public WebElement questionNotification;
 
     @AndroidFindBy(xpath = "//*[@text=\"NEW MESSAGE - TAP TO OPEN\"]")
