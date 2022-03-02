@@ -50,15 +50,13 @@ public class MyCredentialsPageNew {
     }
 
     public List<WebElement> getCredentialsBySchemeName(String schemeName) {
-        // TODO: implement scroll-searching
-
-    //      new WebDriverWait(driver, 3, 500)
-    //          .until(ExpectedConditions.visibilityOf(myCredentialsHeader));
+        // TODO: implement scroll-search
         List<WebElement> credentials;
+        String locator = schemeName + "-title";
         if (test.java.utility.Helpers.getPlatformType().equals(Platform.IOS)) {
-            credentials = driver.findElementsByAccessibilityId(schemeName + "-title");
+            credentials = driver.findElementsByAccessibilityId(locator);
         } else {
-            credentials = driver.findElementsById(schemeName + "-title");
+            credentials = driver.findElementsById(locator);
         }
          return credentials;
     }

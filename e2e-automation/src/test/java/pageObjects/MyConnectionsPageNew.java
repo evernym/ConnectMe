@@ -33,6 +33,7 @@ public class MyConnectionsPageNew {
 
     public WebElement getConnectionByName(String name) {
         try {
+            // TODO: decrease time parameter
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             if (Config.iOS_Devices.contains(Config.Device_Type)) {
                 return driver.findElementByAccessibilityId(name + "-title");

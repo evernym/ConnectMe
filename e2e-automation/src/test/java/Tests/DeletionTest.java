@@ -68,9 +68,9 @@ public class DeletionTest extends IntSetup {
         menuPageNew.myCredentialsButton.click();
 
         // === the code that does not work yet
-        // seems to work fine for iOS
+        // it does not work: actual 1; expected 0;
         List<WebElement> credentialsBefore = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
-        myCredentialsPageNew.expandCredentialBySchemeName(credentialNameScheme);
+        myCredentialsPageNew.expandCredentialBySchemeName(credentialNameManyScheme);
 //        if (credentialsBefore.size() > 0) {
 //            credentialsBefore.get(0).click();
 //        } else {
@@ -98,6 +98,9 @@ public class DeletionTest extends IntSetup {
             }
         }
         List<WebElement> credentialsAfter = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
+        System.out.println(credentialNameScheme);
+        System.out.println(credentialsBefore.size());
+        System.out.println(credentialsAfter.size());
         Assert.assertEquals(credentialsAfter.size(), credentialsBefore.size() - 1);
         // ^^^ the code that does not work yet
 
