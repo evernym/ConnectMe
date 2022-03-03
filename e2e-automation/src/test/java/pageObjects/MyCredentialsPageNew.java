@@ -8,14 +8,13 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.utility.Config;
 
 import java.util.List;
 
 public class MyCredentialsPageNew {
     AppiumDriver driver;
+    protected String APP_PKG = "me.connect";
 
     public MyCredentialsPageNew(AppiumDriver driver) {
     PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -52,12 +51,17 @@ public class MyCredentialsPageNew {
     public List<WebElement> getCredentialsBySchemeName(String schemeName) {
         // TODO: implement scroll-search
         List<WebElement> credentials;
-        String locator = schemeName + "-title";
+        String credentialId = schemeName + "-title";
         if (test.java.utility.Helpers.getPlatformType().equals(Platform.IOS)) {
-            credentials = driver.findElementsByAccessibilityId(locator);
+            credentials = driver.findElementsByAccessibilityId(credentialId);
         } else {
-            credentials = driver.findElementsById(locator);
+            String androidLocator = APP_PKG + ":id/" + credentialId;
+            credentials = driver.findElementsById(androidLocator);
         }
          return credentials;
+    }
+
+    private List<WebElement> fetchCredentialsOnScreenBySchemeName(String schemeName) {
+        return null;
     }
 }
