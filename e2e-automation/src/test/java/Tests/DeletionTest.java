@@ -53,7 +53,7 @@ public class DeletionTest extends IntSetup {
             } catch (Exception e) { }
         }
 
-//        Thread.sleep(5000); // FIXME
+        Thread.sleep(5000); // FIXME
 
 //        new WebDriverWait(driverApp, 10, 1000)
 //            .until(ExpectedConditions.visibilityOf(myConnectionsPageNew.myConnectionsHeader));
@@ -66,22 +66,8 @@ public class DeletionTest extends IntSetup {
         WebDriverWait wait = new WebDriverWait(driverApp, 3, 500);
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
-
-        // === the code that does not work yet
-        // it does not work: actual 1; expected 0;
         List<WebElement> credentialsBefore = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
         myCredentialsPageNew.expandCredentialBySchemeName(credentialNameManyScheme);
-//        if (credentialsBefore.size() > 0) {
-//            credentialsBefore.get(0).click();
-//        } else {
-//            throw new Exception("No credentials with name " + credentialNameScheme + " has been found");
-//            // not really needed; the test will fail if three dots are not found
-//            // if no credentials, that means pre-test failed, not the test.
-//        }
-//        if (credentialsBefore.size() > 1) {
-//            credentialsBefore.get(0).click();
-//        }
-
         wait
             .until(ExpectedConditions.elementToBeClickable(connectionHistoryPageNew.threeDotsButton))
             .click();
@@ -98,41 +84,7 @@ public class DeletionTest extends IntSetup {
             }
         }
         List<WebElement> credentialsAfter = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
-        System.out.println(credentialNameScheme);
-        System.out.println(credentialsBefore.size());
-        System.out.println(credentialsAfter.size());
         Assert.assertEquals(credentialsAfter.size(), credentialsBefore.size() - 1);
-        // ^^^ the code that does not work yet
-
-        // TODO: move this logic to helper (to credential page? - no, to app utils; may cause exception if invoked in the wrong place)
-        //why app utils is not static?
-
-        //=====the code to refactor that works====
-//        int credsCountBefore = 0
-//        try {
-//            objAppUtils.findParameterizedElementAlt(credentialNameManyScheme).click();
-//            credsCountBefore = 1;
-//            Thread.sleep(1000);
-//            if(AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton)) throw new NoSuchElementException();
-//        } catch (Exception ex) {
-//            AppUtils.pullScreenUp(driverApp);
-//            credsCountBefore = myCredentialsPageNew.getConnectionsBySchemeName(credentialNameManyScheme).size();
-//            objAppUtils.findParameterizedElementAlt(credentialNameManyScheme).click();
-//        }
-//        connectionHistoryPageNew.threeDotsButton.click(); //why the button is clicked on connectionHistory is a connection has alreqdy been clicked, current page - credential page?
-//        Thread.sleep(1000);
-//        credentialPageNew.deleteButton.click();
-//
-//        if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
-//            try {
-//                credentialPageNew.deleteButton.click();
-//            } catch (Exception e) {
-//
-//            }
-//        }
-//        Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameManyScheme).size(), 0);
-        //^^^^the code to refactor that works^^^^
-
     }
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
@@ -151,7 +103,7 @@ public class DeletionTest extends IntSetup {
             }
         }
 
-//        Thread.sleep(5000); // FIXME
+        Thread.sleep(5000); // FIXME
 
 //        new WebDriverWait(driverApp, 5, 500)
 //            .until(ExpectedConditions.visibilityOf(myConnectionsPageNew.myConnectionsHeader));
