@@ -94,7 +94,7 @@ public class DeletionTest extends IntSetup {
             } catch (Exception e) { // got here for the last test run
                 System.out.println("DeletionTest >" +
                     " deleteCredentialFromExistingConnection >" +
-                    " iOS delete button tapping issue failed");
+                    " iOS delete button tapping issue has not appeared");
             }
         }
         List<WebElement> credentialsAfter = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
