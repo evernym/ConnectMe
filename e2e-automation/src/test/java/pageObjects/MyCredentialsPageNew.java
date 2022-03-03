@@ -73,7 +73,6 @@ public class MyCredentialsPageNew {
     }
 
     private List<WebElement> fetchCredentialsOnScreenBySchemeName(String schemeName) {
-        new WebDriverWait(driver, 3, 500).until(ExpectedConditions.visibilityOf(myCredentialsHeader));
         List<WebElement> credentials;
         String credentialId = schemeName + "-title";
         if (test.java.utility.Helpers.getPlatformType().equals(Platform.IOS)) {
