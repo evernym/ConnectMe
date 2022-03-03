@@ -12,6 +12,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.utility.Config;
 
 import javax.swing.plaf.synth.SynthDesktopIconUI;
@@ -38,7 +41,7 @@ public class MyCredentialsPageNew {
         List<WebElement> credentials = getCredentialsBySchemeName(credentialNameScheme);
         // TODO: make a better scroll-search implementation
         if (credentials.size() == 0) {
-            test.java.appModules.AppUtils.scrollVerticallyByScreenHeightPercent(driver, 50, 15);
+            test.java.appModules.AppUtils.scrollVerticallyByScreenHeightPercent(50, 15);
             credentials = getCredentialsBySchemeName(credentialNameScheme);
         }
         if (credentials.size() > 0) {
@@ -63,13 +66,14 @@ public class MyCredentialsPageNew {
         credentials = fetchCredentialsOnScreenBySchemeName(schemeName);
         if (credentials.size() == 0) {
             // ===== AppUtils pullScreenUp method opens a credential in the middle of the screen instead of swiping
-            test.java.appModules.AppUtils.scrollVerticallyByScreenHeightPercent(driver, 50, 15);
+            test.java.appModules.AppUtils.scrollVerticallyByScreenHeightPercent(50, 15);
             credentials = fetchCredentialsOnScreenBySchemeName(schemeName);
         }
          return credentials;
     }
 
     private List<WebElement> fetchCredentialsOnScreenBySchemeName(String schemeName) {
+        new WebDriverWait(driver, 3, 500).until(ExpectedConditions.visibilityOf(myCredentialsHeader));
         List<WebElement> credentials;
         String credentialId = schemeName + "-title";
         if (test.java.utility.Helpers.getPlatformType().equals(Platform.IOS)) {

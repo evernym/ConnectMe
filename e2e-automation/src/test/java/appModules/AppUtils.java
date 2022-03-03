@@ -255,10 +255,8 @@ public class AppUtils extends IntSetup {
     }
 
 //  In DeletionTest AppUtils pullScreenUp method opens a credential in the middle of the screen instead of swiping
-//  upper bound - 0%, lower bound - 100%
-    public static void scrollVerticallyByScreenHeightPercent(AppiumDriver driver,
-                                                             int startScreenHeightPercent,
-                                                             int endScreenHeightPercent) {
+    public static void scrollVerticallyByScreenHeightPercent(int startScreenHeightPercent, int endScreenHeightPercent) {
+        // upper bound - 0%, lower bound - 100%
         // logging
         int swipeDirection = startScreenHeightPercent - endScreenHeightPercent;
         String logMessage = "Swiping ";
@@ -270,12 +268,12 @@ public class AppUtils extends IntSetup {
             logMessage = logMessage + "Down";
         }
         System.out.println(logMessage);
-        // scrolling
-        Dimension windowSize = driver.manage().window().getSize();
+        // swiping
+        Dimension windowSize = driverApp.manage().window().getSize();
         int anchor = windowSize.width/2;
         int startScrollHeight = windowSize.height * startScreenHeightPercent / 100;
         int endScrollHeight = windowSize.height * endScreenHeightPercent / 100;
-        new TouchAction(driver)
+        new TouchAction(driverApp)
             .longPress(PointOption.point(anchor, startScrollHeight))
             .moveTo(PointOption.point(anchor, endScrollHeight))
             .release()

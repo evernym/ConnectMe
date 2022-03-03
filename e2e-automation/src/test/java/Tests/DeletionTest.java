@@ -63,26 +63,10 @@ public class DeletionTest extends IntSetup {
 
     @Test(dependsOnMethods = "deleteEmptyConnection")
     public void deleteCredentialFromExistingConnection() throws Exception {
-        WebDriverWait wait = new WebDriverWait(driverApp, 3, 500);
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
         List<WebElement> credentialsBefore = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
-        myCredentialsPageNew.expandCredentialBySchemeName(credentialNameManyScheme);
-        wait
-            .until(ExpectedConditions.elementToBeClickable(connectionHistoryPageNew.threeDotsButton))
-            .click();
-        wait
-            .until(ExpectedConditions.elementToBeClickable(credentialPageNew.deleteButton))
-            .click();
-        if (test.java.utility.Helpers.getPlatformType().equals(Platform.IOS)) { // delete button tapping ios issue
-            try {
-                credentialPageNew.deleteButton.click();
-            } catch (Exception e) { // got here for the last test run
-                System.out.println("DeletionTest >" +
-                    " deleteCredentialFromExistingConnection >" +
-                    " iOS delete button tapping issue has not appeared");
-            }
-        }
+        deleteCredentialBySchemeName(credentialNameManyScheme);
         List<WebElement> credentialsAfter = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
         Assert.assertEquals(credentialsAfter.size(), credentialsBefore.size() - 1);
     }
@@ -145,5 +129,25 @@ public class DeletionTest extends IntSetup {
     @AfterClass
     public void AfterClass() {
         driverApp.quit();
+    }
+
+    private void deleteCredentialBySchemeName(String schemeName) {
+        myCredentialsPageNew.expandCredentialBySchemeName(credentialNameManyScheme);
+        WebDriverWait wait = new WebDriverWait(driverApp, 3, 500);
+        wait
+            .until(ExpectedConditions.elementToBeClickable(connectionHistoryPageNew.threeDotsButton))
+            .click();
+        wait
+            .until(ExpectedConditions.elementToBeClickable(credentialPageNew.deleteButton))
+            .click();
+        if (test.java.utility.Helpers.getPlatformType().equals(Platform.IOS)) { // delete button tapping ios issue
+            try {
+                credentialPageNew.deleteButton.click();
+            } catch (Exception e) { // got here for the last test run
+                System.out.println("DeletionTest >" +
+                    " deleteCredentialFromExistingConnection >" +
+                    " iOS delete button tapping issue has not appeared");
+            }
+        }
     }
 }
