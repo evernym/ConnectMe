@@ -12,7 +12,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import test.java.utility.Config;
-
 import java.util.concurrent.TimeUnit;
 
 public class MyConnectionsPageNew {

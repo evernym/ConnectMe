@@ -1,7 +1,5 @@
 package test.java.Tests;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +13,6 @@ import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.utility.Config;
 import test.java.funcModules.ConnectionModules;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -122,7 +119,6 @@ public class DeletionTest extends IntSetup {
 
             }
         }
-
         Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameScheme).size(), 0);
     }
 

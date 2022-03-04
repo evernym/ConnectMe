@@ -1,12 +1,8 @@
 package test.java.Tests;
 
-import pageObjects.*;
-import test.java.appModules.AppUtils;
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -45,7 +41,6 @@ public class AppElementsTest extends IntSetup {
         } else {
             menuPageNew.cancelButton.click();
         }
-
         menuPageNew.homeButton.click();
 
         // My Connections
@@ -60,7 +55,6 @@ public class AppElementsTest extends IntSetup {
         myCredentialsPageNew.myCredentialsHeader.isDisplayed();
         homePageNew.tapOnBurgerMenu();
         menuPageNew.homeButton.click();
-
         homePageNew.scanButton.isDisplayed();
 
         // Settings
@@ -88,7 +82,6 @@ public class AppElementsTest extends IntSetup {
     public void checkSettings() throws Exception {
         homePageNew.tapOnBurgerMenu(); // go to Menu
         menuPageNew.settingsButton.click(); // go to Settings
-
         settingsPageNew.settingsContainer.isDisplayed();
         settingsPageNew.settingsHeader.isDisplayed();
         settingsPageNew.biometricsButton.click();

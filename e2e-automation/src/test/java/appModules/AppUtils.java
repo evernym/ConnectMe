@@ -12,7 +12,6 @@ import org.openqa.selenium.*;
 import test.java.utility.Config;
 import test.java.utility.AppDriver;
 import test.java.utility.IntSetup;
-
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
