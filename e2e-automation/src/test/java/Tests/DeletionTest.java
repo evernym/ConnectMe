@@ -62,9 +62,11 @@ public class DeletionTest extends IntSetup {
     public void deleteCredentialFromExistingConnection() throws Exception {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
-        List<WebElement> credentialsBefore = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
+        List<WebElement> credentialsBefore =
+            myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
         deleteCredentialBySchemeName(credentialNameManyScheme);
-        List<WebElement> credentialsAfter = myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
+        List<WebElement> credentialsAfter =
+            myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
         Assert.assertEquals(credentialsAfter.size(), credentialsBefore.size() - 1);
     }
 

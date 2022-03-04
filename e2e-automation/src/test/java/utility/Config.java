@@ -2,6 +2,7 @@ package test.java.utility;
 
 import java.util.Arrays;
 import java.util.List;
+import test.java.utility.EnvType;
 
 public class Config {
 
@@ -30,7 +31,7 @@ public class Config {
 //    public static final String Device_UDID = "D79092AD-FCE2-4FEA-85EE-D7D313F9D308"; // iphone 12 simulator UDID
 
     public static final String VERITY_ENV = "demo"; // dev-rc | team1 // for verity-release acceptance test
-	public static final test.java.utility.EnvType Env_Type = test.java.utility.EnvType.Demo;
+	public static final EnvType Env_Type = EnvType.Demo;
 	public static String BuildNo = "Latest";
 	public static final String EmailList = "vladimir.shishkin@evernym.com";
 	public static final String ConnectMe_App_Link = "https://connectme.app.link/?t=";
