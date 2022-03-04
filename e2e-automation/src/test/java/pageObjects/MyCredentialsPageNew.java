@@ -54,7 +54,7 @@ public class MyCredentialsPageNew {
         credentials = fetchCredentialsOnScreenBySchemeName(schemeName);
         if (credentials.size() == 0) {
             // ===== AppUtils pullScreenUp method opens a credential in the middle of the screen instead of swiping
-            AppUtils.scrollVerticallyByScreenHeightPercent(50, 15);
+            AppUtils.swipeVerticallyByScreenHeightPercent(50, 15);
             credentials = fetchCredentialsOnScreenBySchemeName(schemeName);
         }
          return credentials;

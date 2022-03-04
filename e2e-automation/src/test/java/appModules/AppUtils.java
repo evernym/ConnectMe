@@ -254,7 +254,7 @@ public class AppUtils extends IntSetup {
     }
 
 //  In DeletionTest AppUtils pullScreenUp method opens a credential in the middle of the screen instead of swiping
-    public static void scrollVerticallyByScreenHeightPercent(int startScreenHeightPercent, int endScreenHeightPercent) {
+    public static void swipeVerticallyByScreenHeightPercent(int startScreenHeightPercent, int endScreenHeightPercent) {
         // upper bound - 0%, lower bound - 100%
         // logging
         int swipeDirection = startScreenHeightPercent - endScreenHeightPercent;
