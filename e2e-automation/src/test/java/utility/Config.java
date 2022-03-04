@@ -17,12 +17,12 @@ public class Config {
 	* */
 	public static final List<String> iOS_Devices = Arrays.asList("iOS", "iOSSimulator", "awsiOS");
 
-//	public static final String Device_Type = "android";
-//	public static final String Device_Name = "pixel_3_api_29"; // android emulator name
+	public static final String Device_Type = "android";
+	public static final String Device_Name = "pixel_3_api_29"; // android emulator name
 //    public static final String Device_Name = "connectme2"; // android emulator name
 
-      public static final String Device_Type = "iOS";
-      public static final String Device_Name = "iPhone"; // real iphone name
+//      public static final String Device_Type = "iOS";
+//      public static final String Device_Name = "iPhone"; // real iphone name
       public static final String Device_UDID = "00008020-001105121E22402E"; // real iphone UDID
 
 //    public static final String Device_Type = "iOSSimulator";
@@ -30,7 +30,7 @@ public class Config {
 //    public static final String Device_UDID = "D79092AD-FCE2-4FEA-85EE-D7D313F9D308"; // iphone 12 simulator UDID
 
     public static final String VERITY_ENV = "demo"; // dev-rc | team1 // for verity-release acceptance test
-	public static final EnvType Env_Type = EnvType.Demo;
+	public static final test.java.utility.EnvType Env_Type = test.java.utility.EnvType.Demo;
 	public static String BuildNo = "Latest";
 	public static final String EmailList = "vladimir.shishkin@evernym.com";
 	public static final String ConnectMe_App_Link = "https://connectme.app.link/?t=";
@@ -41,7 +41,7 @@ public class Config {
 	/*
 	* VAS settings
 	* */
-	public static final String VAS_Server_Link = "http://3901-95-32-97-249.ngrok.io"; // ngrok public url
+	public static final String VAS_Server_Link = "http://caab-95-32-29-48.ngrok.io"; // ngrok public url
 	/* QA VAS*/
 	public static final String QA_VERITY_URL = "https://vas.pqa.evernym.com/api/";
 	public static final String QA_VERITY_DOMAIN_DID = "PofY18gShVSS4wfN5pmYjB";
