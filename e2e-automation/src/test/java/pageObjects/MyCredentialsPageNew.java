@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import test.java.appModules.AppUtils;
 import test.java.utility.Config;
 import java.util.List;
 
@@ -31,10 +32,6 @@ public class MyCredentialsPageNew {
     public void expandCredentialBySchemeName(String credentialNameScheme) throws NoSuchElementException {
         List<WebElement> credentials = getCredentialsBySchemeName(credentialNameScheme);
         // TODO: make a better scroll-search implementation
-        if (credentials.size() == 0) {
-            test.java.appModules.AppUtils.scrollVerticallyByScreenHeightPercent(50, 15);
-            credentials = getCredentialsBySchemeName(credentialNameScheme);
-        }
         if (credentials.size() > 0) {
             credentials.get(0).click();
         } else {
@@ -52,12 +49,12 @@ public class MyCredentialsPageNew {
     }
 
     public List<WebElement> getCredentialsBySchemeName(String schemeName) {
-        // TODO: implement scroll-search
+        // TODO: implement a better way to scroll-search
         List<WebElement> credentials;
         credentials = fetchCredentialsOnScreenBySchemeName(schemeName);
         if (credentials.size() == 0) {
             // ===== AppUtils pullScreenUp method opens a credential in the middle of the screen instead of swiping
-            test.java.appModules.AppUtils.scrollVerticallyByScreenHeightPercent(50, 15);
+            AppUtils.scrollVerticallyByScreenHeightPercent(50, 15);
             credentials = fetchCredentialsOnScreenBySchemeName(schemeName);
         }
          return credentials;

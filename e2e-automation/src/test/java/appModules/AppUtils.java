@@ -245,7 +245,7 @@ public class AppUtils extends IntSetup {
         try {
             new TouchAction(driver)
                 .press(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 2))
-                .waitAction(new WaitOptions().withDuration(Duration.ofMillis(900)))
+                .waitAction(new WaitOptions().withDuration(Duration.ofMillis(200)))
                 .moveTo(new PointOption().withCoordinates(dims.width / 2 - 50, dims.height / 6))
                 .release().perform();
         } catch (Exception e) {
