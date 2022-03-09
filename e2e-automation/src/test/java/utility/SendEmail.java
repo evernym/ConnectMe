@@ -31,7 +31,7 @@ public class SendEmail {
 				counter++;
 			}
 			message.setRecipients(Message.RecipientType.TO, recipientAddress);
-			message.setSubject("E2E Automation Result for "+ test.java.utility.Config.Env_Type+ " Enviroment");
+			message.setSubject("E2E Automation Result for "+ Config.Env_Type+ " Enviroment");
 			message.setContent(HtmlMessage, "text/html; charset=utf-8");
 			// Send message
 			Transport.send(message);
