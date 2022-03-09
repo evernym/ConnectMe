@@ -1,5 +1,9 @@
 package test.java.Tests;
 
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -9,7 +13,7 @@ import test.java.utility.IntSetup;
 import test.java.utility.LocalContext;
 import test.java.utility.Config;
 import test.java.funcModules.ConnectionModules;
-
+import java.util.List;
 import java.util.NoSuchElementException;
 
 
@@ -47,6 +51,10 @@ public class DeletionTest extends IntSetup {
         }
 
         Thread.sleep(5000); // FIXME
+
+//        new WebDriverWait(driverApp, 10, 1000)
+//            .until(ExpectedConditions.visibilityOf(myConnectionsPageNew.myConnectionsHeader));
+//            .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name=\"My Connections\"]")));
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(connectionInvitation));
     }
 
@@ -54,31 +62,12 @@ public class DeletionTest extends IntSetup {
     public void deleteCredentialFromExistingConnection() throws Exception {
         homePageNew.tapOnBurgerMenu();
         menuPageNew.myCredentialsButton.click();
-        // TODO: move this logic to helper
-        int credsCountBefore = 0;
-        try {
-            objAppUtils.findParameterizedElementAlt(credentialNameManyScheme).click();
-            credsCountBefore = 1;
-            Thread.sleep(1000);
-            if(AppUtils.isElementAbsent(driverApp, connectionHistoryPageNew.threeDotsButton)) throw new NoSuchElementException();
-        } catch (Exception ex) {
-            AppUtils.pullScreenUp(driverApp);
-            credsCountBefore = myCredentialsPageNew.getConnectionsBySchemeName(credentialNameManyScheme).size();
-            objAppUtils.findParameterizedElementAlt(credentialNameManyScheme).click();
-        }
-        connectionHistoryPageNew.threeDotsButton.click();
-        Thread.sleep(1000);
-        credentialPageNew.deleteButton.click();
-
-        if (Config.iOS_Devices.contains(Config.Device_Type)) { // delete button tapping ios issue
-            try {
-                credentialPageNew.deleteButton.click();
-            } catch (Exception e) {
-
-            }
-        }
-
-        Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameManyScheme).size(), 0);
+        List<WebElement> credentialsBefore =
+            myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
+        deleteCredentialBySchemeName(credentialNameManyScheme);
+        List<WebElement> credentialsAfter =
+            myCredentialsPageNew.getCredentialsBySchemeName(credentialNameManyScheme);
+        Assert.assertEquals(credentialsAfter.size(), credentialsBefore.size() - 1);
     }
 
     @Test(dependsOnMethods = "deleteCredentialFromExistingConnection")
@@ -98,6 +87,10 @@ public class DeletionTest extends IntSetup {
         }
 
         Thread.sleep(5000); // FIXME
+
+//        new WebDriverWait(driverApp, 5, 500)
+//            .until(ExpectedConditions.visibilityOf(myConnectionsPageNew.myConnectionsHeader));
+
         Assert.assertNull(myConnectionsPageNew.getConnectionByName(oobInvitation));
     }
 
@@ -128,12 +121,31 @@ public class DeletionTest extends IntSetup {
 
             }
         }
-
         Assert.assertEquals(myCredentialsPageNew.getConnectionsBySchemeName(credentialNameScheme).size(), 0);
     }
 
     @AfterClass
     public void AfterClass() {
         driverApp.quit();
+    }
+
+    private void deleteCredentialBySchemeName(String schemeName) {
+        myCredentialsPageNew.expandCredentialBySchemeName(credentialNameManyScheme);
+        WebDriverWait wait = new WebDriverWait(driverApp, 3, 500);
+        wait
+            .until(ExpectedConditions.elementToBeClickable(connectionHistoryPageNew.threeDotsButton))
+            .click();
+        wait
+            .until(ExpectedConditions.elementToBeClickable(credentialPageNew.deleteButton))
+            .click();
+        if (test.java.utility.Helpers.getPlatformType().equals(Platform.IOS)) { // delete button tapping ios issue
+            try {
+                credentialPageNew.deleteButton.click();
+            } catch (Exception e) { // got here for the last test run
+                System.out.println("DeletionTest >" +
+                    " deleteCredentialFromExistingConnection >" +
+                    " iOS delete button tapping issue has not appeared");
+            }
+        }
     }
 }

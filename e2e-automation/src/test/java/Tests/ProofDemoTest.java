@@ -110,6 +110,7 @@ public class ProofDemoTest extends IntSetup {
 
     @Test(dependsOnMethods = "acceptProofRequestFromHome")
     public void validateConnectionHistory() throws Exception {
+        // TODO: check if a page opened; make sure that connection opened
         objConnectionModules.openConnectionHistory(connectionName);
 
 		try {

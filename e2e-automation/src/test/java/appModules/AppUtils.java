@@ -12,7 +12,6 @@ import org.openqa.selenium.*;
 import test.java.utility.Config;
 import test.java.utility.AppDriver;
 import test.java.utility.IntSetup;
-
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
@@ -252,6 +251,32 @@ public class AppUtils extends IntSetup {
         } catch (Exception e) {
             System.err.println("Pull screen up FAILED with Error:\n" + e.getMessage());
         }
+    }
+
+//  In DeletionTest AppUtils pullScreenUp method opens a credential in the middle of the screen instead of swiping
+    public static void swipeVerticallyByScreenHeightPercent(int startScreenHeightPercent, int endScreenHeightPercent) {
+        // upper bound - 0%, lower bound - 100%
+        // logging
+        int swipeDirection = startScreenHeightPercent - endScreenHeightPercent;
+        String logMessage = "Swiping ";
+        if (swipeDirection == 0) {
+            logMessage = "No swiping";
+        } else if (swipeDirection > 0) {
+            logMessage = logMessage + "Up";
+        } else {
+            logMessage = logMessage + "Down";
+        }
+        System.out.println(logMessage);
+        // swiping
+        Dimension windowSize = driverApp.manage().window().getSize();
+        int anchor = windowSize.width/2;
+        int startScrollHeight = windowSize.height * startScreenHeightPercent / 100;
+        int endScrollHeight = windowSize.height * endScreenHeightPercent / 100;
+        new TouchAction(driverApp)
+            .longPress(PointOption.point(anchor, startScrollHeight))
+            .moveTo(PointOption.point(anchor, endScrollHeight))
+            .release()
+            .perform();
     }
 
 //  public static void swipe(AppiumDriver driver, String direction) {

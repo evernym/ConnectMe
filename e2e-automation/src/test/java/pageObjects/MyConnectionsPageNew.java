@@ -12,7 +12,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import test.java.utility.Config;
-
 import java.util.concurrent.TimeUnit;
 
 public class MyConnectionsPageNew {
@@ -33,7 +32,8 @@ public class MyConnectionsPageNew {
 
     public WebElement getConnectionByName(String name) {
         try {
-            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            // TODO: decrease time parameter
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             if (Config.iOS_Devices.contains(Config.Device_Type)) {
                 return driver.findElementByAccessibilityId(name + "-title");
             } else {
