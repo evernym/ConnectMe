@@ -7,7 +7,7 @@ import javax.mail.internet.*;
 import javax.activation.*;
 
 public class SendEmail {
-	
+
 	public static void sendMail(String to,String HtmlMessage ) throws Exception {
 		String host = "smtp.gmail.com";
 		Properties props = new Properties();
