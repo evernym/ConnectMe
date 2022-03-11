@@ -4,8 +4,19 @@
 # Release notes - Connect.Me 1.7.1 release TBD
 
 ## Bugs
-* [CM-3177] -Loading spinner should not be shown when the app is automatically polling
-* [CM-3178] -Blank screen after pressing 'Accept Credential'
+
+* [CM-3176] In some cases IDV credential disappears after a few days
+* [CM-3177] Hide loading spinner when the app is automatically polling
+* [CM-3181] Deleted Credentials still show up when responding to Proof Request
+* [CM-3178] Blank screen after pressing 'accept credential'
+* [CM-3183] Deleting Credentials from Connect.Me didn't work for some customers
+* [CM-3184] Credential sometimes doesn't show up in My Credentials view
+* [CM-3185] "Try again" button is shown even if biometric scan is successful
+
+## Tasks
+
+* [CM-3172] Update white-label-app to use `react-native-vision-camera` package 
+
 
 # Release notes - Connect.Me 1.7.0.801685 released 01 February 2022
 
