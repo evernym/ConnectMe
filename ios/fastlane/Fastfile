@@ -81,7 +81,7 @@ platform :ios do
     puts 'new build number: ' + buildNumber
     # we are fixing the version number as of now
     # any version number change has to be manual
-    version_number = "1.7.1"
+    version_number = "1.7.2"
     versionNumber = increment_version_number(version_number: version_number, xcodeproj: "ConnectMe.xcodeproj")
     puts 'new version number: ' + versionNumber
 
