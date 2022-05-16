@@ -44,7 +44,6 @@ devicefarm-test-launch-ios-weekly-top:
         - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
-        - sleep 300
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXS main vas
 
 devicefarm-test-launch-android-weekly-next:
@@ -67,7 +66,6 @@ devicefarm-test-launch-ios-weekly-next:
         - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
-        - sleep 300
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphone8plus main vas
 
 devicefarm-test-launch-android-weekly-final:
@@ -90,7 +88,6 @@ devicefarm-test-launch-ios-weekly-final:
         - if: '$SCHEDULED_RUN == "true" && $CI_COMMIT_REF_SLUG == "main"'
           when: always
     script:
-        - sleep 300
         - ./e2e-automation/appium-launcher/run-appium-tests.sh ${IOS_IPA_PATH} awsiOS iphoneXR main vas
 
 devicefarm-test-launch-android-master:
