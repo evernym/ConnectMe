@@ -4,11 +4,12 @@ stages:
     - check
     - test
     - build
+    ## Temporarily move upload step before tests
+    - upload
     - devicefarm-test
     - devicefarm-test-top
     - devicefarm-test-next
     - devicefarm-test-final
-    - upload
     - devicefarm-test-upgrade-path
     - devicefarm-test-acapy
 
