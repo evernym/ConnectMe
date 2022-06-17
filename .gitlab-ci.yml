@@ -111,14 +111,14 @@ license-data-check:
     stage: build
     tags:
         - macos
-        - bigsur
-        - xcode-12-4
+        - monterey
+        - xcode-13-3
     artifacts:
         paths:
             - ios/ConnectMe.ipa
             - ios/ConnectMe-appstore.ipa
     script:
-        - xcversion select --verbose --symlink 12.4
+        - xcversion select --verbose --symlink 13.3
         - xcversion selected
         - sudo xcodebuild -license accept
         - cd ios
@@ -226,10 +226,10 @@ upload-ios:
     stage: upload
     tags:
         - macos
-        - bigsur
-        - xcode-12-4
+        - monterey
+        - xcode-13-3
     script:
-        - xcversion select --verbose --symlink 12.4
+        - xcversion select --verbose --symlink 13.3
         - xcversion selected
         - sudo xcodebuild -license accept
         - cd ios
