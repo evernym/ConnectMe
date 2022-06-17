@@ -333,7 +333,7 @@ PODS:
     - React-Core
   - react-native-webview (10.1.1):
     - React-Core
-  - react-native-white-label-app (1.1.1-554957757):
+  - react-native-white-label-app (1.1.1-566139377):
     - JumioMobileSDK (~> 3.9.0)
     - JumioMobileSDK/BAMCheckout (~> 3.9.0)
     - JumioMobileSDK/DocumentVerification (~> 3.9.0)
@@ -791,7 +791,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: 99961763a2d5afa7b6d08e682f27629629f58eba
+  react-native-white-label-app: b92b0c946f7db688baeb0c0fad54c5aa4c193b37
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
