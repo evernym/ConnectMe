@@ -6,7 +6,16 @@ PODS:
   - boost-for-react-native (1.63.0)
   - Branch (0.37.0)
   - DoubleConversion (1.1.6)
-  - evernym-react-native-sdk (0.13.0-696):
+  - evernym-react-native-sdk (0.14.1-824):
+    - JumioMobileSDK (~> 3.9.0)
+    - JumioMobileSDK/BAMCheckout (~> 3.9.0)
+    - JumioMobileSDK/DocumentVerification (~> 3.9.0)
+    - JumioMobileSDK/Netverify (~> 3.9.0)
+    - JumioMobileSDK/NetverifyBarcode (~> 3.9.0)
+    - JumioMobileSDK/NetverifyBase (~> 3.9.0)
+    - "JumioMobileSDK/NetverifyFace+iProov (~> 3.9.0)"
+    - "JumioMobileSDK/NetverifyFace+Zoom (~> 3.9.0)"
+    - JumioMobileSDK/NetverifyNFC (~> 3.9.0)
     - React-Core
     - vcx
   - FBLazyVector (0.65.1)
@@ -333,7 +342,7 @@ PODS:
     - React-Core
   - react-native-webview (10.1.1):
     - React-Core
-  - react-native-white-label-app (1.1.1-566139377):
+  - react-native-white-label-app (1.1.1-572175081):
     - JumioMobileSDK (~> 3.9.0)
     - JumioMobileSDK/BAMCheckout (~> 3.9.0)
     - JumioMobileSDK/DocumentVerification (~> 3.9.0)
@@ -495,7 +504,7 @@ PODS:
   - SSZipArchive (2.2.2)
   - Starscream (4.0.4)
   - TOCropViewController (2.6.0)
-  - vcx (0.0.233)
+  - vcx (0.0.234)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -570,7 +579,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
-  - vcx (= 0.0.233)
+  - vcx (= 0.0.234)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -744,7 +753,7 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   Branch: 49c609eb0ac0130b8491d0923a9298714731bd0d
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
-  evernym-react-native-sdk: 41227f72f6aead78089deaaac5d334757c08cb27
+  evernym-react-native-sdk: 521ae48f6813905ca6c933cbd5c7f91f6a41fd49
   FBLazyVector: 33c82491102f20ecddb6c6a2c273696ace3191e0
   FBReactNativeSpec: df8f81d2a7541ee6755a047b398a5cb5a72acd0e
   Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
@@ -791,7 +800,7 @@ SPEC CHECKSUMS:
   react-native-splash-screen: 682081d0a8a59b78c991e0844fa4a43c9f668a6b
   react-native-version-number: 656fae43d2a292a32b4736b812fdeeb0b47ccdef
   react-native-webview: 5d8de05d4b418da9b5412b3616998df50f346e75
-  react-native-white-label-app: b92b0c946f7db688baeb0c0fad54c5aa4c193b37
+  react-native-white-label-app: d0505002c965eefd42cceb2ea938b5c42060c48a
   React-perflogger: fd28ee1f2b5b150b00043f0301d96bd417fdc339
   React-RCTActionSheet: 7f3fa0855c346aa5d7c60f9ced16e067db6d29fa
   React-RCTAnimation: 2119a18ee26159004b001bc56404ca5dbaae6077
@@ -827,7 +836,7 @@ SPEC CHECKSUMS:
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  vcx: a4bc820c3e3b8285de27f291fe2ed89d5c4df5b9
+  vcx: 014d754ff1c30418f74ae536edc306e8cfd778a8
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
 
 PODFILE CHECKSUM: 865464a8620530b69cbb2caae00921ce7329ae9c
