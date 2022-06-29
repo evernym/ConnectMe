@@ -188,7 +188,6 @@ build-ios-master:
         - chmod +x ./ci/install-nodejs.sh
         - ./ci/install-nodejs.sh
         - yarn
-        - gem install fastlane
         - mkdir -p $HOME/keystores/
         - yes | sdkmanager --licenses || true
         - cd android
