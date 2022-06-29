@@ -1120,9 +1120,9 @@
 				"${BUILT_PRODUCTS_DIR}/react-native-white-label-app/react_native_white_label_app.framework",
 				"${BUILT_PRODUCTS_DIR}/rn-fetch-blob/rn_fetch_blob.framework",
 				"${PODS_ROOT}/vcx/vcx/vcx.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/evernym-react-native-sdk/MIDSAssistSDK.framework/MIDSAssistSDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/evernym-react-native-sdk/MIDSVerificationSDK.framework/MIDSVerificationSDK",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/iProov/iProov.framework/iProov",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-white-label-app/MIDSAssistSDK.framework/MIDSAssistSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-white-label-app/MIDSVerificationSDK.framework/MIDSVerificationSDK",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1210,9 +1210,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_white_label_app.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/rn_fetch_blob.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/vcx.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iProov.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIDSAssistSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIDSVerificationSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iProov.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

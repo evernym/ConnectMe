@@ -1405,14 +1405,14 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@evernym/react-native-sdk@https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/40565114/download":
-  version "0.14.1-824"
-  resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/40565114/download#8a662ba12a096e9655dfd56a4e8b7ad4ce44f91f"
+"@evernym/react-native-sdk@https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/26633365/download":
+  version "0.13.0-696"
+  resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/26633365/download#0b8bbc746162390c84c30b90be4a0087bc2376db"
 
-"@evernym/react-native-white-label-app@1.1.1-572175081":
-  version "1.1.1-572175081"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.1.1-572175081.tgz#90b0601c856e8a672c31649dbc9f8018c71d1a96"
-  integrity sha512-0JrbOVjemCZchHNC4pRsuI6yIhjaK/FPnUH4yfvfcEiR1TNtxXP5kYGAw9U9T4A9sofEZoGHeVpPngADM7CFkg==
+"@evernym/react-native-white-label-app@1.1.1-566139377":
+  version "1.1.1-566139377"
+  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.1.1-566139377.tgz#7168257cc6145122985e6ff4a9c077103a5724b7"
+  integrity sha512-WOkMGuKsXEJLb8JL+NpWchJlbImeGbR0qC2ZL7mceyV06u5aaxrtWJIOS8/R2yvVPj9VAK5Rm5u+gDfMaH7cZA==
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
