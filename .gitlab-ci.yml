@@ -243,7 +243,6 @@ upload-android:
     stage: upload
     script:
         - cd android
-        - gem install fastlane
         - bundle install
         - bundle exec fastlane upload
     only:
