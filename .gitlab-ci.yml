@@ -245,6 +245,7 @@ upload-android:
     stage: upload
     script:
         - cd android
+        - gem install bundler:2.3.22
         - bundle install
         - bundle exec fastlane upload
     only:
