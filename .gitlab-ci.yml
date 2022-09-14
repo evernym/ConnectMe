@@ -141,6 +141,8 @@ license-data-check:
         - git remote set-url origin git@gitlab.corp.evernym.com:${CI_PROJECT_PATH}.git
         - cd ios
         - bundle install
+        - export LC_ALL=en_US.UTF-8
+        - export LANG=en_US.UTF-8
         - bundle exec fastlane build
     after_script:
         - cat ./ios/react-native-xcode.sh.log
