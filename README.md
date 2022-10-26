@@ -12,6 +12,7 @@ The identity wallet app enables myriad use cases, including proving you’re ove
 
 # References
 - [Apple App Store](https://apps.apple.com/us/app/connect-me/id1260651672) and [Google Play Store](https://play.google.com/store/apps/details?id=me.connect) install links
+- The operating systems versions supported by Connect.Me for IOS and Android are listed in the [Evernym Mobile SDK](https://gitlab.com/evernym/mobile/mobile-sdk)
 - If you want to be first to install upcoming releases while they are in beta, use the join links below.
   - [Connect.Me iOS beta](https://testflight.apple.com/join/bmbX21Kq)
   - [Connect.Me Android beta](https://play.google.com/store/apps/details?id=me.connect)
