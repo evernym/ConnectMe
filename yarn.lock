@@ -1409,10 +1409,10 @@
   version "0.13.0-696"
   resolved "https://gitlab.com/evernym/mobile/mobile-sdk/-/package_files/26633365/download#0b8bbc746162390c84c30b90be4a0087bc2376db"
 
-"@evernym/react-native-white-label-app@1.1.1-566139377":
-  version "1.1.1-566139377"
-  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.1.1-566139377.tgz#7168257cc6145122985e6ff4a9c077103a5724b7"
-  integrity sha512-WOkMGuKsXEJLb8JL+NpWchJlbImeGbR0qC2ZL7mceyV06u5aaxrtWJIOS8/R2yvVPj9VAK5Rm5u+gDfMaH7cZA==
+"@evernym/react-native-white-label-app@1.1.1-716174817":
+  version "1.1.1-716174817"
+  resolved "https://registry.yarnpkg.com/@evernym/react-native-white-label-app/-/react-native-white-label-app-1.1.1-716174817.tgz#8646bda94cabce875a78798a63760f37b2f70b18"
+  integrity sha512-tN9vEqYM5xjZ47pw4fc3GvyAUM0oL+WRtTRwoFiIB0p/qubKVyM1vs3Vqn8Cnrc5wtRjeT/IQr8YL/HcAN/5+w==
 
 "@expo/config-plugins@1.0.23":
   version "1.0.23"
@@ -11391,10 +11391,10 @@ react-native-zip-archive@5.0.2:
   resolved "https://registry.yarnpkg.com/react-native-zip-archive/-/react-native-zip-archive-5.0.2.tgz#cfa2aa8c97dd4ccb2dd8c99812ec7d9e20bf7549"
   integrity sha512-s/dSQ+XDK1aPnZ2YH1abIAWLwfylU1WptnQ0HuPVO0tahQKGQpcEgj+UQXnzPnUFHwAlTfvV7PjVyZQukNvWjw==
 
-react-native@0.65.1:
-  version "0.65.1"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.65.1.tgz#bd8cd313e0eb8ddcf08e61e3f8b54b7fc31a418c"
-  integrity sha512-0UOVSnlssweQZjuaUtzViCifE/4tXm8oRbxwakopc8GavPu9vLulde145GOw6QVYiOy4iL50f+2XXRdX9NmMeQ==
+react-native@0.65.3:
+  version "0.65.3"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.65.3.tgz#c7bc211c04935b9cc049a280d69b1a401e198f02"
+  integrity sha512-5N93fQ5EJkp9Ys5r2NDCp1x9pmrxPpyQSwLQ3uVwu01XxVSnzCuu4/OzFKr/kgqf0UOxadKl9IWU78XqDIxARA==
   dependencies:
     "@jest/create-cache-key-function" "^27.0.1"
     "@react-native-community/cli" "^6.0.0"
