@@ -125,7 +125,6 @@ license-data-check:
         - gem uninstall bundler
         - gem install bundler
         - bundler update --bundler
-        - gem install cocoapods
         - cd ..
         - mkdir -p ~/.ssh/
         - ssh-keyscan -4H gitlab.corp.evernym.com > ~/.ssh/known_hosts
@@ -196,6 +195,10 @@ build-ios-master:
         - gem install bundler:2.3.22
         - bundle install
         - echo ${ANDROID_KEYSTORE_B64} | base64 -d > $HOME/keystores/my_keystore.jks
+        - update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+        - update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+        - export JAVA_HOME='/usr/lib/jvm/java-11-openjdk-amd64'
+        - java -version
         - bundle exec fastlane build
 
 build-android-merge-request:

@@ -78,7 +78,7 @@ import com.android.build.OutputFile
 //TODO Once android builds are stable. Consider removing commented code.
 project.ext.react = [
         entryFile: "index.js",
-	    enableHermes: true,  // clean and rebuild if changing
+	    enableHermes: false,  // clean and rebuild if changing
 ]
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
@@ -120,11 +120,10 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  * on project.ext.react, JavaScript will not be compiled to Hermes Bytecode
  * and the benefits of using Hermes will therefore be sharply reduced.
  */
-def enableHermes = project.ext.react.get("enableHermes", true);
+def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     packagingOptions{
         pickFirst 'lib/armeabi-v7a/libc++_shared.so'
@@ -145,8 +144,8 @@ android {
         versionCode 70211
         versionName "1.5.6"
         compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
+            sourceCompatibility JavaVersion.VERSION_11
+            targetCompatibility JavaVersion.VERSION_11
             incremental = false; //If you see any build issues, try uncommenting this line development phases. Do not commit this line uncommented
         }
 
