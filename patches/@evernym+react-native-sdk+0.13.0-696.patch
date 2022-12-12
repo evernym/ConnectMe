@@ -1,0 +1,13 @@
+diff --git a/node_modules/@evernym/react-native-sdk/android/build.gradle b/node_modules/@evernym/react-native-sdk/android/build.gradle
+index b21a048..594cbf0 100644
+--- a/node_modules/@evernym/react-native-sdk/android/build.gradle
++++ b/node_modules/@evernym/react-native-sdk/android/build.gradle
+@@ -10,7 +10,7 @@ def safeExtGet(prop, fallback) {
+ }
+ 
+ apply plugin: 'com.android.library'
+-apply plugin: 'maven'
++apply plugin: 'maven-publish'
+ 
+ android {
+     compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
