@@ -41,7 +41,7 @@ platform :android do
     appcenter_upload(api_token: ENV["APPCENTER_API_TOKEN"], owner_type: "organization", owner_name: "Evernym-Inc", app_name: "QA-MeConnect-Android", file: "app/build/outputs/apk/release/app-x86_64-release.apk")
 
     versionCode = "80" + ENV["CI_PIPELINE_IID"]
-    versionName = "1.7.3." + versionCode
+    versionName = "1.7.4." + versionCode
 
     supply(
       version_name: versionName,
@@ -75,7 +75,7 @@ platform :android do
     reVersionCode = /versionCode\s+(\d+)/
     reVersionName = /versionName\s+(\S+)/
 
-    newVersionName = "\"1.7.3\""
+    newVersionName = "\"1.7.4""
 
     puts 'new version number: ' + newVersionName.to_s
     puts 'new version code: ' + versionCode.to_s
